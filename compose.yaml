@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: smart_triage
+      POSTGRES_USER: smart_triage
+      POSTGRES_PASSWORD: smart_triage_local
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - smart_triage_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smart_triage -d smart_triage"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+    restart: unless-stopped
+
+  postgres_test:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: smart_triage_test
+      POSTGRES_USER: smart_triage_test
+      POSTGRES_PASSWORD: smart_triage_test
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smart_triage_test -d smart_triage_test"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    tmpfs:
+      - /var/lib/postgresql/data
+
+volumes:
+  smart_triage_postgres_data:

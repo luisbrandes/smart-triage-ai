@@ -1,0 +1,30 @@
+# Glossário
+
+- **Triagem:** processo de coleta inicial, análise demonstrativa e revisão profissional; não é diagnóstico.
+- **Recomendação:** saída preliminar do motor, explicável e versionada, sujeita à decisão humana.
+- **Classificação:** prioridade final registrada pela enfermagem após revisão.
+- **Prioridade:** nível visual V0 — verde/baixa, amarelo/moderada ou vermelho/elevada — sem equivalência automática a protocolo oficial.
+- **Decisão humana:** confirmação ou reclassificação feita por profissional autorizado, separada da recomendação.
+- **Sinais vitais:** na V0, frequência cardíaca (FC) e saturação periférica de oxigênio (SpO₂).
+- **Sinal de alerta:** resposta/dado marcado por regra demonstrativa como fator relevante; não implica diagnóstico.
+- **Coleta:** tentativa agrupada de obter medições, com origem, horário, qualidade e status.
+- **Reavaliação:** nova execução do motor após dados adicionais, sem apagar execução anterior.
+- **Senha:** identificador de atendimento único no contexto operacional V0, sem conteúdo clínico.
+- **Encaminhamento:** registro de envio ao atendimento após classificação humana; fim do fluxo principal.
+- **Auditoria:** trilha append-only, minimizada, das ações relevantes e seus atores/instantes.
+- **Motor de análise:** contrato interno e implementação determinística demonstrativa que produz recomendação e razões.
+- **Regra demonstrativa:** condição previsível criada para a V0, explicitamente não validada como regra clínica.
+- **Conjunto de regras:** versão imutável das regras usada por uma execução.
+- **Dispositivo:** fonte física ou fictícia descrita por identidade, estado e capacidades; não decide classificação.
+- **Adaptador:** implementação de infraestrutura que traduz uma modalidade/dispositivo para o contrato do gateway.
+- **Gateway:** `HardwareGateway`, fronteira única usada pelos casos de uso para coleta independente de protocolo.
+- **Capacidade:** função declarada por adaptador/dispositivo, como medir FC, medir SpO₂ ou informar progresso.
+- **Sessão de coleta:** tentativa controlada, identificada e histórica de obter uma ou mais medições.
+- **Medição bruta:** dado ainda dependente do dispositivo/protocolo, restrito à integração.
+- **Medição normalizada:** representação interna com tipo, valor, unidade, tempos, origem, estado e metadados confiáveis.
+- **Origem:** modalidade registrada: `MANUAL`, `SIMULATED_DEVICE` ou `PHYSICAL_DEVICE`.
+- **Fallback:** troca controlada para outra modalidade, especialmente manual, registrada como nova sessão/origem.
+- **Timeout:** encerramento por exceder tempo definido sem resultado; não apaga tentativa nem triagem.
+- **Idempotência:** processamento repetido da mesma mensagem sem duplicar seu efeito, preservando tentativas realmente distintas.
+- **Payload:** mensagem/dado bruto recebido do protocolo; não é entrada direta do domínio ou motor.
+- **Firmware:** software embarcado no dispositivo; gestão e atualização ficam fora da V0.

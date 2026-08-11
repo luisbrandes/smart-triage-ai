@@ -1,0 +1,505 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Prioridades demonstrativas da V0; não representam protocolo clínico ou diagnóstico.
+enum RiskPriority {
+  GREEN
+  YELLOW
+  RED
+}
+
+enum TriageStatus {
+  DRAFT
+  IDENTIFICATION_IN_PROGRESS
+  ANAMNESIS_IN_PROGRESS
+  VITAL_SIGNS_REQUIRED
+  VITAL_SIGNS_IN_PROGRESS
+  FINAL_ANALYSIS_PENDING
+  AWAITING_NURSE_REVIEW
+  RECOLLECTION_REQUESTED
+  CLASSIFIED
+  REFERRED_TO_CARE
+  CARE_WAITING
+  CALLED
+  IN_SERVICE
+  COMPLETED
+  CLOSED
+  CANCELLED
+}
+
+enum ConsentStatus {
+  ACCEPTED
+  REVOKED
+}
+
+enum CollectionOrigin {
+  MANUAL
+  SIMULATED_DEVICE
+  PHYSICAL_DEVICE
+}
+
+enum HardwareCollectionStatus {
+  PENDING
+  AWAITING_DEVICE
+  READY
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+  CANCELLED
+  EXPIRED
+  RECOLLECTION_REQUIRED
+}
+
+enum DeviceOperationalStatus {
+  UNKNOWN
+  UNAVAILABLE
+  AVAILABLE
+  CONNECTING
+  CONNECTED
+  PREPARING
+  COLLECTING
+  READING_COMPLETED
+  ERROR
+  DISCONNECTED
+}
+
+enum VitalSignType {
+  HEART_RATE
+  SPO2
+}
+
+enum MeasurementTechnicalStatus {
+  RECEIVED
+  TECHNICALLY_VALIDATED
+  ACCEPTED
+  REJECTED
+  SUPERSEDED_BY_RECOLLECTION
+}
+
+enum AnalysisRunType {
+  FINAL
+}
+
+enum AnalysisRunStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+enum NurseReviewDecision {
+  CONFIRMED
+  RECLASSIFIED
+}
+
+enum QueueTicketStatus {
+  ACTIVE
+  CALLED
+  CLOSED
+  CANCELLED
+}
+
+enum CareReferralStatus {
+  PENDING
+  REFERRED
+  CANCELLED
+}
+
+enum CareAttendanceStatus {
+  WAITING
+  CALLED
+  IN_SERVICE
+  COMPLETED
+  CANCELLED
+}
+
+enum ActorType {
+  PATIENT
+  NURSE
+  SYSTEM
+  DEMO_OPERATOR
+}
+
+enum RuleSetStatus {
+  DRAFT
+  EXPERIMENTAL
+  ACTIVE
+  INACTIVE
+}
+
+model Patient {
+  id                String                  @id @default(uuid())
+  displayName       String
+  birthDate         DateTime?
+  sex               String?
+  documentReference String?
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+  healthPlans       HealthPlanInformation[]
+  consentRecords    ConsentRecord[]
+  triages           Triage[]
+}
+
+model HealthPlanInformation {
+  id                   String   @id @default(uuid())
+  patientId            String
+  hasHealthPlan        Boolean
+  planName             String?
+  memberReference      String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  patient              Patient  @relation(fields: [patientId], references: [id], onDelete: Restrict)
+
+  @@index([patientId, createdAt])
+}
+
+model ConsentRecord {
+  id             String        @id @default(uuid())
+  patientId      String
+  triageId       String?
+  termsVersion   String
+  acceptedAt     DateTime
+  acceptanceOrigin String
+  status         ConsentStatus
+  revokedAt      DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  patient        Patient       @relation(fields: [patientId], references: [id], onDelete: Restrict)
+  triage         Triage?       @relation(fields: [triageId], references: [id], onDelete: Restrict)
+
+  @@index([patientId, createdAt])
+  @@index([triageId, createdAt])
+}
+
+model Triage {
+  id                         String                      @id @default(uuid())
+  patientId                  String?
+  status                     TriageStatus                @default(DRAFT)
+  startedAt                  DateTime                    @default(now())
+  completedAt                DateTime?
+  cancelledAt                DateTime?
+  currentRecommendedPriority RiskPriority?
+  finalHumanPriority         RiskPriority?
+  createdAt                  DateTime                    @default(now())
+  updatedAt                  DateTime                    @updatedAt
+  patient                    Patient?                    @relation(fields: [patientId], references: [id], onDelete: Restrict)
+  consentRecords             ConsentRecord[]
+  anamneses                  Anamnesis[]
+  redFlagOccurrences         RedFlagOccurrence[]
+  queueTicket                QueueTicket?
+  analysisRuns               AnalysisRun[]
+  collectionSessions         HardwareCollectionSession[]
+  nurseReviews               NurseReview[]
+  careReferrals              CareReferral[]
+  careAttendance            CareAttendance?
+  auditEvents                AuditEvent[]
+
+  @@index([status, createdAt])
+  @@index([patientId])
+}
+
+model CareAttendance {
+  id                 String               @id @default(uuid())
+  triageId           String               @unique
+  status             CareAttendanceStatus @default(WAITING)
+  destination        String?
+  queuedAt           DateTime             @default(now())
+  calledAt           DateTime?
+  serviceStartedAt   DateTime?
+  completedAt        DateTime?
+  calledBy           String?
+  serviceStartedBy  String?
+  completedBy        String?
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  triage             Triage               @relation(fields: [triageId], references: [id], onDelete: Restrict)
+
+  @@index([status, queuedAt])
+}
+
+model Anamnesis {
+  id                            String             @id @default(uuid())
+  triageId                      String
+  version                       Int                @default(1)
+  mainComplaint                 String
+  additionalDescription        String?
+  subjectiveIntensity          Int?
+  symptomStartedAt              DateTime?
+  approximateDuration          String?
+  declaredMedications          String?
+  declaredAllergies            String?
+  declaredPreexistingConditions String?
+  additionalNotes              String?
+  createdAt                     DateTime           @default(now())
+  updatedAt                     DateTime           @updatedAt
+  triage                       Triage             @relation(fields: [triageId], references: [id], onDelete: Restrict)
+  answers                      AnamnesisAnswer[]
+
+  @@unique([triageId, version])
+  @@index([triageId, createdAt])
+}
+
+model AnamnesisAnswer {
+  id              String    @id @default(uuid())
+  anamnesisId     String
+  questionKey     String
+  questionVersion String
+  normalizedValue Json
+  answerText      String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  anamnesis       Anamnesis @relation(fields: [anamnesisId], references: [id], onDelete: Restrict)
+
+  @@unique([anamnesisId, questionKey, questionVersion])
+  @@index([anamnesisId])
+}
+
+model RedFlagOccurrence {
+  id              String   @id @default(uuid())
+  triageId        String
+  sourceKey       String
+  sourceType      String
+  explanation     String
+  isActive        Boolean  @default(true)
+  resolvedAt      DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  triage          Triage   @relation(fields: [triageId], references: [id], onDelete: Restrict)
+
+  @@index([triageId, isActive])
+}
+
+model QueueTicket {
+  id              String            @id @default(uuid())
+  triageId        String            @unique
+  publicCode      String            @unique
+  operationalDate DateTime
+  sequenceNumber  Int
+  status          QueueTicketStatus @default(ACTIVE)
+  issuedAt        DateTime          @default(now())
+  calledAt        DateTime?
+  closedAt        DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  triage          Triage            @relation(fields: [triageId], references: [id], onDelete: Restrict)
+
+  @@unique([operationalDate, sequenceNumber])
+  @@index([status, operationalDate, sequenceNumber])
+}
+
+model RuleSetVersion {
+  id            String          @id @default(uuid())
+  stableKey     String
+  version       String
+  description   String
+  status        RuleSetStatus   @default(DRAFT)
+  createdAt     DateTime        @default(now())
+  activatedAt   DateTime?
+  deactivatedAt DateTime?
+  analysisRuns  AnalysisRun[]
+
+  @@unique([stableKey, version])
+  @@index([status])
+}
+
+model AnalysisRun {
+  id                    String            @id @default(uuid())
+  triageId              String
+  ruleSetVersionId      String
+  runType               AnalysisRunType
+  status                AnalysisRunStatus @default(PENDING)
+  inputFingerprint      String            @default(uuid())
+  startedAt             DateTime          @default(now())
+  completedAt           DateTime?
+  failedAt              DateTime?
+  sanitizedErrorSummary String?
+  sanitizedInputSnapshot Json?
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  triage                Triage            @relation(fields: [triageId], references: [id], onDelete: Restrict)
+  ruleSetVersion        RuleSetVersion     @relation(fields: [ruleSetVersionId], references: [id], onDelete: Restrict)
+  recommendation        AnalysisRecommendation?
+
+  @@index([triageId, createdAt])
+  @@index([ruleSetVersionId])
+  @@unique([triageId, runType, ruleSetVersionId, inputFingerprint])
+}
+
+model AnalysisRecommendation {
+  id                  String                 @id @default(uuid())
+  analysisRunId       String                 @unique
+  recommendedPriority RiskPriority
+  requiresVitalSigns  Boolean
+  createdAt           DateTime               @default(now())
+  analysisRun         AnalysisRun            @relation(fields: [analysisRunId], references: [id], onDelete: Restrict)
+  reasons             RecommendationReason[]
+  nurseReviews        NurseReview[]
+
+  @@index([analysisRunId])
+}
+
+model RecommendationReason {
+  id               String                 @id @default(uuid())
+  recommendationId String
+  reasonCode       String
+  explanation      String
+  category         String
+  displayOrder     Int
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  recommendation   AnalysisRecommendation @relation(fields: [recommendationId], references: [id], onDelete: Restrict)
+
+  @@unique([recommendationId, reasonCode])
+  @@index([recommendationId, displayOrder])
+}
+
+model MedicalDevice {
+  id                    String                  @id @default(uuid())
+  externalIdentifier    String?                 @unique
+  displayName           String
+  manufacturer          String?
+  model                  String?
+  firmwareVersion       String?
+  operationalStatus     DeviceOperationalStatus @default(UNKNOWN)
+  isActive              Boolean                 @default(true)
+  lastCommunicationAt   DateTime?
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  capabilities          DeviceCapability[]
+  collectionSessions    HardwareCollectionSession[]
+
+  @@index([externalIdentifier])
+  @@index([operationalStatus, isActive])
+}
+
+model DeviceCapability {
+  id              String        @id @default(uuid())
+  deviceId        String
+  vitalSignType   VitalSignType
+  isActive        Boolean       @default(true)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  device          MedicalDevice @relation(fields: [deviceId], references: [id], onDelete: Restrict)
+
+  @@unique([deviceId, vitalSignType])
+  @@index([deviceId])
+}
+
+model HardwareCollectionSession {
+  id                    String                   @id @default(uuid())
+  triageId              String
+  deviceId              String?
+  origin                CollectionOrigin
+  status                HardwareCollectionStatus @default(PENDING)
+  attemptNumber         Int
+  startedAt             DateTime                 @default(now())
+  completedAt           DateTime?
+  failedAt              DateTime?
+  cancelledAt           DateTime?
+  sanitizedErrorSummary String?
+  sanitizedMetadata     Json?
+  initiatedBy           ActorType
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
+  triage                Triage                   @relation(fields: [triageId], references: [id], onDelete: Restrict)
+  device                MedicalDevice?           @relation(fields: [deviceId], references: [id], onDelete: Restrict)
+  measurements          VitalSignMeasurement[]
+  errors                HardwareError[]
+
+  @@unique([triageId, attemptNumber])
+  @@index([triageId, createdAt])
+  @@index([deviceId])
+  @@index([status, createdAt])
+}
+
+model VitalSignMeasurement {
+  id                    String                     @id @default(uuid())
+  collectionSessionId   String
+  vitalSignType         VitalSignType
+  numericValue          Float
+  unit                  String
+  origin                CollectionOrigin
+  technicalStatus       MeasurementTechnicalStatus
+  qualityDescription    String?
+  measuredByDeviceAt    DateTime?
+  receivedByServerAt    DateTime
+  acceptedIntoFlowAt    DateTime?
+  rejectedAt            DateTime?
+  rejectionReason       String?
+  externalMeasurementId String?                    @unique
+  sequenceNumber        Int?
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
+  collectionSession     HardwareCollectionSession  @relation(fields: [collectionSessionId], references: [id], onDelete: Restrict)
+
+  @@unique([collectionSessionId, sequenceNumber])
+  @@index([collectionSessionId, vitalSignType, technicalStatus])
+}
+
+model HardwareError {
+  id                  String                    @id @default(uuid())
+  collectionSessionId String
+  errorCode           String
+  category            String
+  sanitizedMessage    String
+  isRecoverable       Boolean
+  createdAt           DateTime                  @default(now())
+  collectionSession   HardwareCollectionSession @relation(fields: [collectionSessionId], references: [id], onDelete: Restrict)
+
+  @@index([collectionSessionId, createdAt])
+}
+
+model NurseReview {
+  id                       String                  @id @default(uuid())
+  triageId                 String
+  reviewedRecommendationId String?
+  confirmedPriority        RiskPriority
+  decision                 NurseReviewDecision
+  justification            String?
+  reviewedAt               DateTime                @default(now())
+  professionalReference    String
+  createdAt                DateTime                @default(now())
+  updatedAt                DateTime                @updatedAt
+  triage                   Triage                  @relation(fields: [triageId], references: [id], onDelete: Restrict)
+  reviewedRecommendation   AnalysisRecommendation? @relation(fields: [reviewedRecommendationId], references: [id], onDelete: Restrict)
+
+  @@index([triageId, reviewedAt])
+  @@index([reviewedRecommendationId])
+}
+
+model CareReferral {
+  id                    String             @id @default(uuid())
+  triageId              String
+  status                CareReferralStatus @default(PENDING)
+  referredAt            DateTime?
+  destinationDescription String?
+  notes                 String?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+  triage                Triage             @relation(fields: [triageId], references: [id], onDelete: Restrict)
+
+  @@index([triageId, referredAt])
+  @@index([status, createdAt])
+}
+
+model AuditEvent {
+  id                 String    @id @default(uuid())
+  triageId           String?
+  entityType         String
+  entityId           String
+  action             String
+  actorType          ActorType
+  actorReference     String?
+  sanitizedMetadata Json?
+  createdAt          DateTime  @default(now())
+  triage             Triage?   @relation(fields: [triageId], references: [id], onDelete: Restrict)
+
+  @@index([triageId, createdAt])
+  @@index([entityType, entityId, createdAt])
+}

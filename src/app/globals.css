@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-foreground: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-contrast: var(--primary-contrast);
+  --color-secondary: var(--secondary);
+  --color-focus: var(--focus);
+  --color-info: var(--info);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-geist-sans);
+  --radius-sm: var(--radius-small);
+  --radius-md: var(--radius-medium);
+  --radius-lg: var(--radius-large);
+  --radius-full: var(--radius-rounded);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-raised: var(--shadow-raised);
+}
+
+:root {
+  /* Fundação visual provisória; estados são genéricos, não classificações clínicas. */
+  --background: #f3f6f7;
+  --surface: #ffffff;
+  --surface-raised: #f9fbfb;
+  --text-primary: #17272c;
+  --text-secondary: #40545a;
+  --text-muted: #697b80;
+  --border: #d9e2e4;
+  --border-strong: #bac9cc;
+  --primary: #176b72;
+  --primary-contrast: #ffffff;
+  --secondary: #e5f1f1;
+  --focus: #146d9a;
+  --info: #1e6f9f;
+  --success: #267052;
+  --warning: #8a6416;
+  --danger: #a44444;
+  --radius-small: 0.5rem;
+  --radius-medium: 0.75rem;
+  --radius-large: 1.125rem;
+  --radius-rounded: 999px;
+  --shadow-soft: 0 1px 2px rgb(23 39 44 / 0.05);
+  --shadow-raised: 0 10px 30px rgb(23 39 44 / 0.07);
+  --content-max: 76rem;
+  --control-min-height: 2.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--focus) 60%, white);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 22%, transparent);
+}
+
+.signal-trace.is-active {
+  animation: signal-scroll 2.4s linear infinite;
+}
+
+@keyframes signal-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .signal-trace.is-active {
+    animation: none;
+  }
+}
