@@ -63,6 +63,7 @@ Sinais vitais vinculados à triagem são obtidos por um `HardwareGateway` comum.
 
 - Produto, escopo e demonstração: `docs/PRODUCT.md`, `docs/MVP_SCOPE.md`, `docs/DEMO_SCENARIOS.md`.
 - Fluxos, estados e domínio: `docs/USER_FLOWS.md`, `docs/TRIAGE_STATE_MACHINE.md`, `docs/DOMAIN_MODEL.md`.
+- Preferências e limites de acessibilidade: `docs/ACCESSIBILITY.md`.
 - Fronteiras técnicas: `docs/ANALYSIS_ENGINE.md`, `docs/HARDWARE_BOUNDARY.md`, `docs/ARCHITECTURE.md`.
 - Governança: `docs/SECURITY_AND_PRIVACY.md`, `docs/ENGINEERING_RULES.md`, `docs/ACCEPTANCE_CRITERIA.md`.
 - Execução futura: `docs/IMPLEMENTATION_PLAN.md`, `docs/GLOSSARY.md` e `docs/decisions/`.

@@ -1,5 +1,6 @@
 import {
   Activity,
+  Accessibility,
   ArrowRight,
   Check,
   ChevronLeft,
@@ -16,15 +17,19 @@ import {
   Menu,
   MonitorCog,
   Settings,
+  RotateCcw,
   ShieldCheck,
   Sparkles,
   Stethoscope,
   UserRound,
   UsersRound,
+  Volume2,
+  X,
   type LucideIcon,
 } from "lucide-react";
 
 const icons = {
+  accessibility: Accessibility,
   activity: Activity,
   arrowRight: ArrowRight,
   check: Check,
@@ -42,11 +47,14 @@ const icons = {
   menu: Menu,
   development: MonitorCog,
   settings: Settings,
+  reset: RotateCcw,
   shield: ShieldCheck,
   sparkle: Sparkles,
   nursing: Stethoscope,
   patient: UserRound,
   review: UsersRound,
+  volume: Volume2,
+  close: X,
   referral: ArrowRight,
 } satisfies Record<string, LucideIcon>;
 

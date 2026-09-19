@@ -5,6 +5,7 @@ import { publicNavigation } from "@/shared/config/navigation";
 import { Badge } from "@/shared/ui/badge";
 import { Icon } from "@/shared/ui/icon";
 import { PageContainer } from "@/shared/layout/page-container";
+import { AccessibilityButton } from "@/features/accessibility/accessibility-provider";
 
 export function PatientHeader() {
   return (
@@ -14,7 +15,7 @@ export function PatientHeader() {
           <span className="grid size-9 place-items-center rounded-md bg-primary text-primary-contrast"><Icon name="pulse" size={20} /></span>
           <span className="font-semibold">{appConfig.name}</span>
         </Link>
-        <Badge variant="info">Triagem assistida</Badge>
+        <div className="flex items-center gap-2"><Badge variant="info">Triagem assistida</Badge><AccessibilityButton /></div>
       </PageContainer>
     </header>
   );

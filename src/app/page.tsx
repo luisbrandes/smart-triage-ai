@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <AppHeader />
-      <main>
+      <main id="conteudo-principal">
         <PageContainer className="py-14 sm:py-24">
           <section className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]" aria-labelledby="hero-title">
             <div>

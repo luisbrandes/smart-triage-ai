@@ -9,6 +9,7 @@ import { Icon } from "@/shared/ui/icon";
 import { redirect } from "next/navigation";
 import { getNursingSession } from "@/server/security/nursing-session";
 import { NursingNavigation } from "@/features/nurse-shell/components/nursing-navigation";
+import { AccessibilityButton } from "@/features/accessibility/accessibility-provider";
 
 export default async function NursingLayout({ children }: { children: ReactNode }) {
   if (!(await getNursingSession())) redirect("/acesso-enfermagem");
@@ -23,10 +24,10 @@ export default async function NursingLayout({ children }: { children: ReactNode 
               <span className="font-semibold">Smart Triage</span>
             </Link>
             <div className="hidden lg:block"><p className="text-sm font-semibold">Área da enfermagem</p><p className="text-xs text-text-muted">Visão operacional</p></div>
-            <Badge variant="info">Área segura</Badge>
+            <div className="flex items-center gap-2"><Badge variant="info">Área segura</Badge><AccessibilityButton /></div>
           </PageContainer>
         </header>
-        <main className="pb-24 lg:pb-0">{children}</main>
+        <main className="pb-24 lg:pb-0" id="conteudo-principal">{children}</main>
         <NursingNavigation mobile />
       </div>
     </div>

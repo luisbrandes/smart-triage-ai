@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { appConfig } from "@/shared/config/app";
+import { AccessibilityProvider } from "@/features/accessibility/accessibility-provider";
 
 import "./globals.css";
 
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body><AccessibilityProvider>{children}</AccessibilityProvider></body>
     </html>
   );
 }
