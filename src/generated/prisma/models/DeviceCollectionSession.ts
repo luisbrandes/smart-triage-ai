@@ -27,6 +27,7 @@ export type AggregateDeviceCollectionSession = {
 export type DeviceCollectionSessionMinAggregateOutputType = {
   id: string | null
   deviceId: string | null
+  requestedByTriageId: string | null
   status: $Enums.DeviceCollectionSessionStatus | null
   startedAt: Date | null
   completedAt: Date | null
@@ -38,6 +39,7 @@ export type DeviceCollectionSessionMinAggregateOutputType = {
 export type DeviceCollectionSessionMaxAggregateOutputType = {
   id: string | null
   deviceId: string | null
+  requestedByTriageId: string | null
   status: $Enums.DeviceCollectionSessionStatus | null
   startedAt: Date | null
   completedAt: Date | null
@@ -49,6 +51,7 @@ export type DeviceCollectionSessionMaxAggregateOutputType = {
 export type DeviceCollectionSessionCountAggregateOutputType = {
   id: number
   deviceId: number
+  requestedByTriageId: number
   status: number
   startedAt: number
   completedAt: number
@@ -62,6 +65,7 @@ export type DeviceCollectionSessionCountAggregateOutputType = {
 export type DeviceCollectionSessionMinAggregateInputType = {
   id?: true
   deviceId?: true
+  requestedByTriageId?: true
   status?: true
   startedAt?: true
   completedAt?: true
@@ -73,6 +77,7 @@ export type DeviceCollectionSessionMinAggregateInputType = {
 export type DeviceCollectionSessionMaxAggregateInputType = {
   id?: true
   deviceId?: true
+  requestedByTriageId?: true
   status?: true
   startedAt?: true
   completedAt?: true
@@ -84,6 +89,7 @@ export type DeviceCollectionSessionMaxAggregateInputType = {
 export type DeviceCollectionSessionCountAggregateInputType = {
   id?: true
   deviceId?: true
+  requestedByTriageId?: true
   status?: true
   startedAt?: true
   completedAt?: true
@@ -168,6 +174,7 @@ export type DeviceCollectionSessionGroupByArgs<ExtArgs extends runtime.Types.Ext
 export type DeviceCollectionSessionGroupByOutputType = {
   id: string
   deviceId: string
+  requestedByTriageId: string | null
   status: $Enums.DeviceCollectionSessionStatus
   startedAt: Date | null
   completedAt: Date | null
@@ -200,6 +207,7 @@ export type DeviceCollectionSessionWhereInput = {
   NOT?: Prisma.DeviceCollectionSessionWhereInput | Prisma.DeviceCollectionSessionWhereInput[]
   id?: Prisma.StringFilter<"DeviceCollectionSession"> | string
   deviceId?: Prisma.StringFilter<"DeviceCollectionSession"> | string
+  requestedByTriageId?: Prisma.StringNullableFilter<"DeviceCollectionSession"> | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusFilter<"DeviceCollectionSession"> | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
@@ -207,6 +215,7 @@ export type DeviceCollectionSessionWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
   device?: Prisma.XOR<Prisma.MedicalDeviceScalarRelationFilter, Prisma.MedicalDeviceWhereInput>
+  requestedByTriage?: Prisma.XOR<Prisma.TriageNullableScalarRelationFilter, Prisma.TriageWhereInput> | null
   readings?: Prisma.ReadingListRelationFilter
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionListRelationFilter
 }
@@ -214,6 +223,7 @@ export type DeviceCollectionSessionWhereInput = {
 export type DeviceCollectionSessionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   deviceId?: Prisma.SortOrder
+  requestedByTriageId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -221,6 +231,7 @@ export type DeviceCollectionSessionOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   device?: Prisma.MedicalDeviceOrderByWithRelationInput
+  requestedByTriage?: Prisma.TriageOrderByWithRelationInput
   readings?: Prisma.ReadingOrderByRelationAggregateInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionOrderByRelationAggregateInput
 }
@@ -231,6 +242,7 @@ export type DeviceCollectionSessionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.DeviceCollectionSessionWhereInput[]
   NOT?: Prisma.DeviceCollectionSessionWhereInput | Prisma.DeviceCollectionSessionWhereInput[]
   deviceId?: Prisma.StringFilter<"DeviceCollectionSession"> | string
+  requestedByTriageId?: Prisma.StringNullableFilter<"DeviceCollectionSession"> | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusFilter<"DeviceCollectionSession"> | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
@@ -238,6 +250,7 @@ export type DeviceCollectionSessionWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
   device?: Prisma.XOR<Prisma.MedicalDeviceScalarRelationFilter, Prisma.MedicalDeviceWhereInput>
+  requestedByTriage?: Prisma.XOR<Prisma.TriageNullableScalarRelationFilter, Prisma.TriageWhereInput> | null
   readings?: Prisma.ReadingListRelationFilter
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionListRelationFilter
 }, "id">
@@ -245,6 +258,7 @@ export type DeviceCollectionSessionWhereUniqueInput = Prisma.AtLeast<{
 export type DeviceCollectionSessionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   deviceId?: Prisma.SortOrder
+  requestedByTriageId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -262,6 +276,7 @@ export type DeviceCollectionSessionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.DeviceCollectionSessionScalarWhereWithAggregatesInput | Prisma.DeviceCollectionSessionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"DeviceCollectionSession"> | string
   deviceId?: Prisma.StringWithAggregatesFilter<"DeviceCollectionSession"> | string
+  requestedByTriageId?: Prisma.StringNullableWithAggregatesFilter<"DeviceCollectionSession"> | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusWithAggregatesFilter<"DeviceCollectionSession"> | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DeviceCollectionSession"> | Date | string | null
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DeviceCollectionSession"> | Date | string | null
@@ -279,6 +294,7 @@ export type DeviceCollectionSessionCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   device: Prisma.MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput
+  requestedByTriage?: Prisma.TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput
   readings?: Prisma.ReadingCreateNestedManyWithoutSessionInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutSourceDeviceCollectionSessionInput
 }
@@ -286,6 +302,7 @@ export type DeviceCollectionSessionCreateInput = {
 export type DeviceCollectionSessionUncheckedCreateInput = {
   id?: string
   deviceId: string
+  requestedByTriageId?: string | null
   status?: $Enums.DeviceCollectionSessionStatus
   startedAt?: Date | string | null
   completedAt?: Date | string | null
@@ -305,6 +322,7 @@ export type DeviceCollectionSessionUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   device?: Prisma.MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput
+  requestedByTriage?: Prisma.TriageUpdateOneWithoutRequestedDeviceCollectionSessionsNestedInput
   readings?: Prisma.ReadingUpdateManyWithoutSessionNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
 }
@@ -312,6 +330,7 @@ export type DeviceCollectionSessionUpdateInput = {
 export type DeviceCollectionSessionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   deviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedByTriageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -325,6 +344,7 @@ export type DeviceCollectionSessionUncheckedUpdateInput = {
 export type DeviceCollectionSessionCreateManyInput = {
   id?: string
   deviceId: string
+  requestedByTriageId?: string | null
   status?: $Enums.DeviceCollectionSessionStatus
   startedAt?: Date | string | null
   completedAt?: Date | string | null
@@ -346,6 +366,7 @@ export type DeviceCollectionSessionUpdateManyMutationInput = {
 export type DeviceCollectionSessionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   deviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedByTriageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -372,6 +393,7 @@ export type DeviceCollectionSessionNullableScalarRelationFilter = {
 export type DeviceCollectionSessionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   deviceId?: Prisma.SortOrder
+  requestedByTriageId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -383,6 +405,7 @@ export type DeviceCollectionSessionCountOrderByAggregateInput = {
 export type DeviceCollectionSessionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   deviceId?: Prisma.SortOrder
+  requestedByTriageId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -394,12 +417,55 @@ export type DeviceCollectionSessionMaxOrderByAggregateInput = {
 export type DeviceCollectionSessionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   deviceId?: Prisma.SortOrder
+  requestedByTriageId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
   cancelledAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput = {
+  create?: Prisma.XOR<Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput, Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput> | Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput[] | Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput[]
+  connectOrCreate?: Prisma.DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput[]
+  createMany?: Prisma.DeviceCollectionSessionCreateManyRequestedByTriageInputEnvelope
+  connect?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+}
+
+export type DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput = {
+  create?: Prisma.XOR<Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput, Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput> | Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput[] | Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput[]
+  connectOrCreate?: Prisma.DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput[]
+  createMany?: Prisma.DeviceCollectionSessionCreateManyRequestedByTriageInputEnvelope
+  connect?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+}
+
+export type DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput = {
+  create?: Prisma.XOR<Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput, Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput> | Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput[] | Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput[]
+  connectOrCreate?: Prisma.DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput[]
+  upsert?: Prisma.DeviceCollectionSessionUpsertWithWhereUniqueWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionUpsertWithWhereUniqueWithoutRequestedByTriageInput[]
+  createMany?: Prisma.DeviceCollectionSessionCreateManyRequestedByTriageInputEnvelope
+  set?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+  disconnect?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+  delete?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+  connect?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+  update?: Prisma.DeviceCollectionSessionUpdateWithWhereUniqueWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionUpdateWithWhereUniqueWithoutRequestedByTriageInput[]
+  updateMany?: Prisma.DeviceCollectionSessionUpdateManyWithWhereWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionUpdateManyWithWhereWithoutRequestedByTriageInput[]
+  deleteMany?: Prisma.DeviceCollectionSessionScalarWhereInput | Prisma.DeviceCollectionSessionScalarWhereInput[]
+}
+
+export type DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput = {
+  create?: Prisma.XOR<Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput, Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput> | Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput[] | Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput[]
+  connectOrCreate?: Prisma.DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput[]
+  upsert?: Prisma.DeviceCollectionSessionUpsertWithWhereUniqueWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionUpsertWithWhereUniqueWithoutRequestedByTriageInput[]
+  createMany?: Prisma.DeviceCollectionSessionCreateManyRequestedByTriageInputEnvelope
+  set?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+  disconnect?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+  delete?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+  connect?: Prisma.DeviceCollectionSessionWhereUniqueInput | Prisma.DeviceCollectionSessionWhereUniqueInput[]
+  update?: Prisma.DeviceCollectionSessionUpdateWithWhereUniqueWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionUpdateWithWhereUniqueWithoutRequestedByTriageInput[]
+  updateMany?: Prisma.DeviceCollectionSessionUpdateManyWithWhereWithoutRequestedByTriageInput | Prisma.DeviceCollectionSessionUpdateManyWithWhereWithoutRequestedByTriageInput[]
+  deleteMany?: Prisma.DeviceCollectionSessionScalarWhereInput | Prisma.DeviceCollectionSessionScalarWhereInput[]
 }
 
 export type DeviceCollectionSessionCreateNestedManyWithoutDeviceInput = {
@@ -480,6 +546,73 @@ export type DeviceCollectionSessionUpdateOneWithoutClinicalCollectionSessionsNes
   update?: Prisma.XOR<Prisma.XOR<Prisma.DeviceCollectionSessionUpdateToOneWithWhereWithoutClinicalCollectionSessionsInput, Prisma.DeviceCollectionSessionUpdateWithoutClinicalCollectionSessionsInput>, Prisma.DeviceCollectionSessionUncheckedUpdateWithoutClinicalCollectionSessionsInput>
 }
 
+export type DeviceCollectionSessionCreateWithoutRequestedByTriageInput = {
+  id?: string
+  status?: $Enums.DeviceCollectionSessionStatus
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  device: Prisma.MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput
+  readings?: Prisma.ReadingCreateNestedManyWithoutSessionInput
+  clinicalCollectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutSourceDeviceCollectionSessionInput
+}
+
+export type DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput = {
+  id?: string
+  deviceId: string
+  status?: $Enums.DeviceCollectionSessionStatus
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutSessionInput
+  clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutSourceDeviceCollectionSessionInput
+}
+
+export type DeviceCollectionSessionCreateOrConnectWithoutRequestedByTriageInput = {
+  where: Prisma.DeviceCollectionSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput, Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput>
+}
+
+export type DeviceCollectionSessionCreateManyRequestedByTriageInputEnvelope = {
+  data: Prisma.DeviceCollectionSessionCreateManyRequestedByTriageInput | Prisma.DeviceCollectionSessionCreateManyRequestedByTriageInput[]
+  skipDuplicates?: boolean
+}
+
+export type DeviceCollectionSessionUpsertWithWhereUniqueWithoutRequestedByTriageInput = {
+  where: Prisma.DeviceCollectionSessionWhereUniqueInput
+  update: Prisma.XOR<Prisma.DeviceCollectionSessionUpdateWithoutRequestedByTriageInput, Prisma.DeviceCollectionSessionUncheckedUpdateWithoutRequestedByTriageInput>
+  create: Prisma.XOR<Prisma.DeviceCollectionSessionCreateWithoutRequestedByTriageInput, Prisma.DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput>
+}
+
+export type DeviceCollectionSessionUpdateWithWhereUniqueWithoutRequestedByTriageInput = {
+  where: Prisma.DeviceCollectionSessionWhereUniqueInput
+  data: Prisma.XOR<Prisma.DeviceCollectionSessionUpdateWithoutRequestedByTriageInput, Prisma.DeviceCollectionSessionUncheckedUpdateWithoutRequestedByTriageInput>
+}
+
+export type DeviceCollectionSessionUpdateManyWithWhereWithoutRequestedByTriageInput = {
+  where: Prisma.DeviceCollectionSessionScalarWhereInput
+  data: Prisma.XOR<Prisma.DeviceCollectionSessionUpdateManyMutationInput, Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageInput>
+}
+
+export type DeviceCollectionSessionScalarWhereInput = {
+  AND?: Prisma.DeviceCollectionSessionScalarWhereInput | Prisma.DeviceCollectionSessionScalarWhereInput[]
+  OR?: Prisma.DeviceCollectionSessionScalarWhereInput[]
+  NOT?: Prisma.DeviceCollectionSessionScalarWhereInput | Prisma.DeviceCollectionSessionScalarWhereInput[]
+  id?: Prisma.StringFilter<"DeviceCollectionSession"> | string
+  deviceId?: Prisma.StringFilter<"DeviceCollectionSession"> | string
+  requestedByTriageId?: Prisma.StringNullableFilter<"DeviceCollectionSession"> | string | null
+  status?: Prisma.EnumDeviceCollectionSessionStatusFilter<"DeviceCollectionSession"> | $Enums.DeviceCollectionSessionStatus
+  startedAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
+  completedAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
+  cancelledAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
+}
+
 export type DeviceCollectionSessionCreateWithoutDeviceInput = {
   id?: string
   status?: $Enums.DeviceCollectionSessionStatus
@@ -488,12 +621,14 @@ export type DeviceCollectionSessionCreateWithoutDeviceInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  requestedByTriage?: Prisma.TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput
   readings?: Prisma.ReadingCreateNestedManyWithoutSessionInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutSourceDeviceCollectionSessionInput
 }
 
 export type DeviceCollectionSessionUncheckedCreateWithoutDeviceInput = {
   id?: string
+  requestedByTriageId?: string | null
   status?: $Enums.DeviceCollectionSessionStatus
   startedAt?: Date | string | null
   completedAt?: Date | string | null
@@ -530,20 +665,6 @@ export type DeviceCollectionSessionUpdateManyWithWhereWithoutDeviceInput = {
   data: Prisma.XOR<Prisma.DeviceCollectionSessionUpdateManyMutationInput, Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutDeviceInput>
 }
 
-export type DeviceCollectionSessionScalarWhereInput = {
-  AND?: Prisma.DeviceCollectionSessionScalarWhereInput | Prisma.DeviceCollectionSessionScalarWhereInput[]
-  OR?: Prisma.DeviceCollectionSessionScalarWhereInput[]
-  NOT?: Prisma.DeviceCollectionSessionScalarWhereInput | Prisma.DeviceCollectionSessionScalarWhereInput[]
-  id?: Prisma.StringFilter<"DeviceCollectionSession"> | string
-  deviceId?: Prisma.StringFilter<"DeviceCollectionSession"> | string
-  status?: Prisma.EnumDeviceCollectionSessionStatusFilter<"DeviceCollectionSession"> | $Enums.DeviceCollectionSessionStatus
-  startedAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
-  completedAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
-  cancelledAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
-  createdAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
-}
-
 export type DeviceCollectionSessionCreateWithoutReadingsInput = {
   id?: string
   status?: $Enums.DeviceCollectionSessionStatus
@@ -553,12 +674,14 @@ export type DeviceCollectionSessionCreateWithoutReadingsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   device: Prisma.MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput
+  requestedByTriage?: Prisma.TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutSourceDeviceCollectionSessionInput
 }
 
 export type DeviceCollectionSessionUncheckedCreateWithoutReadingsInput = {
   id?: string
   deviceId: string
+  requestedByTriageId?: string | null
   status?: $Enums.DeviceCollectionSessionStatus
   startedAt?: Date | string | null
   completedAt?: Date | string | null
@@ -593,12 +716,14 @@ export type DeviceCollectionSessionUpdateWithoutReadingsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   device?: Prisma.MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput
+  requestedByTriage?: Prisma.TriageUpdateOneWithoutRequestedDeviceCollectionSessionsNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
 }
 
 export type DeviceCollectionSessionUncheckedUpdateWithoutReadingsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   deviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedByTriageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -617,12 +742,14 @@ export type DeviceCollectionSessionCreateWithoutClinicalCollectionSessionsInput 
   createdAt?: Date | string
   updatedAt?: Date | string
   device: Prisma.MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput
+  requestedByTriage?: Prisma.TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput
   readings?: Prisma.ReadingCreateNestedManyWithoutSessionInput
 }
 
 export type DeviceCollectionSessionUncheckedCreateWithoutClinicalCollectionSessionsInput = {
   id?: string
   deviceId: string
+  requestedByTriageId?: string | null
   status?: $Enums.DeviceCollectionSessionStatus
   startedAt?: Date | string | null
   completedAt?: Date | string | null
@@ -657,12 +784,14 @@ export type DeviceCollectionSessionUpdateWithoutClinicalCollectionSessionsInput 
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   device?: Prisma.MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput
+  requestedByTriage?: Prisma.TriageUpdateOneWithoutRequestedDeviceCollectionSessionsNestedInput
   readings?: Prisma.ReadingUpdateManyWithoutSessionNestedInput
 }
 
 export type DeviceCollectionSessionUncheckedUpdateWithoutClinicalCollectionSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   deviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedByTriageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -672,8 +801,57 @@ export type DeviceCollectionSessionUncheckedUpdateWithoutClinicalCollectionSessi
   readings?: Prisma.ReadingUncheckedUpdateManyWithoutSessionNestedInput
 }
 
+export type DeviceCollectionSessionCreateManyRequestedByTriageInput = {
+  id?: string
+  deviceId: string
+  status?: $Enums.DeviceCollectionSessionStatus
+  startedAt?: Date | string | null
+  completedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type DeviceCollectionSessionUpdateWithoutRequestedByTriageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  device?: Prisma.MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput
+  readings?: Prisma.ReadingUpdateManyWithoutSessionNestedInput
+  clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
+}
+
+export type DeviceCollectionSessionUncheckedUpdateWithoutRequestedByTriageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  deviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  readings?: Prisma.ReadingUncheckedUpdateManyWithoutSessionNestedInput
+  clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
+}
+
+export type DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  deviceId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
+  startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type DeviceCollectionSessionCreateManyDeviceInput = {
   id?: string
+  requestedByTriageId?: string | null
   status?: $Enums.DeviceCollectionSessionStatus
   startedAt?: Date | string | null
   completedAt?: Date | string | null
@@ -690,12 +868,14 @@ export type DeviceCollectionSessionUpdateWithoutDeviceInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  requestedByTriage?: Prisma.TriageUpdateOneWithoutRequestedDeviceCollectionSessionsNestedInput
   readings?: Prisma.ReadingUpdateManyWithoutSessionNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
 }
 
 export type DeviceCollectionSessionUncheckedUpdateWithoutDeviceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedByTriageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -708,6 +888,7 @@ export type DeviceCollectionSessionUncheckedUpdateWithoutDeviceInput = {
 
 export type DeviceCollectionSessionUncheckedUpdateManyWithoutDeviceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requestedByTriageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumDeviceCollectionSessionStatusFieldUpdateOperationsInput | $Enums.DeviceCollectionSessionStatus
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -759,6 +940,7 @@ export type DeviceCollectionSessionCountOutputTypeCountClinicalCollectionSession
 export type DeviceCollectionSessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   deviceId?: boolean
+  requestedByTriageId?: boolean
   status?: boolean
   startedAt?: boolean
   completedAt?: boolean
@@ -766,6 +948,7 @@ export type DeviceCollectionSessionSelect<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
+  requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
   readings?: boolean | Prisma.DeviceCollectionSession$readingsArgs<ExtArgs>
   clinicalCollectionSessions?: boolean | Prisma.DeviceCollectionSession$clinicalCollectionSessionsArgs<ExtArgs>
   _count?: boolean | Prisma.DeviceCollectionSessionCountOutputTypeDefaultArgs<ExtArgs>
@@ -774,6 +957,7 @@ export type DeviceCollectionSessionSelect<ExtArgs extends runtime.Types.Extensio
 export type DeviceCollectionSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   deviceId?: boolean
+  requestedByTriageId?: boolean
   status?: boolean
   startedAt?: boolean
   completedAt?: boolean
@@ -781,11 +965,13 @@ export type DeviceCollectionSessionSelectCreateManyAndReturn<ExtArgs extends run
   createdAt?: boolean
   updatedAt?: boolean
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
+  requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
 }, ExtArgs["result"]["deviceCollectionSession"]>
 
 export type DeviceCollectionSessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   deviceId?: boolean
+  requestedByTriageId?: boolean
   status?: boolean
   startedAt?: boolean
   completedAt?: boolean
@@ -793,11 +979,13 @@ export type DeviceCollectionSessionSelectUpdateManyAndReturn<ExtArgs extends run
   createdAt?: boolean
   updatedAt?: boolean
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
+  requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
 }, ExtArgs["result"]["deviceCollectionSession"]>
 
 export type DeviceCollectionSessionSelectScalar = {
   id?: boolean
   deviceId?: boolean
+  requestedByTriageId?: boolean
   status?: boolean
   startedAt?: boolean
   completedAt?: boolean
@@ -806,30 +994,35 @@ export type DeviceCollectionSessionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type DeviceCollectionSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "deviceId" | "status" | "startedAt" | "completedAt" | "cancelledAt" | "createdAt" | "updatedAt", ExtArgs["result"]["deviceCollectionSession"]>
+export type DeviceCollectionSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "deviceId" | "requestedByTriageId" | "status" | "startedAt" | "completedAt" | "cancelledAt" | "createdAt" | "updatedAt", ExtArgs["result"]["deviceCollectionSession"]>
 export type DeviceCollectionSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
+  requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
   readings?: boolean | Prisma.DeviceCollectionSession$readingsArgs<ExtArgs>
   clinicalCollectionSessions?: boolean | Prisma.DeviceCollectionSession$clinicalCollectionSessionsArgs<ExtArgs>
   _count?: boolean | Prisma.DeviceCollectionSessionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DeviceCollectionSessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
+  requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
 }
 export type DeviceCollectionSessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
+  requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
 }
 
 export type $DeviceCollectionSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "DeviceCollectionSession"
   objects: {
     device: Prisma.$MedicalDevicePayload<ExtArgs>
+    requestedByTriage: Prisma.$TriagePayload<ExtArgs> | null
     readings: Prisma.$ReadingPayload<ExtArgs>[]
     clinicalCollectionSessions: Prisma.$HardwareCollectionSessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     deviceId: string
+    requestedByTriageId: string | null
     status: $Enums.DeviceCollectionSessionStatus
     startedAt: Date | null
     completedAt: Date | null
@@ -1231,6 +1424,7 @@ readonly fields: DeviceCollectionSessionFieldRefs;
 export interface Prisma__DeviceCollectionSessionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   device<T extends Prisma.MedicalDeviceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MedicalDeviceDefaultArgs<ExtArgs>>): Prisma.Prisma__MedicalDeviceClient<runtime.Types.Result.GetResult<Prisma.$MedicalDevicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  requestedByTriage<T extends Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>>): Prisma.Prisma__TriageClient<runtime.Types.Result.GetResult<Prisma.$TriagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   readings<T extends Prisma.DeviceCollectionSession$readingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeviceCollectionSession$readingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clinicalCollectionSessions<T extends Prisma.DeviceCollectionSession$clinicalCollectionSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DeviceCollectionSession$clinicalCollectionSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HardwareCollectionSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1264,6 +1458,7 @@ export interface Prisma__DeviceCollectionSessionClient<T, Null = never, ExtArgs 
 export interface DeviceCollectionSessionFieldRefs {
   readonly id: Prisma.FieldRef<"DeviceCollectionSession", 'String'>
   readonly deviceId: Prisma.FieldRef<"DeviceCollectionSession", 'String'>
+  readonly requestedByTriageId: Prisma.FieldRef<"DeviceCollectionSession", 'String'>
   readonly status: Prisma.FieldRef<"DeviceCollectionSession", 'DeviceCollectionSessionStatus'>
   readonly startedAt: Prisma.FieldRef<"DeviceCollectionSession", 'DateTime'>
   readonly completedAt: Prisma.FieldRef<"DeviceCollectionSession", 'DateTime'>
@@ -1668,6 +1863,25 @@ export type DeviceCollectionSessionDeleteManyArgs<ExtArgs extends runtime.Types.
    * Limit how many DeviceCollectionSessions to delete.
    */
   limit?: number
+}
+
+/**
+ * DeviceCollectionSession.requestedByTriage
+ */
+export type DeviceCollectionSession$requestedByTriageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Triage
+   */
+  select?: Prisma.TriageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Triage
+   */
+  omit?: Prisma.TriageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TriageInclude<ExtArgs> | null
+  where?: Prisma.TriageWhereInput
 }
 
 /**

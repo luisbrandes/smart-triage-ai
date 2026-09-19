@@ -303,6 +303,9 @@ export const MedicalDeviceScalarFieldEnum = {
   operationalStatus: 'operationalStatus',
   isActive: 'isActive',
   lastCommunicationAt: 'lastCommunicationAt',
+  apiTokenHash: 'apiTokenHash',
+  apiTokenIssuedAt: 'apiTokenIssuedAt',
+  apiTokenRevokedAt: 'apiTokenRevokedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -329,6 +332,7 @@ export type ReadingScalarFieldEnum = (typeof ReadingScalarFieldEnum)[keyof typeo
 export const DeviceCollectionSessionScalarFieldEnum = {
   id: 'id',
   deviceId: 'deviceId',
+  requestedByTriageId: 'requestedByTriageId',
   status: 'status',
   startedAt: 'startedAt',
   completedAt: 'completedAt',

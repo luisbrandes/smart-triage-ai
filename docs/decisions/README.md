@@ -23,3 +23,4 @@ ADRs documentam decisões duráveis, alternativas e condições de revisão. Est
 - `0019-device-collection-session.md`: sessão técnica de coleta por dispositivo.
 - `0020-http-device-session-and-frontend-query.md`: contrato HTTP vigente e projeção de consulta da coleta.
 - `0021-physical-reading-acceptance.md`: aceite explícito de leitura física na triagem.
+- `0022-authenticated-remote-device-polling.md`: autenticação e descoberta de sessão para ESP32 remoto.

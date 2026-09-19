@@ -60,11 +60,14 @@ export class PrismaVitalSignsRepository implements VitalSignsRepository {
 
       const technicalSession = await transaction.deviceCollectionSession.findUnique({
         where: { id: input.deviceCollectionSessionId },
-        select: { id: true, deviceId: true, status: true, device: { select: { isActive: true } } },
+        select: { id: true, deviceId: true, requestedByTriageId: true, status: true, device: { select: { isActive: true } } },
       });
       if (!technicalSession) return { kind: "REJECTED" as const, message: "Sess\u00e3o de coleta n\u00e3o encontrada." };
       if (!technicalSession.device.isActive || technicalSession.status !== "COMPLETED") {
         return { kind: "REJECTED" as const, message: "A sess\u00e3o de coleta ainda n\u00e3o pode ser confirmada." };
+      }
+      if (technicalSession.requestedByTriageId !== input.triageId) {
+        return { kind: "REJECTED" as const, message: "Esta coleta n\u00e3o pertence ao atendimento atual." };
       }
 
       const reading = await transaction.reading.findUnique({

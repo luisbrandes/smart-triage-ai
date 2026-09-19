@@ -53,6 +53,8 @@ A prova de conceito expõe `POST /api/readings` para receber JSON de um disposit
 
 O painel do paciente usa `/paciente/coleta` para iniciar e acompanhar a coleta física por polling simples. Após confirmação explícita, a leitura técnica selecionada pode ser aceita na triagem como FC e SpO₂ com origem física; temperatura permanece técnica. O fluxo está em `docs/FRONTEND_HARDWARE_COLLECTION.md` e a decisão no ADR 0021.
 
+Para homologação remota, o ESP32 usa HTTPS com token individual e consulta `GET /api/device/session/current` para descobrir a sessão criada pelo site. Configuração da Vercel, provisionamento e contrato do firmware estão em `docs/VERCEL_REMOTE_HARDWARE_SETUP.md`, `docs/ESP32_API_CONTRACT.md` e `docs/ESP32_FIRMWARE_IMPLEMENTATION_PROMPT.md`.
+
 ## Fronteira de hardware
 
 Sinais vitais vinculados à triagem são obtidos por um `HardwareGateway` comum. Na V0, ele terá conceitualmente um adaptador de entrada manual e outro de dispositivo simulado, ambos produzindo medições normalizadas com origem explícita. Fora da prova de conceito HTTP de recepção técnica, não existe comunicação de coleta vinculada à triagem, firmware, pareamento ou integração real; timeout, falha e fallback manual são apenas contratos documentados.

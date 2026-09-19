@@ -39,9 +39,11 @@ Acesso cruzado entre painéis, enumeração de senha/triagem, exposição em log
 
 ## Dispositivo e comunicação futura
 
-Antes de hardware real, implementar e verificar identidade única, autenticação do dispositivo, autorização por unidade e credenciais rotacionáveis/revogáveis. Proteger contra dispositivo não autorizado, replay e dados adulterados; validar esquema, tipo, unidade, tamanho, frequência, ordem e duplicidade de payload. Nenhum valor é confiável apenas por vir de dispositivo.
+Na homologação remota, cada dispositivo ativo possui token opaco individual e somente seu HMAC é persistido. Descoberta de sessão, ingestão e liberação exigem Bearer token; início, consulta visual e cancelamento exigem a sessão assinada do paciente. A sessão técnica registra a triagem solicitante para impedir acesso cruzado. Rotacionar o token substitui o hash e invalida imediatamente a credencial anterior.
 
-Transmitir o mínimo, sem nome, documento ou anamnese desnecessários no dispositivo. Segredos fixos ou documentados no repositório são proibidos. Falhas de autenticação, conexão e validação devem ser registradas sem payload sensível. Políticas para retenção do bruto, topologia, protocolo, pareamento e offline são pendentes; nenhum desses controles está implementado neste Marco 0.
+Proteger contra dispositivo não autorizado, replay e dados adulterados; validar esquema, tipo, unidade, tamanho, frequência, ordem e duplicidade de payload. Nenhum valor é confiável apenas por vir de dispositivo.
+
+Transmitir o mínimo, sem nome, documento ou anamnese desnecessários no dispositivo. Segredos fixos ou documentados no repositório são proibidos. Falhas de autenticação, conexão e validação devem ser registradas sem payload sensível. Retenção do bruto, pareamento de múltiplos dispositivos, rate limiting distribuído e operação offline permanecem pendentes. A autenticação atual é adequada somente à homologação controlada e não representa certificação ou autorização clínica.
 
 ## Persistência local e seed
 

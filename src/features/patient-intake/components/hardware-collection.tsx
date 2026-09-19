@@ -6,8 +6,6 @@ import { acceptPhysicalDeviceCollectionAction, type PhysicalCollectionActionStat
 import { Icon } from "@/shared/ui/icon";
 import { StatusIndicator } from "@/shared/ui/status-indicator";
 
-const deviceId = "ESP32-001";
-const storageKey = `smart-triage:device-session:${deviceId}`;
 const pollingIntervalMs = 2_000;
 
 type CollectionStatus = "WAITING" | "ACTIVE" | "CANCELLED" | "COMPLETED";
@@ -33,7 +31,8 @@ function ReadingValue({ label, value, unit }: { label: string; value: number | n
   return <div className="rounded-lg border border-border bg-surface-raised p-4"><p className="text-sm text-text-secondary">{label}</p><p className="mt-1 text-2xl font-semibold text-foreground">{value === null ? "—" : <>{value} <span className="text-base font-medium text-text-secondary">{unit}</span></>}</p></div>;
 }
 
-export function HardwareCollection() {
+export function HardwareCollection({ deviceId }: { deviceId: string }) {
+  const storageKey = `smart-triage:device-session:${deviceId}`;
   const [session, setSession] = useState<Session | null>(null);
   const [screenState, setScreenState] = useState<ScreenState>("STARTING");
   const [isCancelling, setIsCancelling] = useState(false);
@@ -54,7 +53,7 @@ export function HardwareCollection() {
     const startedSession = await responseJson<{ sessionId: string }>(await fetch("/api/triage/session/start", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ deviceId }) }));
     sessionStorage.setItem(storageKey, startedSession.sessionId);
     await loadSession(startedSession.sessionId);
-  }, [loadSession]);
+  }, [deviceId, loadSession, storageKey]);
 
   useEffect(() => {
     if (started.current) return;
@@ -70,7 +69,7 @@ export function HardwareCollection() {
         await startCollection();
       } catch { setScreenState("ERROR"); }
     })();
-  }, [loadSession, startCollection]);
+  }, [loadSession, startCollection, storageKey]);
 
   useEffect(() => {
     if (!session || session.status !== "ACTIVE") return;
@@ -83,7 +82,7 @@ export function HardwareCollection() {
     };
     const interval = window.setInterval(() => { void poll(); }, pollingIntervalMs);
     return () => { disposed = true; window.clearInterval(interval); };
-  }, [loadSession, session]);
+  }, [loadSession, session, storageKey]);
 
   const cancelCollection = async () => {
     if (!session || session.status !== "ACTIVE") return;

@@ -202,6 +202,7 @@ model Triage {
   queueTicket                QueueTicket?
   analysisRuns               AnalysisRun[]
   collectionSessions         HardwareCollectionSession[]
+  requestedDeviceCollectionSessions DeviceCollectionSession[] @relation("RequestedDeviceCollectionSessions")
   nurseReviews               NurseReview[]
   careReferrals              CareReferral[]
   careAttendance            CareAttendance?
@@ -376,6 +377,9 @@ model MedicalDevice {
   operationalStatus     DeviceOperationalStatus @default(UNKNOWN)
   isActive              Boolean                 @default(true)
   lastCommunicationAt   DateTime?
+  apiTokenHash           String?                 @unique
+  apiTokenIssuedAt       DateTime?
+  apiTokenRevokedAt      DateTime?
   createdAt             DateTime                @default(now())
   updatedAt             DateTime                @updatedAt
   capabilities          DeviceCapability[]
@@ -411,6 +415,7 @@ model Reading {
 model DeviceCollectionSession {
   id          String                        @id @default(uuid())
   deviceId    String
+  requestedByTriageId String?
   status      DeviceCollectionSessionStatus @default(WAITING)
   startedAt   DateTime?
   completedAt DateTime?
@@ -418,10 +423,12 @@ model DeviceCollectionSession {
   createdAt   DateTime                      @default(now())
   updatedAt   DateTime                      @updatedAt
   device      MedicalDevice                 @relation(fields: [deviceId], references: [id], onDelete: Restrict)
+  requestedByTriage Triage?                  @relation("RequestedDeviceCollectionSessions", fields: [requestedByTriageId], references: [id], onDelete: Restrict)
   readings    Reading[]
   clinicalCollectionSessions HardwareCollectionSession[] @relation("PhysicalCollectionSource")
 
   @@index([deviceId, status, createdAt])
+  @@index([requestedByTriageId, status, createdAt])
 }
 
 model DeviceCapability {

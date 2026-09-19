@@ -34,6 +34,9 @@ export type MedicalDeviceMinAggregateOutputType = {
   operationalStatus: $Enums.DeviceOperationalStatus | null
   isActive: boolean | null
   lastCommunicationAt: Date | null
+  apiTokenHash: string | null
+  apiTokenIssuedAt: Date | null
+  apiTokenRevokedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -48,6 +51,9 @@ export type MedicalDeviceMaxAggregateOutputType = {
   operationalStatus: $Enums.DeviceOperationalStatus | null
   isActive: boolean | null
   lastCommunicationAt: Date | null
+  apiTokenHash: string | null
+  apiTokenIssuedAt: Date | null
+  apiTokenRevokedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -62,6 +68,9 @@ export type MedicalDeviceCountAggregateOutputType = {
   operationalStatus: number
   isActive: number
   lastCommunicationAt: number
+  apiTokenHash: number
+  apiTokenIssuedAt: number
+  apiTokenRevokedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -78,6 +87,9 @@ export type MedicalDeviceMinAggregateInputType = {
   operationalStatus?: true
   isActive?: true
   lastCommunicationAt?: true
+  apiTokenHash?: true
+  apiTokenIssuedAt?: true
+  apiTokenRevokedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -92,6 +104,9 @@ export type MedicalDeviceMaxAggregateInputType = {
   operationalStatus?: true
   isActive?: true
   lastCommunicationAt?: true
+  apiTokenHash?: true
+  apiTokenIssuedAt?: true
+  apiTokenRevokedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -106,6 +121,9 @@ export type MedicalDeviceCountAggregateInputType = {
   operationalStatus?: true
   isActive?: true
   lastCommunicationAt?: true
+  apiTokenHash?: true
+  apiTokenIssuedAt?: true
+  apiTokenRevokedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -193,6 +211,9 @@ export type MedicalDeviceGroupByOutputType = {
   operationalStatus: $Enums.DeviceOperationalStatus
   isActive: boolean
   lastCommunicationAt: Date | null
+  apiTokenHash: string | null
+  apiTokenIssuedAt: Date | null
+  apiTokenRevokedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: MedicalDeviceCountAggregateOutputType | null
@@ -228,6 +249,9 @@ export type MedicalDeviceWhereInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFilter<"MedicalDevice"> | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFilter<"MedicalDevice"> | boolean
   lastCommunicationAt?: Prisma.DateTimeNullableFilter<"MedicalDevice"> | Date | string | null
+  apiTokenHash?: Prisma.StringNullableFilter<"MedicalDevice"> | string | null
+  apiTokenIssuedAt?: Prisma.DateTimeNullableFilter<"MedicalDevice"> | Date | string | null
+  apiTokenRevokedAt?: Prisma.DateTimeNullableFilter<"MedicalDevice"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"MedicalDevice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MedicalDevice"> | Date | string
   capabilities?: Prisma.DeviceCapabilityListRelationFilter
@@ -246,6 +270,9 @@ export type MedicalDeviceOrderByWithRelationInput = {
   operationalStatus?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastCommunicationAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiTokenHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiTokenIssuedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiTokenRevokedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   capabilities?: Prisma.DeviceCapabilityOrderByRelationAggregateInput
@@ -257,6 +284,7 @@ export type MedicalDeviceOrderByWithRelationInput = {
 export type MedicalDeviceWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   externalIdentifier?: string
+  apiTokenHash?: string
   AND?: Prisma.MedicalDeviceWhereInput | Prisma.MedicalDeviceWhereInput[]
   OR?: Prisma.MedicalDeviceWhereInput[]
   NOT?: Prisma.MedicalDeviceWhereInput | Prisma.MedicalDeviceWhereInput[]
@@ -267,13 +295,15 @@ export type MedicalDeviceWhereUniqueInput = Prisma.AtLeast<{
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFilter<"MedicalDevice"> | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFilter<"MedicalDevice"> | boolean
   lastCommunicationAt?: Prisma.DateTimeNullableFilter<"MedicalDevice"> | Date | string | null
+  apiTokenIssuedAt?: Prisma.DateTimeNullableFilter<"MedicalDevice"> | Date | string | null
+  apiTokenRevokedAt?: Prisma.DateTimeNullableFilter<"MedicalDevice"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"MedicalDevice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MedicalDevice"> | Date | string
   capabilities?: Prisma.DeviceCapabilityListRelationFilter
   collectionSessions?: Prisma.HardwareCollectionSessionListRelationFilter
   deviceCollectionSessions?: Prisma.DeviceCollectionSessionListRelationFilter
   readings?: Prisma.ReadingListRelationFilter
-}, "id" | "externalIdentifier">
+}, "id" | "externalIdentifier" | "apiTokenHash">
 
 export type MedicalDeviceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -285,6 +315,9 @@ export type MedicalDeviceOrderByWithAggregationInput = {
   operationalStatus?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastCommunicationAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiTokenHash?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiTokenIssuedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  apiTokenRevokedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.MedicalDeviceCountOrderByAggregateInput
@@ -305,6 +338,9 @@ export type MedicalDeviceScalarWhereWithAggregatesInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusWithAggregatesFilter<"MedicalDevice"> | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolWithAggregatesFilter<"MedicalDevice"> | boolean
   lastCommunicationAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MedicalDevice"> | Date | string | null
+  apiTokenHash?: Prisma.StringNullableWithAggregatesFilter<"MedicalDevice"> | string | null
+  apiTokenIssuedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MedicalDevice"> | Date | string | null
+  apiTokenRevokedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MedicalDevice"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MedicalDevice"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MedicalDevice"> | Date | string
 }
@@ -319,6 +355,9 @@ export type MedicalDeviceCreateInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityCreateNestedManyWithoutDeviceInput
@@ -337,6 +376,9 @@ export type MedicalDeviceUncheckedCreateInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedCreateNestedManyWithoutDeviceInput
@@ -355,6 +397,9 @@ export type MedicalDeviceUpdateInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUpdateManyWithoutDeviceNestedInput
@@ -373,6 +418,9 @@ export type MedicalDeviceUncheckedUpdateInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedUpdateManyWithoutDeviceNestedInput
@@ -391,6 +439,9 @@ export type MedicalDeviceCreateManyInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -405,6 +456,9 @@ export type MedicalDeviceUpdateManyMutationInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -419,6 +473,9 @@ export type MedicalDeviceUncheckedUpdateManyInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -433,6 +490,9 @@ export type MedicalDeviceCountOrderByAggregateInput = {
   operationalStatus?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastCommunicationAt?: Prisma.SortOrder
+  apiTokenHash?: Prisma.SortOrder
+  apiTokenIssuedAt?: Prisma.SortOrder
+  apiTokenRevokedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -447,6 +507,9 @@ export type MedicalDeviceMaxOrderByAggregateInput = {
   operationalStatus?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastCommunicationAt?: Prisma.SortOrder
+  apiTokenHash?: Prisma.SortOrder
+  apiTokenIssuedAt?: Prisma.SortOrder
+  apiTokenRevokedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -461,6 +524,9 @@ export type MedicalDeviceMinOrderByAggregateInput = {
   operationalStatus?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   lastCommunicationAt?: Prisma.SortOrder
+  apiTokenHash?: Prisma.SortOrder
+  apiTokenIssuedAt?: Prisma.SortOrder
+  apiTokenRevokedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -547,6 +613,9 @@ export type MedicalDeviceCreateWithoutReadingsInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityCreateNestedManyWithoutDeviceInput
@@ -564,6 +633,9 @@ export type MedicalDeviceUncheckedCreateWithoutReadingsInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedCreateNestedManyWithoutDeviceInput
@@ -597,6 +669,9 @@ export type MedicalDeviceUpdateWithoutReadingsInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUpdateManyWithoutDeviceNestedInput
@@ -614,6 +689,9 @@ export type MedicalDeviceUncheckedUpdateWithoutReadingsInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedUpdateManyWithoutDeviceNestedInput
@@ -631,6 +709,9 @@ export type MedicalDeviceCreateWithoutDeviceCollectionSessionsInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityCreateNestedManyWithoutDeviceInput
@@ -648,6 +729,9 @@ export type MedicalDeviceUncheckedCreateWithoutDeviceCollectionSessionsInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedCreateNestedManyWithoutDeviceInput
@@ -681,6 +765,9 @@ export type MedicalDeviceUpdateWithoutDeviceCollectionSessionsInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUpdateManyWithoutDeviceNestedInput
@@ -698,6 +785,9 @@ export type MedicalDeviceUncheckedUpdateWithoutDeviceCollectionSessionsInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedUpdateManyWithoutDeviceNestedInput
@@ -715,6 +805,9 @@ export type MedicalDeviceCreateWithoutCapabilitiesInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutDeviceInput
@@ -732,6 +825,9 @@ export type MedicalDeviceUncheckedCreateWithoutCapabilitiesInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
@@ -765,6 +861,9 @@ export type MedicalDeviceUpdateWithoutCapabilitiesInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutDeviceNestedInput
@@ -782,6 +881,9 @@ export type MedicalDeviceUncheckedUpdateWithoutCapabilitiesInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
@@ -799,6 +901,9 @@ export type MedicalDeviceCreateWithoutCollectionSessionsInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityCreateNestedManyWithoutDeviceInput
@@ -816,6 +921,9 @@ export type MedicalDeviceUncheckedCreateWithoutCollectionSessionsInput = {
   operationalStatus?: $Enums.DeviceOperationalStatus
   isActive?: boolean
   lastCommunicationAt?: Date | string | null
+  apiTokenHash?: string | null
+  apiTokenIssuedAt?: Date | string | null
+  apiTokenRevokedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedCreateNestedManyWithoutDeviceInput
@@ -849,6 +957,9 @@ export type MedicalDeviceUpdateWithoutCollectionSessionsInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUpdateManyWithoutDeviceNestedInput
@@ -866,6 +977,9 @@ export type MedicalDeviceUncheckedUpdateWithoutCollectionSessionsInput = {
   operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenHash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  apiTokenIssuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  apiTokenRevokedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedUpdateManyWithoutDeviceNestedInput
@@ -941,6 +1055,9 @@ export type MedicalDeviceSelect<ExtArgs extends runtime.Types.Extensions.Interna
   operationalStatus?: boolean
   isActive?: boolean
   lastCommunicationAt?: boolean
+  apiTokenHash?: boolean
+  apiTokenIssuedAt?: boolean
+  apiTokenRevokedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   capabilities?: boolean | Prisma.MedicalDevice$capabilitiesArgs<ExtArgs>
@@ -960,6 +1077,9 @@ export type MedicalDeviceSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   operationalStatus?: boolean
   isActive?: boolean
   lastCommunicationAt?: boolean
+  apiTokenHash?: boolean
+  apiTokenIssuedAt?: boolean
+  apiTokenRevokedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["medicalDevice"]>
@@ -974,6 +1094,9 @@ export type MedicalDeviceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   operationalStatus?: boolean
   isActive?: boolean
   lastCommunicationAt?: boolean
+  apiTokenHash?: boolean
+  apiTokenIssuedAt?: boolean
+  apiTokenRevokedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["medicalDevice"]>
@@ -988,11 +1111,14 @@ export type MedicalDeviceSelectScalar = {
   operationalStatus?: boolean
   isActive?: boolean
   lastCommunicationAt?: boolean
+  apiTokenHash?: boolean
+  apiTokenIssuedAt?: boolean
+  apiTokenRevokedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type MedicalDeviceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "externalIdentifier" | "displayName" | "manufacturer" | "model" | "firmwareVersion" | "operationalStatus" | "isActive" | "lastCommunicationAt" | "createdAt" | "updatedAt", ExtArgs["result"]["medicalDevice"]>
+export type MedicalDeviceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "externalIdentifier" | "displayName" | "manufacturer" | "model" | "firmwareVersion" | "operationalStatus" | "isActive" | "lastCommunicationAt" | "apiTokenHash" | "apiTokenIssuedAt" | "apiTokenRevokedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["medicalDevice"]>
 export type MedicalDeviceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   capabilities?: boolean | Prisma.MedicalDevice$capabilitiesArgs<ExtArgs>
   collectionSessions?: boolean | Prisma.MedicalDevice$collectionSessionsArgs<ExtArgs>
@@ -1021,6 +1147,9 @@ export type $MedicalDevicePayload<ExtArgs extends runtime.Types.Extensions.Inter
     operationalStatus: $Enums.DeviceOperationalStatus
     isActive: boolean
     lastCommunicationAt: Date | null
+    apiTokenHash: string | null
+    apiTokenIssuedAt: Date | null
+    apiTokenRevokedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["medicalDevice"]>
@@ -1459,6 +1588,9 @@ export interface MedicalDeviceFieldRefs {
   readonly operationalStatus: Prisma.FieldRef<"MedicalDevice", 'DeviceOperationalStatus'>
   readonly isActive: Prisma.FieldRef<"MedicalDevice", 'Boolean'>
   readonly lastCommunicationAt: Prisma.FieldRef<"MedicalDevice", 'DateTime'>
+  readonly apiTokenHash: Prisma.FieldRef<"MedicalDevice", 'String'>
+  readonly apiTokenIssuedAt: Prisma.FieldRef<"MedicalDevice", 'DateTime'>
+  readonly apiTokenRevokedAt: Prisma.FieldRef<"MedicalDevice", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"MedicalDevice", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"MedicalDevice", 'DateTime'>
 }
