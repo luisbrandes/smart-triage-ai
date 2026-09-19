@@ -1,4 +1,4 @@
-export type VitalSignsOrigin = "MANUAL" | "SIMULATED_DEVICE";
+export type VitalSignsOrigin = "MANUAL" | "SIMULATED_DEVICE" | "PHYSICAL_DEVICE";
 export type VitalSignsReading = { type: "HEART_RATE" | "SPO2"; numericValue: number; unit: string };
 export type HardwareCollectionResult =
   | { status: "COMPLETED"; origin: VitalSignsOrigin; readings: VitalSignsReading[] }

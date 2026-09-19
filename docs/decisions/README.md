@@ -19,3 +19,7 @@ ADRs documentam decisões duráveis, alternativas e condições de revisão. Est
 - `0015-demo-authentication-and-authorization.md`: sessões demonstrativas separadas e autorização server-side.
 - `0016-audit-integrity-and-operation-correlation.md`: ator autenticado, auditoria append-only e logging sanitizado.
 - `0017-postgresql-integration-test-strategy.md`: banco exclusivo e suíte de integração PostgreSQL.
+- `0018-http-device-reading-ingestion.md`: entrada HTTP inicial de leituras de dispositivo físico.
+- `0019-device-collection-session.md`: sessão técnica de coleta por dispositivo.
+- `0020-http-device-session-and-frontend-query.md`: contrato HTTP vigente e projeção de consulta da coleta.
+- `0021-physical-reading-acceptance.md`: aceite explícito de leitura física na triagem.

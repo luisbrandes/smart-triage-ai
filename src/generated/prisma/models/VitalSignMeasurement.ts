@@ -679,14 +679,6 @@ export type VitalSignMeasurementUncheckedUpdateManyWithoutCollectionSessionNeste
   deleteMany?: Prisma.VitalSignMeasurementScalarWhereInput | Prisma.VitalSignMeasurementScalarWhereInput[]
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type EnumMeasurementTechnicalStatusFieldUpdateOperationsInput = {
   set?: $Enums.MeasurementTechnicalStatus
 }

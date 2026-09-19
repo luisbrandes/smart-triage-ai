@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 
 import { appConfig } from "@/shared/config/app";
 
 import "./globals.css";
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
 
 export const metadata: Metadata = {
   title: appConfig.name,
@@ -22,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={geist.variable}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

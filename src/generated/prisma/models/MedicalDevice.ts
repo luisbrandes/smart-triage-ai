@@ -232,6 +232,8 @@ export type MedicalDeviceWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"MedicalDevice"> | Date | string
   capabilities?: Prisma.DeviceCapabilityListRelationFilter
   collectionSessions?: Prisma.HardwareCollectionSessionListRelationFilter
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionListRelationFilter
+  readings?: Prisma.ReadingListRelationFilter
 }
 
 export type MedicalDeviceOrderByWithRelationInput = {
@@ -248,6 +250,8 @@ export type MedicalDeviceOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   capabilities?: Prisma.DeviceCapabilityOrderByRelationAggregateInput
   collectionSessions?: Prisma.HardwareCollectionSessionOrderByRelationAggregateInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionOrderByRelationAggregateInput
+  readings?: Prisma.ReadingOrderByRelationAggregateInput
 }
 
 export type MedicalDeviceWhereUniqueInput = Prisma.AtLeast<{
@@ -267,6 +271,8 @@ export type MedicalDeviceWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"MedicalDevice"> | Date | string
   capabilities?: Prisma.DeviceCapabilityListRelationFilter
   collectionSessions?: Prisma.HardwareCollectionSessionListRelationFilter
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionListRelationFilter
+  readings?: Prisma.ReadingListRelationFilter
 }, "id" | "externalIdentifier">
 
 export type MedicalDeviceOrderByWithAggregationInput = {
@@ -317,6 +323,8 @@ export type MedicalDeviceCreateInput = {
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityCreateNestedManyWithoutDeviceInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutDeviceInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutDeviceInput
+  readings?: Prisma.ReadingCreateNestedManyWithoutDeviceInput
 }
 
 export type MedicalDeviceUncheckedCreateInput = {
@@ -333,6 +341,8 @@ export type MedicalDeviceUncheckedCreateInput = {
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedCreateNestedManyWithoutDeviceInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
+  readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutDeviceInput
 }
 
 export type MedicalDeviceUpdateInput = {
@@ -349,6 +359,8 @@ export type MedicalDeviceUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUpdateManyWithoutDeviceNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutDeviceNestedInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutDeviceNestedInput
+  readings?: Prisma.ReadingUpdateManyWithoutDeviceNestedInput
 }
 
 export type MedicalDeviceUncheckedUpdateInput = {
@@ -365,6 +377,8 @@ export type MedicalDeviceUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedUpdateManyWithoutDeviceNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
+  readings?: Prisma.ReadingUncheckedUpdateManyWithoutDeviceNestedInput
 }
 
 export type MedicalDeviceCreateManyInput = {
@@ -465,6 +479,34 @@ export type EnumDeviceOperationalStatusFieldUpdateOperationsInput = {
   set?: $Enums.DeviceOperationalStatus
 }
 
+export type MedicalDeviceCreateNestedOneWithoutReadingsInput = {
+  create?: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutReadingsInput, Prisma.MedicalDeviceUncheckedCreateWithoutReadingsInput>
+  connectOrCreate?: Prisma.MedicalDeviceCreateOrConnectWithoutReadingsInput
+  connect?: Prisma.MedicalDeviceWhereUniqueInput
+}
+
+export type MedicalDeviceUpdateOneRequiredWithoutReadingsNestedInput = {
+  create?: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutReadingsInput, Prisma.MedicalDeviceUncheckedCreateWithoutReadingsInput>
+  connectOrCreate?: Prisma.MedicalDeviceCreateOrConnectWithoutReadingsInput
+  upsert?: Prisma.MedicalDeviceUpsertWithoutReadingsInput
+  connect?: Prisma.MedicalDeviceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MedicalDeviceUpdateToOneWithWhereWithoutReadingsInput, Prisma.MedicalDeviceUpdateWithoutReadingsInput>, Prisma.MedicalDeviceUncheckedUpdateWithoutReadingsInput>
+}
+
+export type MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput = {
+  create?: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutDeviceCollectionSessionsInput, Prisma.MedicalDeviceUncheckedCreateWithoutDeviceCollectionSessionsInput>
+  connectOrCreate?: Prisma.MedicalDeviceCreateOrConnectWithoutDeviceCollectionSessionsInput
+  connect?: Prisma.MedicalDeviceWhereUniqueInput
+}
+
+export type MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutDeviceCollectionSessionsInput, Prisma.MedicalDeviceUncheckedCreateWithoutDeviceCollectionSessionsInput>
+  connectOrCreate?: Prisma.MedicalDeviceCreateOrConnectWithoutDeviceCollectionSessionsInput
+  upsert?: Prisma.MedicalDeviceUpsertWithoutDeviceCollectionSessionsInput
+  connect?: Prisma.MedicalDeviceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MedicalDeviceUpdateToOneWithWhereWithoutDeviceCollectionSessionsInput, Prisma.MedicalDeviceUpdateWithoutDeviceCollectionSessionsInput>, Prisma.MedicalDeviceUncheckedUpdateWithoutDeviceCollectionSessionsInput>
+}
+
 export type MedicalDeviceCreateNestedOneWithoutCapabilitiesInput = {
   create?: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutCapabilitiesInput, Prisma.MedicalDeviceUncheckedCreateWithoutCapabilitiesInput>
   connectOrCreate?: Prisma.MedicalDeviceCreateOrConnectWithoutCapabilitiesInput
@@ -495,6 +537,174 @@ export type MedicalDeviceUpdateOneWithoutCollectionSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MedicalDeviceUpdateToOneWithWhereWithoutCollectionSessionsInput, Prisma.MedicalDeviceUpdateWithoutCollectionSessionsInput>, Prisma.MedicalDeviceUncheckedUpdateWithoutCollectionSessionsInput>
 }
 
+export type MedicalDeviceCreateWithoutReadingsInput = {
+  id?: string
+  externalIdentifier?: string | null
+  displayName: string
+  manufacturer?: string | null
+  model?: string | null
+  firmwareVersion?: string | null
+  operationalStatus?: $Enums.DeviceOperationalStatus
+  isActive?: boolean
+  lastCommunicationAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  capabilities?: Prisma.DeviceCapabilityCreateNestedManyWithoutDeviceInput
+  collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutDeviceInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutDeviceInput
+}
+
+export type MedicalDeviceUncheckedCreateWithoutReadingsInput = {
+  id?: string
+  externalIdentifier?: string | null
+  displayName: string
+  manufacturer?: string | null
+  model?: string | null
+  firmwareVersion?: string | null
+  operationalStatus?: $Enums.DeviceOperationalStatus
+  isActive?: boolean
+  lastCommunicationAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  capabilities?: Prisma.DeviceCapabilityUncheckedCreateNestedManyWithoutDeviceInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
+}
+
+export type MedicalDeviceCreateOrConnectWithoutReadingsInput = {
+  where: Prisma.MedicalDeviceWhereUniqueInput
+  create: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutReadingsInput, Prisma.MedicalDeviceUncheckedCreateWithoutReadingsInput>
+}
+
+export type MedicalDeviceUpsertWithoutReadingsInput = {
+  update: Prisma.XOR<Prisma.MedicalDeviceUpdateWithoutReadingsInput, Prisma.MedicalDeviceUncheckedUpdateWithoutReadingsInput>
+  create: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutReadingsInput, Prisma.MedicalDeviceUncheckedCreateWithoutReadingsInput>
+  where?: Prisma.MedicalDeviceWhereInput
+}
+
+export type MedicalDeviceUpdateToOneWithWhereWithoutReadingsInput = {
+  where?: Prisma.MedicalDeviceWhereInput
+  data: Prisma.XOR<Prisma.MedicalDeviceUpdateWithoutReadingsInput, Prisma.MedicalDeviceUncheckedUpdateWithoutReadingsInput>
+}
+
+export type MedicalDeviceUpdateWithoutReadingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalIdentifier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
+  manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capabilities?: Prisma.DeviceCapabilityUpdateManyWithoutDeviceNestedInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutDeviceNestedInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutDeviceNestedInput
+}
+
+export type MedicalDeviceUncheckedUpdateWithoutReadingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalIdentifier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
+  manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capabilities?: Prisma.DeviceCapabilityUncheckedUpdateManyWithoutDeviceNestedInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
+}
+
+export type MedicalDeviceCreateWithoutDeviceCollectionSessionsInput = {
+  id?: string
+  externalIdentifier?: string | null
+  displayName: string
+  manufacturer?: string | null
+  model?: string | null
+  firmwareVersion?: string | null
+  operationalStatus?: $Enums.DeviceOperationalStatus
+  isActive?: boolean
+  lastCommunicationAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  capabilities?: Prisma.DeviceCapabilityCreateNestedManyWithoutDeviceInput
+  collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutDeviceInput
+  readings?: Prisma.ReadingCreateNestedManyWithoutDeviceInput
+}
+
+export type MedicalDeviceUncheckedCreateWithoutDeviceCollectionSessionsInput = {
+  id?: string
+  externalIdentifier?: string | null
+  displayName: string
+  manufacturer?: string | null
+  model?: string | null
+  firmwareVersion?: string | null
+  operationalStatus?: $Enums.DeviceOperationalStatus
+  isActive?: boolean
+  lastCommunicationAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  capabilities?: Prisma.DeviceCapabilityUncheckedCreateNestedManyWithoutDeviceInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
+  readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutDeviceInput
+}
+
+export type MedicalDeviceCreateOrConnectWithoutDeviceCollectionSessionsInput = {
+  where: Prisma.MedicalDeviceWhereUniqueInput
+  create: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutDeviceCollectionSessionsInput, Prisma.MedicalDeviceUncheckedCreateWithoutDeviceCollectionSessionsInput>
+}
+
+export type MedicalDeviceUpsertWithoutDeviceCollectionSessionsInput = {
+  update: Prisma.XOR<Prisma.MedicalDeviceUpdateWithoutDeviceCollectionSessionsInput, Prisma.MedicalDeviceUncheckedUpdateWithoutDeviceCollectionSessionsInput>
+  create: Prisma.XOR<Prisma.MedicalDeviceCreateWithoutDeviceCollectionSessionsInput, Prisma.MedicalDeviceUncheckedCreateWithoutDeviceCollectionSessionsInput>
+  where?: Prisma.MedicalDeviceWhereInput
+}
+
+export type MedicalDeviceUpdateToOneWithWhereWithoutDeviceCollectionSessionsInput = {
+  where?: Prisma.MedicalDeviceWhereInput
+  data: Prisma.XOR<Prisma.MedicalDeviceUpdateWithoutDeviceCollectionSessionsInput, Prisma.MedicalDeviceUncheckedUpdateWithoutDeviceCollectionSessionsInput>
+}
+
+export type MedicalDeviceUpdateWithoutDeviceCollectionSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalIdentifier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
+  manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capabilities?: Prisma.DeviceCapabilityUpdateManyWithoutDeviceNestedInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutDeviceNestedInput
+  readings?: Prisma.ReadingUpdateManyWithoutDeviceNestedInput
+}
+
+export type MedicalDeviceUncheckedUpdateWithoutDeviceCollectionSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalIdentifier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.StringFieldUpdateOperationsInput | string
+  manufacturer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  model?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firmwareVersion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operationalStatus?: Prisma.EnumDeviceOperationalStatusFieldUpdateOperationsInput | $Enums.DeviceOperationalStatus
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastCommunicationAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capabilities?: Prisma.DeviceCapabilityUncheckedUpdateManyWithoutDeviceNestedInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
+  readings?: Prisma.ReadingUncheckedUpdateManyWithoutDeviceNestedInput
+}
+
 export type MedicalDeviceCreateWithoutCapabilitiesInput = {
   id?: string
   externalIdentifier?: string | null
@@ -508,6 +718,8 @@ export type MedicalDeviceCreateWithoutCapabilitiesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutDeviceInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutDeviceInput
+  readings?: Prisma.ReadingCreateNestedManyWithoutDeviceInput
 }
 
 export type MedicalDeviceUncheckedCreateWithoutCapabilitiesInput = {
@@ -523,6 +735,8 @@ export type MedicalDeviceUncheckedCreateWithoutCapabilitiesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
+  readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutDeviceInput
 }
 
 export type MedicalDeviceCreateOrConnectWithoutCapabilitiesInput = {
@@ -554,6 +768,8 @@ export type MedicalDeviceUpdateWithoutCapabilitiesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutDeviceNestedInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutDeviceNestedInput
+  readings?: Prisma.ReadingUpdateManyWithoutDeviceNestedInput
 }
 
 export type MedicalDeviceUncheckedUpdateWithoutCapabilitiesInput = {
@@ -569,6 +785,8 @@ export type MedicalDeviceUncheckedUpdateWithoutCapabilitiesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
+  readings?: Prisma.ReadingUncheckedUpdateManyWithoutDeviceNestedInput
 }
 
 export type MedicalDeviceCreateWithoutCollectionSessionsInput = {
@@ -584,6 +802,8 @@ export type MedicalDeviceCreateWithoutCollectionSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityCreateNestedManyWithoutDeviceInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutDeviceInput
+  readings?: Prisma.ReadingCreateNestedManyWithoutDeviceInput
 }
 
 export type MedicalDeviceUncheckedCreateWithoutCollectionSessionsInput = {
@@ -599,6 +819,8 @@ export type MedicalDeviceUncheckedCreateWithoutCollectionSessionsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedCreateNestedManyWithoutDeviceInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutDeviceInput
+  readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutDeviceInput
 }
 
 export type MedicalDeviceCreateOrConnectWithoutCollectionSessionsInput = {
@@ -630,6 +852,8 @@ export type MedicalDeviceUpdateWithoutCollectionSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUpdateManyWithoutDeviceNestedInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutDeviceNestedInput
+  readings?: Prisma.ReadingUpdateManyWithoutDeviceNestedInput
 }
 
 export type MedicalDeviceUncheckedUpdateWithoutCollectionSessionsInput = {
@@ -645,6 +869,8 @@ export type MedicalDeviceUncheckedUpdateWithoutCollectionSessionsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   capabilities?: Prisma.DeviceCapabilityUncheckedUpdateManyWithoutDeviceNestedInput
+  deviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutDeviceNestedInput
+  readings?: Prisma.ReadingUncheckedUpdateManyWithoutDeviceNestedInput
 }
 
 
@@ -655,11 +881,15 @@ export type MedicalDeviceUncheckedUpdateWithoutCollectionSessionsInput = {
 export type MedicalDeviceCountOutputType = {
   capabilities: number
   collectionSessions: number
+  deviceCollectionSessions: number
+  readings: number
 }
 
 export type MedicalDeviceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   capabilities?: boolean | MedicalDeviceCountOutputTypeCountCapabilitiesArgs
   collectionSessions?: boolean | MedicalDeviceCountOutputTypeCountCollectionSessionsArgs
+  deviceCollectionSessions?: boolean | MedicalDeviceCountOutputTypeCountDeviceCollectionSessionsArgs
+  readings?: boolean | MedicalDeviceCountOutputTypeCountReadingsArgs
 }
 
 /**
@@ -686,6 +916,20 @@ export type MedicalDeviceCountOutputTypeCountCollectionSessionsArgs<ExtArgs exte
   where?: Prisma.HardwareCollectionSessionWhereInput
 }
 
+/**
+ * MedicalDeviceCountOutputType without action
+ */
+export type MedicalDeviceCountOutputTypeCountDeviceCollectionSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DeviceCollectionSessionWhereInput
+}
+
+/**
+ * MedicalDeviceCountOutputType without action
+ */
+export type MedicalDeviceCountOutputTypeCountReadingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReadingWhereInput
+}
+
 
 export type MedicalDeviceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -701,6 +945,8 @@ export type MedicalDeviceSelect<ExtArgs extends runtime.Types.Extensions.Interna
   updatedAt?: boolean
   capabilities?: boolean | Prisma.MedicalDevice$capabilitiesArgs<ExtArgs>
   collectionSessions?: boolean | Prisma.MedicalDevice$collectionSessionsArgs<ExtArgs>
+  deviceCollectionSessions?: boolean | Prisma.MedicalDevice$deviceCollectionSessionsArgs<ExtArgs>
+  readings?: boolean | Prisma.MedicalDevice$readingsArgs<ExtArgs>
   _count?: boolean | Prisma.MedicalDeviceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["medicalDevice"]>
 
@@ -750,6 +996,8 @@ export type MedicalDeviceOmit<ExtArgs extends runtime.Types.Extensions.InternalA
 export type MedicalDeviceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   capabilities?: boolean | Prisma.MedicalDevice$capabilitiesArgs<ExtArgs>
   collectionSessions?: boolean | Prisma.MedicalDevice$collectionSessionsArgs<ExtArgs>
+  deviceCollectionSessions?: boolean | Prisma.MedicalDevice$deviceCollectionSessionsArgs<ExtArgs>
+  readings?: boolean | Prisma.MedicalDevice$readingsArgs<ExtArgs>
   _count?: boolean | Prisma.MedicalDeviceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MedicalDeviceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -760,6 +1008,8 @@ export type $MedicalDevicePayload<ExtArgs extends runtime.Types.Extensions.Inter
   objects: {
     capabilities: Prisma.$DeviceCapabilityPayload<ExtArgs>[]
     collectionSessions: Prisma.$HardwareCollectionSessionPayload<ExtArgs>[]
+    deviceCollectionSessions: Prisma.$DeviceCollectionSessionPayload<ExtArgs>[]
+    readings: Prisma.$ReadingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1169,6 +1419,8 @@ export interface Prisma__MedicalDeviceClient<T, Null = never, ExtArgs extends ru
   readonly [Symbol.toStringTag]: "PrismaPromise"
   capabilities<T extends Prisma.MedicalDevice$capabilitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MedicalDevice$capabilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceCapabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   collectionSessions<T extends Prisma.MedicalDevice$collectionSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MedicalDevice$collectionSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HardwareCollectionSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  deviceCollectionSessions<T extends Prisma.MedicalDevice$deviceCollectionSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MedicalDevice$deviceCollectionSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceCollectionSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  readings<T extends Prisma.MedicalDevice$readingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MedicalDevice$readingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReadingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1647,6 +1899,54 @@ export type MedicalDevice$collectionSessionsArgs<ExtArgs extends runtime.Types.E
   take?: number
   skip?: number
   distinct?: Prisma.HardwareCollectionSessionScalarFieldEnum | Prisma.HardwareCollectionSessionScalarFieldEnum[]
+}
+
+/**
+ * MedicalDevice.deviceCollectionSessions
+ */
+export type MedicalDevice$deviceCollectionSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DeviceCollectionSession
+   */
+  select?: Prisma.DeviceCollectionSessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DeviceCollectionSession
+   */
+  omit?: Prisma.DeviceCollectionSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DeviceCollectionSessionInclude<ExtArgs> | null
+  where?: Prisma.DeviceCollectionSessionWhereInput
+  orderBy?: Prisma.DeviceCollectionSessionOrderByWithRelationInput | Prisma.DeviceCollectionSessionOrderByWithRelationInput[]
+  cursor?: Prisma.DeviceCollectionSessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DeviceCollectionSessionScalarFieldEnum | Prisma.DeviceCollectionSessionScalarFieldEnum[]
+}
+
+/**
+ * MedicalDevice.readings
+ */
+export type MedicalDevice$readingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Reading
+   */
+  select?: Prisma.ReadingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Reading
+   */
+  omit?: Prisma.ReadingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReadingInclude<ExtArgs> | null
+  where?: Prisma.ReadingWhereInput
+  orderBy?: Prisma.ReadingOrderByWithRelationInput | Prisma.ReadingOrderByWithRelationInput[]
+  cursor?: Prisma.ReadingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReadingScalarFieldEnum | Prisma.ReadingScalarFieldEnum[]
 }
 
 /**

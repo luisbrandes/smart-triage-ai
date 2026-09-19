@@ -69,6 +69,13 @@ enum DeviceOperationalStatus {
   DISCONNECTED
 }
 
+enum DeviceCollectionSessionStatus {
+  WAITING
+  ACTIVE
+  CANCELLED
+  COMPLETED
+}
+
 enum VitalSignType {
   HEART_RATE
   SPO2
@@ -373,9 +380,48 @@ model MedicalDevice {
   updatedAt             DateTime                @updatedAt
   capabilities          DeviceCapability[]
   collectionSessions    HardwareCollectionSession[]
+  deviceCollectionSessions DeviceCollectionSession[]
+  readings              Reading[]
 
   @@index([externalIdentifier])
   @@index([operationalStatus, isActive])
+}
+
+// Leitura recebida do dispositivo físico, ainda sem vínculo com uma triagem.
+// Não substitui VitalSignMeasurement, que registra somente medições aceitas no fluxo de triagem.
+model Reading {
+  id          String        @id @default(uuid())
+  deviceId    String
+  sessionId   String?
+  temperature Float
+  heartRate   Int
+  spo2        Int
+  weight      Float?
+  height      Float?
+  receivedAt  DateTime      @default(now())
+  createdAt   DateTime      @default(now())
+  device      MedicalDevice @relation(fields: [deviceId], references: [id], onDelete: Restrict)
+  session     DeviceCollectionSession? @relation(fields: [sessionId], references: [id], onDelete: Restrict)
+
+  @@index([deviceId, receivedAt])
+  @@index([sessionId, receivedAt])
+}
+
+// Sessão técnica do totem; não representa triagem clínica nem vínculo com paciente.
+model DeviceCollectionSession {
+  id          String                        @id @default(uuid())
+  deviceId    String
+  status      DeviceCollectionSessionStatus @default(WAITING)
+  startedAt   DateTime?
+  completedAt DateTime?
+  cancelledAt DateTime?
+  createdAt   DateTime                      @default(now())
+  updatedAt   DateTime                      @updatedAt
+  device      MedicalDevice                 @relation(fields: [deviceId], references: [id], onDelete: Restrict)
+  readings    Reading[]
+  clinicalCollectionSessions HardwareCollectionSession[] @relation("PhysicalCollectionSource")
+
+  @@index([deviceId, status, createdAt])
 }
 
 model DeviceCapability {
@@ -395,6 +441,7 @@ model HardwareCollectionSession {
   id                    String                   @id @default(uuid())
   triageId              String
   deviceId              String?
+  sourceDeviceCollectionSessionId String?                  @unique
   origin                CollectionOrigin
   status                HardwareCollectionStatus @default(PENDING)
   attemptNumber         Int
@@ -409,6 +456,7 @@ model HardwareCollectionSession {
   updatedAt             DateTime                 @updatedAt
   triage                Triage                   @relation(fields: [triageId], references: [id], onDelete: Restrict)
   device                MedicalDevice?           @relation(fields: [deviceId], references: [id], onDelete: Restrict)
+  sourceDeviceCollectionSession DeviceCollectionSession? @relation("PhysicalCollectionSource", fields: [sourceDeviceCollectionSessionId], references: [id], onDelete: Restrict)
   measurements          VitalSignMeasurement[]
   errors                HardwareError[]
 

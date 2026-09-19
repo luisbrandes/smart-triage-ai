@@ -1,5 +1,6 @@
 import "server-only";
 
+import { acceptPhysicalDeviceCollectionForTriage } from "@/server/application/vital-signs/accept-physical-device-collection";
 import { collectManualVitalSigns, collectSimulatedVitalSigns, completeVitalSigns } from "@/server/application/vital-signs/vital-signs-use-cases";
 import { PrismaVitalSignsRepository } from "@/server/repositories/prisma-vital-signs-repository";
 import { ManualVitalSignsAdapter } from "@/server/services/hardware/manual-vital-signs-adapter";
@@ -13,6 +14,7 @@ export const vitalSigns = {
   getFlow: (triageId: string) => repository.getFlow(triageId),
   collectManual: (triageId: string, input: unknown) => collectManualVitalSigns(repository, manual, triageId, input, process.env.APP_MODE),
   collectSimulated: (triageId: string, scenario: unknown) => collectSimulatedVitalSigns(repository, simulated, triageId, scenario, process.env.APP_MODE),
+  acceptPhysicalCollection: (triageId: string, input: unknown) => acceptPhysicalDeviceCollectionForTriage(repository, triageId, input),
   complete: (triageId: string) => completeVitalSigns(repository, triageId, process.env.APP_MODE),
   findLatestFinal: (triageId: string) => repository.findLatestFinalAnalysis(triageId),
 };

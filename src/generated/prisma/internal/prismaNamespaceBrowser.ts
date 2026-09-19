@@ -65,6 +65,8 @@ export const ModelName = {
   AnalysisRecommendation: 'AnalysisRecommendation',
   RecommendationReason: 'RecommendationReason',
   MedicalDevice: 'MedicalDevice',
+  Reading: 'Reading',
+  DeviceCollectionSession: 'DeviceCollectionSession',
   DeviceCapability: 'DeviceCapability',
   HardwareCollectionSession: 'HardwareCollectionSession',
   VitalSignMeasurement: 'VitalSignMeasurement',
@@ -308,6 +310,36 @@ export const MedicalDeviceScalarFieldEnum = {
 export type MedicalDeviceScalarFieldEnum = (typeof MedicalDeviceScalarFieldEnum)[keyof typeof MedicalDeviceScalarFieldEnum]
 
 
+export const ReadingScalarFieldEnum = {
+  id: 'id',
+  deviceId: 'deviceId',
+  sessionId: 'sessionId',
+  temperature: 'temperature',
+  heartRate: 'heartRate',
+  spo2: 'spo2',
+  weight: 'weight',
+  height: 'height',
+  receivedAt: 'receivedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ReadingScalarFieldEnum = (typeof ReadingScalarFieldEnum)[keyof typeof ReadingScalarFieldEnum]
+
+
+export const DeviceCollectionSessionScalarFieldEnum = {
+  id: 'id',
+  deviceId: 'deviceId',
+  status: 'status',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  cancelledAt: 'cancelledAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceCollectionSessionScalarFieldEnum = (typeof DeviceCollectionSessionScalarFieldEnum)[keyof typeof DeviceCollectionSessionScalarFieldEnum]
+
+
 export const DeviceCapabilityScalarFieldEnum = {
   id: 'id',
   deviceId: 'deviceId',
@@ -324,6 +356,7 @@ export const HardwareCollectionSessionScalarFieldEnum = {
   id: 'id',
   triageId: 'triageId',
   deviceId: 'deviceId',
+  sourceDeviceCollectionSessionId: 'sourceDeviceCollectionSessionId',
   origin: 'origin',
   status: 'status',
   attemptNumber: 'attemptNumber',

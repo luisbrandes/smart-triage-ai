@@ -398,6 +398,8 @@ export const ModelName = {
   AnalysisRecommendation: 'AnalysisRecommendation',
   RecommendationReason: 'RecommendationReason',
   MedicalDevice: 'MedicalDevice',
+  Reading: 'Reading',
+  DeviceCollectionSession: 'DeviceCollectionSession',
   DeviceCapability: 'DeviceCapability',
   HardwareCollectionSession: 'HardwareCollectionSession',
   VitalSignMeasurement: 'VitalSignMeasurement',
@@ -420,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "patient" | "healthPlanInformation" | "consentRecord" | "triage" | "careAttendance" | "anamnesis" | "anamnesisAnswer" | "redFlagOccurrence" | "queueTicket" | "ruleSetVersion" | "analysisRun" | "analysisRecommendation" | "recommendationReason" | "medicalDevice" | "deviceCapability" | "hardwareCollectionSession" | "vitalSignMeasurement" | "hardwareError" | "nurseReview" | "careReferral" | "auditEvent"
+    modelProps: "patient" | "healthPlanInformation" | "consentRecord" | "triage" | "careAttendance" | "anamnesis" | "anamnesisAnswer" | "redFlagOccurrence" | "queueTicket" | "ruleSetVersion" | "analysisRun" | "analysisRecommendation" | "recommendationReason" | "medicalDevice" | "reading" | "deviceCollectionSession" | "deviceCapability" | "hardwareCollectionSession" | "vitalSignMeasurement" | "hardwareError" | "nurseReview" | "careReferral" | "auditEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1460,6 +1462,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Reading: {
+      payload: Prisma.$ReadingPayload<ExtArgs>
+      fields: Prisma.ReadingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReadingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReadingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>
+        }
+        findFirst: {
+          args: Prisma.ReadingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReadingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>
+        }
+        findMany: {
+          args: Prisma.ReadingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>[]
+        }
+        create: {
+          args: Prisma.ReadingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>
+        }
+        createMany: {
+          args: Prisma.ReadingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ReadingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>[]
+        }
+        delete: {
+          args: Prisma.ReadingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>
+        }
+        update: {
+          args: Prisma.ReadingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>
+        }
+        deleteMany: {
+          args: Prisma.ReadingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReadingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ReadingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>[]
+        }
+        upsert: {
+          args: Prisma.ReadingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReadingPayload>
+        }
+        aggregate: {
+          args: Prisma.ReadingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReading>
+        }
+        groupBy: {
+          args: Prisma.ReadingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReadingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReadingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReadingCountAggregateOutputType> | number
+        }
+      }
+    }
+    DeviceCollectionSession: {
+      payload: Prisma.$DeviceCollectionSessionPayload<ExtArgs>
+      fields: Prisma.DeviceCollectionSessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeviceCollectionSessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeviceCollectionSessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>
+        }
+        findFirst: {
+          args: Prisma.DeviceCollectionSessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeviceCollectionSessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>
+        }
+        findMany: {
+          args: Prisma.DeviceCollectionSessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>[]
+        }
+        create: {
+          args: Prisma.DeviceCollectionSessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>
+        }
+        createMany: {
+          args: Prisma.DeviceCollectionSessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeviceCollectionSessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>[]
+        }
+        delete: {
+          args: Prisma.DeviceCollectionSessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>
+        }
+        update: {
+          args: Prisma.DeviceCollectionSessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.DeviceCollectionSessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeviceCollectionSessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeviceCollectionSessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>[]
+        }
+        upsert: {
+          args: Prisma.DeviceCollectionSessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeviceCollectionSessionPayload>
+        }
+        aggregate: {
+          args: Prisma.DeviceCollectionSessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeviceCollectionSession>
+        }
+        groupBy: {
+          args: Prisma.DeviceCollectionSessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceCollectionSessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeviceCollectionSessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeviceCollectionSessionCountAggregateOutputType> | number
+        }
+      }
+    }
     DeviceCapability: {
       payload: Prisma.$DeviceCapabilityPayload<ExtArgs>
       fields: Prisma.DeviceCapabilityFieldRefs
@@ -2235,6 +2385,36 @@ export const MedicalDeviceScalarFieldEnum = {
 export type MedicalDeviceScalarFieldEnum = (typeof MedicalDeviceScalarFieldEnum)[keyof typeof MedicalDeviceScalarFieldEnum]
 
 
+export const ReadingScalarFieldEnum = {
+  id: 'id',
+  deviceId: 'deviceId',
+  sessionId: 'sessionId',
+  temperature: 'temperature',
+  heartRate: 'heartRate',
+  spo2: 'spo2',
+  weight: 'weight',
+  height: 'height',
+  receivedAt: 'receivedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ReadingScalarFieldEnum = (typeof ReadingScalarFieldEnum)[keyof typeof ReadingScalarFieldEnum]
+
+
+export const DeviceCollectionSessionScalarFieldEnum = {
+  id: 'id',
+  deviceId: 'deviceId',
+  status: 'status',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  cancelledAt: 'cancelledAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DeviceCollectionSessionScalarFieldEnum = (typeof DeviceCollectionSessionScalarFieldEnum)[keyof typeof DeviceCollectionSessionScalarFieldEnum]
+
+
 export const DeviceCapabilityScalarFieldEnum = {
   id: 'id',
   deviceId: 'deviceId',
@@ -2251,6 +2431,7 @@ export const HardwareCollectionSessionScalarFieldEnum = {
   id: 'id',
   triageId: 'triageId',
   deviceId: 'deviceId',
+  sourceDeviceCollectionSessionId: 'sourceDeviceCollectionSessionId',
   origin: 'origin',
   status: 'status',
   attemptNumber: 'attemptNumber',
@@ -2593,6 +2774,34 @@ export type ListEnumDeviceOperationalStatusFieldRefInput<$PrismaModel> = FieldRe
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DeviceCollectionSessionStatus'
+ */
+export type EnumDeviceCollectionSessionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceCollectionSessionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DeviceCollectionSessionStatus[]'
+ */
+export type ListEnumDeviceCollectionSessionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceCollectionSessionStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'VitalSignType'
  */
 export type EnumVitalSignTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VitalSignType'>
@@ -2645,20 +2854,6 @@ export type EnumActorTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
  * Reference to a field of type 'ActorType[]'
  */
 export type ListEnumActorTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ActorType[]'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -2827,6 +3022,8 @@ export type GlobalOmitConfig = {
   analysisRecommendation?: Prisma.AnalysisRecommendationOmit
   recommendationReason?: Prisma.RecommendationReasonOmit
   medicalDevice?: Prisma.MedicalDeviceOmit
+  reading?: Prisma.ReadingOmit
+  deviceCollectionSession?: Prisma.DeviceCollectionSessionOmit
   deviceCapability?: Prisma.DeviceCapabilityOmit
   hardwareCollectionSession?: Prisma.HardwareCollectionSessionOmit
   vitalSignMeasurement?: Prisma.VitalSignMeasurementOmit

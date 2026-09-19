@@ -11,7 +11,7 @@ export function isPatientIntakeResumable(status: TriageStatus): boolean {
 export function routeForPatientIntakeStatus(status: TriageStatus, hasPatient: boolean): string {
   if (status === "IDENTIFICATION_IN_PROGRESS") return hasPatient ? "/paciente/triagem/consentimento" : "/paciente/triagem/identificacao";
   if (status === "ANAMNESIS_IN_PROGRESS") return "/paciente/triagem/anamnese";
-  if (status === "VITAL_SIGNS_REQUIRED" || status === "VITAL_SIGNS_IN_PROGRESS" || status === "RECOLLECTION_REQUESTED") return "/paciente/triagem/sinais-vitais";
+  if (status === "VITAL_SIGNS_REQUIRED" || status === "VITAL_SIGNS_IN_PROGRESS" || status === "RECOLLECTION_REQUESTED") return "/paciente/coleta";
   if (status === "AWAITING_NURSE_REVIEW") return "/paciente/triagem/concluida";
   return "/paciente";
 }

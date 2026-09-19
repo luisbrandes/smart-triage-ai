@@ -88,6 +88,16 @@ export type RecommendationReason = Prisma.RecommendationReasonModel
  */
 export type MedicalDevice = Prisma.MedicalDeviceModel
 /**
+ * Model Reading
+ * 
+ */
+export type Reading = Prisma.ReadingModel
+/**
+ * Model DeviceCollectionSession
+ * 
+ */
+export type DeviceCollectionSession = Prisma.DeviceCollectionSessionModel
+/**
  * Model DeviceCapability
  * 
  */

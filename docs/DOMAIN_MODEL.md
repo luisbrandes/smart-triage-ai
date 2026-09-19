@@ -37,6 +37,12 @@ Declara o que dispositivo/adaptador pode oferecer, sem presumir uniformidade: FC
 ### HardwareCollectionSession
 Tentativa controlada pelo `HardwareGateway`: identificador, triagem/coleção, adaptador/dispositivo, origem, medições esperadas/recebidas, início/fim, estado, erros, número de tentativa, ator, eventos e metadados técnicos minimizados. Nova tentativa/fallback cria sessão nova ou versão histórica explícita; nunca sobrescreve a anterior.
 
+### DeviceCollectionSession
+Sessão técnica da prova de conceito HTTP, vinculada a um dispositivo e não a paciente ou `Triage`. Tem estados `WAITING`, `ACTIVE`, `CANCELLED` e `COMPLETED`, instantes de início/término/cancelamento e várias `Reading`s. O banco permite somente uma sessão `ACTIVE` por dispositivo. Não é fonte de recomendação ou decisão clínica.
+
+### Reading
+Leitura técnica recebida via HTTP: dispositivo, sessão técnica opcional, BPM, SpO₂, temperatura e instante de recebimento. Com sessão informada, ela só é persistida se a sessão estiver `ACTIVE` e pertencer ao mesmo dispositivo. Não contém payload bruto, paciente ou triagem e não substitui `VitalSignMeasurement`.
+
 ### DeviceMeasurement
 Representa medição recebida e sua passagem por normalização técnica: identificador, sessão, tipo, valor/unidade normalizados quando possíveis, três timestamps, origem, dispositivo, estado/qualidade, versão do adaptador, observação técnica e referência permitida ao bruto. Distingue recebida, tecnicamente validada, aceita, rejeitada e substituída; não é automaticamente usada pela triagem.
 
@@ -81,7 +87,7 @@ Identidade imutável do conjunto de regras demonstrativas, estado e vigência. C
 
 ## Relações e invariantes globais
 
-`Patient` possui triagens; `Triage` agrega versões de `Anamnesis`, coleções, execuções, ticket, revisões, encaminhamento e auditoria. Uma coleção possui sessões; sessão recebe dados brutos apenas na integração, produz `DeviceMeasurement` normalizada e, após aceite, `VitalSignMeasurement`. Análise referencia apenas medições aceitas e versões exatas. Operações críticas mudam estado, criam histórico e auditam atomicamente. Nenhuma projeção de fila é fonte autoritativa do domínio.
+`Patient` possui triagens; `Triage` agrega versões de `Anamnesis`, coleções, execuções, ticket, revisões, encaminhamento e auditoria. Uma coleção possui sessões; sessão recebe dados brutos apenas na integração, produz `DeviceMeasurement` normalizada e, após aceite, `VitalSignMeasurement`. Separadamente, `MedicalDevice` possui sessões técnicas HTTP e suas `Reading`s. Análise referencia apenas medições aceitas e versões exatas. Operações críticas mudam estado, criam histórico e auditam atomicamente. Nenhuma projeção de fila é fonte autoritativa do domínio.
 
 ## Persistência inicial do Marco 3
 

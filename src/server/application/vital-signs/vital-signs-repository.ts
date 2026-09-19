@@ -12,4 +12,12 @@ export interface VitalSignsRepository {
     evaluate: (normalizedInput: NormalizedAnalysisInput) => { fingerprint: string; result: AnalysisEngineResult };
   }): Promise<AnalysisView>;
   findLatestFinalAnalysis(triageId: string): Promise<AnalysisView | null>;
+  acceptPhysicalDeviceCollection(input: {
+    triageId: string;
+    deviceCollectionSessionId: string;
+    readingId: string;
+  }): Promise<
+    | { kind: "ACCEPTED"; collectionSessionId: string; alreadyAccepted: boolean }
+    | { kind: "REJECTED"; message: string }
+  >;
 }

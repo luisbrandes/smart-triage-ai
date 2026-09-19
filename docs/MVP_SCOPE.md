@@ -19,7 +19,7 @@
 
 ## Fora do escopo
 
-Conexão real ou telemetria de hardware/ESP32, firmware, pareamento, provisionamento, gestão operacional de dispositivos, atualização remota, escolha de HTTP/WebSocket/MQTT/Bluetooth/serial, IA generativa ou ML decisório, NEWS/Manchester inventado ou protocolo validado, prontuário, operadoras, faturamento, diagnóstico, prescrição, leitos, internação completa, telemedicina, mensagens, app nativo, multiunidade, microsserviços, mensageria, autenticação corporativa avançada, certificação e produção clínica.
+Conexão de coleta física vinculada à triagem, firmware, pareamento, provisionamento, gestão operacional de dispositivos, atualização remota, escolha de transporte além da entrada HTTP técnica documentada no ADR 0020, IA generativa ou ML decisório, NEWS/Manchester inventado ou protocolo validado, prontuário, operadoras, faturamento, diagnóstico, prescrição, leitos, internação completa, telemedicina, mensagens, app nativo, multiunidade, microsserviços, mensageria, autenticação corporativa avançada, certificação e produção clínica.
 
 ## Evolução futura
 

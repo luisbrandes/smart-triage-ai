@@ -88,6 +88,16 @@ export const DeviceOperationalStatus = {
 export type DeviceOperationalStatus = (typeof DeviceOperationalStatus)[keyof typeof DeviceOperationalStatus]
 
 
+export const DeviceCollectionSessionStatus = {
+  WAITING: 'WAITING',
+  ACTIVE: 'ACTIVE',
+  CANCELLED: 'CANCELLED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type DeviceCollectionSessionStatus = (typeof DeviceCollectionSessionStatus)[keyof typeof DeviceCollectionSessionStatus]
+
+
 export const VitalSignType = {
   HEART_RATE: 'HEART_RATE',
   SPO2: 'SPO2'

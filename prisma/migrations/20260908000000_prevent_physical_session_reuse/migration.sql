@@ -1,0 +1,4 @@
+DROP INDEX "HardwareCollectionSession_triageId_sourceDeviceCollectionSessionId_key";
+
+CREATE UNIQUE INDEX "HardwareCollectionSession_sourceDeviceCollectionSessionId_key"
+  ON "HardwareCollectionSession"("sourceDeviceCollectionSessionId");

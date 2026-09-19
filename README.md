@@ -47,9 +47,15 @@ pnpm db:seed
 
 Use `pnpm db:down` para encerrar o serviço. As credenciais documentadas são exclusivas para desenvolvimento local.
 
+## Entrada HTTP de leituras de dispositivo
+
+A prova de conceito expõe `POST /api/readings` para receber JSON de um dispositivo previamente cadastrado. O payload atual contém `deviceId`, `bpm`, `spo2` e `temperatura`, com `sessionId` opcional. As rotas `POST /api/triage/session/start`, `/cancel` e `/release` controlam a sessão técnica do totem; `GET /api/triage/session/[sessionId]` fornece ao frontend uma projeção sanitizada da sessão e das leituras. Nenhuma delas cria triagem, executa análise ou toma decisão clínica. O contrato HTTP completo para o firmware está em `docs/ESP32_API_CONTRACT.md`. Em desenvolvimento, após `pnpm db:seed`, o dispositivo fictício `ESP32-001` está disponível. As decisões vigentes estão nos ADRs 0019 e 0020.
+
+O painel do paciente usa `/paciente/coleta` para iniciar e acompanhar a coleta física por polling simples. Após confirmação explícita, a leitura técnica selecionada pode ser aceita na triagem como FC e SpO₂ com origem física; temperatura permanece técnica. O fluxo está em `docs/FRONTEND_HARDWARE_COLLECTION.md` e a decisão no ADR 0021.
+
 ## Fronteira de hardware
 
-Sinais vitais serão obtidos por um `HardwareGateway` comum. Na V0, ele terá conceitualmente um adaptador de entrada manual e outro de dispositivo simulado, ambos produzindo medições normalizadas com origem explícita. Um adaptador físico poderá ser acrescentado no futuro sem alterar os casos de uso ou o motor. Neste estágio não existe comunicação com ESP32, firmware, protocolo de rede nem integração real; timeout, falha e fallback manual são apenas contratos documentados.
+Sinais vitais vinculados à triagem são obtidos por um `HardwareGateway` comum. Na V0, ele terá conceitualmente um adaptador de entrada manual e outro de dispositivo simulado, ambos produzindo medições normalizadas com origem explícita. Fora da prova de conceito HTTP de recepção técnica, não existe comunicação de coleta vinculada à triagem, firmware, pareamento ou integração real; timeout, falha e fallback manual são apenas contratos documentados.
 
 ## Documentação
 

@@ -4,7 +4,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 
 import { PrismaClient } from "../src/generated/prisma/client";
 
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.DIRECT_DATABASE_URL ?? process.env.DATABASE_URL;
 
 if (!databaseUrl) {
   throw new Error("DATABASE_URL não está definida para executar o seed.");
@@ -18,6 +18,7 @@ const demoTime = new Date("2026-01-15T12:00:00.000Z");
 const ids = {
   ruleSet: "00000000-0000-4000-8000-000000000001",
   device: "00000000-0000-4000-8000-000000000002",
+  ingestionDevice: "00000000-0000-4000-8000-000000000003",
   patients: [
     "10000000-0000-4000-8000-000000000001",
     "10000000-0000-4000-8000-000000000002",
@@ -64,6 +65,21 @@ async function seedFoundation() {
           { id: "30000000-0000-4000-8000-000000000002", vitalSignType: "SPO2", createdAt: demoTime },
         ],
       },
+    },
+  });
+
+  await prisma.medicalDevice.upsert({
+    where: { id: ids.ingestionDevice },
+    update: {},
+    create: {
+      id: ids.ingestionDevice,
+      externalIdentifier: "ESP32-001",
+      displayName: "ESP32 fictício para ingestão HTTP",
+      manufacturer: "DEMO",
+      model: "HTTP-INGESTION-POC",
+      operationalStatus: "AVAILABLE",
+      isActive: true,
+      createdAt: demoTime,
     },
   });
 }

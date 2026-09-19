@@ -39,6 +39,8 @@ Operações assíncronas devem admitir timeout, cancelamento, erro discriminado 
 
 `HardwareCollectionSession` representa uma tentativa controlada: identificador, triagem/coleção, adaptador/dispositivo, origem, medições esperadas/recebidas, início/fim, estado, erros, número de tentativa, ator, auditoria e metadados técnicos mínimos. Repetição e fallback criam novo histórico; nunca sobrescrevem sessão anterior.
 
+`DeviceCollectionSession` é uma sessão técnica independente de paciente e `Triage`, usada pela prova de conceito HTTP do totem. Pertence a um `MedicalDevice`, possui estados `WAITING`, `ACTIVE`, `CANCELLED` e `COMPLETED` e pode receber várias `Reading`s. Uma leitura selecionada de sessão concluída só entra no fluxo clínico pelo caso de uso explícito de aceite, que cria outra `HardwareCollectionSession` rastreável; ela nunca alimenta o motor diretamente.
+
 ## Máquinas de estado separadas
 
 Estados conceituais do dispositivo: `UNKNOWN`, `UNAVAILABLE`, `AVAILABLE`, `CONNECTING`, `CONNECTED`, `PREPARING`, `COLLECTING`, `READING_COMPLETED`, `ERROR`, `DISCONNECTED`.
@@ -59,7 +61,9 @@ Origens são `MANUAL`, `SIMULATED_DEVICE` e `PHYSICAL_DEVICE`. Origem é sempre 
 
 No Marco 3, `HardwareCollectionSession`, `VitalSignMeasurement` e `HardwareError` persistem somente estrutura e histórico. O seed demonstra sessão simulada, falha e fallback manual. Não existe `HardwareGateway`, adaptador ou comunicação executável; payload bruto não integra o schema.
 
-No Marco 6, o `HardwareGateway` passa a ter contrato executável mínimo (`startCollection`, `getResult`, `cancelCollection`) e adapters manual/simulado. Cada tentativa cria sessão; falha/timeout/invalidade persistem erro seguro e permitem nova tentativa ou fallback manual. Somente FC e SpO₂ aceitas da sessão concluída mais recente seguem à reanálise. Continua inexistindo ESP32, protocolo ou dispositivo físico.
+No Marco 6, o `HardwareGateway` passa a ter contrato executável mínimo (`startCollection`, `getResult`, `cancelCollection`) e adapters manual/simulado. Cada tentativa cria sessão; falha/timeout/invalidade persistem erro seguro e permitem nova tentativa ou fallback manual. Somente FC e SpO₂ aceitas da sessão concluída mais recente seguem à reanálise.
+
+Como prova de conceito posterior, o contrato HTTP registra sessões técnicas por `POST /api/triage/session/start`, aceita leituras por `POST /api/readings`, permite cancelamento/liberação e oferece `GET /api/triage/session/[sessionId]` para uma projeção sanitizada ao frontend. `Reading` não guarda payload bruto e não se vincula diretamente a paciente/triagem. Após uma confirmação explícita do paciente, o caso de uso de aceite valida a leitura persistida e cria as medições clínicas aceitas de FC e SpO₂, com origem `PHYSICAL_DEVICE`; temperatura continua técnica. O contrato vigente está nos ADRs 0020 e 0021 e em `docs/ESP32_API_CONTRACT.md`.
 
 ## Falhas, timeout e fallback
 

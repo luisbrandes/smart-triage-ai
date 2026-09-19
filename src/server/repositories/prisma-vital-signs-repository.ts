@@ -31,6 +31,88 @@ export class PrismaVitalSignsRepository implements VitalSignsRepository {
     return { triageStatus: triage.status, attempts, canConfirm: latest?.status === "COMPLETED" && latest.readings.some((item) => item.type === "HEART_RATE") && latest.readings.some((item) => item.type === "SPO2") };
   }
 
+  async acceptPhysicalDeviceCollection(input: {
+    triageId: string;
+    deviceCollectionSessionId: string;
+    readingId: string;
+  }): Promise<
+    | { kind: "ACCEPTED"; collectionSessionId: string; alreadyAccepted: boolean }
+    | { kind: "REJECTED"; message: string }
+  > {
+    return prisma.$transaction(async (transaction) => {
+      const triage = await transaction.triage.findUnique({
+        where: { id: input.triageId },
+        include: { collectionSessions: { select: { attemptNumber: true } } },
+      });
+      if (!triage) return { kind: "REJECTED" as const, message: "Triagem n\u00e3o encontrada." };
+      if (triage.status !== "VITAL_SIGNS_REQUIRED" && triage.status !== "VITAL_SIGNS_IN_PROGRESS" && triage.status !== "RECOLLECTION_REQUESTED") {
+        return { kind: "REJECTED" as const, message: "A triagem n\u00e3o est\u00e1 pronta para confirmar esta coleta." };
+      }
+
+      const existing = await transaction.hardwareCollectionSession.findUnique({
+        where: { sourceDeviceCollectionSessionId: input.deviceCollectionSessionId },
+        select: { id: true, triageId: true },
+      });
+      if (existing) {
+        if (existing.triageId === input.triageId) return { kind: "ACCEPTED" as const, collectionSessionId: existing.id, alreadyAccepted: true };
+        return { kind: "REJECTED" as const, message: "Esta coleta já foi vinculada a outro atendimento." };
+      }
+
+      const technicalSession = await transaction.deviceCollectionSession.findUnique({
+        where: { id: input.deviceCollectionSessionId },
+        select: { id: true, deviceId: true, status: true, device: { select: { isActive: true } } },
+      });
+      if (!technicalSession) return { kind: "REJECTED" as const, message: "Sess\u00e3o de coleta n\u00e3o encontrada." };
+      if (!technicalSession.device.isActive || technicalSession.status !== "COMPLETED") {
+        return { kind: "REJECTED" as const, message: "A sess\u00e3o de coleta ainda n\u00e3o pode ser confirmada." };
+      }
+
+      const reading = await transaction.reading.findUnique({
+        where: { id: input.readingId },
+        select: { id: true, sessionId: true, deviceId: true, heartRate: true, spo2: true, receivedAt: true },
+      });
+      if (!reading || !reading.sessionId || reading.sessionId !== technicalSession.id || reading.deviceId !== technicalSession.deviceId) {
+        return { kind: "REJECTED" as const, message: "A leitura n\u00e3o pertence a esta sess\u00e3o de coleta." };
+      }
+      if (!Number.isInteger(reading.heartRate) || reading.heartRate < 20 || reading.heartRate > 240) {
+        return { kind: "REJECTED" as const, message: "A leitura n\u00e3o possui frequ\u00eancia card\u00edaca v\u00e1lida." };
+      }
+      if (!Number.isInteger(reading.spo2) || reading.spo2 < 50 || reading.spo2 > 100) {
+        return { kind: "REJECTED" as const, message: "A leitura n\u00e3o possui satura\u00e7\u00e3o v\u00e1lida." };
+      }
+
+      const attemptNumber = Math.max(0, ...triage.collectionSessions.map((item) => item.attemptNumber)) + 1;
+      if (triage.status === "VITAL_SIGNS_REQUIRED") assertTriageTransition("VITAL_SIGNS_REQUIRED", "VITAL_SIGNS_IN_PROGRESS");
+      if (triage.status === "RECOLLECTION_REQUESTED") assertTriageTransition("RECOLLECTION_REQUESTED", "VITAL_SIGNS_IN_PROGRESS");
+      const acceptedAt = new Date();
+      const session = await transaction.hardwareCollectionSession.create({
+        data: {
+          triageId: input.triageId,
+          deviceId: technicalSession.deviceId,
+          sourceDeviceCollectionSessionId: technicalSession.id,
+          origin: "PHYSICAL_DEVICE",
+          status: "COMPLETED",
+          attemptNumber,
+          initiatedBy: "PATIENT",
+          completedAt: acceptedAt,
+          measurements: {
+            create: [
+              { vitalSignType: "HEART_RATE", numericValue: reading.heartRate, unit: "bpm", origin: "PHYSICAL_DEVICE", technicalStatus: "ACCEPTED", receivedByServerAt: reading.receivedAt, acceptedIntoFlowAt: acceptedAt, externalMeasurementId: `${reading.id}:HEART_RATE`, sequenceNumber: 1 },
+              { vitalSignType: "SPO2", numericValue: reading.spo2, unit: "%", origin: "PHYSICAL_DEVICE", technicalStatus: "ACCEPTED", receivedByServerAt: reading.receivedAt, acceptedIntoFlowAt: acceptedAt, externalMeasurementId: `${reading.id}:SPO2`, sequenceNumber: 2 },
+            ],
+          },
+        },
+        select: { id: true },
+      });
+      await transaction.triage.update({ where: { id: input.triageId }, data: { status: "VITAL_SIGNS_IN_PROGRESS" } });
+      await transaction.auditEvent.createMany({ data: [
+        { triageId: input.triageId, entityType: "HardwareCollectionSession", entityId: session.id, action: "VITAL_SIGNS_COLLECTION_STARTED", actorType: "PATIENT", sanitizedMetadata: { origin: "PHYSICAL_DEVICE", attemptNumber } },
+        { triageId: input.triageId, entityType: "HardwareCollectionSession", entityId: session.id, action: "VITAL_SIGNS_RECORDED", actorType: "PATIENT", sanitizedMetadata: { origin: "PHYSICAL_DEVICE", attemptNumber, types: ["HEART_RATE", "SPO2"] } },
+      ] });
+      return { kind: "ACCEPTED" as const, collectionSessionId: session.id, alreadyAccepted: false };
+    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }
+
   async recordAttempt({ triageId, result }: RecordAttemptInput): Promise<VitalSignsFlowView> {
     await prisma.$transaction(async (transaction) => {
       const triage = await transaction.triage.findUnique({ where: { id: triageId }, include: { collectionSessions: { select: { attemptNumber: true } } } });
