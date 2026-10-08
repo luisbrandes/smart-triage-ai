@@ -67,6 +67,7 @@ Sinais vitais vinculados à triagem são obtidos por um `HardwareGateway` comum.
 - Fronteiras técnicas: `docs/ANALYSIS_ENGINE.md`, `docs/HARDWARE_BOUNDARY.md`, `docs/ARCHITECTURE.md`.
 - Governança: `docs/SECURITY_AND_PRIVACY.md`, `docs/ENGINEERING_RULES.md`, `docs/ACCEPTANCE_CRITERIA.md`.
 - Execução futura: `docs/IMPLEMENTATION_PLAN.md`, `docs/GLOSSARY.md` e `docs/decisions/`.
+- Experimento controlado com 10 pacientes fictícios e 50 triagens: `docs/SIMULATION_EXPERIMENT.md`.
 
 ## Próximos marcos
 
