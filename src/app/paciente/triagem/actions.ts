@@ -74,7 +74,30 @@ export async function saveIdentificationAction(_previous: IntakeActionState, for
       planName: formData.get("planName") || undefined,
     });
     if (!result.success) return { errors: result.errors };
-  } catch {
+  } catch (error) {
+    const errorCode =
+      typeof error === "object" &&
+      error !== null &&
+      "code" in error &&
+      typeof error.code === "string"
+        ? error.code
+        : undefined;
+
+    if (errorCode === "P2002") {
+      return {
+        errors: {
+          cpf: [
+            "Este CPF já está associado a um cadastro. Como o CPF é opcional, remova-o para continuar.",
+          ],
+        },
+      };
+    }
+
+    console.error("patient_identification_save_failed", {
+      triageId,
+      errorName: error instanceof Error ? error.name : "UnknownError",
+      errorCode,
+    });
     return { message: "Não foi possível salvar a identificação. Tente novamente." };
   }
   redirect("/paciente/triagem/consentimento");
