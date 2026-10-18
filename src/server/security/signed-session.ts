@@ -28,7 +28,12 @@ export function verifySignedSession(value: string | undefined, kind: SessionPayl
   if (!value) return null;
   const [encoded, supplied] = value.split(".");
   if (!encoded || !supplied) return null;
-  const expected = signature(encoded);
+  let expected: string;
+  try {
+    expected = signature(encoded);
+  } catch {
+    return null;
+  }
   const left = Buffer.from(supplied);
   const right = Buffer.from(expected);
   if (left.length !== right.length || !timingSafeEqual(left, right)) return null;
