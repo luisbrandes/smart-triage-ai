@@ -67,3 +67,7 @@ Uma mudança está pronta quando é pequena e verificável, cumpre critérios do
 - [ ] Origem, normalização, tentativa e fallback são rastreáveis sem sobrescrita.
 - [ ] Prisma permanece na infraestrutura; domínio e apresentação não importam o client ou tipos gerados.
 - [ ] Código server-side está protegido e dados de seed são explicitamente fictícios.
+
+# Instruções de Persistência
+- Caso ocorra um erro de limite de tokens (Rate Limit / Token Exhaustion) ou a execução do `/goal` seja interrompida, salve o estado atual do progresso, os arquivos modificados e os próximos passos pendentes em um arquivo temporário chamado `.codex_state.json`.
+- Assim que uma nova sessão ou mensagem agendada interagir com este chat, leia o `.codex_state.json` e execute novamente o comando `/goal` para retomar o trabalho exatamente de onde parou.
