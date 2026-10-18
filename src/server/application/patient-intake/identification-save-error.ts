@@ -39,7 +39,7 @@ function safeErrorName(name: unknown): string {
 
 export function classifyIdentificationSaveError(error: unknown): IdentificationSaveErrorDetails {
   const value = isErrorLike(error) ? error : {};
-  const code = typeof value.code === "string" ? value.code : undefined;
+  const code = typeof value.code === "string" && /^P\d{4}$/.test(value.code) ? value.code : undefined;
   const name = safeErrorName(value.name);
 
   if (code === "P2002") {

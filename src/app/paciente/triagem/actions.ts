@@ -57,7 +57,10 @@ export async function cancelPatientTriageAction(): Promise<never> {
 
 export async function saveIdentificationAction(_previous: IntakeActionState, formData: FormData): Promise<IntakeActionState> {
   const triageId = await currentTriageId();
-  if (!triageId) return { message: "Inicie uma nova triagem." };
+  if (!triageId) {
+    console.warn("patient_identification_save_rejected", { category: "session_missing" });
+    return { message: "Inicie uma nova triagem." };
+  }
 
   try {
     const result = await patientIntake.saveIdentification(triageId, {
@@ -74,7 +77,15 @@ export async function saveIdentificationAction(_previous: IntakeActionState, for
       hasHealthPlan: formData.get("hasHealthPlan"),
       planName: formData.get("planName") || undefined,
     });
-    if (!result.success) return { errors: result.errors };
+    if (!result.success) {
+      console.info("patient_identification_save_rejected", {
+        triageId,
+        category: "validation",
+        fields: Object.keys(result.errors).sort(),
+      });
+      return { errors: result.errors };
+    }
+    console.info("patient_identification_save_succeeded", { triageId });
   } catch (error) {
     const failure = classifyIdentificationSaveError(error);
     console.error("patient_identification_save_failed", {
