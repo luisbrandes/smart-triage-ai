@@ -6,6 +6,7 @@ import { demoAnamnesis } from "@/demo/anamnesis";
 import { clearDemoTriageId, getDemoTriageId, setDemoTriageId } from "@/server/demo-triage-session";
 import { patientIntake } from "@/server/patient-intake";
 import { isPatientIntakeResumable, routeForPatientIntakeStatus } from "@/server/application/patient-intake/patient-intake-routes";
+import { classifyIdentificationSaveError } from "@/server/application/patient-intake/identification-save-error";
 
 export type IntakeActionState = {
   message?: string;
@@ -75,15 +76,15 @@ export async function saveIdentificationAction(_previous: IntakeActionState, for
     });
     if (!result.success) return { errors: result.errors };
   } catch (error) {
-    const errorCode =
-      typeof error === "object" &&
-      error !== null &&
-      "code" in error &&
-      typeof error.code === "string"
-        ? error.code
-        : undefined;
+    const failure = classifyIdentificationSaveError(error);
+    console.error("patient_identification_save_failed", {
+      triageId,
+      category: failure.category,
+      errorName: failure.name,
+      ...(failure.code ? { errorCode: failure.code } : {}),
+    });
 
-    if (errorCode === "P2002") {
+    if (failure.category === "duplicate_cpf") {
       return {
         errors: {
           cpf: [
@@ -92,12 +93,6 @@ export async function saveIdentificationAction(_previous: IntakeActionState, for
         },
       };
     }
-
-    console.error("patient_identification_save_failed", {
-      triageId,
-      errorName: error instanceof Error ? error.name : "UnknownError",
-      errorCode,
-    });
     return { message: "Não foi possível salvar a identificação. Tente novamente." };
   }
   redirect("/paciente/triagem/consentimento");
