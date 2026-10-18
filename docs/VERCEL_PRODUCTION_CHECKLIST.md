@@ -35,6 +35,10 @@ DEVICE_ID=ESP32-001
 DEVICE_TOKEN=token provisionado para ESP32-001
 ```
 
+## Diagnóstico dos acessos
+
+Os dois painéis usam `ACCESS_CREDENTIAL` para autenticar e `SESSION_SECRET` (ou o segredo legado `DEMO_SESSION_SECRET`) para assinar o cookie de sessão. `SESSION_SECRET` deve ter pelo menos 32 caracteres e estar configurado no ambiente **Production** da Vercel. Se a credencial correta retornar erro de servidor nos dois painéis, revise essa variável e faça um novo deploy. O código não usa fallback inseguro para criar sessões.
+
 O firmware deve consultar a sessão, enviar `deviceId`, `sessionId`, `readingId`, `bpm`, `spo2` e `temperatura`, repetir o mesmo `readingId` em timeout e executar `release` com o `sessionId` da coleta.
 
 ## Limites da validação
