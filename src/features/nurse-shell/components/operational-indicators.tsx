@@ -14,8 +14,8 @@ export function OperationalIndicators({ values }: { values: IndicatorValues }) {
     <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
       {indicators.map((indicator) => (
         <Card className="p-4" key={indicator.label}>
-          <div className="flex items-start justify-between gap-3">
-            <div>
+          <div className="flex min-w-0 items-start justify-between gap-3">
+            <div className="min-w-0 break-words">
               <p className="text-xs font-medium leading-5 text-text-secondary">{indicator.label}</p>
               <p className="mt-2 text-2xl font-semibold">{indicator.value}</p>
               <p className="mt-1 text-xs text-text-muted">{indicator.note}</p>
