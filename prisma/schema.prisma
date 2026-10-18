@@ -395,6 +395,7 @@ model MedicalDevice {
 // Não substitui VitalSignMeasurement, que registra somente medições aceitas no fluxo de triagem.
 model Reading {
   id          String        @id @default(uuid())
+  externalReadingId String?  @unique
   deviceId    String
   sessionId   String?
   temperature Float
@@ -422,6 +423,7 @@ model DeviceCollectionSession {
   cancelledAt DateTime?
   createdAt   DateTime                      @default(now())
   updatedAt   DateTime                      @updatedAt
+  expiresAt   DateTime?
   device      MedicalDevice                 @relation(fields: [deviceId], references: [id], onDelete: Restrict)
   requestedByTriage Triage?                  @relation("RequestedDeviceCollectionSessions", fields: [requestedByTriageId], references: [id], onDelete: Restrict)
   readings    Reading[]

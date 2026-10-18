@@ -315,6 +315,7 @@ export type MedicalDeviceScalarFieldEnum = (typeof MedicalDeviceScalarFieldEnum)
 
 export const ReadingScalarFieldEnum = {
   id: 'id',
+  externalReadingId: 'externalReadingId',
   deviceId: 'deviceId',
   sessionId: 'sessionId',
   temperature: 'temperature',
@@ -338,7 +339,8 @@ export const DeviceCollectionSessionScalarFieldEnum = {
   completedAt: 'completedAt',
   cancelledAt: 'cancelledAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  expiresAt: 'expiresAt'
 } as const
 
 export type DeviceCollectionSessionScalarFieldEnum = (typeof DeviceCollectionSessionScalarFieldEnum)[keyof typeof DeviceCollectionSessionScalarFieldEnum]

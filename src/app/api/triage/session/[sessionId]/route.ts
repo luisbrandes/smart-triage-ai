@@ -33,7 +33,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ ses
         temperatura: reading.temperatura,
         receivedAt: reading.receivedAt,
       })),
-    });
+    }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     if (error instanceof DeviceCollectionSessionError) {
       return NextResponse.json({ error: "Sessão não encontrada." }, { status: 404 });

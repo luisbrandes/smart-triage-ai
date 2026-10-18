@@ -1,11 +1,12 @@
 import "server-only";
 
+import { Prisma } from "@/generated/prisma/client";
 import { prisma } from "@/server/db/prisma";
 import type { DeviceReadingInput, DeviceReadingRecordResult, DeviceReadingRepository } from "@/server/application/device-readings/device-reading-types";
 
 export class PrismaDeviceReadingRepository implements DeviceReadingRepository {
   async record(input: DeviceReadingInput): Promise<DeviceReadingRecordResult> {
-    return prisma.$transaction(async (transaction) => {
+    try { return await prisma.$transaction(async (transaction) => {
       const device = await transaction.medicalDevice.findFirst({
         where: { externalIdentifier: input.deviceId, isActive: true },
         select: { id: true },
@@ -13,7 +14,14 @@ export class PrismaDeviceReadingRepository implements DeviceReadingRepository {
 
       if (!device) return { kind: "DEVICE_NOT_FOUND" };
 
-      if (input.sessionId) {
+      const existing = await transaction.reading.findUnique({ where: { externalReadingId: input.readingId }, select: { id: true, deviceId: true } });
+      if (existing) {
+        if (existing.deviceId !== device.id) return { kind: "READING_DEVICE_MISMATCH" };
+        return { kind: "RECORDED", readingId: existing.id };
+      }
+
+      {
+        await transaction.deviceCollectionSession.updateMany({ where: { id: input.sessionId, status: "ACTIVE", expiresAt: { lte: new Date() } }, data: { status: "CANCELLED", cancelledAt: new Date() } });
         const session = await transaction.deviceCollectionSession.findUnique({
           where: { id: input.sessionId },
           select: { deviceId: true, status: true },
@@ -26,6 +34,7 @@ export class PrismaDeviceReadingRepository implements DeviceReadingRepository {
       const reading = await transaction.reading.create({
         data: {
           deviceId: device.id,
+          externalReadingId: input.readingId,
           sessionId: input.sessionId,
           temperature: input.temperatura,
           heartRate: input.bpm,
@@ -51,6 +60,12 @@ export class PrismaDeviceReadingRepository implements DeviceReadingRepository {
       });
 
       return { kind: "RECORDED", readingId: reading.id };
-    });
+    }); } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        const existing = await prisma.reading.findUnique({ where: { externalReadingId: input.readingId }, select: { id: true, device: { select: { externalIdentifier: true } } } });
+        if (existing) return existing.device.externalIdentifier === input.deviceId ? { kind: "RECORDED", readingId: existing.id } : { kind: "READING_DEVICE_MISMATCH" };
+      }
+      throw error;
+    }
   }
 }

@@ -1,6 +1,6 @@
 export type DeviceCollectionSessionStatus = "WAITING" | "ACTIVE" | "CANCELLED" | "COMPLETED";
 
-export type DeviceCollectionSessionView = { sessionId: string; deviceId: string; status: DeviceCollectionSessionStatus };
+export type DeviceCollectionSessionView = { sessionId: string; deviceId: string; status: DeviceCollectionSessionStatus; expiresAt?: Date | null };
 
 export type DeviceCollectionReadingView = {
   readingId: string;
@@ -23,7 +23,7 @@ export type CancelSessionResult = DeviceCollectionSessionView | { kind: "SESSION
 export interface DeviceCollectionSessionRepository {
   start(deviceId: string, triageId: string): Promise<StartSessionResult>;
   cancel(sessionId: string, triageId: string): Promise<CancelSessionResult>;
-  release(deviceId: string): Promise<DeviceCollectionSessionView | { kind: "DEVICE_NOT_FOUND" }>;
+  release(deviceId: string, sessionId?: string): Promise<DeviceCollectionSessionView | { kind: "DEVICE_NOT_FOUND" }>;
   findById(sessionId: string, triageId: string): Promise<DeviceCollectionSessionDetailView | null>;
   findActiveForDevice(deviceInternalId: string): Promise<DeviceCollectionSessionView | null>;
 }

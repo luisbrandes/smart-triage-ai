@@ -4,14 +4,14 @@ import { recollectionSchema, reclassificationSchema, referralSchema, validationE
 
 export async function confirmTriageClassification(repository: NursingMutationRepository, triageId: string, actorReference: string): Promise<NursingMutationResult> {
   await repository.confirmClassification(triageId, actorReference);
-  return { success: true, status: "CARE_WAITING" };
+  return { success: true, status: "CLASSIFIED" };
 }
 
 export async function reclassifyTriage(repository: NursingMutationRepository, triageId: string, raw: unknown, actorReference: string): Promise<NursingMutationResult> {
   const parsed = reclassificationSchema.safeParse(raw);
   if (!parsed.success) return { success: false, message: "Revise os dados da reclassificação.", errors: validationErrors(parsed.error) };
   await repository.reclassify(triageId, parsed.data, actorReference);
-  return { success: true, status: "CARE_WAITING" };
+  return { success: true, status: "CLASSIFIED" };
 }
 
 export async function callNextPatient(repository: NursingMutationRepository, actorReference: string): Promise<NursingMutationResult> {

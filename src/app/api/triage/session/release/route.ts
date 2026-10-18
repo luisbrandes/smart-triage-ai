@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   if (parsed.success && parsed.data.deviceId !== device.deviceId) return NextResponse.json({ error: "Dispositivo não autorizado para este identificador." }, { status: 403 });
   if (!parsed.success) return NextResponse.json({ error: "Payload inválido." }, { status: 400 });
   try {
-    const session = await releaseDeviceCollectionSession(repository, parsed.data.deviceId);
+    const session = await releaseDeviceCollectionSession(repository, parsed.data.deviceId, parsed.data.sessionId);
     return NextResponse.json({ sessionId: session.sessionId, status: session.status });
   } catch (error) {
     if (error instanceof DeviceCollectionSessionError) return NextResponse.json({ error: "Dispositivo não encontrado." }, { status: 404 });

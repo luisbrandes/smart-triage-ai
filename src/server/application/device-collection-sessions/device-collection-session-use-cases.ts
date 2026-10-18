@@ -13,8 +13,8 @@ export async function cancelDeviceCollectionSession(repository: DeviceCollection
   return result;
 }
 
-export async function releaseDeviceCollectionSession(repository: DeviceCollectionSessionRepository, deviceId: string): Promise<DeviceCollectionSessionView> {
-  const result = await repository.release(deviceId);
+export async function releaseDeviceCollectionSession(repository: DeviceCollectionSessionRepository, deviceId: string, sessionId?: string): Promise<DeviceCollectionSessionView> {
+  const result = await repository.release(deviceId, sessionId);
   if ("kind" in result) throw new DeviceCollectionSessionError(result.kind);
   return result;
 }

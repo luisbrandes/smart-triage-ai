@@ -23,7 +23,10 @@ function toScreenState(session: Session | null): ScreenState {
 }
 
 async function responseJson<T>(response: Response): Promise<T> {
-  if (!response.ok) throw new Error("request-failed");
+  if (!response.ok) {
+    if (response.status === 409) throw new Error("collection-already-active");
+    throw new Error("request-failed");
+  }
   return response.json() as Promise<T>;
 }
 

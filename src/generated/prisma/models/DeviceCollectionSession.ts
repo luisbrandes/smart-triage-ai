@@ -34,6 +34,7 @@ export type DeviceCollectionSessionMinAggregateOutputType = {
   cancelledAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  expiresAt: Date | null
 }
 
 export type DeviceCollectionSessionMaxAggregateOutputType = {
@@ -46,6 +47,7 @@ export type DeviceCollectionSessionMaxAggregateOutputType = {
   cancelledAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  expiresAt: Date | null
 }
 
 export type DeviceCollectionSessionCountAggregateOutputType = {
@@ -58,6 +60,7 @@ export type DeviceCollectionSessionCountAggregateOutputType = {
   cancelledAt: number
   createdAt: number
   updatedAt: number
+  expiresAt: number
   _all: number
 }
 
@@ -72,6 +75,7 @@ export type DeviceCollectionSessionMinAggregateInputType = {
   cancelledAt?: true
   createdAt?: true
   updatedAt?: true
+  expiresAt?: true
 }
 
 export type DeviceCollectionSessionMaxAggregateInputType = {
@@ -84,6 +88,7 @@ export type DeviceCollectionSessionMaxAggregateInputType = {
   cancelledAt?: true
   createdAt?: true
   updatedAt?: true
+  expiresAt?: true
 }
 
 export type DeviceCollectionSessionCountAggregateInputType = {
@@ -96,6 +101,7 @@ export type DeviceCollectionSessionCountAggregateInputType = {
   cancelledAt?: true
   createdAt?: true
   updatedAt?: true
+  expiresAt?: true
   _all?: true
 }
 
@@ -181,6 +187,7 @@ export type DeviceCollectionSessionGroupByOutputType = {
   cancelledAt: Date | null
   createdAt: Date
   updatedAt: Date
+  expiresAt: Date | null
   _count: DeviceCollectionSessionCountAggregateOutputType | null
   _min: DeviceCollectionSessionMinAggregateOutputType | null
   _max: DeviceCollectionSessionMaxAggregateOutputType | null
@@ -214,6 +221,7 @@ export type DeviceCollectionSessionWhereInput = {
   cancelledAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
+  expiresAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
   device?: Prisma.XOR<Prisma.MedicalDeviceScalarRelationFilter, Prisma.MedicalDeviceWhereInput>
   requestedByTriage?: Prisma.XOR<Prisma.TriageNullableScalarRelationFilter, Prisma.TriageWhereInput> | null
   readings?: Prisma.ReadingListRelationFilter
@@ -230,6 +238,7 @@ export type DeviceCollectionSessionOrderByWithRelationInput = {
   cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   device?: Prisma.MedicalDeviceOrderByWithRelationInput
   requestedByTriage?: Prisma.TriageOrderByWithRelationInput
   readings?: Prisma.ReadingOrderByRelationAggregateInput
@@ -249,6 +258,7 @@ export type DeviceCollectionSessionWhereUniqueInput = Prisma.AtLeast<{
   cancelledAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
+  expiresAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
   device?: Prisma.XOR<Prisma.MedicalDeviceScalarRelationFilter, Prisma.MedicalDeviceWhereInput>
   requestedByTriage?: Prisma.XOR<Prisma.TriageNullableScalarRelationFilter, Prisma.TriageWhereInput> | null
   readings?: Prisma.ReadingListRelationFilter
@@ -265,6 +275,7 @@ export type DeviceCollectionSessionOrderByWithAggregationInput = {
   cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DeviceCollectionSessionCountOrderByAggregateInput
   _max?: Prisma.DeviceCollectionSessionMaxOrderByAggregateInput
   _min?: Prisma.DeviceCollectionSessionMinOrderByAggregateInput
@@ -283,6 +294,7 @@ export type DeviceCollectionSessionScalarWhereWithAggregatesInput = {
   cancelledAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DeviceCollectionSession"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"DeviceCollectionSession"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"DeviceCollectionSession"> | Date | string
+  expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"DeviceCollectionSession"> | Date | string | null
 }
 
 export type DeviceCollectionSessionCreateInput = {
@@ -293,6 +305,7 @@ export type DeviceCollectionSessionCreateInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   device: Prisma.MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput
   requestedByTriage?: Prisma.TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput
   readings?: Prisma.ReadingCreateNestedManyWithoutSessionInput
@@ -309,6 +322,7 @@ export type DeviceCollectionSessionUncheckedCreateInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutSessionInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutSourceDeviceCollectionSessionInput
 }
@@ -321,6 +335,7 @@ export type DeviceCollectionSessionUpdateInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   device?: Prisma.MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput
   requestedByTriage?: Prisma.TriageUpdateOneWithoutRequestedDeviceCollectionSessionsNestedInput
   readings?: Prisma.ReadingUpdateManyWithoutSessionNestedInput
@@ -337,6 +352,7 @@ export type DeviceCollectionSessionUncheckedUpdateInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readings?: Prisma.ReadingUncheckedUpdateManyWithoutSessionNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
 }
@@ -351,6 +367,7 @@ export type DeviceCollectionSessionCreateManyInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
 }
 
 export type DeviceCollectionSessionUpdateManyMutationInput = {
@@ -361,6 +378,7 @@ export type DeviceCollectionSessionUpdateManyMutationInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeviceCollectionSessionUncheckedUpdateManyInput = {
@@ -373,6 +391,7 @@ export type DeviceCollectionSessionUncheckedUpdateManyInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeviceCollectionSessionListRelationFilter = {
@@ -400,6 +419,7 @@ export type DeviceCollectionSessionCountOrderByAggregateInput = {
   cancelledAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
 }
 
 export type DeviceCollectionSessionMaxOrderByAggregateInput = {
@@ -412,6 +432,7 @@ export type DeviceCollectionSessionMaxOrderByAggregateInput = {
   cancelledAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
 }
 
 export type DeviceCollectionSessionMinOrderByAggregateInput = {
@@ -424,6 +445,7 @@ export type DeviceCollectionSessionMinOrderByAggregateInput = {
   cancelledAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
 }
 
 export type DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput = {
@@ -554,6 +576,7 @@ export type DeviceCollectionSessionCreateWithoutRequestedByTriageInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   device: Prisma.MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput
   readings?: Prisma.ReadingCreateNestedManyWithoutSessionInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutSourceDeviceCollectionSessionInput
@@ -568,6 +591,7 @@ export type DeviceCollectionSessionUncheckedCreateWithoutRequestedByTriageInput 
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutSessionInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutSourceDeviceCollectionSessionInput
 }
@@ -611,6 +635,7 @@ export type DeviceCollectionSessionScalarWhereInput = {
   cancelledAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"DeviceCollectionSession"> | Date | string
+  expiresAt?: Prisma.DateTimeNullableFilter<"DeviceCollectionSession"> | Date | string | null
 }
 
 export type DeviceCollectionSessionCreateWithoutDeviceInput = {
@@ -621,6 +646,7 @@ export type DeviceCollectionSessionCreateWithoutDeviceInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   requestedByTriage?: Prisma.TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput
   readings?: Prisma.ReadingCreateNestedManyWithoutSessionInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutSourceDeviceCollectionSessionInput
@@ -635,6 +661,7 @@ export type DeviceCollectionSessionUncheckedCreateWithoutDeviceInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutSessionInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutSourceDeviceCollectionSessionInput
 }
@@ -673,6 +700,7 @@ export type DeviceCollectionSessionCreateWithoutReadingsInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   device: Prisma.MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput
   requestedByTriage?: Prisma.TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutSourceDeviceCollectionSessionInput
@@ -688,6 +716,7 @@ export type DeviceCollectionSessionUncheckedCreateWithoutReadingsInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutSourceDeviceCollectionSessionInput
 }
 
@@ -715,6 +744,7 @@ export type DeviceCollectionSessionUpdateWithoutReadingsInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   device?: Prisma.MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput
   requestedByTriage?: Prisma.TriageUpdateOneWithoutRequestedDeviceCollectionSessionsNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
@@ -730,6 +760,7 @@ export type DeviceCollectionSessionUncheckedUpdateWithoutReadingsInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
 }
 
@@ -741,6 +772,7 @@ export type DeviceCollectionSessionCreateWithoutClinicalCollectionSessionsInput 
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   device: Prisma.MedicalDeviceCreateNestedOneWithoutDeviceCollectionSessionsInput
   requestedByTriage?: Prisma.TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput
   readings?: Prisma.ReadingCreateNestedManyWithoutSessionInput
@@ -756,6 +788,7 @@ export type DeviceCollectionSessionUncheckedCreateWithoutClinicalCollectionSessi
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
   readings?: Prisma.ReadingUncheckedCreateNestedManyWithoutSessionInput
 }
 
@@ -783,6 +816,7 @@ export type DeviceCollectionSessionUpdateWithoutClinicalCollectionSessionsInput 
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   device?: Prisma.MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput
   requestedByTriage?: Prisma.TriageUpdateOneWithoutRequestedDeviceCollectionSessionsNestedInput
   readings?: Prisma.ReadingUpdateManyWithoutSessionNestedInput
@@ -798,6 +832,7 @@ export type DeviceCollectionSessionUncheckedUpdateWithoutClinicalCollectionSessi
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readings?: Prisma.ReadingUncheckedUpdateManyWithoutSessionNestedInput
 }
 
@@ -810,6 +845,7 @@ export type DeviceCollectionSessionCreateManyRequestedByTriageInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
 }
 
 export type DeviceCollectionSessionUpdateWithoutRequestedByTriageInput = {
@@ -820,6 +856,7 @@ export type DeviceCollectionSessionUpdateWithoutRequestedByTriageInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   device?: Prisma.MedicalDeviceUpdateOneRequiredWithoutDeviceCollectionSessionsNestedInput
   readings?: Prisma.ReadingUpdateManyWithoutSessionNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
@@ -834,6 +871,7 @@ export type DeviceCollectionSessionUncheckedUpdateWithoutRequestedByTriageInput 
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readings?: Prisma.ReadingUncheckedUpdateManyWithoutSessionNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
 }
@@ -847,6 +885,7 @@ export type DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageIn
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type DeviceCollectionSessionCreateManyDeviceInput = {
@@ -858,6 +897,7 @@ export type DeviceCollectionSessionCreateManyDeviceInput = {
   cancelledAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  expiresAt?: Date | string | null
 }
 
 export type DeviceCollectionSessionUpdateWithoutDeviceInput = {
@@ -868,6 +908,7 @@ export type DeviceCollectionSessionUpdateWithoutDeviceInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   requestedByTriage?: Prisma.TriageUpdateOneWithoutRequestedDeviceCollectionSessionsNestedInput
   readings?: Prisma.ReadingUpdateManyWithoutSessionNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
@@ -882,6 +923,7 @@ export type DeviceCollectionSessionUncheckedUpdateWithoutDeviceInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readings?: Prisma.ReadingUncheckedUpdateManyWithoutSessionNestedInput
   clinicalCollectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutSourceDeviceCollectionSessionNestedInput
 }
@@ -895,6 +937,7 @@ export type DeviceCollectionSessionUncheckedUpdateManyWithoutDeviceInput = {
   cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -947,6 +990,7 @@ export type DeviceCollectionSessionSelect<ExtArgs extends runtime.Types.Extensio
   cancelledAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  expiresAt?: boolean
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
   requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
   readings?: boolean | Prisma.DeviceCollectionSession$readingsArgs<ExtArgs>
@@ -964,6 +1008,7 @@ export type DeviceCollectionSessionSelectCreateManyAndReturn<ExtArgs extends run
   cancelledAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  expiresAt?: boolean
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
   requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
 }, ExtArgs["result"]["deviceCollectionSession"]>
@@ -978,6 +1023,7 @@ export type DeviceCollectionSessionSelectUpdateManyAndReturn<ExtArgs extends run
   cancelledAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  expiresAt?: boolean
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
   requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
 }, ExtArgs["result"]["deviceCollectionSession"]>
@@ -992,9 +1038,10 @@ export type DeviceCollectionSessionSelectScalar = {
   cancelledAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  expiresAt?: boolean
 }
 
-export type DeviceCollectionSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "deviceId" | "requestedByTriageId" | "status" | "startedAt" | "completedAt" | "cancelledAt" | "createdAt" | "updatedAt", ExtArgs["result"]["deviceCollectionSession"]>
+export type DeviceCollectionSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "deviceId" | "requestedByTriageId" | "status" | "startedAt" | "completedAt" | "cancelledAt" | "createdAt" | "updatedAt" | "expiresAt", ExtArgs["result"]["deviceCollectionSession"]>
 export type DeviceCollectionSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
   requestedByTriage?: boolean | Prisma.DeviceCollectionSession$requestedByTriageArgs<ExtArgs>
@@ -1029,6 +1076,7 @@ export type $DeviceCollectionSessionPayload<ExtArgs extends runtime.Types.Extens
     cancelledAt: Date | null
     createdAt: Date
     updatedAt: Date
+    expiresAt: Date | null
   }, ExtArgs["result"]["deviceCollectionSession"]>
   composites: {}
 }
@@ -1465,6 +1513,7 @@ export interface DeviceCollectionSessionFieldRefs {
   readonly cancelledAt: Prisma.FieldRef<"DeviceCollectionSession", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"DeviceCollectionSession", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"DeviceCollectionSession", 'DateTime'>
+  readonly expiresAt: Prisma.FieldRef<"DeviceCollectionSession", 'DateTime'>
 }
     
 

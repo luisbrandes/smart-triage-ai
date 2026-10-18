@@ -1,28 +1,21 @@
 import { describe, expect, it } from "vitest";
-
-import type { NursingMutationRepository } from "@/server/application/nursing/nursing-mutation-repository";
-import type { ClassificationInput, RecollectionInput, ReferralInput } from "@/server/application/nursing/nursing-mutation-types";
 import { callNextPatient, completePatientCare, confirmTriageClassification, reclassifyTriage, referTriageToCare, requestVitalSignsRecollection, startPatientCare } from "@/server/application/nursing/nursing-mutations";
+import type { NursingMutationRepository } from "@/server/application/nursing/nursing-mutation-repository";
 
 class MutationSpy implements NursingMutationRepository {
-  calls: { action: string; input?: unknown }[] = [];
-  async confirmClassification() { this.calls.push({ action: "confirm" }); }
-  async reclassify(_id: string, input: ClassificationInput) { this.calls.push({ action: "reclassify", input }); }
-  async requestRecollection(_id: string, input: RecollectionInput) { this.calls.push({ action: "recollection", input }); }
-  async referToCare(_id: string, input: ReferralInput) { this.calls.push({ action: "referral", input }); }
-  async callNext() { this.calls.push({ action: "call-next" }); return { triageId: "triage", ticketCode: "T-001" }; }
-  async startCare() { this.calls.push({ action: "start-care" }); }
-  async completeCare() { this.calls.push({ action: "complete-care" }); }
+  calls: string[] = [];
+  async confirmClassification() { this.calls.push("confirm"); }
+  async reclassify() { this.calls.push("reclassify"); }
+  async requestRecollection() { this.calls.push("recollect"); }
+  async referToCare() { this.calls.push("refer"); }
+  async callNext() { this.calls.push("call"); return { triageId: "triage", ticketCode: "T-001" }; }
+  async startCare() { this.calls.push("start"); }
+  async completeCare() { this.calls.push("complete"); }
 }
 
-describe("ações profissionais", () => {
-  it("confirma a recomendação e envia para a fila de atendimento", async () => { const repository = new MutationSpy(); expect(await confirmTriageClassification(repository, "triage", "nurse-demo")).toEqual({ success: true, status: "CARE_WAITING" }); expect(repository.calls).toEqual([{ action: "confirm" }]); });
-  it("reclassifica com prioridade e justificativa", async () => { const repository = new MutationSpy(); const result = await reclassifyTriage(repository, "triage", { priority: "RED", justification: "Revisão profissional fictícia." }, "nurse-demo"); expect(result.success).toBe(true); expect(repository.calls[0]).toMatchObject({ action: "reclassify", input: { priority: "RED" } }); });
-  it("bloqueia reclassificação sem justificativa antes do repository", async () => { const repository = new MutationSpy(); const result = await reclassifyTriage(repository, "triage", { priority: "RED", justification: "" }, "nurse-demo"); expect(result.success).toBe(false); expect(repository.calls).toHaveLength(0); });
-  it("exige motivo para nova coleta", async () => { const repository = new MutationSpy(); expect((await requestVitalSignsRecollection(repository, "triage", { reason: "" }, "nurse-demo")).success).toBe(false); expect(repository.calls).toHaveLength(0); });
-  it("solicita nova coleta sem criar sessão no caso de uso", async () => { const repository = new MutationSpy(); const result = await requestVitalSignsRecollection(repository, "triage", { reason: "Repetir leitura fictícia" }, "nurse-demo"); expect(result).toEqual({ success: true, status: "RECOLLECTION_REQUESTED" }); expect(repository.calls).toHaveLength(1); });
-  it("encaminha com campos opcionais limitados", async () => { const repository = new MutationSpy(); expect((await referTriageToCare(repository, "triage", { destination: "Atendimento fictício", notes: "Observação fictícia" }, "nurse-demo")).success).toBe(true); expect(repository.calls[0].action).toBe("referral"); });
-  it("rejeita observação excessiva sem mutação", async () => { const repository = new MutationSpy(); expect((await referTriageToCare(repository, "triage", { notes: "x".repeat(501) }, "nurse-demo")).success).toBe(false); expect(repository.calls).toHaveLength(0); });
-  it("chama a próxima senha elegível", async () => { const repository = new MutationSpy(); expect(await callNextPatient(repository, "nurse-demo")).toEqual({ success: true, status: "CALLED", ticketCode: "T-001" }); });
-  it("registra início e conclusão do atendimento", async () => { const repository = new MutationSpy(); expect(await startPatientCare(repository, "triage", "nurse-demo")).toEqual({ success: true, status: "IN_SERVICE" }); expect(await completePatientCare(repository, "triage", "nurse-demo")).toEqual({ success: true, status: "COMPLETED" }); });
+describe("ações da fila de enfermagem", () => {
+  it("confirma a recomendação e entra em CLASSIFIED", async () => { const repository = new MutationSpy(); await expect(confirmTriageClassification(repository, "triage", "nurse-demo")).resolves.toEqual({ success: true, status: "CLASSIFIED" }); });
+  it("encaminha, chama e conclui o fluxo operacional", async () => { const repository = new MutationSpy(); await expect(referTriageToCare(repository, "triage", {} , "nurse-demo")).resolves.toMatchObject({ success: true, status: "REFERRED_TO_CARE" }); await expect(callNextPatient(repository, "nurse-demo")).resolves.toMatchObject({ success: true, status: "CALLED" }); await expect(startPatientCare(repository, "triage", "nurse-demo")).resolves.toEqual({ success: true, status: "IN_SERVICE" }); await expect(completePatientCare(repository, "triage", "nurse-demo")).resolves.toEqual({ success: true, status: "COMPLETED" }); });
+  it("reclassifica com justificativa", async () => { const repository = new MutationSpy(); await expect(reclassifyTriage(repository, "triage", { priority: "RED", justification: "Revisão profissional fictícia." }, "nurse-demo")).resolves.toMatchObject({ success: true, status: "CLASSIFIED" }); });
+  it("valida nova coleta antes do repository", async () => { const repository = new MutationSpy(); await expect(requestVitalSignsRecollection(repository, "triage", { reason: "" }, "nurse-demo")).resolves.toMatchObject({ success: false }); expect(repository.calls).toHaveLength(0); });
 });

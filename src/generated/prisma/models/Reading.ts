@@ -44,6 +44,7 @@ export type ReadingSumAggregateOutputType = {
 
 export type ReadingMinAggregateOutputType = {
   id: string | null
+  externalReadingId: string | null
   deviceId: string | null
   sessionId: string | null
   temperature: number | null
@@ -57,6 +58,7 @@ export type ReadingMinAggregateOutputType = {
 
 export type ReadingMaxAggregateOutputType = {
   id: string | null
+  externalReadingId: string | null
   deviceId: string | null
   sessionId: string | null
   temperature: number | null
@@ -70,6 +72,7 @@ export type ReadingMaxAggregateOutputType = {
 
 export type ReadingCountAggregateOutputType = {
   id: number
+  externalReadingId: number
   deviceId: number
   sessionId: number
   temperature: number
@@ -101,6 +104,7 @@ export type ReadingSumAggregateInputType = {
 
 export type ReadingMinAggregateInputType = {
   id?: true
+  externalReadingId?: true
   deviceId?: true
   sessionId?: true
   temperature?: true
@@ -114,6 +118,7 @@ export type ReadingMinAggregateInputType = {
 
 export type ReadingMaxAggregateInputType = {
   id?: true
+  externalReadingId?: true
   deviceId?: true
   sessionId?: true
   temperature?: true
@@ -127,6 +132,7 @@ export type ReadingMaxAggregateInputType = {
 
 export type ReadingCountAggregateInputType = {
   id?: true
+  externalReadingId?: true
   deviceId?: true
   sessionId?: true
   temperature?: true
@@ -227,6 +233,7 @@ export type ReadingGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type ReadingGroupByOutputType = {
   id: string
+  externalReadingId: string | null
   deviceId: string
   sessionId: string | null
   temperature: number
@@ -263,6 +270,7 @@ export type ReadingWhereInput = {
   OR?: Prisma.ReadingWhereInput[]
   NOT?: Prisma.ReadingWhereInput | Prisma.ReadingWhereInput[]
   id?: Prisma.StringFilter<"Reading"> | string
+  externalReadingId?: Prisma.StringNullableFilter<"Reading"> | string | null
   deviceId?: Prisma.StringFilter<"Reading"> | string
   sessionId?: Prisma.StringNullableFilter<"Reading"> | string | null
   temperature?: Prisma.FloatFilter<"Reading"> | number
@@ -278,6 +286,7 @@ export type ReadingWhereInput = {
 
 export type ReadingOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  externalReadingId?: Prisma.SortOrderInput | Prisma.SortOrder
   deviceId?: Prisma.SortOrder
   sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   temperature?: Prisma.SortOrder
@@ -293,6 +302,7 @@ export type ReadingOrderByWithRelationInput = {
 
 export type ReadingWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  externalReadingId?: string
   AND?: Prisma.ReadingWhereInput | Prisma.ReadingWhereInput[]
   OR?: Prisma.ReadingWhereInput[]
   NOT?: Prisma.ReadingWhereInput | Prisma.ReadingWhereInput[]
@@ -307,10 +317,11 @@ export type ReadingWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Reading"> | Date | string
   device?: Prisma.XOR<Prisma.MedicalDeviceScalarRelationFilter, Prisma.MedicalDeviceWhereInput>
   session?: Prisma.XOR<Prisma.DeviceCollectionSessionNullableScalarRelationFilter, Prisma.DeviceCollectionSessionWhereInput> | null
-}, "id">
+}, "id" | "externalReadingId">
 
 export type ReadingOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  externalReadingId?: Prisma.SortOrderInput | Prisma.SortOrder
   deviceId?: Prisma.SortOrder
   sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   temperature?: Prisma.SortOrder
@@ -332,6 +343,7 @@ export type ReadingScalarWhereWithAggregatesInput = {
   OR?: Prisma.ReadingScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ReadingScalarWhereWithAggregatesInput | Prisma.ReadingScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Reading"> | string
+  externalReadingId?: Prisma.StringNullableWithAggregatesFilter<"Reading"> | string | null
   deviceId?: Prisma.StringWithAggregatesFilter<"Reading"> | string
   sessionId?: Prisma.StringNullableWithAggregatesFilter<"Reading"> | string | null
   temperature?: Prisma.FloatWithAggregatesFilter<"Reading"> | number
@@ -345,6 +357,7 @@ export type ReadingScalarWhereWithAggregatesInput = {
 
 export type ReadingCreateInput = {
   id?: string
+  externalReadingId?: string | null
   temperature: number
   heartRate: number
   spo2: number
@@ -358,6 +371,7 @@ export type ReadingCreateInput = {
 
 export type ReadingUncheckedCreateInput = {
   id?: string
+  externalReadingId?: string | null
   deviceId: string
   sessionId?: string | null
   temperature: number
@@ -371,6 +385,7 @@ export type ReadingUncheckedCreateInput = {
 
 export type ReadingUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
   heartRate?: Prisma.IntFieldUpdateOperationsInput | number
   spo2?: Prisma.IntFieldUpdateOperationsInput | number
@@ -384,6 +399,7 @@ export type ReadingUpdateInput = {
 
 export type ReadingUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deviceId?: Prisma.StringFieldUpdateOperationsInput | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -397,6 +413,7 @@ export type ReadingUncheckedUpdateInput = {
 
 export type ReadingCreateManyInput = {
   id?: string
+  externalReadingId?: string | null
   deviceId: string
   sessionId?: string | null
   temperature: number
@@ -410,6 +427,7 @@ export type ReadingCreateManyInput = {
 
 export type ReadingUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
   heartRate?: Prisma.IntFieldUpdateOperationsInput | number
   spo2?: Prisma.IntFieldUpdateOperationsInput | number
@@ -421,6 +439,7 @@ export type ReadingUpdateManyMutationInput = {
 
 export type ReadingUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deviceId?: Prisma.StringFieldUpdateOperationsInput | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -444,6 +463,7 @@ export type ReadingOrderByRelationAggregateInput = {
 
 export type ReadingCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  externalReadingId?: Prisma.SortOrder
   deviceId?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
   temperature?: Prisma.SortOrder
@@ -465,6 +485,7 @@ export type ReadingAvgOrderByAggregateInput = {
 
 export type ReadingMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  externalReadingId?: Prisma.SortOrder
   deviceId?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
   temperature?: Prisma.SortOrder
@@ -478,6 +499,7 @@ export type ReadingMaxOrderByAggregateInput = {
 
 export type ReadingMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  externalReadingId?: Prisma.SortOrder
   deviceId?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
   temperature?: Prisma.SortOrder
@@ -599,6 +621,7 @@ export type ReadingUncheckedUpdateManyWithoutSessionNestedInput = {
 
 export type ReadingCreateWithoutDeviceInput = {
   id?: string
+  externalReadingId?: string | null
   temperature: number
   heartRate: number
   spo2: number
@@ -611,6 +634,7 @@ export type ReadingCreateWithoutDeviceInput = {
 
 export type ReadingUncheckedCreateWithoutDeviceInput = {
   id?: string
+  externalReadingId?: string | null
   sessionId?: string | null
   temperature: number
   heartRate: number
@@ -652,6 +676,7 @@ export type ReadingScalarWhereInput = {
   OR?: Prisma.ReadingScalarWhereInput[]
   NOT?: Prisma.ReadingScalarWhereInput | Prisma.ReadingScalarWhereInput[]
   id?: Prisma.StringFilter<"Reading"> | string
+  externalReadingId?: Prisma.StringNullableFilter<"Reading"> | string | null
   deviceId?: Prisma.StringFilter<"Reading"> | string
   sessionId?: Prisma.StringNullableFilter<"Reading"> | string | null
   temperature?: Prisma.FloatFilter<"Reading"> | number
@@ -665,6 +690,7 @@ export type ReadingScalarWhereInput = {
 
 export type ReadingCreateWithoutSessionInput = {
   id?: string
+  externalReadingId?: string | null
   temperature: number
   heartRate: number
   spo2: number
@@ -677,6 +703,7 @@ export type ReadingCreateWithoutSessionInput = {
 
 export type ReadingUncheckedCreateWithoutSessionInput = {
   id?: string
+  externalReadingId?: string | null
   deviceId: string
   temperature: number
   heartRate: number
@@ -715,6 +742,7 @@ export type ReadingUpdateManyWithWhereWithoutSessionInput = {
 
 export type ReadingCreateManyDeviceInput = {
   id?: string
+  externalReadingId?: string | null
   sessionId?: string | null
   temperature: number
   heartRate: number
@@ -727,6 +755,7 @@ export type ReadingCreateManyDeviceInput = {
 
 export type ReadingUpdateWithoutDeviceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
   heartRate?: Prisma.IntFieldUpdateOperationsInput | number
   spo2?: Prisma.IntFieldUpdateOperationsInput | number
@@ -739,6 +768,7 @@ export type ReadingUpdateWithoutDeviceInput = {
 
 export type ReadingUncheckedUpdateWithoutDeviceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
   heartRate?: Prisma.IntFieldUpdateOperationsInput | number
@@ -751,6 +781,7 @@ export type ReadingUncheckedUpdateWithoutDeviceInput = {
 
 export type ReadingUncheckedUpdateManyWithoutDeviceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
   heartRate?: Prisma.IntFieldUpdateOperationsInput | number
@@ -763,6 +794,7 @@ export type ReadingUncheckedUpdateManyWithoutDeviceInput = {
 
 export type ReadingCreateManySessionInput = {
   id?: string
+  externalReadingId?: string | null
   deviceId: string
   temperature: number
   heartRate: number
@@ -775,6 +807,7 @@ export type ReadingCreateManySessionInput = {
 
 export type ReadingUpdateWithoutSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
   heartRate?: Prisma.IntFieldUpdateOperationsInput | number
   spo2?: Prisma.IntFieldUpdateOperationsInput | number
@@ -787,6 +820,7 @@ export type ReadingUpdateWithoutSessionInput = {
 
 export type ReadingUncheckedUpdateWithoutSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deviceId?: Prisma.StringFieldUpdateOperationsInput | string
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
   heartRate?: Prisma.IntFieldUpdateOperationsInput | number
@@ -799,6 +833,7 @@ export type ReadingUncheckedUpdateWithoutSessionInput = {
 
 export type ReadingUncheckedUpdateManyWithoutSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  externalReadingId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   deviceId?: Prisma.StringFieldUpdateOperationsInput | string
   temperature?: Prisma.FloatFieldUpdateOperationsInput | number
   heartRate?: Prisma.IntFieldUpdateOperationsInput | number
@@ -813,6 +848,7 @@ export type ReadingUncheckedUpdateManyWithoutSessionInput = {
 
 export type ReadingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  externalReadingId?: boolean
   deviceId?: boolean
   sessionId?: boolean
   temperature?: boolean
@@ -828,6 +864,7 @@ export type ReadingSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 
 export type ReadingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  externalReadingId?: boolean
   deviceId?: boolean
   sessionId?: boolean
   temperature?: boolean
@@ -843,6 +880,7 @@ export type ReadingSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 
 export type ReadingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  externalReadingId?: boolean
   deviceId?: boolean
   sessionId?: boolean
   temperature?: boolean
@@ -858,6 +896,7 @@ export type ReadingSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 
 export type ReadingSelectScalar = {
   id?: boolean
+  externalReadingId?: boolean
   deviceId?: boolean
   sessionId?: boolean
   temperature?: boolean
@@ -869,7 +908,7 @@ export type ReadingSelectScalar = {
   createdAt?: boolean
 }
 
-export type ReadingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "deviceId" | "sessionId" | "temperature" | "heartRate" | "spo2" | "weight" | "height" | "receivedAt" | "createdAt", ExtArgs["result"]["reading"]>
+export type ReadingOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "externalReadingId" | "deviceId" | "sessionId" | "temperature" | "heartRate" | "spo2" | "weight" | "height" | "receivedAt" | "createdAt", ExtArgs["result"]["reading"]>
 export type ReadingInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   device?: boolean | Prisma.MedicalDeviceDefaultArgs<ExtArgs>
   session?: boolean | Prisma.Reading$sessionArgs<ExtArgs>
@@ -891,6 +930,7 @@ export type $ReadingPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    externalReadingId: string | null
     deviceId: string
     sessionId: string | null
     temperature: number
@@ -1326,6 +1366,7 @@ export interface Prisma__ReadingClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface ReadingFieldRefs {
   readonly id: Prisma.FieldRef<"Reading", 'String'>
+  readonly externalReadingId: Prisma.FieldRef<"Reading", 'String'>
   readonly deviceId: Prisma.FieldRef<"Reading", 'String'>
   readonly sessionId: Prisma.FieldRef<"Reading", 'String'>
   readonly temperature: Prisma.FieldRef<"Reading", 'Float'>

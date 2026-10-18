@@ -4,7 +4,7 @@ import { DeviceReadingSessionError } from "@/server/application/device-readings/
 import { recordDeviceReading } from "@/server/application/device-readings/record-device-reading";
 import type { DeviceReadingInput, DeviceReadingRecordResult, DeviceReadingRepository } from "@/server/application/device-readings/device-reading-types";
 
-const input: DeviceReadingInput = { deviceId: "ESP32-001", bpm: 78, spo2: 98, temperatura: 36.7 };
+const input: DeviceReadingInput = { deviceId: "ESP32-001", sessionId: "00000000-0000-4000-8000-000000000001", readingId: "reading-1", bpm: 78, spo2: 98, temperatura: 36.7 };
 
 class ReadingRepositorySpy implements DeviceReadingRepository {
   constructor(private readonly result: DeviceReadingRecordResult) {}

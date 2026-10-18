@@ -64,13 +64,12 @@ export class PrismaNursingQueueRepository implements NursingQueueRepository, Nur
     await this.mutate(async (transaction) => {
       const triage = await transaction.triage.findUnique({ where: { id: triageId }, include: { nurseReviews: { orderBy: { reviewedAt: "desc" }, take: 1 }, analysisRuns: { where: { status: "COMPLETED", recommendation: { isNot: null } }, orderBy: { completedAt: "desc" }, take: 1, include: { recommendation: true } } } });
       const recommendation = triage?.analysisRuns[0]?.recommendation;
-      if (triage?.status === "CARE_WAITING" && triage.nurseReviews[0]?.decision === "CONFIRMED" && triage.nurseReviews[0].confirmedPriority === triage.finalHumanPriority) return;
+      if (triage?.status === "CLASSIFIED" && triage.nurseReviews[0]?.decision === "CONFIRMED" && triage.nurseReviews[0].confirmedPriority === triage.finalHumanPriority) return;
       if (!triage || triage.status !== "AWAITING_NURSE_REVIEW" || !recommendation || !triage.currentRecommendedPriority) throw new NursingMutationConflictError();
-      assertTriageTransition("AWAITING_NURSE_REVIEW", "CARE_WAITING");
+      assertTriageTransition("AWAITING_NURSE_REVIEW", "CLASSIFIED");
       const review = await transaction.nurseReview.create({ data: { triageId, reviewedRecommendationId: recommendation.id, confirmedPriority: triage.currentRecommendedPriority, decision: "CONFIRMED", professionalReference: actorReference } });
-      await transaction.triage.update({ where: { id: triageId }, data: { status: "CARE_WAITING", finalHumanPriority: triage.currentRecommendedPriority } });
-      await transaction.careAttendance.create({ data: { triageId, status: "WAITING" } });
-      await transaction.auditEvent.create({ data: { triageId, entityType: "NurseReview", entityId: review.id, action: "NURSE_RECOMMENDATION_CONFIRMED", actorType: "NURSE", actorReference, sanitizedMetadata: { recommendedPriority: triage.currentRecommendedPriority, humanPriority: triage.currentRecommendedPriority, decision: "CONFIRMED", previousStatus: "AWAITING_NURSE_REVIEW", nextStatus: "CARE_WAITING", hasJustification: false } } });
+      await transaction.triage.update({ where: { id: triageId }, data: { status: "CLASSIFIED", finalHumanPriority: triage.currentRecommendedPriority } });
+      await transaction.auditEvent.create({ data: { triageId, entityType: "NurseReview", entityId: review.id, action: "NURSE_RECOMMENDATION_CONFIRMED", actorType: "NURSE", actorReference, sanitizedMetadata: { recommendedPriority: triage.currentRecommendedPriority, humanPriority: triage.currentRecommendedPriority, decision: "CONFIRMED", previousStatus: "AWAITING_NURSE_REVIEW", nextStatus: "CLASSIFIED", hasJustification: false } } });
     });
   }
 
@@ -78,14 +77,13 @@ export class PrismaNursingQueueRepository implements NursingQueueRepository, Nur
     await this.mutate(async (transaction) => {
       const triage = await transaction.triage.findUnique({ where: { id: triageId }, include: { nurseReviews: { orderBy: { reviewedAt: "desc" }, take: 1 }, analysisRuns: { where: { status: "COMPLETED", recommendation: { isNot: null } }, orderBy: { completedAt: "desc" }, take: 1, include: { recommendation: true } } } });
       const latestReview = triage?.nurseReviews[0];
-      if (triage?.status === "CARE_WAITING" && latestReview?.decision === "RECLASSIFIED" && latestReview.confirmedPriority === input.priority && latestReview.justification === input.justification) return;
+      if (triage?.status === "CLASSIFIED" && latestReview?.decision === "RECLASSIFIED" && latestReview.confirmedPriority === input.priority && latestReview.justification === input.justification) return;
       const recommendation = triage?.analysisRuns[0]?.recommendation;
       if (!triage || triage.status !== "AWAITING_NURSE_REVIEW" || !recommendation || !triage.currentRecommendedPriority) throw new NursingMutationConflictError();
-      assertTriageTransition("AWAITING_NURSE_REVIEW", "CARE_WAITING");
+      assertTriageTransition("AWAITING_NURSE_REVIEW", "CLASSIFIED");
       const review = await transaction.nurseReview.create({ data: { triageId, reviewedRecommendationId: recommendation.id, confirmedPriority: input.priority, decision: "RECLASSIFIED", justification: input.justification, professionalReference: actorReference } });
-      await transaction.triage.update({ where: { id: triageId }, data: { status: "CARE_WAITING", finalHumanPriority: input.priority } });
-      await transaction.careAttendance.create({ data: { triageId, status: "WAITING" } });
-      await transaction.auditEvent.create({ data: { triageId, entityType: "NurseReview", entityId: review.id, action: "NURSE_PRIORITY_RECLASSIFIED", actorType: "NURSE", actorReference, sanitizedMetadata: { recommendedPriority: triage.currentRecommendedPriority, humanPriority: input.priority, decision: "RECLASSIFIED", previousStatus: "AWAITING_NURSE_REVIEW", nextStatus: "CARE_WAITING", hasJustification: true } } });
+      await transaction.triage.update({ where: { id: triageId }, data: { status: "CLASSIFIED", finalHumanPriority: input.priority } });
+      await transaction.auditEvent.create({ data: { triageId, entityType: "NurseReview", entityId: review.id, action: "NURSE_PRIORITY_RECLASSIFIED", actorType: "NURSE", actorReference, sanitizedMetadata: { recommendedPriority: triage.currentRecommendedPriority, humanPriority: input.priority, decision: "RECLASSIFIED", previousStatus: "AWAITING_NURSE_REVIEW", nextStatus: "CLASSIFIED", hasJustification: true } } });
     });
   }
 
@@ -103,12 +101,13 @@ export class PrismaNursingQueueRepository implements NursingQueueRepository, Nur
   async referToCare(triageId: string, input: ReferralInput, actorReference: string): Promise<void> {
     await this.mutate(async (transaction) => {
       const triage = await transaction.triage.findUnique({ where: { id: triageId }, include: { careReferrals: { where: { status: "REFERRED" }, orderBy: { referredAt: "desc" }, take: 1 }, nurseReviews: { orderBy: { reviewedAt: "desc" }, take: 1 } } });
-      if (triage?.status === "REFERRED_TO_CARE" && triage.careReferrals.length > 0) return;
+      if ((triage?.status === "REFERRED_TO_CARE" || triage?.status === "CARE_WAITING") && triage.careReferrals.length > 0) return;
       if (!triage || triage.status !== "CLASSIFIED" || !triage.finalHumanPriority || triage.nurseReviews.length === 0) throw new NursingMutationConflictError();
       assertTriageTransition("CLASSIFIED", "REFERRED_TO_CARE");
       const referral = await transaction.careReferral.create({ data: { triageId, status: "REFERRED", referredAt: new Date(), destinationDescription: input.destination, notes: input.notes } });
-      await transaction.triage.update({ where: { id: triageId }, data: { status: "REFERRED_TO_CARE" } });
-      await transaction.auditEvent.create({ data: { triageId, entityType: "CareReferral", entityId: referral.id, action: "CARE_REFERRAL_CREATED", actorType: "NURSE", actorReference, sanitizedMetadata: { humanPriority: triage.finalHumanPriority, previousStatus: "CLASSIFIED", nextStatus: "REFERRED_TO_CARE", destinationSummary: input.destination ? "INFORMED" : "NOT_INFORMED" } } });
+      await transaction.triage.update({ where: { id: triageId }, data: { status: "CARE_WAITING" } });
+      await transaction.careAttendance.create({ data: { triageId, status: "WAITING" } });
+      await transaction.auditEvent.create({ data: { triageId, entityType: "CareReferral", entityId: referral.id, action: "CARE_REFERRAL_CREATED", actorType: "NURSE", actorReference, sanitizedMetadata: { humanPriority: triage.finalHumanPriority, previousStatus: "CLASSIFIED", nextStatus: "CARE_WAITING", destinationSummary: input.destination ? "INFORMED" : "NOT_INFORMED" } } });
     });
   }
 
@@ -160,7 +159,7 @@ export class PrismaNursingQueueRepository implements NursingQueueRepository, Nur
 
   async listCareQueue(_now: Date): Promise<CareQueueItemDto[]> {
     const records = await prisma.careAttendance.findMany({
-      where: { status: { in: ["WAITING", "CALLED", "IN_SERVICE", "COMPLETED"] } },
+      where: { status: { in: ["WAITING", "CALLED", "IN_SERVICE"] } },
       orderBy: [{ completedAt: "desc" }, { queuedAt: "asc" }],
       select: { status: true, destination: true, queuedAt: true, calledAt: true, serviceStartedAt: true, completedAt: true, triage: { select: { id: true, finalHumanPriority: true, patient: { select: { displayName: true, birthDate: true } }, queueTicket: { select: { publicCode: true } } } } },
     });

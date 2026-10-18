@@ -23,10 +23,10 @@ const priorityPresentation = {
 export default async function CompletedPage() {
   const session = await resolvePatientIntakeSession();
   if (!session) redirect("/paciente");
-  const supportedStatuses = ["AWAITING_NURSE_REVIEW", "CARE_WAITING", "CALLED", "IN_SERVICE", "COMPLETED"];
+  const supportedStatuses = ["AWAITING_NURSE_REVIEW", "CLASSIFIED", "REFERRED_TO_CARE", "CARE_WAITING", "CALLED", "IN_SERVICE", "COMPLETED"];
   if (!supportedStatuses.includes(session.status)) redirect(routeForPatientIntakeStatus(session.status, Boolean(session.patientId)));
   const analysis = await vitalSigns.findLatestFinal(session.triageId);
-  const ticket = ["AWAITING_NURSE_REVIEW", "CARE_WAITING", "CALLED", "IN_SERVICE", "COMPLETED"].includes(session.status) ? await queueTicket.find(session.triageId) : null;
+  const ticket = ["AWAITING_NURSE_REVIEW", "CLASSIFIED", "REFERRED_TO_CARE", "CARE_WAITING", "CALLED", "IN_SERVICE", "COMPLETED"].includes(session.status) ? await queueTicket.find(session.triageId) : null;
   const patientStatusMessage = session.status === "CARE_WAITING" ? "Sua triagem foi classificada e você está aguardando ser chamado para atendimento." : session.status === "CALLED" ? "Sua senha foi chamada. Dirija-se ao local de atendimento indicado pela equipe." : session.status === "IN_SERVICE" ? "Seu atendimento está em andamento." : session.status === "COMPLETED" ? "Seu atendimento foi concluído." : "Sua triagem aguarda revisão da enfermagem e a prioridade final ainda não foi confirmada.";
 
   return (
