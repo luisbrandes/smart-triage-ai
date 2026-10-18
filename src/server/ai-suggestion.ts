@@ -31,7 +31,7 @@ export const aiSuggestion = {
     if (!context) return "INSUFFICIENT_DATA";
     const existing = await repository.list(triageId);
     if (existing.some((item) => item.analysisRunId === context.analysisRunId)) return "ALREADY_EXISTS";
-    const result = await requestGroqSuggestion(context.input);
+    const result = await requestGroqSuggestion(context.input, fetch, triageId);
     if (!result) return "PROVIDER_UNAVAILABLE";
     try {
       await repository.save(triageId, context.analysisRunId, context.collectionSessionId, result, actorReference);
