@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
-const { findFirst } = vi.hoisted(() => ({ findFirst: vi.fn() }));
-vi.mock("@/server/db/prisma", () => ({ prisma: { triage: { findFirst } } }));
+const { findFirst, findMany } = vi.hoisted(() => ({ findFirst: vi.fn(), findMany: vi.fn() }));
+vi.mock("@/server/db/prisma", () => ({ prisma: { triage: { findFirst }, careAttendance: { findMany } } }));
 
 import { PrismaNursingQueueRepository } from "@/server/repositories/prisma-nursing-queue-repository";
 

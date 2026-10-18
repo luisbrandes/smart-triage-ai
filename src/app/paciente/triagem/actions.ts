@@ -64,6 +64,12 @@ export async function saveIdentificationAction(_previous: IntakeActionState, for
       birthDate: formData.get("birthDate"),
       sex: formData.get("sex") || undefined,
       documentReference: formData.get("documentReference") || undefined,
+      cpf: formData.get("cpf") || undefined,
+      phone: formData.get("phone") || undefined,
+      email: formData.get("email") || undefined,
+      motherName: formData.get("motherName") || undefined,
+      legalRepresentativeName: formData.get("legalRepresentativeName") || undefined,
+      legalRepresentativePhone: formData.get("legalRepresentativePhone") || undefined,
       hasHealthPlan: formData.get("hasHealthPlan"),
       planName: formData.get("planName") || undefined,
     });

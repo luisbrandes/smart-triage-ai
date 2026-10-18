@@ -164,6 +164,12 @@ model Patient {
   birthDate         DateTime?
   sex               String?
   documentReference String?
+  cpf               String?                 @unique
+  phone             String?
+  email             String?
+  motherName        String?
+  legalRepresentativeName  String?
+  legalRepresentativePhone  String?
   createdAt         DateTime                @default(now())
   updatedAt         DateTime                @updatedAt
   healthPlans       HealthPlanInformation[]

@@ -96,6 +96,12 @@ export class PrismaPatientIntakeRepository implements PatientIntakeRepository {
           birthDate: input.birthDate,
           sex: input.sex,
           documentReference: input.documentReference,
+          cpf: input.cpf,
+          phone: input.phone,
+          email: input.email,
+          motherName: input.motherName,
+          legalRepresentativeName: input.legalRepresentativeName,
+          legalRepresentativePhone: input.legalRepresentativePhone,
           healthPlans: { create: { hasHealthPlan: input.hasHealthPlan, planName: input.hasHealthPlan ? input.planName : null } },
         },
       });

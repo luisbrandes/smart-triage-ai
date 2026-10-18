@@ -33,6 +33,12 @@ export async function savePatientIdentification(repository: PatientIntakeReposit
     birthDate: new Date(`${parsed.data.birthDate}T00:00:00.000Z`),
     sex: parsed.data.sex || undefined,
     documentReference: parsed.data.documentReference || undefined,
+    cpf: parsed.data.cpf || undefined,
+    phone: parsed.data.phone || undefined,
+    email: parsed.data.email || undefined,
+    motherName: parsed.data.motherName || undefined,
+    legalRepresentativeName: parsed.data.legalRepresentativeName || undefined,
+    legalRepresentativePhone: parsed.data.legalRepresentativePhone || undefined,
     hasHealthPlan: parsed.data.hasHealthPlan === "yes",
     planName: parsed.data.planName || undefined,
   });

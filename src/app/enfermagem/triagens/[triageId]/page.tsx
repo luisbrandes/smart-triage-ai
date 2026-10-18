@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import { demoAnamnesis } from "@/demo/anamnesis";
 import { formatDateTime, originLabels, priorityPresentation } from "@/features/nursing/nursing-presentation";
 import { NursingDecisionPanel } from "@/features/nursing/nursing-decision-panel";
+import { AiSuggestionForm } from "@/features/nursing/ai-suggestion-form";
 import { nursing } from "@/server/nursing";
 import { aiSuggestion } from "@/server/ai-suggestion";
-import { generateAiSuggestionAction } from "@/app/enfermagem/triagens/[triageId]/actions";
 import { PageContainer } from "@/shared/layout/page-container";
 import { Badge } from "@/shared/ui/badge";
 import { ButtonLink } from "@/shared/ui/button-link";
@@ -53,7 +53,7 @@ export default async function NursingTriageDetailPage({ params }: { params: Prom
 
       <Card className="mt-6" title="Sugestão da IA — requer validação da enfermagem" description="Apoio experimental externo; não é diagnóstico nem classificação oficial.">
         <p className="text-sm text-text-secondary">Classificação do sistema: {current.label}. A decisão final pertence à enfermagem.</p>
-        {detail.status === "AWAITING_NURSE_REVIEW" && !currentSuggestion && <form action={generateAiSuggestionAction.bind(null, triageId)} className="mt-4"><p className="mb-3 text-sm text-text-secondary">Ao solicitar, idade, queixa, alertas e sinais da coleta aceita são enviados ao Groq. Use somente dados fictícios nesta demonstração.</p><button className="min-h-11 rounded-md border border-primary px-4 font-semibold text-primary" type="submit">Solicitar sugestão da IA</button></form>}
+        {detail.status === "AWAITING_NURSE_REVIEW" && !currentSuggestion && <AiSuggestionForm triageId={triageId} />}
         {currentSuggestion?.status === "UNAVAILABLE" && <p className="mt-4 text-sm text-text-secondary">Sugestão da IA indisponível no momento. A avaliação pode continuar normalmente.</p>}
         {currentSuggestion?.status === "COMPLETED" && <div className="mt-4 space-y-3"><p><strong>Sugestão:</strong> {currentSuggestion.suggestedPriority === "RED" ? "Vermelho" : currentSuggestion.suggestedPriority === "YELLOW" ? "Amarelo" : currentSuggestion.suggestedPriority === "GREEN" ? "Verde" : "Azul"} · <strong>Atenção:</strong> {currentSuggestion.attentionLevel === "HIGH" ? "Alta" : currentSuggestion.attentionLevel === "MODERATE" ? "Moderada" : "Baixa"}</p><p className="text-sm text-text-secondary">{currentSuggestion.suggestedPriority === detail.currentRecommendedPriority ? "A sugestão coincide com a recomendação do sistema." : "A sugestão difere da recomendação do sistema. Revise os dados antes de decidir."}</p><p className="text-sm leading-6">{currentSuggestion.conclusion}</p><ul className="list-inside list-disc text-sm text-text-secondary">{currentSuggestion.factors.map((factor, index) => <li key={`${factor}-${index}`}>{factor}</li>)}</ul><p className="text-xs text-text-muted">Coleta {currentSuggestion.collectionAttemptNumber} · {formatDateTime(currentSuggestion.createdAt)} UTC · Modelo {currentSuggestion.model}</p></div>}
         {suggestions.length > 1 && <details className="mt-4 text-sm"><summary>Histórico de sugestões ({suggestions.length})</summary><ol className="mt-2 space-y-1">{suggestions.map((item) => <li key={item.id}>Coleta {item.collectionAttemptNumber} · {formatDateTime(item.createdAt)} UTC · {item.status === "COMPLETED" ? item.suggestedPriority : "Indisponível"}</li>)}</ol></details>}

@@ -159,7 +159,7 @@ export class PrismaNursingQueueRepository implements NursingQueueRepository, Nur
 
   async listCareQueue(_now: Date): Promise<CareQueueItemDto[]> {
     const records = await prisma.careAttendance.findMany({
-      where: { status: { in: ["WAITING", "CALLED", "IN_SERVICE"] } },
+      where: { status: { in: ["WAITING", "CALLED", "IN_SERVICE", "COMPLETED"] } },
       orderBy: [{ completedAt: "desc" }, { queuedAt: "asc" }],
       select: { status: true, destination: true, queuedAt: true, calledAt: true, serviceStartedAt: true, completedAt: true, triage: { select: { id: true, finalHumanPriority: true, patient: { select: { displayName: true, birthDate: true } }, queueTicket: { select: { publicCode: true } } } } },
     });

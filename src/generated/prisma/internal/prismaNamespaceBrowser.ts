@@ -99,6 +99,12 @@ export const PatientScalarFieldEnum = {
   birthDate: 'birthDate',
   sex: 'sex',
   documentReference: 'documentReference',
+  cpf: 'cpf',
+  phone: 'phone',
+  email: 'email',
+  motherName: 'motherName',
+  legalRepresentativeName: 'legalRepresentativeName',
+  legalRepresentativePhone: 'legalRepresentativePhone',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

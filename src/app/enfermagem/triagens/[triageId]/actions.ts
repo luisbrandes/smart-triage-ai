@@ -51,14 +51,25 @@ export async function referToCareAction(triageId: string, _state: NursingActionS
   return execute(triageId, (actor) => nursing.refer(triageId, { destination: formData.get("destination"), notes: formData.get("notes") }, actor));
 }
 
-export async function generateAiSuggestionAction(triageId: string): Promise<void> {
-  if (!validId(triageId)) return;
+export type AiSuggestionActionState = { success: boolean; message: string };
+
+export async function generateAiSuggestionAction(triageId: string, _state: AiSuggestionActionState): Promise<AiSuggestionActionState> {
+  void _state;
+  if (!validId(triageId)) return { success: false, message: "Triagem inválida." };
   const session = await getNursingSession();
-  if (!session) return;
+  if (!session) return { success: false, message: "Sessão profissional ausente ou expirada." };
   try {
-    await aiSuggestion.generate(triageId, session.actorReference);
+    const result = await aiSuggestion.generate(triageId, session.actorReference);
+    if (result === "SAVED") {
+      revalidatePath(`/enfermagem/triagens/${triageId}`);
+      return { success: true, message: "Sugestão gerada e salva. Revise o conteúdo antes de decidir." };
+    }
+    if (result === "ALREADY_EXISTS") return { success: true, message: "A sugestão desta análise já foi gerada. Atualize a página para consultá-la." };
+    if (result === "NOT_CONFIGURED") return { success: false, message: "A sugestão da IA não está configurada neste ambiente." };
+    if (result === "INSUFFICIENT_DATA") return { success: false, message: "Ainda não há análise final e sinais vitais aceitos suficientes para solicitar a sugestão." };
+    if (result === "PERSISTENCE_ERROR") return { success: false, message: "A sugestão foi processada, mas não pôde ser salva. Tente novamente." };
+    return { success: false, message: "A IA não respondeu corretamente. Tente novamente mais tarde." };
   } catch {
-    // Falhas da integração nunca impedem a decisão profissional.
+    return { success: false, message: "Não foi possível gerar a sugestão agora. A decisão profissional continua disponível." };
   }
-  revalidatePath(`/enfermagem/triagens/${triageId}`);
 }
