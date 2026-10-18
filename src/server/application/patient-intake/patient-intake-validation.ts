@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { demoAnamnesis } from "@/demo/anamnesis";
+import { getAgeInYears } from "@/domain/patient-intake/age";
 
 const optionalShortText = z.string().trim().max(120, "Use no máximo 120 caracteres.").optional();
 const optionalLongText = z.string().trim().max(500, "Use no máximo 500 caracteres.").optional();
@@ -34,6 +35,15 @@ export const identificationSchema = z.object({
   hasHealthPlan: z.enum(["yes", "no"], { message: "Informe se possui plano." }),
   planName: optionalShortText,
 }).superRefine((value, context) => {
+  if ((getAgeInYears(value.birthDate) ?? 18) < 18) {
+    if (!value.motherName) {
+      context.addIssue({ code: "custom", path: ["motherName"], message: "Informe o nome da mãe para pessoa menor de 18 anos." });
+    }
+    if (!value.legalRepresentativeName) {
+      context.addIssue({ code: "custom", path: ["legalRepresentativeName"], message: "Informe o nome do responsável legal para pessoa menor de 18 anos." });
+    }
+  }
+
   if (value.hasHealthPlan === "yes" && !value.planName) {
     context.addIssue({ code: "custom", path: ["planName"], message: "Informe um nome fictício para o plano." });
   }

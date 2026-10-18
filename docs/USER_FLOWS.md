@@ -30,6 +30,7 @@ flowchart TD
 ## Paciente
 
 1. Inicia uma triagem e recebe registro auditável.
+   - Para menores de 18 anos, solicita nome da mãe e do responsável legal; adultos não precisam informar esses dados.
 2. Informa nome, nascimento/idade, sexo quando pertinente, identificador demonstrativo, existência e nome de plano quando aplicável.
 3. Lê e aceita termo vigente; sistema registra versão e instante. Sem aceite, não avança e permite cancelar.
 4. Responde queixa, complemento, intensidade, início/duração, alertas, histórico, condições, medicamentos, alergias e observação opcional. Perguntas vêm de definição central do domínio.

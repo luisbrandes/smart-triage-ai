@@ -1,15 +1,18 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 
 import { saveIdentificationAction, type IntakeActionState } from "@/app/paciente/triagem/actions";
+import { getAgeInYears } from "@/domain/patient-intake/age";
 import { fieldClassName, FormField } from "@/features/patient-intake/components/form-field";
 
 const initialState: IntakeActionState = {};
 
 export function IdentificationForm() {
   const [state, action, pending] = useActionState(saveIdentificationAction, initialState);
+  const [birthDate, setBirthDate] = useState("");
   const error = (field: string) => state.errors?.[field]?.[0];
+  const isMinor = (getAgeInYears(birthDate) ?? 18) < 18;
   const maskCpf = (value: string) => value.replace(/\D/g, "").slice(0, 11).replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})$/, "$1-$2");
   const maskPhone = (value: string) => { const digits = value.replace(/\D/g, "").slice(0, 11); return digits.length <= 10 ? digits.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{4})(\d)/, "$1-$2") : digits.replace(/(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2"); };
 
@@ -21,7 +24,7 @@ export function IdentificationForm() {
           <input aria-describedby={error("displayName") ? "displayName-error" : undefined} autoComplete="off" className={fieldClassName} id="displayName" maxLength={100} name="displayName" placeholder="Ex.: Maria Silva" />
         </FormField>
         <FormField error={error("birthDate")} htmlFor="birthDate" label="Data de nascimento">
-          <input aria-describedby={error("birthDate") ? "birthDate-error" : undefined} className={fieldClassName} id="birthDate" name="birthDate" type="date" />
+          <input aria-describedby={error("birthDate") ? "birthDate-error" : undefined} className={fieldClassName} id="birthDate" name="birthDate" onChange={(event) => setBirthDate(event.currentTarget.value)} type="date" value={birthDate} />
         </FormField>
         <FormField htmlFor="sex" label="Sexo informado (opcional)">
           <select className={fieldClassName} defaultValue="" id="sex" name="sex"><option value="">Prefiro não informar</option><option value="FEMALE">Feminino</option><option value="MALE">Masculino</option><option value="OTHER">Outro</option></select>
@@ -40,14 +43,25 @@ export function IdentificationForm() {
         </FormField>
       </div>
 
-      <fieldset className="space-y-4 rounded-md border border-border p-4">
-        <legend className="px-1 text-sm font-semibold">Informações complementares (opcionais)</legend>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <FormField htmlFor="motherName" label="Nome da mãe"><input autoComplete="off" className={fieldClassName} id="motherName" maxLength={120} name="motherName" /></FormField>
-          <FormField htmlFor="legalRepresentativeName" label="Responsável legal"><input autoComplete="off" className={fieldClassName} id="legalRepresentativeName" maxLength={120} name="legalRepresentativeName" /></FormField>
-          <FormField htmlFor="legalRepresentativePhone" label="Telefone do responsável"><input autoComplete="tel" className={fieldClassName} id="legalRepresentativePhone" inputMode="tel" maxLength={15} name="legalRepresentativePhone" onInput={(event) => { event.currentTarget.value = maskPhone(event.currentTarget.value); }} /></FormField>
-        </div>
-      </fieldset>
+      {isMinor && (
+        <fieldset className="space-y-4 rounded-md border border-border p-4">
+          <legend className="px-1 text-sm font-semibold">Informações do menor</legend>
+          <p className="text-sm text-text-secondary">
+            Para pessoas menores de 18 anos, informe o nome da mãe e do responsável legal.
+          </p>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <FormField error={error("motherName")} htmlFor="motherName" label="Nome da mãe">
+              <input aria-describedby={error("motherName") ? "motherName-error" : undefined} autoComplete="off" className={fieldClassName} id="motherName" maxLength={120} name="motherName" required />
+            </FormField>
+            <FormField error={error("legalRepresentativeName")} htmlFor="legalRepresentativeName" label="Nome do responsável legal">
+              <input aria-describedby={error("legalRepresentativeName") ? "legalRepresentativeName-error" : undefined} autoComplete="off" className={fieldClassName} id="legalRepresentativeName" maxLength={120} name="legalRepresentativeName" required />
+            </FormField>
+            <FormField error={error("legalRepresentativePhone")} htmlFor="legalRepresentativePhone" label="Telefone do responsável (opcional)">
+              <input aria-describedby={error("legalRepresentativePhone") ? "legalRepresentativePhone-error" : undefined} autoComplete="tel" className={fieldClassName} id="legalRepresentativePhone" inputMode="tel" maxLength={15} name="legalRepresentativePhone" onInput={(event) => { event.currentTarget.value = maskPhone(event.currentTarget.value); }} />
+            </FormField>
+          </div>
+        </fieldset>
+      )}
 
       <fieldset>
         <legend className="text-sm font-semibold">Possui plano de saúde?</legend>
