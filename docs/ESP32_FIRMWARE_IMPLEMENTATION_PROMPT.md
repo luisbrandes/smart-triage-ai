@@ -23,13 +23,14 @@ Preferir arquivo local ignorado pelo Git, NVS/Preferences ou mecanismo equivalen
 1. Conectar ao Wi-Fi com timeout e reconexão limitada.
 2. Usar HTTPS na porta 443 e validar a cadeia TLS. Não usar cliente inseguro que aceite qualquer certificado na versão entregue.
 3. Enviar `Authorization: Bearer <DEVICE_TOKEN>` em todas as chamadas do dispositivo.
-4. Consultar `GET /api/device/session/current` a cada 2–5 segundos enquanto ocioso.
+4. Consultar `GET /api/device/session/current` a cada 2–5 segundos também durante a coleta, para perceber cancelamento ou troca de sessão.
 5. Somente iniciar sensores quando a resposta for `ACTIVE` com UUID válido.
 6. Guardar `sessionId` somente pelo ciclo da coleta; não inventar nem reutilizar sessão terminal.
+6a. Se `GET /api/device/session/current` retornar `IDLE` ou um UUID diferente, interromper a coleta anterior, limpar valores antigos do display e descartar o UUID anterior. A mudança de triagem não deve exibir dados antigos como coleta atual.
 7. Obter BPM inteiro, SpO₂ inteiro e temperatura numérica dos sensores reais.
 8. Antes do POST, rejeitar localmente valores não finitos ou fora dos limites técnicos documentados.
 9. Enviar `POST /api/readings` com JSON estrito e sem campos adicionais.
-10. Após as leituras desejadas receberem `201`, chamar `POST /api/triage/session/release`.
+10. Após as leituras desejadas receberem `201`, chamar `POST /api/triage/session/release` com o `sessionId` atual.
 11. Em `400/401/403/404/409`, parar o fluxo conforme o contrato; em `500–504`, usar no máximo três retries com backoff 1/2/4 segundos.
 12. Não usar WebSocket, MQTT ou acesso direto ao PostgreSQL.
 13. Logs seriais podem conter estado e código HTTP, mas nunca token, senha, payload completo ou identificadores de paciente.
@@ -59,7 +60,7 @@ Accept: application/json
 ### Liberar dispositivo
 
 ```json
-{ "deviceId": "ESP32-001" }
+{ "deviceId": "ESP32-001", "sessionId": "UUID_RECEBIDO" }
 ```
 
 Consulte `docs/ESP32_API_CONTRACT.md` para respostas e códigos completos.

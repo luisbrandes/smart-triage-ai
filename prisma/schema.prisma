@@ -140,6 +140,24 @@ enum RuleSetStatus {
   INACTIVE
 }
 
+enum AiSuggestionStatus {
+  COMPLETED
+  UNAVAILABLE
+}
+
+enum AiSuggestedPriority {
+  RED
+  YELLOW
+  GREEN
+  BLUE
+}
+
+enum AiAttentionLevel {
+  HIGH
+  MODERATE
+  LOW
+}
+
 model Patient {
   id                String                  @id @default(uuid())
   displayName       String
@@ -201,6 +219,7 @@ model Triage {
   redFlagOccurrences         RedFlagOccurrence[]
   queueTicket                QueueTicket?
   analysisRuns               AnalysisRun[]
+  aiSuggestions              AiSuggestion[]
   collectionSessions         HardwareCollectionSession[]
   requestedDeviceCollectionSessions DeviceCollectionSession[] @relation("RequestedDeviceCollectionSessions")
   nurseReviews               NurseReview[]
@@ -333,10 +352,34 @@ model AnalysisRun {
   triage                Triage            @relation(fields: [triageId], references: [id], onDelete: Restrict)
   ruleSetVersion        RuleSetVersion     @relation(fields: [ruleSetVersionId], references: [id], onDelete: Restrict)
   recommendation        AnalysisRecommendation?
+  aiSuggestion          AiSuggestion?
 
   @@index([triageId, createdAt])
   @@index([ruleSetVersionId])
   @@unique([triageId, runType, ruleSetVersionId, inputFingerprint])
+}
+
+// Apoio experimental externo, separado da recomendação determinística e da decisão humana.
+model AiSuggestion {
+  id                 String             @id @default(uuid())
+  triageId           String
+  analysisRunId      String             @unique
+  collectionSessionId String
+  status             AiSuggestionStatus
+  suggestedPriority  AiSuggestedPriority?
+  attentionLevel     AiAttentionLevel?
+  conclusion         String?
+  factors            Json?
+  model              String
+  promptVersion      String
+  createdAt          DateTime           @default(now())
+  completedAt        DateTime?
+  triage             Triage             @relation(fields: [triageId], references: [id], onDelete: Restrict)
+  analysisRun        AnalysisRun        @relation(fields: [analysisRunId], references: [id], onDelete: Restrict)
+  collectionSession  HardwareCollectionSession @relation(fields: [collectionSessionId], references: [id], onDelete: Restrict)
+
+  @@index([triageId, createdAt])
+  @@index([collectionSessionId])
 }
 
 model AnalysisRecommendation {
@@ -468,6 +511,7 @@ model HardwareCollectionSession {
   sourceDeviceCollectionSession DeviceCollectionSession? @relation("PhysicalCollectionSource", fields: [sourceDeviceCollectionSessionId], references: [id], onDelete: Restrict)
   measurements          VitalSignMeasurement[]
   errors                HardwareError[]
+  aiSuggestions         AiSuggestion[]
 
   @@unique([triageId, attemptNumber])
   @@index([triageId, createdAt])

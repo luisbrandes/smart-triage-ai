@@ -3,6 +3,8 @@ import type { AnamnesisInput, ConsentInput, IdentificationInput, PatientIntakeSe
 export interface PatientIntakeRepository {
   startTriage(): Promise<PatientIntakeSession>;
   startNewDemo(previousTriageId: string): Promise<PatientIntakeSession>;
+  requestRecollection(triageId: string): Promise<void>;
+  cancelTriage(triageId: string): Promise<void>;
   findSession(triageId: string): Promise<PatientIntakeSession | null>;
   saveIdentification(triageId: string, input: IdentificationInput): Promise<void>;
   acceptConsent(triageId: string, input: ConsentInput): Promise<void>;

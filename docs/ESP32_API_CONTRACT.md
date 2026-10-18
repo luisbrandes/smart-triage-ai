@@ -80,7 +80,7 @@ Content-Type: application/json
 ```
 
 ```json
-{ "deviceId": "ESP32-001" }
+{ "deviceId": "ESP32-001", "sessionId": "UUID_DA_COLETA_ATUAL" }
 ```
 
 Sucesso (`200`):
@@ -89,7 +89,7 @@ Sucesso (`200`):
 { "sessionId": "uuid-da-proxima-espera", "status": "WAITING" }
 ```
 
-A sessão usada passa a `COMPLETED`; o frontend para o polling e permite que o paciente selecione e confirme uma `Reading`.
+A sessão indicada passa a `COMPLETED`; o frontend para o polling e permite que o paciente selecione e confirme uma `Reading`. `sessionId` ainda é opcional por compatibilidade da API, mas o firmware deve enviá-lo para não liberar acidentalmente outra sessão após uma troca de triagem. Se `GET /api/device/session/current` retornar `IDLE` ou outro UUID, descarte a sessão anterior e limpe o display; nunca envie `/release` para o UUID antigo.
 
 ## Códigos e política de retry
 

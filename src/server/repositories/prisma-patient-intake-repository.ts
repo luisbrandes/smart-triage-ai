@@ -37,13 +37,45 @@ export class PrismaPatientIntakeRepository implements PatientIntakeRepository {
     return prisma.$transaction(async (transaction) => {
       const previous = await transaction.triage.findUnique({ where: { id: previousTriageId }, select: { id: true, status: true } });
       if (!previous) throw new PatientIntakeNotFoundError();
+      const activeSessions = await transaction.deviceCollectionSession.findMany({ where: { requestedByTriageId: previousTriageId, status: "ACTIVE" }, select: { id: true } });
+      await transaction.deviceCollectionSession.updateMany({ where: { requestedByTriageId: previousTriageId, status: "ACTIVE" }, data: { status: "CANCELLED", cancelledAt: new Date() } });
       assertTriageTransition("DRAFT", "IDENTIFICATION_IN_PROGRESS");
       const triage = await transaction.triage.create({ data: { status: "IDENTIFICATION_IN_PROGRESS" }, select: { id: true, patientId: true, status: true } });
       await transaction.auditEvent.createMany({ data: [
         { triageId: triage.id, entityType: "Triage", entityId: triage.id, action: "TRIAGE_STARTED", actorType: "PATIENT", sanitizedMetadata: { mode: "DEMO" } },
         { triageId: triage.id, entityType: "Triage", entityId: triage.id, action: "NEW_DEMO_STARTED", actorType: "DEMO_OPERATOR", sanitizedMetadata: { previousTriageStatus: previous.status, triageStatus: triage.status } },
+        ...activeSessions.map((session) => ({ triageId: previousTriageId, entityType: "DeviceCollectionSession", entityId: session.id, action: "DEVICE_COLLECTION_CANCELLED_FOR_NEW_TRIAGE", actorType: "PATIENT" as const, sanitizedMetadata: { reason: "NEW_TRIAGE" } })),
       ] });
       return toSession(triage);
+    });
+  }
+
+  async requestRecollection(triageId: string): Promise<void> {
+    await prisma.$transaction(async (transaction) => {
+      const triage = await transaction.triage.findUnique({ where: { id: triageId }, select: { status: true } });
+      if (!triage) throw new PatientIntakeNotFoundError();
+      if (triage.status === "RECOLLECTION_REQUESTED") return;
+      if (triage.status !== "AWAITING_NURSE_REVIEW") throw new PatientIntakeStateError();
+      assertTriageTransition("AWAITING_NURSE_REVIEW", "RECOLLECTION_REQUESTED");
+      await transaction.triage.update({ where: { id: triageId }, data: { status: "RECOLLECTION_REQUESTED" } });
+      await transaction.auditEvent.create({ data: { triageId, entityType: "Triage", entityId: triageId, action: "VITAL_SIGNS_RECOLLECTION_REQUESTED", actorType: "PATIENT", sanitizedMetadata: { previousStatus: "AWAITING_NURSE_REVIEW", nextStatus: "RECOLLECTION_REQUESTED" } } });
+    });
+  }
+
+  async cancelTriage(triageId: string): Promise<void> {
+    await prisma.$transaction(async (transaction) => {
+      const triage = await transaction.triage.findUnique({ where: { id: triageId }, select: { status: true } });
+      if (!triage) throw new PatientIntakeNotFoundError();
+      const cancellable = ["DRAFT", "IDENTIFICATION_IN_PROGRESS", "ANAMNESIS_IN_PROGRESS", "VITAL_SIGNS_REQUIRED", "VITAL_SIGNS_IN_PROGRESS", "FINAL_ANALYSIS_PENDING", "RECOLLECTION_REQUESTED"].includes(triage.status);
+      if (!cancellable || triage.status === "CANCELLED") return;
+      assertTriageTransition(triage.status as TriageStatus, "CANCELLED");
+      const activeSessions = await transaction.deviceCollectionSession.findMany({ where: { requestedByTriageId: triageId, status: "ACTIVE" }, select: { id: true } });
+      await transaction.deviceCollectionSession.updateMany({ where: { requestedByTriageId: triageId, status: "ACTIVE" }, data: { status: "CANCELLED", cancelledAt: new Date() } });
+      await transaction.triage.update({ where: { id: triageId }, data: { status: "CANCELLED", cancelledAt: new Date() } });
+      await transaction.auditEvent.createMany({ data: [
+        { triageId, entityType: "Triage", entityId: triageId, action: "TRIAGE_CANCELLED", actorType: "PATIENT", sanitizedMetadata: { previousStatus: triage.status, nextStatus: "CANCELLED", reason: "PATIENT_ABORTED" } },
+        ...activeSessions.map((session) => ({ triageId, entityType: "DeviceCollectionSession", entityId: session.id, action: "DEVICE_COLLECTION_CANCELLED", actorType: "PATIENT" as const, sanitizedMetadata: { reason: "TRIAGE_CANCELLED" } })),
+      ] });
     });
   }
 

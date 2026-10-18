@@ -228,6 +228,7 @@ export type TriageWhereInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceListRelationFilter
   queueTicket?: Prisma.XOR<Prisma.QueueTicketNullableScalarRelationFilter, Prisma.QueueTicketWhereInput> | null
   analysisRuns?: Prisma.AnalysisRunListRelationFilter
+  aiSuggestions?: Prisma.AiSuggestionListRelationFilter
   collectionSessions?: Prisma.HardwareCollectionSessionListRelationFilter
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionListRelationFilter
   nurseReviews?: Prisma.NurseReviewListRelationFilter
@@ -253,6 +254,7 @@ export type TriageOrderByWithRelationInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceOrderByRelationAggregateInput
   queueTicket?: Prisma.QueueTicketOrderByWithRelationInput
   analysisRuns?: Prisma.AnalysisRunOrderByRelationAggregateInput
+  aiSuggestions?: Prisma.AiSuggestionOrderByRelationAggregateInput
   collectionSessions?: Prisma.HardwareCollectionSessionOrderByRelationAggregateInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionOrderByRelationAggregateInput
   nurseReviews?: Prisma.NurseReviewOrderByRelationAggregateInput
@@ -281,6 +283,7 @@ export type TriageWhereUniqueInput = Prisma.AtLeast<{
   redFlagOccurrences?: Prisma.RedFlagOccurrenceListRelationFilter
   queueTicket?: Prisma.XOR<Prisma.QueueTicketNullableScalarRelationFilter, Prisma.QueueTicketWhereInput> | null
   analysisRuns?: Prisma.AnalysisRunListRelationFilter
+  aiSuggestions?: Prisma.AiSuggestionListRelationFilter
   collectionSessions?: Prisma.HardwareCollectionSessionListRelationFilter
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionListRelationFilter
   nurseReviews?: Prisma.NurseReviewListRelationFilter
@@ -337,6 +340,7 @@ export type TriageCreateInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -361,6 +365,7 @@ export type TriageUncheckedCreateInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -385,6 +390,7 @@ export type TriageUpdateInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -409,6 +415,7 @@ export type TriageUncheckedUpdateInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -650,6 +657,20 @@ export type TriageUpdateOneRequiredWithoutAnalysisRunsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TriageUpdateToOneWithWhereWithoutAnalysisRunsInput, Prisma.TriageUpdateWithoutAnalysisRunsInput>, Prisma.TriageUncheckedUpdateWithoutAnalysisRunsInput>
 }
 
+export type TriageCreateNestedOneWithoutAiSuggestionsInput = {
+  create?: Prisma.XOR<Prisma.TriageCreateWithoutAiSuggestionsInput, Prisma.TriageUncheckedCreateWithoutAiSuggestionsInput>
+  connectOrCreate?: Prisma.TriageCreateOrConnectWithoutAiSuggestionsInput
+  connect?: Prisma.TriageWhereUniqueInput
+}
+
+export type TriageUpdateOneRequiredWithoutAiSuggestionsNestedInput = {
+  create?: Prisma.XOR<Prisma.TriageCreateWithoutAiSuggestionsInput, Prisma.TriageUncheckedCreateWithoutAiSuggestionsInput>
+  connectOrCreate?: Prisma.TriageCreateOrConnectWithoutAiSuggestionsInput
+  upsert?: Prisma.TriageUpsertWithoutAiSuggestionsInput
+  connect?: Prisma.TriageWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TriageUpdateToOneWithWhereWithoutAiSuggestionsInput, Prisma.TriageUpdateWithoutAiSuggestionsInput>, Prisma.TriageUncheckedUpdateWithoutAiSuggestionsInput>
+}
+
 export type TriageCreateNestedOneWithoutRequestedDeviceCollectionSessionsInput = {
   create?: Prisma.XOR<Prisma.TriageCreateWithoutRequestedDeviceCollectionSessionsInput, Prisma.TriageUncheckedCreateWithoutRequestedDeviceCollectionSessionsInput>
   connectOrCreate?: Prisma.TriageCreateOrConnectWithoutRequestedDeviceCollectionSessionsInput
@@ -739,6 +760,7 @@ export type TriageCreateWithoutPatientInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -762,6 +784,7 @@ export type TriageUncheckedCreateWithoutPatientInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -827,6 +850,7 @@ export type TriageCreateWithoutConsentRecordsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -850,6 +874,7 @@ export type TriageUncheckedCreateWithoutConsentRecordsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -889,6 +914,7 @@ export type TriageUpdateWithoutConsentRecordsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -912,6 +938,7 @@ export type TriageUncheckedUpdateWithoutConsentRecordsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -936,6 +963,7 @@ export type TriageCreateWithoutCareAttendanceInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -959,6 +987,7 @@ export type TriageUncheckedCreateWithoutCareAttendanceInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -998,6 +1027,7 @@ export type TriageUpdateWithoutCareAttendanceInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -1021,6 +1051,7 @@ export type TriageUncheckedUpdateWithoutCareAttendanceInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -1043,6 +1074,7 @@ export type TriageCreateWithoutAnamnesesInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -1066,6 +1098,7 @@ export type TriageUncheckedCreateWithoutAnamnesesInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -1105,6 +1138,7 @@ export type TriageUpdateWithoutAnamnesesInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -1128,6 +1162,7 @@ export type TriageUncheckedUpdateWithoutAnamnesesInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -1151,6 +1186,7 @@ export type TriageCreateWithoutRedFlagOccurrencesInput = {
   anamneses?: Prisma.AnamnesisCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -1174,6 +1210,7 @@ export type TriageUncheckedCreateWithoutRedFlagOccurrencesInput = {
   anamneses?: Prisma.AnamnesisUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -1213,6 +1250,7 @@ export type TriageUpdateWithoutRedFlagOccurrencesInput = {
   anamneses?: Prisma.AnamnesisUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -1236,6 +1274,7 @@ export type TriageUncheckedUpdateWithoutRedFlagOccurrencesInput = {
   anamneses?: Prisma.AnamnesisUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -1259,6 +1298,7 @@ export type TriageCreateWithoutQueueTicketInput = {
   anamneses?: Prisma.AnamnesisCreateNestedManyWithoutTriageInput
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -1282,6 +1322,7 @@ export type TriageUncheckedCreateWithoutQueueTicketInput = {
   anamneses?: Prisma.AnamnesisUncheckedCreateNestedManyWithoutTriageInput
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -1321,6 +1362,7 @@ export type TriageUpdateWithoutQueueTicketInput = {
   anamneses?: Prisma.AnamnesisUpdateManyWithoutTriageNestedInput
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -1344,6 +1386,7 @@ export type TriageUncheckedUpdateWithoutQueueTicketInput = {
   anamneses?: Prisma.AnamnesisUncheckedUpdateManyWithoutTriageNestedInput
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -1367,6 +1410,7 @@ export type TriageCreateWithoutAnalysisRunsInput = {
   anamneses?: Prisma.AnamnesisCreateNestedManyWithoutTriageInput
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -1390,6 +1434,7 @@ export type TriageUncheckedCreateWithoutAnalysisRunsInput = {
   anamneses?: Prisma.AnamnesisUncheckedCreateNestedManyWithoutTriageInput
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -1429,6 +1474,7 @@ export type TriageUpdateWithoutAnalysisRunsInput = {
   anamneses?: Prisma.AnamnesisUpdateManyWithoutTriageNestedInput
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -1452,6 +1498,119 @@ export type TriageUncheckedUpdateWithoutAnalysisRunsInput = {
   anamneses?: Prisma.AnamnesisUncheckedUpdateManyWithoutTriageNestedInput
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
+  requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
+  nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
+  careReferrals?: Prisma.CareReferralUncheckedUpdateManyWithoutTriageNestedInput
+  careAttendance?: Prisma.CareAttendanceUncheckedUpdateOneWithoutTriageNestedInput
+  auditEvents?: Prisma.AuditEventUncheckedUpdateManyWithoutTriageNestedInput
+}
+
+export type TriageCreateWithoutAiSuggestionsInput = {
+  id?: string
+  status?: $Enums.TriageStatus
+  startedAt?: Date | string
+  completedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  currentRecommendedPriority?: $Enums.RiskPriority | null
+  finalHumanPriority?: $Enums.RiskPriority | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  patient?: Prisma.PatientCreateNestedOneWithoutTriagesInput
+  consentRecords?: Prisma.ConsentRecordCreateNestedManyWithoutTriageInput
+  anamneses?: Prisma.AnamnesisCreateNestedManyWithoutTriageInput
+  redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
+  queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
+  analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
+  requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
+  nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
+  careReferrals?: Prisma.CareReferralCreateNestedManyWithoutTriageInput
+  careAttendance?: Prisma.CareAttendanceCreateNestedOneWithoutTriageInput
+  auditEvents?: Prisma.AuditEventCreateNestedManyWithoutTriageInput
+}
+
+export type TriageUncheckedCreateWithoutAiSuggestionsInput = {
+  id?: string
+  patientId?: string | null
+  status?: $Enums.TriageStatus
+  startedAt?: Date | string
+  completedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  currentRecommendedPriority?: $Enums.RiskPriority | null
+  finalHumanPriority?: $Enums.RiskPriority | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  consentRecords?: Prisma.ConsentRecordUncheckedCreateNestedManyWithoutTriageInput
+  anamneses?: Prisma.AnamnesisUncheckedCreateNestedManyWithoutTriageInput
+  redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
+  queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
+  analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
+  requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
+  nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
+  careReferrals?: Prisma.CareReferralUncheckedCreateNestedManyWithoutTriageInput
+  careAttendance?: Prisma.CareAttendanceUncheckedCreateNestedOneWithoutTriageInput
+  auditEvents?: Prisma.AuditEventUncheckedCreateNestedManyWithoutTriageInput
+}
+
+export type TriageCreateOrConnectWithoutAiSuggestionsInput = {
+  where: Prisma.TriageWhereUniqueInput
+  create: Prisma.XOR<Prisma.TriageCreateWithoutAiSuggestionsInput, Prisma.TriageUncheckedCreateWithoutAiSuggestionsInput>
+}
+
+export type TriageUpsertWithoutAiSuggestionsInput = {
+  update: Prisma.XOR<Prisma.TriageUpdateWithoutAiSuggestionsInput, Prisma.TriageUncheckedUpdateWithoutAiSuggestionsInput>
+  create: Prisma.XOR<Prisma.TriageCreateWithoutAiSuggestionsInput, Prisma.TriageUncheckedCreateWithoutAiSuggestionsInput>
+  where?: Prisma.TriageWhereInput
+}
+
+export type TriageUpdateToOneWithWhereWithoutAiSuggestionsInput = {
+  where?: Prisma.TriageWhereInput
+  data: Prisma.XOR<Prisma.TriageUpdateWithoutAiSuggestionsInput, Prisma.TriageUncheckedUpdateWithoutAiSuggestionsInput>
+}
+
+export type TriageUpdateWithoutAiSuggestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTriageStatusFieldUpdateOperationsInput | $Enums.TriageStatus
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currentRecommendedPriority?: Prisma.NullableEnumRiskPriorityFieldUpdateOperationsInput | $Enums.RiskPriority | null
+  finalHumanPriority?: Prisma.NullableEnumRiskPriorityFieldUpdateOperationsInput | $Enums.RiskPriority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  patient?: Prisma.PatientUpdateOneWithoutTriagesNestedInput
+  consentRecords?: Prisma.ConsentRecordUpdateManyWithoutTriageNestedInput
+  anamneses?: Prisma.AnamnesisUpdateManyWithoutTriageNestedInput
+  redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
+  queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
+  analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
+  requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
+  nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
+  careReferrals?: Prisma.CareReferralUpdateManyWithoutTriageNestedInput
+  careAttendance?: Prisma.CareAttendanceUpdateOneWithoutTriageNestedInput
+  auditEvents?: Prisma.AuditEventUpdateManyWithoutTriageNestedInput
+}
+
+export type TriageUncheckedUpdateWithoutAiSuggestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  patientId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumTriageStatusFieldUpdateOperationsInput | $Enums.TriageStatus
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  currentRecommendedPriority?: Prisma.NullableEnumRiskPriorityFieldUpdateOperationsInput | $Enums.RiskPriority | null
+  finalHumanPriority?: Prisma.NullableEnumRiskPriorityFieldUpdateOperationsInput | $Enums.RiskPriority | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  consentRecords?: Prisma.ConsentRecordUncheckedUpdateManyWithoutTriageNestedInput
+  anamneses?: Prisma.AnamnesisUncheckedUpdateManyWithoutTriageNestedInput
+  redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
+  queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
+  analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -1476,6 +1635,7 @@ export type TriageCreateWithoutRequestedDeviceCollectionSessionsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
   careReferrals?: Prisma.CareReferralCreateNestedManyWithoutTriageInput
@@ -1499,6 +1659,7 @@ export type TriageUncheckedCreateWithoutRequestedDeviceCollectionSessionsInput =
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
   careReferrals?: Prisma.CareReferralUncheckedCreateNestedManyWithoutTriageInput
@@ -1538,6 +1699,7 @@ export type TriageUpdateWithoutRequestedDeviceCollectionSessionsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
   careReferrals?: Prisma.CareReferralUpdateManyWithoutTriageNestedInput
@@ -1561,6 +1723,7 @@ export type TriageUncheckedUpdateWithoutRequestedDeviceCollectionSessionsInput =
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
   careReferrals?: Prisma.CareReferralUncheckedUpdateManyWithoutTriageNestedInput
@@ -1584,6 +1747,7 @@ export type TriageCreateWithoutCollectionSessionsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
   careReferrals?: Prisma.CareReferralCreateNestedManyWithoutTriageInput
@@ -1607,6 +1771,7 @@ export type TriageUncheckedCreateWithoutCollectionSessionsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
   careReferrals?: Prisma.CareReferralUncheckedCreateNestedManyWithoutTriageInput
@@ -1646,6 +1811,7 @@ export type TriageUpdateWithoutCollectionSessionsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
   careReferrals?: Prisma.CareReferralUpdateManyWithoutTriageNestedInput
@@ -1669,6 +1835,7 @@ export type TriageUncheckedUpdateWithoutCollectionSessionsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
   careReferrals?: Prisma.CareReferralUncheckedUpdateManyWithoutTriageNestedInput
@@ -1692,6 +1859,7 @@ export type TriageCreateWithoutNurseReviewsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   careReferrals?: Prisma.CareReferralCreateNestedManyWithoutTriageInput
@@ -1715,6 +1883,7 @@ export type TriageUncheckedCreateWithoutNurseReviewsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   careReferrals?: Prisma.CareReferralUncheckedCreateNestedManyWithoutTriageInput
@@ -1754,6 +1923,7 @@ export type TriageUpdateWithoutNurseReviewsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   careReferrals?: Prisma.CareReferralUpdateManyWithoutTriageNestedInput
@@ -1777,6 +1947,7 @@ export type TriageUncheckedUpdateWithoutNurseReviewsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   careReferrals?: Prisma.CareReferralUncheckedUpdateManyWithoutTriageNestedInput
@@ -1800,6 +1971,7 @@ export type TriageCreateWithoutCareReferralsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -1823,6 +1995,7 @@ export type TriageUncheckedCreateWithoutCareReferralsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -1862,6 +2035,7 @@ export type TriageUpdateWithoutCareReferralsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -1885,6 +2059,7 @@ export type TriageUncheckedUpdateWithoutCareReferralsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -1908,6 +2083,7 @@ export type TriageCreateWithoutAuditEventsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewCreateNestedManyWithoutTriageInput
@@ -1931,6 +2107,7 @@ export type TriageUncheckedCreateWithoutAuditEventsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedCreateNestedManyWithoutTriageInput
   queueTicket?: Prisma.QueueTicketUncheckedCreateNestedOneWithoutTriageInput
   analysisRuns?: Prisma.AnalysisRunUncheckedCreateNestedManyWithoutTriageInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutTriageInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedCreateNestedManyWithoutTriageInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedCreateNestedManyWithoutRequestedByTriageInput
   nurseReviews?: Prisma.NurseReviewUncheckedCreateNestedManyWithoutTriageInput
@@ -1970,6 +2147,7 @@ export type TriageUpdateWithoutAuditEventsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -1993,6 +2171,7 @@ export type TriageUncheckedUpdateWithoutAuditEventsInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -2027,6 +2206,7 @@ export type TriageUpdateWithoutPatientInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUpdateManyWithoutTriageNestedInput
@@ -2050,6 +2230,7 @@ export type TriageUncheckedUpdateWithoutPatientInput = {
   redFlagOccurrences?: Prisma.RedFlagOccurrenceUncheckedUpdateManyWithoutTriageNestedInput
   queueTicket?: Prisma.QueueTicketUncheckedUpdateOneWithoutTriageNestedInput
   analysisRuns?: Prisma.AnalysisRunUncheckedUpdateManyWithoutTriageNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutTriageNestedInput
   collectionSessions?: Prisma.HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   requestedDeviceCollectionSessions?: Prisma.DeviceCollectionSessionUncheckedUpdateManyWithoutRequestedByTriageNestedInput
   nurseReviews?: Prisma.NurseReviewUncheckedUpdateManyWithoutTriageNestedInput
@@ -2080,6 +2261,7 @@ export type TriageCountOutputType = {
   anamneses: number
   redFlagOccurrences: number
   analysisRuns: number
+  aiSuggestions: number
   collectionSessions: number
   requestedDeviceCollectionSessions: number
   nurseReviews: number
@@ -2092,6 +2274,7 @@ export type TriageCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   anamneses?: boolean | TriageCountOutputTypeCountAnamnesesArgs
   redFlagOccurrences?: boolean | TriageCountOutputTypeCountRedFlagOccurrencesArgs
   analysisRuns?: boolean | TriageCountOutputTypeCountAnalysisRunsArgs
+  aiSuggestions?: boolean | TriageCountOutputTypeCountAiSuggestionsArgs
   collectionSessions?: boolean | TriageCountOutputTypeCountCollectionSessionsArgs
   requestedDeviceCollectionSessions?: boolean | TriageCountOutputTypeCountRequestedDeviceCollectionSessionsArgs
   nurseReviews?: boolean | TriageCountOutputTypeCountNurseReviewsArgs
@@ -2135,6 +2318,13 @@ export type TriageCountOutputTypeCountRedFlagOccurrencesArgs<ExtArgs extends run
  */
 export type TriageCountOutputTypeCountAnalysisRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AnalysisRunWhereInput
+}
+
+/**
+ * TriageCountOutputType without action
+ */
+export type TriageCountOutputTypeCountAiSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AiSuggestionWhereInput
 }
 
 /**
@@ -2190,6 +2380,7 @@ export type TriageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   redFlagOccurrences?: boolean | Prisma.Triage$redFlagOccurrencesArgs<ExtArgs>
   queueTicket?: boolean | Prisma.Triage$queueTicketArgs<ExtArgs>
   analysisRuns?: boolean | Prisma.Triage$analysisRunsArgs<ExtArgs>
+  aiSuggestions?: boolean | Prisma.Triage$aiSuggestionsArgs<ExtArgs>
   collectionSessions?: boolean | Prisma.Triage$collectionSessionsArgs<ExtArgs>
   requestedDeviceCollectionSessions?: boolean | Prisma.Triage$requestedDeviceCollectionSessionsArgs<ExtArgs>
   nurseReviews?: boolean | Prisma.Triage$nurseReviewsArgs<ExtArgs>
@@ -2248,6 +2439,7 @@ export type TriageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   redFlagOccurrences?: boolean | Prisma.Triage$redFlagOccurrencesArgs<ExtArgs>
   queueTicket?: boolean | Prisma.Triage$queueTicketArgs<ExtArgs>
   analysisRuns?: boolean | Prisma.Triage$analysisRunsArgs<ExtArgs>
+  aiSuggestions?: boolean | Prisma.Triage$aiSuggestionsArgs<ExtArgs>
   collectionSessions?: boolean | Prisma.Triage$collectionSessionsArgs<ExtArgs>
   requestedDeviceCollectionSessions?: boolean | Prisma.Triage$requestedDeviceCollectionSessionsArgs<ExtArgs>
   nurseReviews?: boolean | Prisma.Triage$nurseReviewsArgs<ExtArgs>
@@ -2272,6 +2464,7 @@ export type $TriagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     redFlagOccurrences: Prisma.$RedFlagOccurrencePayload<ExtArgs>[]
     queueTicket: Prisma.$QueueTicketPayload<ExtArgs> | null
     analysisRuns: Prisma.$AnalysisRunPayload<ExtArgs>[]
+    aiSuggestions: Prisma.$AiSuggestionPayload<ExtArgs>[]
     collectionSessions: Prisma.$HardwareCollectionSessionPayload<ExtArgs>[]
     requestedDeviceCollectionSessions: Prisma.$DeviceCollectionSessionPayload<ExtArgs>[]
     nurseReviews: Prisma.$NurseReviewPayload<ExtArgs>[]
@@ -2690,6 +2883,7 @@ export interface Prisma__TriageClient<T, Null = never, ExtArgs extends runtime.T
   redFlagOccurrences<T extends Prisma.Triage$redFlagOccurrencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Triage$redFlagOccurrencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RedFlagOccurrencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   queueTicket<T extends Prisma.Triage$queueTicketArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Triage$queueTicketArgs<ExtArgs>>): Prisma.Prisma__QueueTicketClient<runtime.Types.Result.GetResult<Prisma.$QueueTicketPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   analysisRuns<T extends Prisma.Triage$analysisRunsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Triage$analysisRunsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AnalysisRunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiSuggestions<T extends Prisma.Triage$aiSuggestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Triage$aiSuggestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   collectionSessions<T extends Prisma.Triage$collectionSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Triage$collectionSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HardwareCollectionSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   requestedDeviceCollectionSessions<T extends Prisma.Triage$requestedDeviceCollectionSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Triage$requestedDeviceCollectionSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DeviceCollectionSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   nurseReviews<T extends Prisma.Triage$nurseReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Triage$nurseReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NurseReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3267,6 +3461,30 @@ export type Triage$analysisRunsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.AnalysisRunScalarFieldEnum | Prisma.AnalysisRunScalarFieldEnum[]
+}
+
+/**
+ * Triage.aiSuggestions
+ */
+export type Triage$aiSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiSuggestion
+   */
+  select?: Prisma.AiSuggestionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiSuggestion
+   */
+  omit?: Prisma.AiSuggestionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiSuggestionInclude<ExtArgs> | null
+  where?: Prisma.AiSuggestionWhereInput
+  orderBy?: Prisma.AiSuggestionOrderByWithRelationInput | Prisma.AiSuggestionOrderByWithRelationInput[]
+  cursor?: Prisma.AiSuggestionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AiSuggestionScalarFieldEnum | Prisma.AiSuggestionScalarFieldEnum[]
 }
 
 /**

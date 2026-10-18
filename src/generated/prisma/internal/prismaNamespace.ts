@@ -395,6 +395,7 @@ export const ModelName = {
   QueueTicket: 'QueueTicket',
   RuleSetVersion: 'RuleSetVersion',
   AnalysisRun: 'AnalysisRun',
+  AiSuggestion: 'AiSuggestion',
   AnalysisRecommendation: 'AnalysisRecommendation',
   RecommendationReason: 'RecommendationReason',
   MedicalDevice: 'MedicalDevice',
@@ -422,7 +423,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "patient" | "healthPlanInformation" | "consentRecord" | "triage" | "careAttendance" | "anamnesis" | "anamnesisAnswer" | "redFlagOccurrence" | "queueTicket" | "ruleSetVersion" | "analysisRun" | "analysisRecommendation" | "recommendationReason" | "medicalDevice" | "reading" | "deviceCollectionSession" | "deviceCapability" | "hardwareCollectionSession" | "vitalSignMeasurement" | "hardwareError" | "nurseReview" | "careReferral" | "auditEvent"
+    modelProps: "patient" | "healthPlanInformation" | "consentRecord" | "triage" | "careAttendance" | "anamnesis" | "anamnesisAnswer" | "redFlagOccurrence" | "queueTicket" | "ruleSetVersion" | "analysisRun" | "aiSuggestion" | "analysisRecommendation" | "recommendationReason" | "medicalDevice" | "reading" | "deviceCollectionSession" | "deviceCapability" | "hardwareCollectionSession" | "vitalSignMeasurement" | "hardwareError" | "nurseReview" | "careReferral" | "auditEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1237,6 +1238,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AnalysisRunCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.AnalysisRunCountAggregateOutputType> | number
+        }
+      }
+    }
+    AiSuggestion: {
+      payload: Prisma.$AiSuggestionPayload<ExtArgs>
+      fields: Prisma.AiSuggestionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AiSuggestionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AiSuggestionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>
+        }
+        findFirst: {
+          args: Prisma.AiSuggestionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AiSuggestionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>
+        }
+        findMany: {
+          args: Prisma.AiSuggestionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>[]
+        }
+        create: {
+          args: Prisma.AiSuggestionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>
+        }
+        createMany: {
+          args: Prisma.AiSuggestionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AiSuggestionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>[]
+        }
+        delete: {
+          args: Prisma.AiSuggestionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>
+        }
+        update: {
+          args: Prisma.AiSuggestionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>
+        }
+        deleteMany: {
+          args: Prisma.AiSuggestionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AiSuggestionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AiSuggestionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>[]
+        }
+        upsert: {
+          args: Prisma.AiSuggestionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AiSuggestionPayload>
+        }
+        aggregate: {
+          args: Prisma.AiSuggestionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAiSuggestion>
+        }
+        groupBy: {
+          args: Prisma.AiSuggestionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiSuggestionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AiSuggestionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AiSuggestionCountAggregateOutputType> | number
         }
       }
     }
@@ -2343,6 +2418,25 @@ export const AnalysisRunScalarFieldEnum = {
 export type AnalysisRunScalarFieldEnum = (typeof AnalysisRunScalarFieldEnum)[keyof typeof AnalysisRunScalarFieldEnum]
 
 
+export const AiSuggestionScalarFieldEnum = {
+  id: 'id',
+  triageId: 'triageId',
+  analysisRunId: 'analysisRunId',
+  collectionSessionId: 'collectionSessionId',
+  status: 'status',
+  suggestedPriority: 'suggestedPriority',
+  attentionLevel: 'attentionLevel',
+  conclusion: 'conclusion',
+  factors: 'factors',
+  model: 'model',
+  promptVersion: 'promptVersion',
+  createdAt: 'createdAt',
+  completedAt: 'completedAt'
+} as const
+
+export type AiSuggestionScalarFieldEnum = (typeof AiSuggestionScalarFieldEnum)[keyof typeof AiSuggestionScalarFieldEnum]
+
+
 export const AnalysisRecommendationScalarFieldEnum = {
   id: 'id',
   analysisRunId: 'analysisRunId',
@@ -2766,6 +2860,48 @@ export type ListEnumAnalysisRunStatusFieldRefInput<$PrismaModel> = FieldRefInput
 
 
 /**
+ * Reference to a field of type 'AiSuggestionStatus'
+ */
+export type EnumAiSuggestionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiSuggestionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'AiSuggestionStatus[]'
+ */
+export type ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiSuggestionStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AiSuggestedPriority'
+ */
+export type EnumAiSuggestedPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiSuggestedPriority'>
+    
+
+
+/**
+ * Reference to a field of type 'AiSuggestedPriority[]'
+ */
+export type ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiSuggestedPriority[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AiAttentionLevel'
+ */
+export type EnumAiAttentionLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiAttentionLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'AiAttentionLevel[]'
+ */
+export type ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AiAttentionLevel[]'>
+    
+
+
+/**
  * Reference to a field of type 'DeviceOperationalStatus'
  */
 export type EnumDeviceOperationalStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DeviceOperationalStatus'>
@@ -3025,6 +3161,7 @@ export type GlobalOmitConfig = {
   queueTicket?: Prisma.QueueTicketOmit
   ruleSetVersion?: Prisma.RuleSetVersionOmit
   analysisRun?: Prisma.AnalysisRunOmit
+  aiSuggestion?: Prisma.AiSuggestionOmit
   analysisRecommendation?: Prisma.AnalysisRecommendationOmit
   recommendationReason?: Prisma.RecommendationReasonOmit
   medicalDevice?: Prisma.MedicalDeviceOmit

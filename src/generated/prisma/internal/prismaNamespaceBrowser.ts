@@ -62,6 +62,7 @@ export const ModelName = {
   QueueTicket: 'QueueTicket',
   RuleSetVersion: 'RuleSetVersion',
   AnalysisRun: 'AnalysisRun',
+  AiSuggestion: 'AiSuggestion',
   AnalysisRecommendation: 'AnalysisRecommendation',
   RecommendationReason: 'RecommendationReason',
   MedicalDevice: 'MedicalDevice',
@@ -266,6 +267,25 @@ export const AnalysisRunScalarFieldEnum = {
 } as const
 
 export type AnalysisRunScalarFieldEnum = (typeof AnalysisRunScalarFieldEnum)[keyof typeof AnalysisRunScalarFieldEnum]
+
+
+export const AiSuggestionScalarFieldEnum = {
+  id: 'id',
+  triageId: 'triageId',
+  analysisRunId: 'analysisRunId',
+  collectionSessionId: 'collectionSessionId',
+  status: 'status',
+  suggestedPriority: 'suggestedPriority',
+  attentionLevel: 'attentionLevel',
+  conclusion: 'conclusion',
+  factors: 'factors',
+  model: 'model',
+  promptVersion: 'promptVersion',
+  createdAt: 'createdAt',
+  completedAt: 'completedAt'
+} as const
+
+export type AiSuggestionScalarFieldEnum = (typeof AiSuggestionScalarFieldEnum)[keyof typeof AiSuggestionScalarFieldEnum]
 
 
 export const AnalysisRecommendationScalarFieldEnum = {

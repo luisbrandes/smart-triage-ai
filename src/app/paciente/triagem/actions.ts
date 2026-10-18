@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 
 import { demoAnamnesis } from "@/demo/anamnesis";
-import { getDemoTriageId, setDemoTriageId } from "@/server/demo-triage-session";
+import { clearDemoTriageId, getDemoTriageId, setDemoTriageId } from "@/server/demo-triage-session";
 import { patientIntake } from "@/server/patient-intake";
 import { isPatientIntakeResumable, routeForPatientIntakeStatus } from "@/server/application/patient-intake/patient-intake-routes";
 
@@ -38,6 +38,20 @@ export async function startNewDemoTriageAction(): Promise<never> {
   const session = previousTriageId ? await patientIntake.startNewDemo(previousTriageId) : await patientIntake.start();
   await setDemoTriageId(session.triageId);
   redirect("/paciente/triagem/identificacao");
+}
+
+export async function requestPatientRecollectionAction(): Promise<never> {
+  const triageId = await currentTriageId();
+  if (!triageId) redirect("/paciente");
+  await patientIntake.requestRecollection(triageId);
+  redirect("/paciente/coleta");
+}
+
+export async function cancelPatientTriageAction(): Promise<never> {
+  const triageId = await currentTriageId();
+  if (triageId) await patientIntake.cancel(triageId);
+  await clearDemoTriageId();
+  redirect("/paciente");
 }
 
 export async function saveIdentificationAction(_previous: IntakeActionState, formData: FormData): Promise<IntakeActionState> {

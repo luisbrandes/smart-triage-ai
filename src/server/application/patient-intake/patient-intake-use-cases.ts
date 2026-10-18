@@ -12,6 +12,14 @@ export async function startNewPatientDemo(repository: PatientIntakeRepository, p
   return repository.startNewDemo(previousTriageId);
 }
 
+export async function requestPatientRecollection(repository: PatientIntakeRepository, triageId: string): Promise<void> {
+  return repository.requestRecollection(triageId);
+}
+
+export async function cancelPatientTriage(repository: PatientIntakeRepository, triageId: string): Promise<void> {
+  return repository.cancelTriage(triageId);
+}
+
 export async function getPatientIntakeSession(repository: PatientIntakeRepository, triageId: string): Promise<PatientIntakeSession | null> {
   return repository.findSession(triageId);
 }

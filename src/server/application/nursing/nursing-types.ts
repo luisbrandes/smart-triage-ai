@@ -55,6 +55,9 @@ export type NursingCollectionAttemptDto = {
   origin: "MANUAL" | "SIMULATED_DEVICE" | "PHYSICAL_DEVICE";
   status: string;
   startedAt: Date;
+  completedAt: Date | null;
+  current: boolean;
+  physicalReading: { temperature: number; weight: number | null; height: number | null; receivedAt: Date } | null;
   readings: { type: "HEART_RATE" | "SPO2"; value: number; unit: string; accepted: boolean }[];
 };
 

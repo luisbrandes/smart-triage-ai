@@ -245,6 +245,7 @@ export type AnalysisRunWhereInput = {
   triage?: Prisma.XOR<Prisma.TriageScalarRelationFilter, Prisma.TriageWhereInput>
   ruleSetVersion?: Prisma.XOR<Prisma.RuleSetVersionScalarRelationFilter, Prisma.RuleSetVersionWhereInput>
   recommendation?: Prisma.XOR<Prisma.AnalysisRecommendationNullableScalarRelationFilter, Prisma.AnalysisRecommendationWhereInput> | null
+  aiSuggestion?: Prisma.XOR<Prisma.AiSuggestionNullableScalarRelationFilter, Prisma.AiSuggestionWhereInput> | null
 }
 
 export type AnalysisRunOrderByWithRelationInput = {
@@ -264,6 +265,7 @@ export type AnalysisRunOrderByWithRelationInput = {
   triage?: Prisma.TriageOrderByWithRelationInput
   ruleSetVersion?: Prisma.RuleSetVersionOrderByWithRelationInput
   recommendation?: Prisma.AnalysisRecommendationOrderByWithRelationInput
+  aiSuggestion?: Prisma.AiSuggestionOrderByWithRelationInput
 }
 
 export type AnalysisRunWhereUniqueInput = Prisma.AtLeast<{
@@ -287,6 +289,7 @@ export type AnalysisRunWhereUniqueInput = Prisma.AtLeast<{
   triage?: Prisma.XOR<Prisma.TriageScalarRelationFilter, Prisma.TriageWhereInput>
   ruleSetVersion?: Prisma.XOR<Prisma.RuleSetVersionScalarRelationFilter, Prisma.RuleSetVersionWhereInput>
   recommendation?: Prisma.XOR<Prisma.AnalysisRecommendationNullableScalarRelationFilter, Prisma.AnalysisRecommendationWhereInput> | null
+  aiSuggestion?: Prisma.XOR<Prisma.AiSuggestionNullableScalarRelationFilter, Prisma.AiSuggestionWhereInput> | null
 }, "id" | "triageId_runType_ruleSetVersionId_inputFingerprint">
 
 export type AnalysisRunOrderByWithAggregationInput = {
@@ -342,6 +345,7 @@ export type AnalysisRunCreateInput = {
   triage: Prisma.TriageCreateNestedOneWithoutAnalysisRunsInput
   ruleSetVersion: Prisma.RuleSetVersionCreateNestedOneWithoutAnalysisRunsInput
   recommendation?: Prisma.AnalysisRecommendationCreateNestedOneWithoutAnalysisRunInput
+  aiSuggestion?: Prisma.AiSuggestionCreateNestedOneWithoutAnalysisRunInput
 }
 
 export type AnalysisRunUncheckedCreateInput = {
@@ -359,6 +363,7 @@ export type AnalysisRunUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   recommendation?: Prisma.AnalysisRecommendationUncheckedCreateNestedOneWithoutAnalysisRunInput
+  aiSuggestion?: Prisma.AiSuggestionUncheckedCreateNestedOneWithoutAnalysisRunInput
 }
 
 export type AnalysisRunUpdateInput = {
@@ -376,6 +381,7 @@ export type AnalysisRunUpdateInput = {
   triage?: Prisma.TriageUpdateOneRequiredWithoutAnalysisRunsNestedInput
   ruleSetVersion?: Prisma.RuleSetVersionUpdateOneRequiredWithoutAnalysisRunsNestedInput
   recommendation?: Prisma.AnalysisRecommendationUpdateOneWithoutAnalysisRunNestedInput
+  aiSuggestion?: Prisma.AiSuggestionUpdateOneWithoutAnalysisRunNestedInput
 }
 
 export type AnalysisRunUncheckedUpdateInput = {
@@ -393,6 +399,7 @@ export type AnalysisRunUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recommendation?: Prisma.AnalysisRecommendationUncheckedUpdateOneWithoutAnalysisRunNestedInput
+  aiSuggestion?: Prisma.AiSuggestionUncheckedUpdateOneWithoutAnalysisRunNestedInput
 }
 
 export type AnalysisRunCreateManyInput = {
@@ -601,6 +608,20 @@ export type EnumAnalysisRunStatusFieldUpdateOperationsInput = {
   set?: $Enums.AnalysisRunStatus
 }
 
+export type AnalysisRunCreateNestedOneWithoutAiSuggestionInput = {
+  create?: Prisma.XOR<Prisma.AnalysisRunCreateWithoutAiSuggestionInput, Prisma.AnalysisRunUncheckedCreateWithoutAiSuggestionInput>
+  connectOrCreate?: Prisma.AnalysisRunCreateOrConnectWithoutAiSuggestionInput
+  connect?: Prisma.AnalysisRunWhereUniqueInput
+}
+
+export type AnalysisRunUpdateOneRequiredWithoutAiSuggestionNestedInput = {
+  create?: Prisma.XOR<Prisma.AnalysisRunCreateWithoutAiSuggestionInput, Prisma.AnalysisRunUncheckedCreateWithoutAiSuggestionInput>
+  connectOrCreate?: Prisma.AnalysisRunCreateOrConnectWithoutAiSuggestionInput
+  upsert?: Prisma.AnalysisRunUpsertWithoutAiSuggestionInput
+  connect?: Prisma.AnalysisRunWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AnalysisRunUpdateToOneWithWhereWithoutAiSuggestionInput, Prisma.AnalysisRunUpdateWithoutAiSuggestionInput>, Prisma.AnalysisRunUncheckedUpdateWithoutAiSuggestionInput>
+}
+
 export type AnalysisRunCreateNestedOneWithoutRecommendationInput = {
   create?: Prisma.XOR<Prisma.AnalysisRunCreateWithoutRecommendationInput, Prisma.AnalysisRunUncheckedCreateWithoutRecommendationInput>
   connectOrCreate?: Prisma.AnalysisRunCreateOrConnectWithoutRecommendationInput
@@ -629,6 +650,7 @@ export type AnalysisRunCreateWithoutTriageInput = {
   updatedAt?: Date | string
   ruleSetVersion: Prisma.RuleSetVersionCreateNestedOneWithoutAnalysisRunsInput
   recommendation?: Prisma.AnalysisRecommendationCreateNestedOneWithoutAnalysisRunInput
+  aiSuggestion?: Prisma.AiSuggestionCreateNestedOneWithoutAnalysisRunInput
 }
 
 export type AnalysisRunUncheckedCreateWithoutTriageInput = {
@@ -645,6 +667,7 @@ export type AnalysisRunUncheckedCreateWithoutTriageInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   recommendation?: Prisma.AnalysisRecommendationUncheckedCreateNestedOneWithoutAnalysisRunInput
+  aiSuggestion?: Prisma.AiSuggestionUncheckedCreateNestedOneWithoutAnalysisRunInput
 }
 
 export type AnalysisRunCreateOrConnectWithoutTriageInput = {
@@ -706,6 +729,7 @@ export type AnalysisRunCreateWithoutRuleSetVersionInput = {
   updatedAt?: Date | string
   triage: Prisma.TriageCreateNestedOneWithoutAnalysisRunsInput
   recommendation?: Prisma.AnalysisRecommendationCreateNestedOneWithoutAnalysisRunInput
+  aiSuggestion?: Prisma.AiSuggestionCreateNestedOneWithoutAnalysisRunInput
 }
 
 export type AnalysisRunUncheckedCreateWithoutRuleSetVersionInput = {
@@ -722,6 +746,7 @@ export type AnalysisRunUncheckedCreateWithoutRuleSetVersionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   recommendation?: Prisma.AnalysisRecommendationUncheckedCreateNestedOneWithoutAnalysisRunInput
+  aiSuggestion?: Prisma.AiSuggestionUncheckedCreateNestedOneWithoutAnalysisRunInput
 }
 
 export type AnalysisRunCreateOrConnectWithoutRuleSetVersionInput = {
@@ -750,6 +775,90 @@ export type AnalysisRunUpdateManyWithWhereWithoutRuleSetVersionInput = {
   data: Prisma.XOR<Prisma.AnalysisRunUpdateManyMutationInput, Prisma.AnalysisRunUncheckedUpdateManyWithoutRuleSetVersionInput>
 }
 
+export type AnalysisRunCreateWithoutAiSuggestionInput = {
+  id?: string
+  runType: $Enums.AnalysisRunType
+  status?: $Enums.AnalysisRunStatus
+  inputFingerprint?: string
+  startedAt?: Date | string
+  completedAt?: Date | string | null
+  failedAt?: Date | string | null
+  sanitizedErrorSummary?: string | null
+  sanitizedInputSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  triage: Prisma.TriageCreateNestedOneWithoutAnalysisRunsInput
+  ruleSetVersion: Prisma.RuleSetVersionCreateNestedOneWithoutAnalysisRunsInput
+  recommendation?: Prisma.AnalysisRecommendationCreateNestedOneWithoutAnalysisRunInput
+}
+
+export type AnalysisRunUncheckedCreateWithoutAiSuggestionInput = {
+  id?: string
+  triageId: string
+  ruleSetVersionId: string
+  runType: $Enums.AnalysisRunType
+  status?: $Enums.AnalysisRunStatus
+  inputFingerprint?: string
+  startedAt?: Date | string
+  completedAt?: Date | string | null
+  failedAt?: Date | string | null
+  sanitizedErrorSummary?: string | null
+  sanitizedInputSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  recommendation?: Prisma.AnalysisRecommendationUncheckedCreateNestedOneWithoutAnalysisRunInput
+}
+
+export type AnalysisRunCreateOrConnectWithoutAiSuggestionInput = {
+  where: Prisma.AnalysisRunWhereUniqueInput
+  create: Prisma.XOR<Prisma.AnalysisRunCreateWithoutAiSuggestionInput, Prisma.AnalysisRunUncheckedCreateWithoutAiSuggestionInput>
+}
+
+export type AnalysisRunUpsertWithoutAiSuggestionInput = {
+  update: Prisma.XOR<Prisma.AnalysisRunUpdateWithoutAiSuggestionInput, Prisma.AnalysisRunUncheckedUpdateWithoutAiSuggestionInput>
+  create: Prisma.XOR<Prisma.AnalysisRunCreateWithoutAiSuggestionInput, Prisma.AnalysisRunUncheckedCreateWithoutAiSuggestionInput>
+  where?: Prisma.AnalysisRunWhereInput
+}
+
+export type AnalysisRunUpdateToOneWithWhereWithoutAiSuggestionInput = {
+  where?: Prisma.AnalysisRunWhereInput
+  data: Prisma.XOR<Prisma.AnalysisRunUpdateWithoutAiSuggestionInput, Prisma.AnalysisRunUncheckedUpdateWithoutAiSuggestionInput>
+}
+
+export type AnalysisRunUpdateWithoutAiSuggestionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  runType?: Prisma.EnumAnalysisRunTypeFieldUpdateOperationsInput | $Enums.AnalysisRunType
+  status?: Prisma.EnumAnalysisRunStatusFieldUpdateOperationsInput | $Enums.AnalysisRunStatus
+  inputFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sanitizedErrorSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sanitizedInputSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  triage?: Prisma.TriageUpdateOneRequiredWithoutAnalysisRunsNestedInput
+  ruleSetVersion?: Prisma.RuleSetVersionUpdateOneRequiredWithoutAnalysisRunsNestedInput
+  recommendation?: Prisma.AnalysisRecommendationUpdateOneWithoutAnalysisRunNestedInput
+}
+
+export type AnalysisRunUncheckedUpdateWithoutAiSuggestionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  triageId?: Prisma.StringFieldUpdateOperationsInput | string
+  ruleSetVersionId?: Prisma.StringFieldUpdateOperationsInput | string
+  runType?: Prisma.EnumAnalysisRunTypeFieldUpdateOperationsInput | $Enums.AnalysisRunType
+  status?: Prisma.EnumAnalysisRunStatusFieldUpdateOperationsInput | $Enums.AnalysisRunStatus
+  inputFingerprint?: Prisma.StringFieldUpdateOperationsInput | string
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sanitizedErrorSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sanitizedInputSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  recommendation?: Prisma.AnalysisRecommendationUncheckedUpdateOneWithoutAnalysisRunNestedInput
+}
+
 export type AnalysisRunCreateWithoutRecommendationInput = {
   id?: string
   runType: $Enums.AnalysisRunType
@@ -764,6 +873,7 @@ export type AnalysisRunCreateWithoutRecommendationInput = {
   updatedAt?: Date | string
   triage: Prisma.TriageCreateNestedOneWithoutAnalysisRunsInput
   ruleSetVersion: Prisma.RuleSetVersionCreateNestedOneWithoutAnalysisRunsInput
+  aiSuggestion?: Prisma.AiSuggestionCreateNestedOneWithoutAnalysisRunInput
 }
 
 export type AnalysisRunUncheckedCreateWithoutRecommendationInput = {
@@ -780,6 +890,7 @@ export type AnalysisRunUncheckedCreateWithoutRecommendationInput = {
   sanitizedInputSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  aiSuggestion?: Prisma.AiSuggestionUncheckedCreateNestedOneWithoutAnalysisRunInput
 }
 
 export type AnalysisRunCreateOrConnectWithoutRecommendationInput = {
@@ -812,6 +923,7 @@ export type AnalysisRunUpdateWithoutRecommendationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   triage?: Prisma.TriageUpdateOneRequiredWithoutAnalysisRunsNestedInput
   ruleSetVersion?: Prisma.RuleSetVersionUpdateOneRequiredWithoutAnalysisRunsNestedInput
+  aiSuggestion?: Prisma.AiSuggestionUpdateOneWithoutAnalysisRunNestedInput
 }
 
 export type AnalysisRunUncheckedUpdateWithoutRecommendationInput = {
@@ -828,6 +940,7 @@ export type AnalysisRunUncheckedUpdateWithoutRecommendationInput = {
   sanitizedInputSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aiSuggestion?: Prisma.AiSuggestionUncheckedUpdateOneWithoutAnalysisRunNestedInput
 }
 
 export type AnalysisRunCreateManyTriageInput = {
@@ -859,6 +972,7 @@ export type AnalysisRunUpdateWithoutTriageInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ruleSetVersion?: Prisma.RuleSetVersionUpdateOneRequiredWithoutAnalysisRunsNestedInput
   recommendation?: Prisma.AnalysisRecommendationUpdateOneWithoutAnalysisRunNestedInput
+  aiSuggestion?: Prisma.AiSuggestionUpdateOneWithoutAnalysisRunNestedInput
 }
 
 export type AnalysisRunUncheckedUpdateWithoutTriageInput = {
@@ -875,6 +989,7 @@ export type AnalysisRunUncheckedUpdateWithoutTriageInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recommendation?: Prisma.AnalysisRecommendationUncheckedUpdateOneWithoutAnalysisRunNestedInput
+  aiSuggestion?: Prisma.AiSuggestionUncheckedUpdateOneWithoutAnalysisRunNestedInput
 }
 
 export type AnalysisRunUncheckedUpdateManyWithoutTriageInput = {
@@ -921,6 +1036,7 @@ export type AnalysisRunUpdateWithoutRuleSetVersionInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   triage?: Prisma.TriageUpdateOneRequiredWithoutAnalysisRunsNestedInput
   recommendation?: Prisma.AnalysisRecommendationUpdateOneWithoutAnalysisRunNestedInput
+  aiSuggestion?: Prisma.AiSuggestionUpdateOneWithoutAnalysisRunNestedInput
 }
 
 export type AnalysisRunUncheckedUpdateWithoutRuleSetVersionInput = {
@@ -937,6 +1053,7 @@ export type AnalysisRunUncheckedUpdateWithoutRuleSetVersionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recommendation?: Prisma.AnalysisRecommendationUncheckedUpdateOneWithoutAnalysisRunNestedInput
+  aiSuggestion?: Prisma.AiSuggestionUncheckedUpdateOneWithoutAnalysisRunNestedInput
 }
 
 export type AnalysisRunUncheckedUpdateManyWithoutRuleSetVersionInput = {
@@ -973,6 +1090,7 @@ export type AnalysisRunSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   triage?: boolean | Prisma.TriageDefaultArgs<ExtArgs>
   ruleSetVersion?: boolean | Prisma.RuleSetVersionDefaultArgs<ExtArgs>
   recommendation?: boolean | Prisma.AnalysisRun$recommendationArgs<ExtArgs>
+  aiSuggestion?: boolean | Prisma.AnalysisRun$aiSuggestionArgs<ExtArgs>
 }, ExtArgs["result"]["analysisRun"]>
 
 export type AnalysisRunSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1032,6 +1150,7 @@ export type AnalysisRunInclude<ExtArgs extends runtime.Types.Extensions.Internal
   triage?: boolean | Prisma.TriageDefaultArgs<ExtArgs>
   ruleSetVersion?: boolean | Prisma.RuleSetVersionDefaultArgs<ExtArgs>
   recommendation?: boolean | Prisma.AnalysisRun$recommendationArgs<ExtArgs>
+  aiSuggestion?: boolean | Prisma.AnalysisRun$aiSuggestionArgs<ExtArgs>
 }
 export type AnalysisRunIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   triage?: boolean | Prisma.TriageDefaultArgs<ExtArgs>
@@ -1048,6 +1167,7 @@ export type $AnalysisRunPayload<ExtArgs extends runtime.Types.Extensions.Interna
     triage: Prisma.$TriagePayload<ExtArgs>
     ruleSetVersion: Prisma.$RuleSetVersionPayload<ExtArgs>
     recommendation: Prisma.$AnalysisRecommendationPayload<ExtArgs> | null
+    aiSuggestion: Prisma.$AiSuggestionPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1460,6 +1580,7 @@ export interface Prisma__AnalysisRunClient<T, Null = never, ExtArgs extends runt
   triage<T extends Prisma.TriageDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TriageDefaultArgs<ExtArgs>>): Prisma.Prisma__TriageClient<runtime.Types.Result.GetResult<Prisma.$TriagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ruleSetVersion<T extends Prisma.RuleSetVersionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RuleSetVersionDefaultArgs<ExtArgs>>): Prisma.Prisma__RuleSetVersionClient<runtime.Types.Result.GetResult<Prisma.$RuleSetVersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   recommendation<T extends Prisma.AnalysisRun$recommendationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AnalysisRun$recommendationArgs<ExtArgs>>): Prisma.Prisma__AnalysisRecommendationClient<runtime.Types.Result.GetResult<Prisma.$AnalysisRecommendationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  aiSuggestion<T extends Prisma.AnalysisRun$aiSuggestionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AnalysisRun$aiSuggestionArgs<ExtArgs>>): Prisma.Prisma__AiSuggestionClient<runtime.Types.Result.GetResult<Prisma.$AiSuggestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1919,6 +2040,25 @@ export type AnalysisRun$recommendationArgs<ExtArgs extends runtime.Types.Extensi
    */
   include?: Prisma.AnalysisRecommendationInclude<ExtArgs> | null
   where?: Prisma.AnalysisRecommendationWhereInput
+}
+
+/**
+ * AnalysisRun.aiSuggestion
+ */
+export type AnalysisRun$aiSuggestionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiSuggestion
+   */
+  select?: Prisma.AiSuggestionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiSuggestion
+   */
+  omit?: Prisma.AiSuggestionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiSuggestionInclude<ExtArgs> | null
+  where?: Prisma.AiSuggestionWhereInput
 }
 
 /**

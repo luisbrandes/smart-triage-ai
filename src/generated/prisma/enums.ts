@@ -190,3 +190,30 @@ export const RuleSetStatus = {
 } as const
 
 export type RuleSetStatus = (typeof RuleSetStatus)[keyof typeof RuleSetStatus]
+
+
+export const AiSuggestionStatus = {
+  COMPLETED: 'COMPLETED',
+  UNAVAILABLE: 'UNAVAILABLE'
+} as const
+
+export type AiSuggestionStatus = (typeof AiSuggestionStatus)[keyof typeof AiSuggestionStatus]
+
+
+export const AiSuggestedPriority = {
+  RED: 'RED',
+  YELLOW: 'YELLOW',
+  GREEN: 'GREEN',
+  BLUE: 'BLUE'
+} as const
+
+export type AiSuggestedPriority = (typeof AiSuggestedPriority)[keyof typeof AiSuggestedPriority]
+
+
+export const AiAttentionLevel = {
+  HIGH: 'HIGH',
+  MODERATE: 'MODERATE',
+  LOW: 'LOW'
+} as const
+
+export type AiAttentionLevel = (typeof AiAttentionLevel)[keyof typeof AiAttentionLevel]

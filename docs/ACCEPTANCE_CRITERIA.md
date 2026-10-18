@@ -109,3 +109,15 @@
 - [ ] Não existem módulos fora da V0 nem alegação de validação clínica, jurídica ou regulatória.
 
 O MVP só é apresentável quando todos os itens obrigatórios acima têm evidência reproduzível e os testes futuros definidos para o Marco 12 passam.
+
+## Recoleta física e sugestão experimental — evolução 2026-10
+
+- [x] Paciente pode solicitar uma recoleta mantendo a mesma triagem/paciente; cada leitura segue exigindo aceite explícito.
+- [x] Nova triagem cancela sessões técnicas anteriores ainda ativas, conserva o histórico e cria contexto novo.
+- [x] Leitura vinculada a sessão técnica cancelada é rejeitada; teste de integração foi adicionado.
+- [x] Painel mostra BPM/SpO₂ aceitos, temperatura real da `Reading` selecionada, horário e histórico; peso/altura aparecem quando presentes.
+- [x] Sugestão Groq é server-side, opcional e persistida por análise/coleta; não altera recomendação automática ou decisão humana.
+- [x] Erro/indisponibilidade do provedor resulta em status seguro e não bloqueia o atendimento.
+- [ ] Aplicar migration em banco isolado e executar testes de integração PostgreSQL.
+- [ ] Atualizar e validar no ESP32 a limpeza do display ao receber `IDLE` ou novo UUID.
+- [ ] Revisar privacidade/consentimento e validação clínica antes de qualquer uso com dados reais.

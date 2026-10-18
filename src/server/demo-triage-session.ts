@@ -18,3 +18,7 @@ export async function setDemoTriageId(triageId: string): Promise<void> {
     maxAge: 60 * 60 * 8,
   });
 }
+
+export async function clearDemoTriageId(): Promise<void> {
+  (await cookies()).delete(COOKIE_NAME);
+}

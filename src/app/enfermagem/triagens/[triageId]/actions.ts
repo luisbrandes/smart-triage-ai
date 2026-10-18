@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { NursingMutationConflictError } from "@/server/application/nursing/nursing-mutation-errors";
 import type { NursingMutationResult } from "@/server/application/nursing/nursing-mutation-types";
 import { nursing } from "@/server/nursing";
+import { aiSuggestion } from "@/server/ai-suggestion";
 import { getNursingSession } from "@/server/security/nursing-session";
 import { logServerOperation } from "@/server/observability/server-logger";
 import { randomUUID } from "node:crypto";
@@ -48,4 +49,16 @@ export async function requestRecollectionAction(triageId: string, _state: Nursin
 export async function referToCareAction(triageId: string, _state: NursingActionState, formData: FormData): Promise<NursingActionState> {
   void _state;
   return execute(triageId, (actor) => nursing.refer(triageId, { destination: formData.get("destination"), notes: formData.get("notes") }, actor));
+}
+
+export async function generateAiSuggestionAction(triageId: string): Promise<void> {
+  if (!validId(triageId)) return;
+  const session = await getNursingSession();
+  if (!session) return;
+  try {
+    await aiSuggestion.generate(triageId, session.actorReference);
+  } catch {
+    // Falhas da integração nunca impedem a decisão profissional.
+  }
+  revalidatePath(`/enfermagem/triagens/${triageId}`);
 }

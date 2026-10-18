@@ -51,8 +51,8 @@ describe("fila da enfermagem", () => {
       currentRecommendedPriority: "YELLOW",
       humanDecision: null, referral: null,
       collectionAttempts: [
-        { attemptNumber: 1, origin: "SIMULATED_DEVICE", status: "FAILED", startedAt: new Date("2026-01-01T08:12:00Z"), readings: [] },
-        { attemptNumber: 2, origin: "MANUAL", status: "COMPLETED", startedAt: new Date("2026-01-01T08:15:00Z"), readings: [{ type: "HEART_RATE", value: 80, unit: "bpm", accepted: true }, { type: "SPO2", value: 98, unit: "%", accepted: true }] },
+        { attemptNumber: 1, origin: "SIMULATED_DEVICE", status: "FAILED", startedAt: new Date("2026-01-01T08:12:00Z"), completedAt: null, current: false, physicalReading: null, readings: [] },
+        { attemptNumber: 2, origin: "MANUAL", status: "COMPLETED", startedAt: new Date("2026-01-01T08:15:00Z"), completedAt: new Date("2026-01-01T08:16:00Z"), current: true, physicalReading: null, readings: [{ type: "HEART_RATE", value: 80, unit: "bpm", accepted: true }, { type: "SPO2", value: 98, unit: "%", accepted: true }] },
       ],
       timeline: [{ label: "Triagem iniciada", occurredAt: new Date("2026-01-01T08:00:00Z") }],
     };

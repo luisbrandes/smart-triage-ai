@@ -440,6 +440,57 @@ export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonNullableFilter<$PrismaModel>
 }
 
+export type EnumAiSuggestionStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiSuggestionStatus | Prisma.EnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AiSuggestionStatus[] | Prisma.ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiSuggestionStatus[] | Prisma.ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiSuggestionStatusFilter<$PrismaModel> | $Enums.AiSuggestionStatus
+}
+
+export type EnumAiSuggestedPriorityNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiSuggestedPriority | Prisma.EnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AiSuggestedPriority[] | Prisma.ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AiSuggestedPriority[] | Prisma.ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAiSuggestedPriorityNullableFilter<$PrismaModel> | $Enums.AiSuggestedPriority | null
+}
+
+export type EnumAiAttentionLevelNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiAttentionLevel | Prisma.EnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AiAttentionLevel[] | Prisma.ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AiAttentionLevel[] | Prisma.ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAiAttentionLevelNullableFilter<$PrismaModel> | $Enums.AiAttentionLevel | null
+}
+
+export type EnumAiSuggestionStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiSuggestionStatus | Prisma.EnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AiSuggestionStatus[] | Prisma.ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiSuggestionStatus[] | Prisma.ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiSuggestionStatusWithAggregatesFilter<$PrismaModel> | $Enums.AiSuggestionStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiSuggestionStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiSuggestionStatusFilter<$PrismaModel>
+}
+
+export type EnumAiSuggestedPriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiSuggestedPriority | Prisma.EnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AiSuggestedPriority[] | Prisma.ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AiSuggestedPriority[] | Prisma.ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAiSuggestedPriorityNullableWithAggregatesFilter<$PrismaModel> | $Enums.AiSuggestedPriority | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiSuggestedPriorityNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiSuggestedPriorityNullableFilter<$PrismaModel>
+}
+
+export type EnumAiAttentionLevelNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiAttentionLevel | Prisma.EnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AiAttentionLevel[] | Prisma.ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AiAttentionLevel[] | Prisma.ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAiAttentionLevelNullableWithAggregatesFilter<$PrismaModel> | $Enums.AiAttentionLevel | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiAttentionLevelNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiAttentionLevelNullableFilter<$PrismaModel>
+}
+
 export type EnumRiskPriorityFilter<$PrismaModel = never> = {
   equals?: $Enums.RiskPriority | Prisma.EnumRiskPriorityFieldRefInput<$PrismaModel>
   in?: $Enums.RiskPriority[] | Prisma.ListEnumRiskPriorityFieldRefInput<$PrismaModel>
@@ -1047,6 +1098,57 @@ export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
   gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type NestedEnumAiSuggestionStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiSuggestionStatus | Prisma.EnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AiSuggestionStatus[] | Prisma.ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiSuggestionStatus[] | Prisma.ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiSuggestionStatusFilter<$PrismaModel> | $Enums.AiSuggestionStatus
+}
+
+export type NestedEnumAiSuggestedPriorityNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiSuggestedPriority | Prisma.EnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AiSuggestedPriority[] | Prisma.ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AiSuggestedPriority[] | Prisma.ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAiSuggestedPriorityNullableFilter<$PrismaModel> | $Enums.AiSuggestedPriority | null
+}
+
+export type NestedEnumAiAttentionLevelNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiAttentionLevel | Prisma.EnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AiAttentionLevel[] | Prisma.ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AiAttentionLevel[] | Prisma.ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAiAttentionLevelNullableFilter<$PrismaModel> | $Enums.AiAttentionLevel | null
+}
+
+export type NestedEnumAiSuggestionStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiSuggestionStatus | Prisma.EnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.AiSuggestionStatus[] | Prisma.ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AiSuggestionStatus[] | Prisma.ListEnumAiSuggestionStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAiSuggestionStatusWithAggregatesFilter<$PrismaModel> | $Enums.AiSuggestionStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiSuggestionStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiSuggestionStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumAiSuggestedPriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiSuggestedPriority | Prisma.EnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AiSuggestedPriority[] | Prisma.ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AiSuggestedPriority[] | Prisma.ListEnumAiSuggestedPriorityFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAiSuggestedPriorityNullableWithAggregatesFilter<$PrismaModel> | $Enums.AiSuggestedPriority | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiSuggestedPriorityNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiSuggestedPriorityNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumAiAttentionLevelNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AiAttentionLevel | Prisma.EnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AiAttentionLevel[] | Prisma.ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AiAttentionLevel[] | Prisma.ListEnumAiAttentionLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAiAttentionLevelNullableWithAggregatesFilter<$PrismaModel> | $Enums.AiAttentionLevel | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAiAttentionLevelNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAiAttentionLevelNullableFilter<$PrismaModel>
 }
 
 export type NestedEnumRiskPriorityFilter<$PrismaModel = never> = {

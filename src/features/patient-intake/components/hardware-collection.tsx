@@ -34,8 +34,8 @@ function ReadingValue({ label, value, unit }: { label: string; value: number | n
   return <div className="rounded-lg border border-border bg-surface-raised p-4"><p className="text-sm text-text-secondary">{label}</p><p className="mt-1 text-2xl font-semibold text-foreground">{value === null ? "—" : <>{value} <span className="text-base font-medium text-text-secondary">{unit}</span></>}</p></div>;
 }
 
-export function HardwareCollection({ deviceId }: { deviceId: string }) {
-  const storageKey = `smart-triage:device-session:${deviceId}`;
+export function HardwareCollection({ deviceId, triageId }: { deviceId: string; triageId: string }) {
+  const storageKey = `smart-triage:device-session:${triageId}:${deviceId}`;
   const [session, setSession] = useState<Session | null>(null);
   const [screenState, setScreenState] = useState<ScreenState>("STARTING");
   const [isCancelling, setIsCancelling] = useState(false);
@@ -65,8 +65,10 @@ export function HardwareCollection({ deviceId }: { deviceId: string }) {
       try {
         const storedSessionId = sessionStorage.getItem(storageKey);
         if (storedSessionId) {
-          const storedSession = await loadSession(storedSessionId);
-          if (storedSession.status === "ACTIVE") return;
+          try {
+            const storedSession = await loadSession(storedSessionId);
+            if (storedSession.status === "ACTIVE") return;
+          } catch { /* Uma sessão antiga não deve impedir uma nova coleta. */ }
           sessionStorage.removeItem(storageKey);
         }
         await startCollection();
@@ -116,7 +118,7 @@ export function HardwareCollection({ deviceId }: { deviceId: string }) {
   };
   const currentCopy = copy[screenState];
   const acceptanceControls = screenState === "COMPLETED" && session && session.readings.length > 0
-    ? <form action={acceptReading} className="space-y-3"><input type="hidden" name="deviceCollectionSessionId" value={session.sessionId} /><label className="block text-sm font-medium text-foreground">Selecione a leitura que deseja confirmar<select className="mt-1 block min-h-11 w-full rounded-md border border-border bg-surface px-3 text-foreground" name="readingId" onChange={(event) => { setSelectedReadingId(event.target.value); }} required value={selectedReadingId}><option value="">Selecione uma leitura</option>{session.readings.map((reading, index) => <option key={reading.readingId} value={reading.readingId}>Leitura {index + 1}</option>)}</select></label><button className="min-h-11 rounded-md bg-primary px-4 text-sm font-semibold text-primary-contrast disabled:opacity-60" disabled={isAccepting || !selectedReadingId} type="submit">{isAccepting ? "Confirmando coleta…" : "Confirmar coleta"}</button>{acceptanceState.message && <p aria-live="polite" className="text-sm text-danger">{acceptanceState.message}</p>}</form>
+    ? <div className="space-y-3"><form action={acceptReading} className="space-y-3"><input type="hidden" name="deviceCollectionSessionId" value={session.sessionId} /><label className="block text-sm font-medium text-foreground">Selecione a leitura que deseja confirmar<select className="mt-1 block min-h-11 w-full rounded-md border border-border bg-surface px-3 text-foreground" name="readingId" onChange={(event) => { setSelectedReadingId(event.target.value); }} required value={selectedReadingId}><option value="">Selecione uma leitura</option>{session.readings.map((reading, index) => <option key={reading.readingId} value={reading.readingId}>Leitura {index + 1}</option>)}</select></label><button className="min-h-11 rounded-md bg-primary px-4 text-sm font-semibold text-primary-contrast disabled:opacity-60" disabled={isAccepting || !selectedReadingId} type="submit">{isAccepting ? "Confirmando coleta…" : "Confirmar coleta"}</button>{acceptanceState.message && <p aria-live="polite" className="text-sm text-danger">{acceptanceState.message}</p>}</form><button className="min-h-11 rounded-md border border-primary px-4 text-sm font-semibold text-primary" onClick={() => { void restartCollection(); }} type="button">Fazer nova coleta para esta pessoa</button></div>
     : null;
 
   return <div className="space-y-5"><section aria-live="polite" className="rounded-lg border border-border bg-surface p-5 shadow-soft"><div className="flex flex-wrap items-start justify-between gap-4"><div><h2 className="text-xl font-semibold">{currentCopy.title}</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-text-secondary">{currentCopy.description}</p></div><StatusIndicator status={currentCopy.indicator} label={screenState === "MEASURING" ? "Medindo" : undefined} /></div>{(screenState === "STARTING" || screenState === "WAITING" || screenState === "MEASURING") && <div className="mt-5 flex items-center gap-3 rounded-md bg-secondary p-4 text-sm text-text-secondary"><Icon name="pulse" className="text-primary" /><span>Permaneça próximo ao equipamento durante a coleta.</span></div>}</section><section aria-label="Valores recebidos" className="grid gap-3 sm:grid-cols-3"><ReadingValue label="Frequência cardíaca" unit="bpm" value={latest?.bpm ?? null} /><ReadingValue label="Saturação de oxigênio" unit="%" value={latest?.spo2 ?? null} /><ReadingValue label="Temperatura" unit="°C" value={latest?.temperatura ?? null} /></section>{acceptanceControls}{session?.status === "ACTIVE" && <button className="min-h-11 rounded-md border border-danger px-4 text-sm font-semibold text-danger transition-colors hover:bg-danger/10 disabled:opacity-60" disabled={isCancelling} onClick={() => { void cancelCollection(); }} type="button">{isCancelling ? "Cancelando…" : "Cancelar coleta"}</button>}{(screenState === "CANCELLED" || screenState === "ERROR") && <button className="min-h-11 rounded-md bg-primary px-4 text-sm font-semibold text-primary-contrast disabled:opacity-60" disabled={isCancelling} onClick={() => { void restartCollection(); }} type="button">Tentar nova coleta</button>}</div>;

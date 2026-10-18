@@ -2,11 +2,13 @@ import { describe, expect, it } from "vitest";
 
 import type { PatientIntakeRepository } from "@/server/application/patient-intake/patient-intake-repository";
 import type { AnamnesisInput, ConsentInput, IdentificationInput, PatientIntakeSession } from "@/server/application/patient-intake/patient-intake-types";
-import { completePatientAnamnesis, startNewPatientDemo } from "@/server/application/patient-intake/patient-intake-use-cases";
+import { cancelPatientTriage, completePatientAnamnesis, requestPatientRecollection, startNewPatientDemo } from "@/server/application/patient-intake/patient-intake-use-cases";
 
 class IntakeRepositorySpy implements PatientIntakeRepository {
   completedInput: AnamnesisInput | null = null;
   previousTriageId: string | null = null;
+  recollectionTriageId: string | null = null;
+  cancelledTriageId: string | null = null;
 
   async startTriage(): Promise<PatientIntakeSession> {
     return { triageId: "demo-triage", patientId: null, status: "IDENTIFICATION_IN_PROGRESS" };
@@ -15,6 +17,8 @@ class IntakeRepositorySpy implements PatientIntakeRepository {
     this.previousTriageId = previousTriageId;
     return { triageId: "new-demo-triage", patientId: null, status: "IDENTIFICATION_IN_PROGRESS" };
   }
+  async requestRecollection(triageId: string): Promise<void> { this.recollectionTriageId = triageId; }
+  async cancelTriage(triageId: string): Promise<void> { this.cancelledTriageId = triageId; }
   async findSession(): Promise<PatientIntakeSession | null> { return null; }
   async saveIdentification(triageId: string, input: IdentificationInput): Promise<void> { void triageId; void input; }
   async acceptConsent(triageId: string, input: ConsentInput): Promise<void> { void triageId; void input; }
@@ -49,4 +53,16 @@ describe("nova demonstração", () => {
     expect(result.triageId).toBe("new-demo-triage");
     expect(result.triageId).not.toBe(repository.previousTriageId);
   });
+});
+
+it("solicita nova coleta para a mesma triagem", async () => {
+  const repository = new IntakeRepositorySpy();
+  await requestPatientRecollection(repository, "same-triage");
+  expect(repository.recollectionTriageId).toBe("same-triage");
+});
+
+it("encaminha o encerramento da triagem ao repository", async () => {
+  const repository = new IntakeRepositorySpy();
+  await cancelPatientTriage(repository, "cancelled-triage");
+  expect(repository.cancelledTriageId).toBe("cancelled-triage");
 });

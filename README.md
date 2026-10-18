@@ -55,6 +55,10 @@ O painel do paciente usa `/paciente/coleta` para iniciar e acompanhar a coleta f
 
 Para homologação remota, o ESP32 usa HTTPS com token individual e consulta `GET /api/device/session/current` para descobrir a sessão criada pelo site. Configuração da Vercel, provisionamento e contrato do firmware estão em `docs/VERCEL_REMOTE_HARDWARE_SETUP.md`, `docs/ESP32_API_CONTRACT.md` e `docs/ESP32_FIRMWARE_IMPLEMENTATION_PROMPT.md`.
 
+Recoleta da mesma pessoa, limpeza de sessão ao iniciar outra triagem e sugestão experimental do Groq para a enfermagem estão descritas em `docs/PHYSICAL_RECOLLECTION_AND_AI.md`. A IA é opcional, acionada pela enfermagem, não modifica a recomendação do sistema nem a decisão humana; não use dados reais nesta demonstração.
+
+O roteiro de homologação do hardware está em `docs/ESP32_FINAL_TEST_CHECKLIST.md`.
+
 ## Fronteira de hardware
 
 Sinais vitais vinculados à triagem são obtidos por um `HardwareGateway` comum. Na V0, ele terá conceitualmente um adaptador de entrada manual e outro de dispositivo simulado, ambos produzindo medições normalizadas com origem explícita. Fora da prova de conceito HTTP de recepção técnica, não existe comunicação de coleta vinculada à triagem, firmware, pareamento ou integração real; timeout, falha e fallback manual são apenas contratos documentados.
@@ -66,6 +70,7 @@ Sinais vitais vinculados à triagem são obtidos por um `HardwareGateway` comum.
 - Preferências e limites de acessibilidade: `docs/ACCESSIBILITY.md`.
 - Fronteiras técnicas: `docs/ANALYSIS_ENGINE.md`, `docs/HARDWARE_BOUNDARY.md`, `docs/ARCHITECTURE.md`.
 - Governança: `docs/SECURITY_AND_PRIVACY.md`, `docs/ENGINEERING_RULES.md`, `docs/ACCEPTANCE_CRITERIA.md`.
+- Recoleta física, IA experimental e prompt de ajuste do firmware: `docs/PHYSICAL_RECOLLECTION_AND_AI.md`, `docs/ESP32_NEW_TRIAGE_RESET_PROMPT.md` e ADR 0023.
 - Execução futura: `docs/IMPLEMENTATION_PLAN.md`, `docs/GLOSSARY.md` e `docs/decisions/`.
 - Experimento controlado com 10 pacientes fictícios e 50 triagens: `docs/SIMULATION_EXPERIMENT.md`.
 

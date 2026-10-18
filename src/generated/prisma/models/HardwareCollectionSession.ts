@@ -305,6 +305,7 @@ export type HardwareCollectionSessionWhereInput = {
   sourceDeviceCollectionSession?: Prisma.XOR<Prisma.DeviceCollectionSessionNullableScalarRelationFilter, Prisma.DeviceCollectionSessionWhereInput> | null
   measurements?: Prisma.VitalSignMeasurementListRelationFilter
   errors?: Prisma.HardwareErrorListRelationFilter
+  aiSuggestions?: Prisma.AiSuggestionListRelationFilter
 }
 
 export type HardwareCollectionSessionOrderByWithRelationInput = {
@@ -329,6 +330,7 @@ export type HardwareCollectionSessionOrderByWithRelationInput = {
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionOrderByWithRelationInput
   measurements?: Prisma.VitalSignMeasurementOrderByRelationAggregateInput
   errors?: Prisma.HardwareErrorOrderByRelationAggregateInput
+  aiSuggestions?: Prisma.AiSuggestionOrderByRelationAggregateInput
 }
 
 export type HardwareCollectionSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -357,6 +359,7 @@ export type HardwareCollectionSessionWhereUniqueInput = Prisma.AtLeast<{
   sourceDeviceCollectionSession?: Prisma.XOR<Prisma.DeviceCollectionSessionNullableScalarRelationFilter, Prisma.DeviceCollectionSessionWhereInput> | null
   measurements?: Prisma.VitalSignMeasurementListRelationFilter
   errors?: Prisma.HardwareErrorListRelationFilter
+  aiSuggestions?: Prisma.AiSuggestionListRelationFilter
 }, "id" | "sourceDeviceCollectionSessionId" | "triageId_attemptNumber">
 
 export type HardwareCollectionSessionOrderByWithAggregationInput = {
@@ -424,6 +427,7 @@ export type HardwareCollectionSessionCreateInput = {
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionCreateNestedOneWithoutClinicalCollectionSessionsInput
   measurements?: Prisma.VitalSignMeasurementCreateNestedManyWithoutCollectionSessionInput
   errors?: Prisma.HardwareErrorCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionUncheckedCreateInput = {
@@ -445,6 +449,7 @@ export type HardwareCollectionSessionUncheckedCreateInput = {
   updatedAt?: Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedCreateNestedManyWithoutCollectionSessionInput
   errors?: Prisma.HardwareErrorUncheckedCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionUpdateInput = {
@@ -466,6 +471,7 @@ export type HardwareCollectionSessionUpdateInput = {
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionUpdateOneWithoutClinicalCollectionSessionsNestedInput
   measurements?: Prisma.VitalSignMeasurementUpdateManyWithoutCollectionSessionNestedInput
   errors?: Prisma.HardwareErrorUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateInput = {
@@ -487,6 +493,7 @@ export type HardwareCollectionSessionUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedUpdateManyWithoutCollectionSessionNestedInput
   errors?: Prisma.HardwareErrorUncheckedUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionCreateManyInput = {
@@ -551,6 +558,11 @@ export type HardwareCollectionSessionListRelationFilter = {
 
 export type HardwareCollectionSessionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type HardwareCollectionSessionScalarRelationFilter = {
+  is?: Prisma.HardwareCollectionSessionWhereInput
+  isNot?: Prisma.HardwareCollectionSessionWhereInput
 }
 
 export type HardwareCollectionSessionTriageIdAttemptNumberCompoundUniqueInput = {
@@ -621,11 +633,6 @@ export type HardwareCollectionSessionSumOrderByAggregateInput = {
   attemptNumber?: Prisma.SortOrder
 }
 
-export type HardwareCollectionSessionScalarRelationFilter = {
-  is?: Prisma.HardwareCollectionSessionWhereInput
-  isNot?: Prisma.HardwareCollectionSessionWhereInput
-}
-
 export type HardwareCollectionSessionCreateNestedManyWithoutTriageInput = {
   create?: Prisma.XOR<Prisma.HardwareCollectionSessionCreateWithoutTriageInput, Prisma.HardwareCollectionSessionUncheckedCreateWithoutTriageInput> | Prisma.HardwareCollectionSessionCreateWithoutTriageInput[] | Prisma.HardwareCollectionSessionUncheckedCreateWithoutTriageInput[]
   connectOrCreate?: Prisma.HardwareCollectionSessionCreateOrConnectWithoutTriageInput | Prisma.HardwareCollectionSessionCreateOrConnectWithoutTriageInput[]
@@ -666,6 +673,20 @@ export type HardwareCollectionSessionUncheckedUpdateManyWithoutTriageNestedInput
   update?: Prisma.HardwareCollectionSessionUpdateWithWhereUniqueWithoutTriageInput | Prisma.HardwareCollectionSessionUpdateWithWhereUniqueWithoutTriageInput[]
   updateMany?: Prisma.HardwareCollectionSessionUpdateManyWithWhereWithoutTriageInput | Prisma.HardwareCollectionSessionUpdateManyWithWhereWithoutTriageInput[]
   deleteMany?: Prisma.HardwareCollectionSessionScalarWhereInput | Prisma.HardwareCollectionSessionScalarWhereInput[]
+}
+
+export type HardwareCollectionSessionCreateNestedOneWithoutAiSuggestionsInput = {
+  create?: Prisma.XOR<Prisma.HardwareCollectionSessionCreateWithoutAiSuggestionsInput, Prisma.HardwareCollectionSessionUncheckedCreateWithoutAiSuggestionsInput>
+  connectOrCreate?: Prisma.HardwareCollectionSessionCreateOrConnectWithoutAiSuggestionsInput
+  connect?: Prisma.HardwareCollectionSessionWhereUniqueInput
+}
+
+export type HardwareCollectionSessionUpdateOneRequiredWithoutAiSuggestionsNestedInput = {
+  create?: Prisma.XOR<Prisma.HardwareCollectionSessionCreateWithoutAiSuggestionsInput, Prisma.HardwareCollectionSessionUncheckedCreateWithoutAiSuggestionsInput>
+  connectOrCreate?: Prisma.HardwareCollectionSessionCreateOrConnectWithoutAiSuggestionsInput
+  upsert?: Prisma.HardwareCollectionSessionUpsertWithoutAiSuggestionsInput
+  connect?: Prisma.HardwareCollectionSessionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.HardwareCollectionSessionUpdateToOneWithWhereWithoutAiSuggestionsInput, Prisma.HardwareCollectionSessionUpdateWithoutAiSuggestionsInput>, Prisma.HardwareCollectionSessionUncheckedUpdateWithoutAiSuggestionsInput>
 }
 
 export type HardwareCollectionSessionCreateNestedManyWithoutDeviceInput = {
@@ -810,6 +831,7 @@ export type HardwareCollectionSessionCreateWithoutTriageInput = {
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionCreateNestedOneWithoutClinicalCollectionSessionsInput
   measurements?: Prisma.VitalSignMeasurementCreateNestedManyWithoutCollectionSessionInput
   errors?: Prisma.HardwareErrorCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionUncheckedCreateWithoutTriageInput = {
@@ -830,6 +852,7 @@ export type HardwareCollectionSessionUncheckedCreateWithoutTriageInput = {
   updatedAt?: Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedCreateNestedManyWithoutCollectionSessionInput
   errors?: Prisma.HardwareErrorUncheckedCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionCreateOrConnectWithoutTriageInput = {
@@ -880,6 +903,106 @@ export type HardwareCollectionSessionScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"HardwareCollectionSession"> | Date | string
 }
 
+export type HardwareCollectionSessionCreateWithoutAiSuggestionsInput = {
+  id?: string
+  origin: $Enums.CollectionOrigin
+  status?: $Enums.HardwareCollectionStatus
+  attemptNumber: number
+  startedAt?: Date | string
+  completedAt?: Date | string | null
+  failedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  sanitizedErrorSummary?: string | null
+  sanitizedMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  initiatedBy: $Enums.ActorType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  triage: Prisma.TriageCreateNestedOneWithoutCollectionSessionsInput
+  device?: Prisma.MedicalDeviceCreateNestedOneWithoutCollectionSessionsInput
+  sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionCreateNestedOneWithoutClinicalCollectionSessionsInput
+  measurements?: Prisma.VitalSignMeasurementCreateNestedManyWithoutCollectionSessionInput
+  errors?: Prisma.HardwareErrorCreateNestedManyWithoutCollectionSessionInput
+}
+
+export type HardwareCollectionSessionUncheckedCreateWithoutAiSuggestionsInput = {
+  id?: string
+  triageId: string
+  deviceId?: string | null
+  sourceDeviceCollectionSessionId?: string | null
+  origin: $Enums.CollectionOrigin
+  status?: $Enums.HardwareCollectionStatus
+  attemptNumber: number
+  startedAt?: Date | string
+  completedAt?: Date | string | null
+  failedAt?: Date | string | null
+  cancelledAt?: Date | string | null
+  sanitizedErrorSummary?: string | null
+  sanitizedMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  initiatedBy: $Enums.ActorType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  measurements?: Prisma.VitalSignMeasurementUncheckedCreateNestedManyWithoutCollectionSessionInput
+  errors?: Prisma.HardwareErrorUncheckedCreateNestedManyWithoutCollectionSessionInput
+}
+
+export type HardwareCollectionSessionCreateOrConnectWithoutAiSuggestionsInput = {
+  where: Prisma.HardwareCollectionSessionWhereUniqueInput
+  create: Prisma.XOR<Prisma.HardwareCollectionSessionCreateWithoutAiSuggestionsInput, Prisma.HardwareCollectionSessionUncheckedCreateWithoutAiSuggestionsInput>
+}
+
+export type HardwareCollectionSessionUpsertWithoutAiSuggestionsInput = {
+  update: Prisma.XOR<Prisma.HardwareCollectionSessionUpdateWithoutAiSuggestionsInput, Prisma.HardwareCollectionSessionUncheckedUpdateWithoutAiSuggestionsInput>
+  create: Prisma.XOR<Prisma.HardwareCollectionSessionCreateWithoutAiSuggestionsInput, Prisma.HardwareCollectionSessionUncheckedCreateWithoutAiSuggestionsInput>
+  where?: Prisma.HardwareCollectionSessionWhereInput
+}
+
+export type HardwareCollectionSessionUpdateToOneWithWhereWithoutAiSuggestionsInput = {
+  where?: Prisma.HardwareCollectionSessionWhereInput
+  data: Prisma.XOR<Prisma.HardwareCollectionSessionUpdateWithoutAiSuggestionsInput, Prisma.HardwareCollectionSessionUncheckedUpdateWithoutAiSuggestionsInput>
+}
+
+export type HardwareCollectionSessionUpdateWithoutAiSuggestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  origin?: Prisma.EnumCollectionOriginFieldUpdateOperationsInput | $Enums.CollectionOrigin
+  status?: Prisma.EnumHardwareCollectionStatusFieldUpdateOperationsInput | $Enums.HardwareCollectionStatus
+  attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sanitizedErrorSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sanitizedMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  initiatedBy?: Prisma.EnumActorTypeFieldUpdateOperationsInput | $Enums.ActorType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  triage?: Prisma.TriageUpdateOneRequiredWithoutCollectionSessionsNestedInput
+  device?: Prisma.MedicalDeviceUpdateOneWithoutCollectionSessionsNestedInput
+  sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionUpdateOneWithoutClinicalCollectionSessionsNestedInput
+  measurements?: Prisma.VitalSignMeasurementUpdateManyWithoutCollectionSessionNestedInput
+  errors?: Prisma.HardwareErrorUpdateManyWithoutCollectionSessionNestedInput
+}
+
+export type HardwareCollectionSessionUncheckedUpdateWithoutAiSuggestionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  triageId?: Prisma.StringFieldUpdateOperationsInput | string
+  deviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceDeviceCollectionSessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  origin?: Prisma.EnumCollectionOriginFieldUpdateOperationsInput | $Enums.CollectionOrigin
+  status?: Prisma.EnumHardwareCollectionStatusFieldUpdateOperationsInput | $Enums.HardwareCollectionStatus
+  attemptNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  failedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sanitizedErrorSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sanitizedMetadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  initiatedBy?: Prisma.EnumActorTypeFieldUpdateOperationsInput | $Enums.ActorType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  measurements?: Prisma.VitalSignMeasurementUncheckedUpdateManyWithoutCollectionSessionNestedInput
+  errors?: Prisma.HardwareErrorUncheckedUpdateManyWithoutCollectionSessionNestedInput
+}
+
 export type HardwareCollectionSessionCreateWithoutDeviceInput = {
   id?: string
   origin: $Enums.CollectionOrigin
@@ -898,6 +1021,7 @@ export type HardwareCollectionSessionCreateWithoutDeviceInput = {
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionCreateNestedOneWithoutClinicalCollectionSessionsInput
   measurements?: Prisma.VitalSignMeasurementCreateNestedManyWithoutCollectionSessionInput
   errors?: Prisma.HardwareErrorCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionUncheckedCreateWithoutDeviceInput = {
@@ -918,6 +1042,7 @@ export type HardwareCollectionSessionUncheckedCreateWithoutDeviceInput = {
   updatedAt?: Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedCreateNestedManyWithoutCollectionSessionInput
   errors?: Prisma.HardwareErrorUncheckedCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionCreateOrConnectWithoutDeviceInput = {
@@ -964,6 +1089,7 @@ export type HardwareCollectionSessionCreateWithoutSourceDeviceCollectionSessionI
   device?: Prisma.MedicalDeviceCreateNestedOneWithoutCollectionSessionsInput
   measurements?: Prisma.VitalSignMeasurementCreateNestedManyWithoutCollectionSessionInput
   errors?: Prisma.HardwareErrorCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionUncheckedCreateWithoutSourceDeviceCollectionSessionInput = {
@@ -984,6 +1110,7 @@ export type HardwareCollectionSessionUncheckedCreateWithoutSourceDeviceCollectio
   updatedAt?: Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedCreateNestedManyWithoutCollectionSessionInput
   errors?: Prisma.HardwareErrorUncheckedCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionCreateOrConnectWithoutSourceDeviceCollectionSessionInput = {
@@ -1030,6 +1157,7 @@ export type HardwareCollectionSessionCreateWithoutMeasurementsInput = {
   device?: Prisma.MedicalDeviceCreateNestedOneWithoutCollectionSessionsInput
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionCreateNestedOneWithoutClinicalCollectionSessionsInput
   errors?: Prisma.HardwareErrorCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionUncheckedCreateWithoutMeasurementsInput = {
@@ -1050,6 +1178,7 @@ export type HardwareCollectionSessionUncheckedCreateWithoutMeasurementsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   errors?: Prisma.HardwareErrorUncheckedCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionCreateOrConnectWithoutMeasurementsInput = {
@@ -1086,6 +1215,7 @@ export type HardwareCollectionSessionUpdateWithoutMeasurementsInput = {
   device?: Prisma.MedicalDeviceUpdateOneWithoutCollectionSessionsNestedInput
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionUpdateOneWithoutClinicalCollectionSessionsNestedInput
   errors?: Prisma.HardwareErrorUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateWithoutMeasurementsInput = {
@@ -1106,6 +1236,7 @@ export type HardwareCollectionSessionUncheckedUpdateWithoutMeasurementsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   errors?: Prisma.HardwareErrorUncheckedUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionCreateWithoutErrorsInput = {
@@ -1126,6 +1257,7 @@ export type HardwareCollectionSessionCreateWithoutErrorsInput = {
   device?: Prisma.MedicalDeviceCreateNestedOneWithoutCollectionSessionsInput
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionCreateNestedOneWithoutClinicalCollectionSessionsInput
   measurements?: Prisma.VitalSignMeasurementCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionUncheckedCreateWithoutErrorsInput = {
@@ -1146,6 +1278,7 @@ export type HardwareCollectionSessionUncheckedCreateWithoutErrorsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedCreateNestedManyWithoutCollectionSessionInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedCreateNestedManyWithoutCollectionSessionInput
 }
 
 export type HardwareCollectionSessionCreateOrConnectWithoutErrorsInput = {
@@ -1182,6 +1315,7 @@ export type HardwareCollectionSessionUpdateWithoutErrorsInput = {
   device?: Prisma.MedicalDeviceUpdateOneWithoutCollectionSessionsNestedInput
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionUpdateOneWithoutClinicalCollectionSessionsNestedInput
   measurements?: Prisma.VitalSignMeasurementUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateWithoutErrorsInput = {
@@ -1202,6 +1336,7 @@ export type HardwareCollectionSessionUncheckedUpdateWithoutErrorsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionCreateManyTriageInput = {
@@ -1240,6 +1375,7 @@ export type HardwareCollectionSessionUpdateWithoutTriageInput = {
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionUpdateOneWithoutClinicalCollectionSessionsNestedInput
   measurements?: Prisma.VitalSignMeasurementUpdateManyWithoutCollectionSessionNestedInput
   errors?: Prisma.HardwareErrorUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateWithoutTriageInput = {
@@ -1260,6 +1396,7 @@ export type HardwareCollectionSessionUncheckedUpdateWithoutTriageInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedUpdateManyWithoutCollectionSessionNestedInput
   errors?: Prisma.HardwareErrorUncheckedUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateManyWithoutTriageInput = {
@@ -1316,6 +1453,7 @@ export type HardwareCollectionSessionUpdateWithoutDeviceInput = {
   sourceDeviceCollectionSession?: Prisma.DeviceCollectionSessionUpdateOneWithoutClinicalCollectionSessionsNestedInput
   measurements?: Prisma.VitalSignMeasurementUpdateManyWithoutCollectionSessionNestedInput
   errors?: Prisma.HardwareErrorUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateWithoutDeviceInput = {
@@ -1336,6 +1474,7 @@ export type HardwareCollectionSessionUncheckedUpdateWithoutDeviceInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedUpdateManyWithoutCollectionSessionNestedInput
   errors?: Prisma.HardwareErrorUncheckedUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateManyWithoutDeviceInput = {
@@ -1392,6 +1531,7 @@ export type HardwareCollectionSessionUpdateWithoutSourceDeviceCollectionSessionI
   device?: Prisma.MedicalDeviceUpdateOneWithoutCollectionSessionsNestedInput
   measurements?: Prisma.VitalSignMeasurementUpdateManyWithoutCollectionSessionNestedInput
   errors?: Prisma.HardwareErrorUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateWithoutSourceDeviceCollectionSessionInput = {
@@ -1412,6 +1552,7 @@ export type HardwareCollectionSessionUncheckedUpdateWithoutSourceDeviceCollectio
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   measurements?: Prisma.VitalSignMeasurementUncheckedUpdateManyWithoutCollectionSessionNestedInput
   errors?: Prisma.HardwareErrorUncheckedUpdateManyWithoutCollectionSessionNestedInput
+  aiSuggestions?: Prisma.AiSuggestionUncheckedUpdateManyWithoutCollectionSessionNestedInput
 }
 
 export type HardwareCollectionSessionUncheckedUpdateManyWithoutSourceDeviceCollectionSessionInput = {
@@ -1440,11 +1581,13 @@ export type HardwareCollectionSessionUncheckedUpdateManyWithoutSourceDeviceColle
 export type HardwareCollectionSessionCountOutputType = {
   measurements: number
   errors: number
+  aiSuggestions: number
 }
 
 export type HardwareCollectionSessionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   measurements?: boolean | HardwareCollectionSessionCountOutputTypeCountMeasurementsArgs
   errors?: boolean | HardwareCollectionSessionCountOutputTypeCountErrorsArgs
+  aiSuggestions?: boolean | HardwareCollectionSessionCountOutputTypeCountAiSuggestionsArgs
 }
 
 /**
@@ -1471,6 +1614,13 @@ export type HardwareCollectionSessionCountOutputTypeCountErrorsArgs<ExtArgs exte
   where?: Prisma.HardwareErrorWhereInput
 }
 
+/**
+ * HardwareCollectionSessionCountOutputType without action
+ */
+export type HardwareCollectionSessionCountOutputTypeCountAiSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AiSuggestionWhereInput
+}
+
 
 export type HardwareCollectionSessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1494,6 +1644,7 @@ export type HardwareCollectionSessionSelect<ExtArgs extends runtime.Types.Extens
   sourceDeviceCollectionSession?: boolean | Prisma.HardwareCollectionSession$sourceDeviceCollectionSessionArgs<ExtArgs>
   measurements?: boolean | Prisma.HardwareCollectionSession$measurementsArgs<ExtArgs>
   errors?: boolean | Prisma.HardwareCollectionSession$errorsArgs<ExtArgs>
+  aiSuggestions?: boolean | Prisma.HardwareCollectionSession$aiSuggestionsArgs<ExtArgs>
   _count?: boolean | Prisma.HardwareCollectionSessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["hardwareCollectionSession"]>
 
@@ -1567,6 +1718,7 @@ export type HardwareCollectionSessionInclude<ExtArgs extends runtime.Types.Exten
   sourceDeviceCollectionSession?: boolean | Prisma.HardwareCollectionSession$sourceDeviceCollectionSessionArgs<ExtArgs>
   measurements?: boolean | Prisma.HardwareCollectionSession$measurementsArgs<ExtArgs>
   errors?: boolean | Prisma.HardwareCollectionSession$errorsArgs<ExtArgs>
+  aiSuggestions?: boolean | Prisma.HardwareCollectionSession$aiSuggestionsArgs<ExtArgs>
   _count?: boolean | Prisma.HardwareCollectionSessionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type HardwareCollectionSessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1588,6 +1740,7 @@ export type $HardwareCollectionSessionPayload<ExtArgs extends runtime.Types.Exte
     sourceDeviceCollectionSession: Prisma.$DeviceCollectionSessionPayload<ExtArgs> | null
     measurements: Prisma.$VitalSignMeasurementPayload<ExtArgs>[]
     errors: Prisma.$HardwareErrorPayload<ExtArgs>[]
+    aiSuggestions: Prisma.$AiSuggestionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2005,6 +2158,7 @@ export interface Prisma__HardwareCollectionSessionClient<T, Null = never, ExtArg
   sourceDeviceCollectionSession<T extends Prisma.HardwareCollectionSession$sourceDeviceCollectionSessionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HardwareCollectionSession$sourceDeviceCollectionSessionArgs<ExtArgs>>): Prisma.Prisma__DeviceCollectionSessionClient<runtime.Types.Result.GetResult<Prisma.$DeviceCollectionSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   measurements<T extends Prisma.HardwareCollectionSession$measurementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HardwareCollectionSession$measurementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VitalSignMeasurementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   errors<T extends Prisma.HardwareCollectionSession$errorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HardwareCollectionSession$errorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HardwareErrorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiSuggestions<T extends Prisma.HardwareCollectionSession$aiSuggestionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.HardwareCollectionSession$aiSuggestionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiSuggestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2534,6 +2688,30 @@ export type HardwareCollectionSession$errorsArgs<ExtArgs extends runtime.Types.E
   take?: number
   skip?: number
   distinct?: Prisma.HardwareErrorScalarFieldEnum | Prisma.HardwareErrorScalarFieldEnum[]
+}
+
+/**
+ * HardwareCollectionSession.aiSuggestions
+ */
+export type HardwareCollectionSession$aiSuggestionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiSuggestion
+   */
+  select?: Prisma.AiSuggestionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiSuggestion
+   */
+  omit?: Prisma.AiSuggestionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiSuggestionInclude<ExtArgs> | null
+  where?: Prisma.AiSuggestionWhereInput
+  orderBy?: Prisma.AiSuggestionOrderByWithRelationInput | Prisma.AiSuggestionOrderByWithRelationInput[]
+  cursor?: Prisma.AiSuggestionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AiSuggestionScalarFieldEnum | Prisma.AiSuggestionScalarFieldEnum[]
 }
 
 /**

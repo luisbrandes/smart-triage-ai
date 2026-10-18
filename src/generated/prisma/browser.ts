@@ -73,6 +73,11 @@ export type RuleSetVersion = Prisma.RuleSetVersionModel
  */
 export type AnalysisRun = Prisma.AnalysisRunModel
 /**
+ * Model AiSuggestion
+ * 
+ */
+export type AiSuggestion = Prisma.AiSuggestionModel
+/**
  * Model AnalysisRecommendation
  * 
  */

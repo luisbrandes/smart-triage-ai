@@ -12,7 +12,7 @@ import { Icon } from "@/shared/ui/icon";
 import { routeForPatientIntakeStatus } from "@/server/application/patient-intake/patient-intake-routes";
 import { vitalSigns } from "@/server/vital-signs";
 import { queueTicket } from "@/server/queue-ticket";
-import { startNewDemoTriageAction } from "@/app/paciente/triagem/actions";
+import { requestPatientRecollectionAction, startNewDemoTriageAction } from "@/app/paciente/triagem/actions";
 
 const priorityPresentation = {
   GREEN: { label: "Verde — menor prioridade", badge: "success" as const },
@@ -68,6 +68,7 @@ export default async function CompletedPage() {
               )}
             </section>
           )}
+          {session.status === "AWAITING_NURSE_REVIEW" && <form action={requestPatientRecollectionAction} className="mt-7"><button className="min-h-12 rounded-md border border-primary px-5 font-semibold text-primary" type="submit">Fazer nova coleta para esta pessoa</button></form>}
           {ticket ? <form action={startNewDemoTriageAction} className="mt-7"><button className="min-h-12 rounded-md bg-primary px-5 font-semibold text-primary-contrast" type="submit">Iniciar nova triagem</button></form> : <ButtonLink className="mt-7" href={publicNavigation.home.href} variant="secondary">Voltar à página inicial</ButtonLink>}
         </Card>
       </div>
