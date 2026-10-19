@@ -68,12 +68,6 @@ export async function saveIdentificationAction(_previous: IntakeActionState, for
       birthDate: formData.get("birthDate"),
       sex: formData.get("sex") || undefined,
       documentReference: formData.get("documentReference") || undefined,
-      cpf: formData.get("cpf") || undefined,
-      phone: formData.get("phone") || undefined,
-      email: formData.get("email") || undefined,
-      motherName: formData.get("motherName") || undefined,
-      legalRepresentativeName: formData.get("legalRepresentativeName") || undefined,
-      legalRepresentativePhone: formData.get("legalRepresentativePhone") || undefined,
       hasHealthPlan: formData.get("hasHealthPlan"),
       planName: formData.get("planName") || undefined,
     });
@@ -95,15 +89,6 @@ export async function saveIdentificationAction(_previous: IntakeActionState, for
       ...(failure.code ? { errorCode: failure.code } : {}),
     });
 
-    if (failure.category === "duplicate_cpf") {
-      return {
-        errors: {
-          cpf: [
-            "Este CPF já está associado a um cadastro. Como o CPF é opcional, remova-o para continuar.",
-          ],
-        },
-      };
-    }
     return { message: "Não foi possível salvar a identificação. Tente novamente." };
   }
   redirect("/paciente/triagem/consentimento");

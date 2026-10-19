@@ -24,7 +24,7 @@ describe("IdentificationForm", () => {
     stateMock.pending = false;
   });
 
-  it("renderiza como alerta a mensagem de erro retornada pela Server Action", () => {
+  it("renders the server action error as an alert", () => {
     stateMock.value = { message: "Não foi possível salvar a identificação. Tente novamente.", errors: undefined };
 
     const html = renderToStaticMarkup(createElement(IdentificationForm));
@@ -33,17 +33,27 @@ describe("IdentificationForm", () => {
     expect(html).toContain("Não foi possível salvar a identificação. Tente novamente.");
   });
 
-  it("exibe a validação no campo informado pela Server Action", () => {
-    stateMock.value.errors = { cpf: ["Este CPF já está associado a um cadastro."] };
+  it("displays validation on the field returned by the server action", () => {
+    stateMock.value.errors = { displayName: ["Informe um nome fictício."] };
 
     const html = renderToStaticMarkup(createElement(IdentificationForm));
 
-    expect(html).toContain('id="cpf-error"');
-    expect(html).toContain("Este CPF já está associado a um cadastro.");
-    expect(html).not.toContain("Não foi possível salvar a identificação.");
+    expect(html).toContain('id="displayName-error"');
+    expect(html).toContain("Informe um nome fictício.");
   });
 
-  it("desabilita o envio e informa o carregamento enquanto a ação está pendente", () => {
+  it("keeps the original identification form fields", () => {
+    const html = renderToStaticMarkup(createElement(IdentificationForm));
+
+    for (const field of ["displayName", "birthDate", "sex", "documentReference", "hasHealthPlan", "planName"]) {
+      expect(html).toContain(`name="${field}"`);
+    }
+    for (const field of ["cpf", "phone", "email", "motherName", "legalRepresentativeName", "legalRepresentativePhone"]) {
+      expect(html).not.toContain(`name="${field}"`);
+    }
+  });
+
+  it("disables submission while the action is pending", () => {
     stateMock.pending = true;
 
     const html = renderToStaticMarkup(createElement(IdentificationForm));
@@ -53,7 +63,7 @@ describe("IdentificationForm", () => {
     expect(html).toContain(">Salvando…</button>");
   });
 
-  it("não mantém mensagem de erro quando o estado atual não contém erro", () => {
+  it("does not show an error when there is no current error state", () => {
     const html = renderToStaticMarkup(createElement(IdentificationForm));
 
     expect(html).not.toContain('role="alert"');

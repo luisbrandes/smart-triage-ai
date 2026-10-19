@@ -1,22 +1,9 @@
 import { z } from "zod";
 
 import { demoAnamnesis } from "@/demo/anamnesis";
-import { getAgeInYears } from "@/domain/patient-intake/age";
 
 const optionalShortText = z.string().trim().max(120, "Use no máximo 120 caracteres.").optional();
 const optionalLongText = z.string().trim().max(500, "Use no máximo 500 caracteres.").optional();
-const optionalContactText = z.string().trim().max(160, "Use no máximo 160 caracteres.").optional();
-
-function validCpf(value: string): boolean {
-  const digits = value.replace(/\D/g, "");
-  if (digits.length !== 11 || /^([0-9])\1+$/.test(digits)) return false;
-  const check = (length: number) => {
-    const sum = digits.slice(0, length).split("").reduce((total, digit, index) => total + Number(digit) * (length + 1 - index), 0);
-    const remainder = (sum * 10) % 11;
-    return (remainder === 10 ? 0 : remainder) === Number(digits[length]);
-  };
-  return check(9) && check(10);
-}
 
 export const identificationSchema = z.object({
   displayName: z.string().trim().min(2, "Informe um nome fictício.").max(100, "Use no máximo 100 caracteres."),
@@ -26,24 +13,9 @@ export const identificationSchema = z.object({
   }, "Informe uma data válida.").refine((value) => new Date(`${value}T00:00:00.000Z`).getTime() <= Date.now(), "A data não pode estar no futuro."),
   sex: optionalShortText,
   documentReference: optionalShortText,
-  cpf: z.string().trim().refine(validCpf, "Informe um CPF válido.").transform((value) => value.replace(/\D/g, "")).optional(),
-  phone: optionalContactText,
-  email: z.string().trim().email("Informe um e-mail válido.").max(160, "Use no máximo 160 caracteres.").optional(),
-  motherName: optionalShortText,
-  legalRepresentativeName: optionalShortText,
-  legalRepresentativePhone: optionalContactText,
   hasHealthPlan: z.enum(["yes", "no"], { message: "Informe se possui plano." }),
   planName: optionalShortText,
 }).superRefine((value, context) => {
-  if ((getAgeInYears(value.birthDate) ?? 18) < 18) {
-    if (!value.motherName) {
-      context.addIssue({ code: "custom", path: ["motherName"], message: "Informe o nome da mãe para pessoa menor de 18 anos." });
-    }
-    if (!value.legalRepresentativeName) {
-      context.addIssue({ code: "custom", path: ["legalRepresentativeName"], message: "Informe o nome do responsável legal para pessoa menor de 18 anos." });
-    }
-  }
-
   if (value.hasHealthPlan === "yes" && !value.planName) {
     context.addIssue({ code: "custom", path: ["planName"], message: "Informe um nome fictício para o plano." });
   }

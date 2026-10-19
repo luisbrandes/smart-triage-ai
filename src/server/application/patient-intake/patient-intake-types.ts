@@ -5,12 +5,6 @@ export type IdentificationInput = {
   birthDate: Date;
   sex?: string;
   documentReference?: string;
-  cpf?: string;
-  phone?: string;
-  email?: string;
-  motherName?: string;
-  legalRepresentativeName?: string;
-  legalRepresentativePhone?: string;
   hasHealthPlan: boolean;
   planName?: string;
 };

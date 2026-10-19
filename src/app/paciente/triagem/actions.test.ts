@@ -23,6 +23,12 @@ function identificationFormData(): FormData {
   formData.set("displayName", "Paciente Fictício");
   formData.set("birthDate", "1990-01-01");
   formData.set("hasHealthPlan", "no");
+  formData.set("cpf", "CPF-NAO-UTILIZADO");
+  formData.set("phone", "TELEFONE-NAO-UTILIZADO");
+  formData.set("email", "EMAIL-NAO-UTILIZADO");
+  formData.set("motherName", "MAE-NAO-UTILIZADA");
+  formData.set("legalRepresentativeName", "RESPONSAVEL-NAO-UTILIZADO");
+  formData.set("legalRepresentativePhone", "CONTATO-NAO-UTILIZADO");
   return formData;
 }
 
@@ -53,6 +59,14 @@ describe("saveIdentificationAction", () => {
 
     expect(mocks.saveIdentification).toHaveBeenCalledOnce();
     expect(mocks.redirect).toHaveBeenCalledWith("/paciente/triagem/consentimento");
+    expect(mocks.saveIdentification).toHaveBeenCalledWith("triage-test-id", {
+      displayName: "Paciente Fictício",
+      birthDate: "1990-01-01",
+      sex: undefined,
+      documentReference: undefined,
+      hasHealthPlan: "no",
+      planName: undefined,
+    });
     expect(console.info).toHaveBeenCalledWith("patient_identification_save_succeeded", { triageId: "triage-test-id" });
     expect(console.error).not.toHaveBeenCalled();
   });
@@ -70,28 +84,26 @@ describe("saveIdentificationAction", () => {
     expect(mocks.redirect).not.toHaveBeenCalled();
   });
 
-  it.each([
-    { target: ["cpf"] },
-    { driverAdapterError: { cause: { kind: "UniqueConstraintViolation", constraint: { fields: ["cpf"] } } } },
-  ])("apresenta CPF duplicado como erro de campo e registra categoria sanitizada: %j", async (meta) => {
+  it("retorna erro genérico para restrição de banco sem expor metadados", async () => {
     mocks.saveIdentification.mockRejectedValue({
       name: "PrismaClientKnownRequestError",
       code: "P2002",
-      meta,
+      meta: { target: ["field"], value: "sensitive data" },
     });
 
     const state = await saveIdentificationAction({}, identificationFormData());
 
-    expect(state.errors?.cpf).toBeDefined();
-    expect(state.message).toBeUndefined();
+    expect(state.message).toBeDefined();
+    expect(state.errors).toBeUndefined();
     expect(mocks.redirect).not.toHaveBeenCalled();
     expect(console.info).not.toHaveBeenCalled();
     expect(console.error).toHaveBeenCalledWith("patient_identification_save_failed", {
       triageId: "triage-test-id",
-      category: "duplicate_cpf",
+      category: "database_constraint",
       errorName: "PrismaClientKnownRequestError",
       errorCode: "P2002",
     });
+    expect(JSON.stringify(vi.mocked(console.error).mock.calls)).not.toContain("sensitive data");
   });
 
   it("retorna estado de erro sem falso sucesso quando a persistência falha", async () => {

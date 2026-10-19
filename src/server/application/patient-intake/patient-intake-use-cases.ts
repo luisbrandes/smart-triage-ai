@@ -1,6 +1,5 @@
 import { demoAnamnesis } from "@/demo/anamnesis";
 import { demoConsent } from "@/demo/consent";
-import { getAgeInYears } from "@/domain/patient-intake/age";
 import type { PatientIntakeRepository } from "@/server/application/patient-intake/patient-intake-repository";
 import type { IntakeValidationResult, PatientIntakeSession } from "@/server/application/patient-intake/patient-intake-types";
 import { anamnesisSchema, consentSchema, fieldErrors, identificationSchema } from "@/server/application/patient-intake/patient-intake-validation";
@@ -28,19 +27,12 @@ export async function getPatientIntakeSession(repository: PatientIntakeRepositor
 export async function savePatientIdentification(repository: PatientIntakeRepository, triageId: string, input: unknown): Promise<IntakeValidationResult> {
   const parsed = identificationSchema.safeParse(input);
   if (!parsed.success) return { success: false, errors: fieldErrors(parsed.error) };
-  const isMinor = (getAgeInYears(parsed.data.birthDate) ?? 18) < 18;
 
   await repository.saveIdentification(triageId, {
     displayName: parsed.data.displayName,
     birthDate: new Date(`${parsed.data.birthDate}T00:00:00.000Z`),
     sex: parsed.data.sex || undefined,
     documentReference: parsed.data.documentReference || undefined,
-    cpf: parsed.data.cpf || undefined,
-    phone: parsed.data.phone || undefined,
-    email: parsed.data.email || undefined,
-    motherName: isMinor ? parsed.data.motherName || undefined : undefined,
-    legalRepresentativeName: isMinor ? parsed.data.legalRepresentativeName || undefined : undefined,
-    legalRepresentativePhone: isMinor ? parsed.data.legalRepresentativePhone || undefined : undefined,
     hasHealthPlan: parsed.data.hasHealthPlan === "yes",
     planName: parsed.data.planName || undefined,
   });

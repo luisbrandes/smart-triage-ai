@@ -8,42 +8,31 @@ const base = {
   hasHealthPlan: "no",
 };
 
-describe("campos cadastrais opcionais", () => {
-  it("normaliza CPF válido e aceita contatos opcionais", () => {
+describe("contrato original de identificação", () => {
+  it("accepts the original fields without additional registration data", () => {
     const result = identificationSchema.safeParse({
       ...base,
-      cpf: "529.982.247-25",
-      phone: "(11) 99999-9999",
-      email: "pessoa@example.com",
+      sex: "FEMALE",
+      documentReference: "REF-DEMO-001",
     });
 
     expect(result.success).toBe(true);
-    if (result.success) expect(result.data.cpf).toBe("52998224725");
+    if (result.success) {
+      expect(result.data).toMatchObject({
+        ...base,
+        sex: "FEMALE",
+        documentReference: "REF-DEMO-001",
+      });
+      expect(result.data).not.toHaveProperty("cpf");
+    }
   });
 
-  it("rejeita CPF matematicamente inválido e e-mail malformado", () => {
-    expect(
-      identificationSchema.safeParse({ ...base, cpf: "111.111.111-11" }).success,
-    ).toBe(false);
-    expect(
-      identificationSchema.safeParse({ ...base, email: "invalido" }).success,
-    ).toBe(false);
+  it("does not require CPF, contact, or guardian data for minors", () => {
+    expect(identificationSchema.safeParse({ ...base, birthDate: "2015-01-01" }).success).toBe(true);
   });
 
-  it("exige mãe e responsável legal quando a pessoa é menor de idade", () => {
-    const minor = { ...base, birthDate: "2015-01-01" };
-
-    expect(identificationSchema.safeParse(minor).success).toBe(false);
-    expect(
-      identificationSchema.safeParse({
-        ...minor,
-        motherName: "Pessoa responsável fictícia",
-        legalRepresentativeName: "Representante fictício",
-      }).success,
-    ).toBe(true);
-  });
-
-  it("não exige dados da mãe ou responsável para adultos", () => {
-    expect(identificationSchema.safeParse(base).success).toBe(true);
+  it("continues to require the plan name when a health plan is declared", () => {
+    expect(identificationSchema.safeParse({ ...base, hasHealthPlan: "yes" }).success).toBe(false);
+    expect(identificationSchema.safeParse({ ...base, hasHealthPlan: "yes", planName: "Plano Demo" }).success).toBe(true);
   });
 });
