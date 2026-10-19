@@ -122,6 +122,29 @@ describe("saveIdentificationAction", () => {
     expect(console.info).not.toHaveBeenCalled();
   });
 
+  it("trata P2022 como falha de schema sem redirecionar nem expor metadados", async () => {
+    mocks.saveIdentification.mockRejectedValue({
+      name: "PrismaClientKnownRequestError",
+      code: "P2022",
+      meta: { modelName: "Patient", column: "Patient.cpf" },
+      message: "column details must not be returned to the patient",
+    });
+
+    await expect(saveIdentificationAction({}, identificationFormData())).resolves.toEqual({
+      message: "Não foi possível salvar a identificação. Tente novamente.",
+    });
+    expect(console.error).toHaveBeenCalledWith("patient_identification_save_failed", {
+      triageId: "triage-test-id",
+      category: "schema_migration",
+      errorName: "PrismaClientKnownRequestError",
+      errorCode: "P2022",
+    });
+    expect(JSON.stringify(vi.mocked(console.error).mock.calls)).not.toContain("Patient.cpf");
+    expect(JSON.stringify(vi.mocked(console.error).mock.calls)).not.toContain("column details");
+    expect(mocks.redirect).not.toHaveBeenCalled();
+    expect(console.info).not.toHaveBeenCalled();
+  });
+
   it("distingue sessão ausente sem tentar gravar", async () => {
     mocks.getDemoTriageId.mockResolvedValue(null);
 

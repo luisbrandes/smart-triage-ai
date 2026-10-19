@@ -10,6 +10,8 @@ Configure para o ambiente desejado (`Preview` ou `Production`):
 
 - `DATABASE_URL`: conexão PostgreSQL de runtime, preferencialmente com pool compatível com serverless.
 - `DIRECT_DATABASE_URL`: conexão direta usada por migrations.
+
+As duas variáveis devem apontar ao mesmo banco e schema, mas podem exigir URLs diferentes. Em Prisma Postgres, use a URL pooled (`pooled.db.prisma.io`) em `DATABASE_URL` e a URL direta (`db.prisma.io`) em `DIRECT_DATABASE_URL`; obtenha ambas no Prisma Console para o mesmo banco. Não copie a URL pooled para `DIRECT_DATABASE_URL`: migrations precisam de conexão direta para locks e continuidade de sessão. Se estiver usando outro provedor PostgreSQL, siga a distinção equivalente entre endpoint pooled de runtime e endpoint direto para migrations.
 - `SESSION_SECRET`: aleatório, mínimo 32 caracteres.
 - `ACCESS_CREDENTIAL`: acesso demonstrativo aos painéis.
 - `NURSE_ACTOR_REFERENCE`: referência genérica, sem nome real.
