@@ -1,7 +1,15 @@
 type ErrorLike = {
   code?: unknown;
   name?: unknown;
-  meta?: { target?: unknown };
+  meta?: {
+    target?: unknown;
+    driverAdapterError?: {
+      cause?: {
+        kind?: unknown;
+        constraint?: { fields?: unknown };
+      };
+    };
+  };
 };
 
 export type IdentificationSaveErrorCategory =
@@ -23,8 +31,8 @@ function isErrorLike(error: unknown): error is ErrorLike {
 }
 
 function isCpfUniqueTarget(target: unknown): boolean {
-  const fields = Array.isArray(target) ? target : [target];
-  return fields.some((field) => typeof field === "string" && field.toLowerCase().includes("cpf"));
+  if (Array.isArray(target)) return target.length === 1 && target[0] === "cpf";
+  return target === "cpf" || target === "Patient_cpf_key";
 }
 
 function safeErrorName(name: unknown): string {
@@ -43,14 +51,21 @@ export function classifyIdentificationSaveError(error: unknown): IdentificationS
   const name = safeErrorName(value.name);
 
   if (code === "P2002") {
+    const driverCause = value.meta?.driverAdapterError?.cause;
+    const driverConstraintFields = driverCause?.kind === "UniqueConstraintViolation"
+      ? driverCause.constraint?.fields
+      : undefined;
+
     return {
-      category: isCpfUniqueTarget(value.meta?.target) ? "duplicate_cpf" : "database_constraint",
+      category: isCpfUniqueTarget(value.meta?.target) || isCpfUniqueTarget(driverConstraintFields)
+        ? "duplicate_cpf"
+        : "database_constraint",
       code,
       name,
     };
   }
 
-  if (code && /^P10(?:00|01|02|03|08|17)$/.test(code)) {
+  if (code && (/^P10(?:00|01|02|03|08|10|11|17)$/.test(code) || code === "P2037")) {
     return { category: "database_connection", code, name };
   }
 

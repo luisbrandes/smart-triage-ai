@@ -86,9 +86,13 @@ export class PrismaPatientIntakeRepository implements PatientIntakeRepository {
 
   async saveIdentification(triageId: string, input: IdentificationInput): Promise<void> {
     await prisma.$transaction(async (transaction) => {
+      // Serializa tentativas da mesma triagem: um retry após commit deve retomar
+      // o fluxo, sem criar um segundo Patient/HealthPlanInformation.
+      await transaction.$queryRaw`SELECT "id" FROM "Triage" WHERE "id" = ${triageId} FOR UPDATE`;
       const triage = await transaction.triage.findUnique({ where: { id: triageId }, select: { id: true, patientId: true, status: true } });
       if (!triage) throw new PatientIntakeNotFoundError();
-      if (triage.status !== "IDENTIFICATION_IN_PROGRESS" || triage.patientId) throw new PatientIntakeStateError();
+      if (triage.status !== "IDENTIFICATION_IN_PROGRESS") throw new PatientIntakeStateError();
+      if (triage.patientId) return;
 
       const patient = await transaction.patient.create({
         data: {

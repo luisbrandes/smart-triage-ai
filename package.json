@@ -13,7 +13,7 @@
     "test:watch": "vitest",
     "db:up": "docker compose up -d",
     "db:test:up": "docker compose up -d postgres_test",
-    "db:test:deploy": "DATABASE_URL=$TEST_DATABASE_URL prisma migrate deploy",
+    "db:test:deploy": "node scripts/db-test-deploy.mjs",
     "db:down": "docker compose down",
     "db:reset": "prisma migrate reset --force",
     "db:migrate": "prisma migrate dev",

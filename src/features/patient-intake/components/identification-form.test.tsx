@@ -48,7 +48,9 @@ describe("IdentificationForm", () => {
 
     const html = renderToStaticMarkup(createElement(IdentificationForm));
 
-    expect(html).toMatch(/<button[^>]*disabled=""[^>]*>Salvando…<\/button>/);
+    const button = html.match(/<button\b[^>]*>/)?.[0];
+    expect(button).toContain('disabled=""');
+    expect(html).toContain(">Salvando…</button>");
   });
 
   it("não mantém mensagem de erro quando o estado atual não contém erro", () => {
@@ -56,6 +58,7 @@ describe("IdentificationForm", () => {
 
     expect(html).not.toContain('role="alert"');
     expect(html).toContain("Salvar e continuar");
-    expect(html).not.toMatch(/<button[^>]*disabled/);
+    const button = html.match(/<button\b[^>]*>/)?.[0];
+    expect(button).not.toContain('disabled=""');
   });
 });
