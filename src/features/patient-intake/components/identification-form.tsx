@@ -29,13 +29,13 @@ export function IdentificationForm() {
         </FormField>
       </div>
 
-      <fieldset>
+      <fieldset aria-describedby={error("hasHealthPlan") ? "hasHealthPlan-error" : undefined}>
         <legend className="text-sm font-semibold">Possui plano de saúde?</legend>
         <div className="mt-3 flex gap-5">
           <label className="flex min-h-11 items-center gap-2"><input name="hasHealthPlan" type="radio" value="yes" /> Sim</label>
           <label className="flex min-h-11 items-center gap-2"><input name="hasHealthPlan" type="radio" value="no" /> Não</label>
         </div>
-        {error("hasHealthPlan") && <p className="text-sm text-danger">{error("hasHealthPlan")}</p>}
+        {error("hasHealthPlan") && <p className="text-sm text-danger" id="hasHealthPlan-error">{error("hasHealthPlan")}</p>}
       </fieldset>
 
       <FormField error={error("planName")} hint="Obrigatório apenas quando a opção “Sim” for marcada." htmlFor="planName" label="Nome do plano">

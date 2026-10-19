@@ -42,6 +42,17 @@ describe("IdentificationForm", () => {
     expect(html).toContain("Informe um nome fictício.");
   });
 
+  it("associates the health plan validation message with its radio group", () => {
+    stateMock.value.errors = { hasHealthPlan: ["Informe se possui plano."] };
+
+    const html = renderToStaticMarkup(createElement(IdentificationForm));
+    const fieldset = html.match(/<fieldset\b[^>]*>/)?.[0];
+
+    expect(fieldset).toContain('aria-describedby="hasHealthPlan-error"');
+    expect(html).toContain('id="hasHealthPlan-error"');
+    expect(html).toContain("Informe se possui plano.");
+  });
+
   it("keeps the original identification form fields", () => {
     const html = renderToStaticMarkup(createElement(IdentificationForm));
 
