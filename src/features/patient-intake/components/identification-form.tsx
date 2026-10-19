@@ -22,7 +22,7 @@ export function IdentificationForm() {
           <input aria-describedby={error("birthDate") ? "birthDate-error" : undefined} className={fieldClassName} id="birthDate" name="birthDate" type="date" />
         </FormField>
         <FormField htmlFor="sex" label="Sexo informado (opcional)">
-          <select className={fieldClassName} defaultValue="" id="sex" name="sex"><option value="">Prefiro não informar</option><option value="FEMALE">Feminino</option><option value="MALE">Masculino</option><option value="OTHER">Outro</option></select>
+          <select className={fieldClassName} defaultValue="" id="sex" name="sex"><option value="">Prefiro a não informar</option><option value="FEMALE">Feminino</option><option value="MALE">Masculino</option><option value="OTHER">Outro</option></select>
         </FormField>
         <FormField hint="Campo opcional para a referência utilizada no atendimento." htmlFor="documentReference" label="Referência documental (opcional)">
           <input autoComplete="off" className={fieldClassName} id="documentReference" maxLength={120} name="documentReference" placeholder="Ex.: referência do atendimento" />
