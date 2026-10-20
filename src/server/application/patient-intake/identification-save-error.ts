@@ -1,5 +1,6 @@
 type ErrorLike = {
   code?: unknown;
+  meta?: unknown;
   name?: unknown;
 };
 
@@ -13,8 +14,26 @@ export type IdentificationSaveErrorCategory =
 export type IdentificationSaveErrorDetails = {
   category: IdentificationSaveErrorCategory;
   code?: string;
+  schemaField?: string;
   name: string;
 };
+
+const knownPatientColumns = new Set([
+  "Patient.cpf",
+  "Patient.phone",
+  "Patient.email",
+  "Patient.motherName",
+  "Patient.legalRepresentativeName",
+  "Patient.legalRepresentativePhone",
+]);
+
+function safeSchemaField(meta: unknown): string | undefined {
+  if (typeof meta !== "object" || meta === null || !("column" in meta)) return undefined;
+  const column = meta.column;
+  if (typeof column !== "string") return undefined;
+  const normalized = column.replaceAll('"', "").replaceAll('`', "").replaceAll("public.", "");
+  return knownPatientColumns.has(normalized) ? normalized : undefined;
+}
 
 function isErrorLike(error: unknown): error is ErrorLike {
   return typeof error === "object" && error !== null;
@@ -44,7 +63,8 @@ export function classifyIdentificationSaveError(error: unknown): IdentificationS
   }
 
   if (code === "P2021" || code === "P2022") {
-    return { category: "schema_migration", code, name };
+    const schemaField = code === "P2022" ? safeSchemaField(value.meta) : undefined;
+    return { category: "schema_migration", code, name, ...(schemaField ? { schemaField } : {}) };
   }
 
   if (name === "PatientIntakeNotFoundError" || name === "PatientIntakeStateError") {

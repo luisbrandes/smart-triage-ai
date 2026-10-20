@@ -18,6 +18,7 @@ O acionamento é explícito em vez de automático após a coleta para que o envi
 ## Consequências
 
 - Uma coleta aceita mais recente gera nova análise determinística e pode receber uma nova sugestão; sugestões anteriores permanecem no histórico.
+- Cada analise recebe uma reserva `PENDING` antes da chamada externa. Solicitacoes concorrentes nao repetem a chamada; reservas abandonadas podem ser retomadas apos 60 segundos, com auditoria sanitizada.
 - O painel compara a sugestão com a recomendação atual, sempre requerendo revisão da enfermagem.
 - O código não declara confiança percentual nem conexão com o provedor a partir do navegador.
 - A migration de `AiSuggestion` precisa estar aplicada antes da versão correspondente ser publicada.

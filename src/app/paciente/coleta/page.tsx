@@ -6,8 +6,6 @@ import { PatientSteps } from "@/features/patient-shell/components/patient-steps"
 import { routeForPatientIntakeStatus } from "@/server/application/patient-intake/patient-intake-routes";
 import { resolvePatientIntakeSession } from "@/server/resolve-patient-intake";
 import { PageContainer } from "@/shared/layout/page-container";
-import { ButtonLink } from "@/shared/ui/button-link";
-import { Icon } from "@/shared/ui/icon";
 
 export default async function HardwareCollectionPage() {
   const triage = await resolvePatientIntakeSession();

@@ -141,6 +141,7 @@ enum RuleSetStatus {
 }
 
 enum AiSuggestionStatus {
+  PENDING
   COMPLETED
   UNAVAILABLE
 }
@@ -371,6 +372,7 @@ model AiSuggestion {
   triageId           String
   analysisRunId      String             @unique
   collectionSessionId String
+  claimToken         String?
   status             AiSuggestionStatus
   suggestedPriority  AiSuggestedPriority?
   attentionLevel     AiAttentionLevel?
@@ -379,6 +381,7 @@ model AiSuggestion {
   model              String
   promptVersion      String
   createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
   completedAt        DateTime?
   triage             Triage             @relation(fields: [triageId], references: [id], onDelete: Restrict)
   analysisRun        AnalysisRun        @relation(fields: [analysisRunId], references: [id], onDelete: Restrict)
@@ -609,4 +612,13 @@ model AuditEvent {
 
   @@index([triageId, createdAt])
   @@index([entityType, entityId, createdAt])
+}
+
+model RateLimitBucket {
+  key             String   @id
+  windowStartedAt DateTime
+  count           Int
+  updatedAt       DateTime @updatedAt
+
+  @@index([updatedAt])
 }

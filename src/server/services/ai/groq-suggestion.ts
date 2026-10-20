@@ -31,6 +31,17 @@ function logFailure(triageId: string | undefined, stage: string, errorCode: stri
   logServerOperation({ operation: "ai-suggestion", correlationId: crypto.randomUUID(), actorType: "SYSTEM", entity: `AiSuggestion:${triageId ?? "unknown"}`, result: "FAILURE", errorCode, state: `${stage}${state ? `:${state}` : ""}` });
 }
 
+function safeNetworkErrorCode(error: unknown): string {
+  let current: unknown = error;
+  for (let depth = 0; depth < 4; depth += 1) {
+    if (!current || typeof current !== "object") break;
+    const value = current as { code?: unknown; cause?: unknown };
+    if (typeof value.code === "string" && /^[A-Z0-9_]{2,48}$/.test(value.code)) return `NETWORK_${value.code}`;
+    current = value.cause;
+  }
+  return "NETWORK_ERROR";
+}
+
 export async function requestGroqSuggestion(input: AiSuggestionInput, fetcher: typeof fetch = fetch, triageId?: string): Promise<AiSuggestionResult | null> {
   const apiKey = process.env.GROQ_API_KEY;
   if (process.env.APP_MODE !== "demo") { logFailure(triageId, "configuration", "APP_MODE_NOT_DEMO"); return null; }
@@ -70,7 +81,7 @@ export async function requestGroqSuggestion(input: AiSuggestionInput, fetcher: t
     if (!parsed.success) { logFailure(triageId, "response", "SCHEMA_INVALID"); return null; }
     return parsed.data;
   } catch (error) {
-    logFailure(triageId, "provider", error instanceof Error && error.name === "TimeoutError" ? "TIMEOUT" : "NETWORK_ERROR");
+    logFailure(triageId, "provider", error instanceof Error && error.name === "TimeoutError" ? "TIMEOUT" : safeNetworkErrorCode(error));
     return null;
   }
 }

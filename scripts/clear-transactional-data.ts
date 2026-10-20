@@ -1,6 +1,7 @@
 import "dotenv/config";
 
 import { PrismaPg } from "@prisma/adapter-pg";
+import { assertSafeDemoDatabaseTarget } from "./local-database-safety.mjs";
 
 import { Prisma, PrismaClient } from "../src/generated/prisma/client";
 
@@ -80,6 +81,7 @@ async function main() {
   }
 
   const directDatabaseUrl = process.env.DIRECT_DATABASE_URL;
+  assertSafeDemoDatabaseTarget({ databaseUrl, directDatabaseUrl, appMode: process.env.APP_MODE, nodeEnv: process.env.NODE_ENV, vercelEnv: process.env.VERCEL_ENV });
   const maintenanceUrl = directDatabaseUrl ??
     (databaseUrl.startsWith("prisma+postgres://") ? undefined : databaseUrl);
 

@@ -29,6 +29,7 @@ export type AiSuggestionMinAggregateOutputType = {
   triageId: string | null
   analysisRunId: string | null
   collectionSessionId: string | null
+  claimToken: string | null
   status: $Enums.AiSuggestionStatus | null
   suggestedPriority: $Enums.AiSuggestedPriority | null
   attentionLevel: $Enums.AiAttentionLevel | null
@@ -36,6 +37,7 @@ export type AiSuggestionMinAggregateOutputType = {
   model: string | null
   promptVersion: string | null
   createdAt: Date | null
+  updatedAt: Date | null
   completedAt: Date | null
 }
 
@@ -44,6 +46,7 @@ export type AiSuggestionMaxAggregateOutputType = {
   triageId: string | null
   analysisRunId: string | null
   collectionSessionId: string | null
+  claimToken: string | null
   status: $Enums.AiSuggestionStatus | null
   suggestedPriority: $Enums.AiSuggestedPriority | null
   attentionLevel: $Enums.AiAttentionLevel | null
@@ -51,6 +54,7 @@ export type AiSuggestionMaxAggregateOutputType = {
   model: string | null
   promptVersion: string | null
   createdAt: Date | null
+  updatedAt: Date | null
   completedAt: Date | null
 }
 
@@ -59,6 +63,7 @@ export type AiSuggestionCountAggregateOutputType = {
   triageId: number
   analysisRunId: number
   collectionSessionId: number
+  claimToken: number
   status: number
   suggestedPriority: number
   attentionLevel: number
@@ -67,6 +72,7 @@ export type AiSuggestionCountAggregateOutputType = {
   model: number
   promptVersion: number
   createdAt: number
+  updatedAt: number
   completedAt: number
   _all: number
 }
@@ -77,6 +83,7 @@ export type AiSuggestionMinAggregateInputType = {
   triageId?: true
   analysisRunId?: true
   collectionSessionId?: true
+  claimToken?: true
   status?: true
   suggestedPriority?: true
   attentionLevel?: true
@@ -84,6 +91,7 @@ export type AiSuggestionMinAggregateInputType = {
   model?: true
   promptVersion?: true
   createdAt?: true
+  updatedAt?: true
   completedAt?: true
 }
 
@@ -92,6 +100,7 @@ export type AiSuggestionMaxAggregateInputType = {
   triageId?: true
   analysisRunId?: true
   collectionSessionId?: true
+  claimToken?: true
   status?: true
   suggestedPriority?: true
   attentionLevel?: true
@@ -99,6 +108,7 @@ export type AiSuggestionMaxAggregateInputType = {
   model?: true
   promptVersion?: true
   createdAt?: true
+  updatedAt?: true
   completedAt?: true
 }
 
@@ -107,6 +117,7 @@ export type AiSuggestionCountAggregateInputType = {
   triageId?: true
   analysisRunId?: true
   collectionSessionId?: true
+  claimToken?: true
   status?: true
   suggestedPriority?: true
   attentionLevel?: true
@@ -115,6 +126,7 @@ export type AiSuggestionCountAggregateInputType = {
   model?: true
   promptVersion?: true
   createdAt?: true
+  updatedAt?: true
   completedAt?: true
   _all?: true
 }
@@ -196,6 +208,7 @@ export type AiSuggestionGroupByOutputType = {
   triageId: string
   analysisRunId: string
   collectionSessionId: string
+  claimToken: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority: $Enums.AiSuggestedPriority | null
   attentionLevel: $Enums.AiAttentionLevel | null
@@ -204,6 +217,7 @@ export type AiSuggestionGroupByOutputType = {
   model: string
   promptVersion: string
   createdAt: Date
+  updatedAt: Date
   completedAt: Date | null
   _count: AiSuggestionCountAggregateOutputType | null
   _min: AiSuggestionMinAggregateOutputType | null
@@ -233,6 +247,7 @@ export type AiSuggestionWhereInput = {
   triageId?: Prisma.StringFilter<"AiSuggestion"> | string
   analysisRunId?: Prisma.StringFilter<"AiSuggestion"> | string
   collectionSessionId?: Prisma.StringFilter<"AiSuggestion"> | string
+  claimToken?: Prisma.StringNullableFilter<"AiSuggestion"> | string | null
   status?: Prisma.EnumAiSuggestionStatusFilter<"AiSuggestion"> | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.EnumAiSuggestedPriorityNullableFilter<"AiSuggestion"> | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.EnumAiAttentionLevelNullableFilter<"AiSuggestion"> | $Enums.AiAttentionLevel | null
@@ -241,6 +256,7 @@ export type AiSuggestionWhereInput = {
   model?: Prisma.StringFilter<"AiSuggestion"> | string
   promptVersion?: Prisma.StringFilter<"AiSuggestion"> | string
   createdAt?: Prisma.DateTimeFilter<"AiSuggestion"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AiSuggestion"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"AiSuggestion"> | Date | string | null
   triage?: Prisma.XOR<Prisma.TriageScalarRelationFilter, Prisma.TriageWhereInput>
   analysisRun?: Prisma.XOR<Prisma.AnalysisRunScalarRelationFilter, Prisma.AnalysisRunWhereInput>
@@ -252,6 +268,7 @@ export type AiSuggestionOrderByWithRelationInput = {
   triageId?: Prisma.SortOrder
   analysisRunId?: Prisma.SortOrder
   collectionSessionId?: Prisma.SortOrder
+  claimToken?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   suggestedPriority?: Prisma.SortOrderInput | Prisma.SortOrder
   attentionLevel?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -260,6 +277,7 @@ export type AiSuggestionOrderByWithRelationInput = {
   model?: Prisma.SortOrder
   promptVersion?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   triage?: Prisma.TriageOrderByWithRelationInput
   analysisRun?: Prisma.AnalysisRunOrderByWithRelationInput
@@ -274,6 +292,7 @@ export type AiSuggestionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AiSuggestionWhereInput | Prisma.AiSuggestionWhereInput[]
   triageId?: Prisma.StringFilter<"AiSuggestion"> | string
   collectionSessionId?: Prisma.StringFilter<"AiSuggestion"> | string
+  claimToken?: Prisma.StringNullableFilter<"AiSuggestion"> | string | null
   status?: Prisma.EnumAiSuggestionStatusFilter<"AiSuggestion"> | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.EnumAiSuggestedPriorityNullableFilter<"AiSuggestion"> | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.EnumAiAttentionLevelNullableFilter<"AiSuggestion"> | $Enums.AiAttentionLevel | null
@@ -282,6 +301,7 @@ export type AiSuggestionWhereUniqueInput = Prisma.AtLeast<{
   model?: Prisma.StringFilter<"AiSuggestion"> | string
   promptVersion?: Prisma.StringFilter<"AiSuggestion"> | string
   createdAt?: Prisma.DateTimeFilter<"AiSuggestion"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AiSuggestion"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"AiSuggestion"> | Date | string | null
   triage?: Prisma.XOR<Prisma.TriageScalarRelationFilter, Prisma.TriageWhereInput>
   analysisRun?: Prisma.XOR<Prisma.AnalysisRunScalarRelationFilter, Prisma.AnalysisRunWhereInput>
@@ -293,6 +313,7 @@ export type AiSuggestionOrderByWithAggregationInput = {
   triageId?: Prisma.SortOrder
   analysisRunId?: Prisma.SortOrder
   collectionSessionId?: Prisma.SortOrder
+  claimToken?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   suggestedPriority?: Prisma.SortOrderInput | Prisma.SortOrder
   attentionLevel?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -301,6 +322,7 @@ export type AiSuggestionOrderByWithAggregationInput = {
   model?: Prisma.SortOrder
   promptVersion?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.AiSuggestionCountOrderByAggregateInput
   _max?: Prisma.AiSuggestionMaxOrderByAggregateInput
@@ -315,6 +337,7 @@ export type AiSuggestionScalarWhereWithAggregatesInput = {
   triageId?: Prisma.StringWithAggregatesFilter<"AiSuggestion"> | string
   analysisRunId?: Prisma.StringWithAggregatesFilter<"AiSuggestion"> | string
   collectionSessionId?: Prisma.StringWithAggregatesFilter<"AiSuggestion"> | string
+  claimToken?: Prisma.StringNullableWithAggregatesFilter<"AiSuggestion"> | string | null
   status?: Prisma.EnumAiSuggestionStatusWithAggregatesFilter<"AiSuggestion"> | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.EnumAiSuggestedPriorityNullableWithAggregatesFilter<"AiSuggestion"> | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.EnumAiAttentionLevelNullableWithAggregatesFilter<"AiSuggestion"> | $Enums.AiAttentionLevel | null
@@ -323,11 +346,13 @@ export type AiSuggestionScalarWhereWithAggregatesInput = {
   model?: Prisma.StringWithAggregatesFilter<"AiSuggestion"> | string
   promptVersion?: Prisma.StringWithAggregatesFilter<"AiSuggestion"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AiSuggestion"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AiSuggestion"> | Date | string
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"AiSuggestion"> | Date | string | null
 }
 
 export type AiSuggestionCreateInput = {
   id?: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -336,6 +361,7 @@ export type AiSuggestionCreateInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
   triage: Prisma.TriageCreateNestedOneWithoutAiSuggestionsInput
   analysisRun: Prisma.AnalysisRunCreateNestedOneWithoutAiSuggestionInput
@@ -347,6 +373,7 @@ export type AiSuggestionUncheckedCreateInput = {
   triageId: string
   analysisRunId: string
   collectionSessionId: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -355,11 +382,13 @@ export type AiSuggestionUncheckedCreateInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
 }
 
 export type AiSuggestionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -368,6 +397,7 @@ export type AiSuggestionUpdateInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   triage?: Prisma.TriageUpdateOneRequiredWithoutAiSuggestionsNestedInput
   analysisRun?: Prisma.AnalysisRunUpdateOneRequiredWithoutAiSuggestionNestedInput
@@ -379,6 +409,7 @@ export type AiSuggestionUncheckedUpdateInput = {
   triageId?: Prisma.StringFieldUpdateOperationsInput | string
   analysisRunId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -387,6 +418,7 @@ export type AiSuggestionUncheckedUpdateInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -395,6 +427,7 @@ export type AiSuggestionCreateManyInput = {
   triageId: string
   analysisRunId: string
   collectionSessionId: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -403,11 +436,13 @@ export type AiSuggestionCreateManyInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
 }
 
 export type AiSuggestionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -416,6 +451,7 @@ export type AiSuggestionUpdateManyMutationInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -424,6 +460,7 @@ export type AiSuggestionUncheckedUpdateManyInput = {
   triageId?: Prisma.StringFieldUpdateOperationsInput | string
   analysisRunId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -432,6 +469,7 @@ export type AiSuggestionUncheckedUpdateManyInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -455,6 +493,7 @@ export type AiSuggestionCountOrderByAggregateInput = {
   triageId?: Prisma.SortOrder
   analysisRunId?: Prisma.SortOrder
   collectionSessionId?: Prisma.SortOrder
+  claimToken?: Prisma.SortOrder
   status?: Prisma.SortOrder
   suggestedPriority?: Prisma.SortOrder
   attentionLevel?: Prisma.SortOrder
@@ -463,6 +502,7 @@ export type AiSuggestionCountOrderByAggregateInput = {
   model?: Prisma.SortOrder
   promptVersion?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
 }
 
@@ -471,6 +511,7 @@ export type AiSuggestionMaxOrderByAggregateInput = {
   triageId?: Prisma.SortOrder
   analysisRunId?: Prisma.SortOrder
   collectionSessionId?: Prisma.SortOrder
+  claimToken?: Prisma.SortOrder
   status?: Prisma.SortOrder
   suggestedPriority?: Prisma.SortOrder
   attentionLevel?: Prisma.SortOrder
@@ -478,6 +519,7 @@ export type AiSuggestionMaxOrderByAggregateInput = {
   model?: Prisma.SortOrder
   promptVersion?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
 }
 
@@ -486,6 +528,7 @@ export type AiSuggestionMinOrderByAggregateInput = {
   triageId?: Prisma.SortOrder
   analysisRunId?: Prisma.SortOrder
   collectionSessionId?: Prisma.SortOrder
+  claimToken?: Prisma.SortOrder
   status?: Prisma.SortOrder
   suggestedPriority?: Prisma.SortOrder
   attentionLevel?: Prisma.SortOrder
@@ -493,6 +536,7 @@ export type AiSuggestionMinOrderByAggregateInput = {
   model?: Prisma.SortOrder
   promptVersion?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
 }
 
@@ -626,6 +670,7 @@ export type AiSuggestionUncheckedUpdateManyWithoutCollectionSessionNestedInput =
 
 export type AiSuggestionCreateWithoutTriageInput = {
   id?: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -634,6 +679,7 @@ export type AiSuggestionCreateWithoutTriageInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
   analysisRun: Prisma.AnalysisRunCreateNestedOneWithoutAiSuggestionInput
   collectionSession: Prisma.HardwareCollectionSessionCreateNestedOneWithoutAiSuggestionsInput
@@ -643,6 +689,7 @@ export type AiSuggestionUncheckedCreateWithoutTriageInput = {
   id?: string
   analysisRunId: string
   collectionSessionId: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -651,6 +698,7 @@ export type AiSuggestionUncheckedCreateWithoutTriageInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
 }
 
@@ -688,6 +736,7 @@ export type AiSuggestionScalarWhereInput = {
   triageId?: Prisma.StringFilter<"AiSuggestion"> | string
   analysisRunId?: Prisma.StringFilter<"AiSuggestion"> | string
   collectionSessionId?: Prisma.StringFilter<"AiSuggestion"> | string
+  claimToken?: Prisma.StringNullableFilter<"AiSuggestion"> | string | null
   status?: Prisma.EnumAiSuggestionStatusFilter<"AiSuggestion"> | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.EnumAiSuggestedPriorityNullableFilter<"AiSuggestion"> | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.EnumAiAttentionLevelNullableFilter<"AiSuggestion"> | $Enums.AiAttentionLevel | null
@@ -696,11 +745,13 @@ export type AiSuggestionScalarWhereInput = {
   model?: Prisma.StringFilter<"AiSuggestion"> | string
   promptVersion?: Prisma.StringFilter<"AiSuggestion"> | string
   createdAt?: Prisma.DateTimeFilter<"AiSuggestion"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"AiSuggestion"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"AiSuggestion"> | Date | string | null
 }
 
 export type AiSuggestionCreateWithoutAnalysisRunInput = {
   id?: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -709,6 +760,7 @@ export type AiSuggestionCreateWithoutAnalysisRunInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
   triage: Prisma.TriageCreateNestedOneWithoutAiSuggestionsInput
   collectionSession: Prisma.HardwareCollectionSessionCreateNestedOneWithoutAiSuggestionsInput
@@ -718,6 +770,7 @@ export type AiSuggestionUncheckedCreateWithoutAnalysisRunInput = {
   id?: string
   triageId: string
   collectionSessionId: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -726,6 +779,7 @@ export type AiSuggestionUncheckedCreateWithoutAnalysisRunInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
 }
 
@@ -747,6 +801,7 @@ export type AiSuggestionUpdateToOneWithWhereWithoutAnalysisRunInput = {
 
 export type AiSuggestionUpdateWithoutAnalysisRunInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -755,6 +810,7 @@ export type AiSuggestionUpdateWithoutAnalysisRunInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   triage?: Prisma.TriageUpdateOneRequiredWithoutAiSuggestionsNestedInput
   collectionSession?: Prisma.HardwareCollectionSessionUpdateOneRequiredWithoutAiSuggestionsNestedInput
@@ -764,6 +820,7 @@ export type AiSuggestionUncheckedUpdateWithoutAnalysisRunInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   triageId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -772,11 +829,13 @@ export type AiSuggestionUncheckedUpdateWithoutAnalysisRunInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type AiSuggestionCreateWithoutCollectionSessionInput = {
   id?: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -785,6 +844,7 @@ export type AiSuggestionCreateWithoutCollectionSessionInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
   triage: Prisma.TriageCreateNestedOneWithoutAiSuggestionsInput
   analysisRun: Prisma.AnalysisRunCreateNestedOneWithoutAiSuggestionInput
@@ -794,6 +854,7 @@ export type AiSuggestionUncheckedCreateWithoutCollectionSessionInput = {
   id?: string
   triageId: string
   analysisRunId: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -802,6 +863,7 @@ export type AiSuggestionUncheckedCreateWithoutCollectionSessionInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
 }
 
@@ -835,6 +897,7 @@ export type AiSuggestionCreateManyTriageInput = {
   id?: string
   analysisRunId: string
   collectionSessionId: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -843,11 +906,13 @@ export type AiSuggestionCreateManyTriageInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
 }
 
 export type AiSuggestionUpdateWithoutTriageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -856,6 +921,7 @@ export type AiSuggestionUpdateWithoutTriageInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   analysisRun?: Prisma.AnalysisRunUpdateOneRequiredWithoutAiSuggestionNestedInput
   collectionSession?: Prisma.HardwareCollectionSessionUpdateOneRequiredWithoutAiSuggestionsNestedInput
@@ -865,6 +931,7 @@ export type AiSuggestionUncheckedUpdateWithoutTriageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   analysisRunId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -873,6 +940,7 @@ export type AiSuggestionUncheckedUpdateWithoutTriageInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -880,6 +948,7 @@ export type AiSuggestionUncheckedUpdateManyWithoutTriageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   analysisRunId?: Prisma.StringFieldUpdateOperationsInput | string
   collectionSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -888,6 +957,7 @@ export type AiSuggestionUncheckedUpdateManyWithoutTriageInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -895,6 +965,7 @@ export type AiSuggestionCreateManyCollectionSessionInput = {
   id?: string
   triageId: string
   analysisRunId: string
+  claimToken?: string | null
   status: $Enums.AiSuggestionStatus
   suggestedPriority?: $Enums.AiSuggestedPriority | null
   attentionLevel?: $Enums.AiAttentionLevel | null
@@ -903,11 +974,13 @@ export type AiSuggestionCreateManyCollectionSessionInput = {
   model: string
   promptVersion: string
   createdAt?: Date | string
+  updatedAt?: Date | string
   completedAt?: Date | string | null
 }
 
 export type AiSuggestionUpdateWithoutCollectionSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -916,6 +989,7 @@ export type AiSuggestionUpdateWithoutCollectionSessionInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   triage?: Prisma.TriageUpdateOneRequiredWithoutAiSuggestionsNestedInput
   analysisRun?: Prisma.AnalysisRunUpdateOneRequiredWithoutAiSuggestionNestedInput
@@ -925,6 +999,7 @@ export type AiSuggestionUncheckedUpdateWithoutCollectionSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   triageId?: Prisma.StringFieldUpdateOperationsInput | string
   analysisRunId?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -933,6 +1008,7 @@ export type AiSuggestionUncheckedUpdateWithoutCollectionSessionInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -940,6 +1016,7 @@ export type AiSuggestionUncheckedUpdateManyWithoutCollectionSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   triageId?: Prisma.StringFieldUpdateOperationsInput | string
   analysisRunId?: Prisma.StringFieldUpdateOperationsInput | string
+  claimToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumAiSuggestionStatusFieldUpdateOperationsInput | $Enums.AiSuggestionStatus
   suggestedPriority?: Prisma.NullableEnumAiSuggestedPriorityFieldUpdateOperationsInput | $Enums.AiSuggestedPriority | null
   attentionLevel?: Prisma.NullableEnumAiAttentionLevelFieldUpdateOperationsInput | $Enums.AiAttentionLevel | null
@@ -948,6 +1025,7 @@ export type AiSuggestionUncheckedUpdateManyWithoutCollectionSessionInput = {
   model?: Prisma.StringFieldUpdateOperationsInput | string
   promptVersion?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -958,6 +1036,7 @@ export type AiSuggestionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   triageId?: boolean
   analysisRunId?: boolean
   collectionSessionId?: boolean
+  claimToken?: boolean
   status?: boolean
   suggestedPriority?: boolean
   attentionLevel?: boolean
@@ -966,6 +1045,7 @@ export type AiSuggestionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   model?: boolean
   promptVersion?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   completedAt?: boolean
   triage?: boolean | Prisma.TriageDefaultArgs<ExtArgs>
   analysisRun?: boolean | Prisma.AnalysisRunDefaultArgs<ExtArgs>
@@ -977,6 +1057,7 @@ export type AiSuggestionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   triageId?: boolean
   analysisRunId?: boolean
   collectionSessionId?: boolean
+  claimToken?: boolean
   status?: boolean
   suggestedPriority?: boolean
   attentionLevel?: boolean
@@ -985,6 +1066,7 @@ export type AiSuggestionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   model?: boolean
   promptVersion?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   completedAt?: boolean
   triage?: boolean | Prisma.TriageDefaultArgs<ExtArgs>
   analysisRun?: boolean | Prisma.AnalysisRunDefaultArgs<ExtArgs>
@@ -996,6 +1078,7 @@ export type AiSuggestionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   triageId?: boolean
   analysisRunId?: boolean
   collectionSessionId?: boolean
+  claimToken?: boolean
   status?: boolean
   suggestedPriority?: boolean
   attentionLevel?: boolean
@@ -1004,6 +1087,7 @@ export type AiSuggestionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   model?: boolean
   promptVersion?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   completedAt?: boolean
   triage?: boolean | Prisma.TriageDefaultArgs<ExtArgs>
   analysisRun?: boolean | Prisma.AnalysisRunDefaultArgs<ExtArgs>
@@ -1015,6 +1099,7 @@ export type AiSuggestionSelectScalar = {
   triageId?: boolean
   analysisRunId?: boolean
   collectionSessionId?: boolean
+  claimToken?: boolean
   status?: boolean
   suggestedPriority?: boolean
   attentionLevel?: boolean
@@ -1023,10 +1108,11 @@ export type AiSuggestionSelectScalar = {
   model?: boolean
   promptVersion?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   completedAt?: boolean
 }
 
-export type AiSuggestionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "triageId" | "analysisRunId" | "collectionSessionId" | "status" | "suggestedPriority" | "attentionLevel" | "conclusion" | "factors" | "model" | "promptVersion" | "createdAt" | "completedAt", ExtArgs["result"]["aiSuggestion"]>
+export type AiSuggestionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "triageId" | "analysisRunId" | "collectionSessionId" | "claimToken" | "status" | "suggestedPriority" | "attentionLevel" | "conclusion" | "factors" | "model" | "promptVersion" | "createdAt" | "updatedAt" | "completedAt", ExtArgs["result"]["aiSuggestion"]>
 export type AiSuggestionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   triage?: boolean | Prisma.TriageDefaultArgs<ExtArgs>
   analysisRun?: boolean | Prisma.AnalysisRunDefaultArgs<ExtArgs>
@@ -1055,6 +1141,7 @@ export type $AiSuggestionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     triageId: string
     analysisRunId: string
     collectionSessionId: string
+    claimToken: string | null
     status: $Enums.AiSuggestionStatus
     suggestedPriority: $Enums.AiSuggestedPriority | null
     attentionLevel: $Enums.AiAttentionLevel | null
@@ -1063,6 +1150,7 @@ export type $AiSuggestionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     model: string
     promptVersion: string
     createdAt: Date
+    updatedAt: Date
     completedAt: Date | null
   }, ExtArgs["result"]["aiSuggestion"]>
   composites: {}
@@ -1494,6 +1582,7 @@ export interface AiSuggestionFieldRefs {
   readonly triageId: Prisma.FieldRef<"AiSuggestion", 'String'>
   readonly analysisRunId: Prisma.FieldRef<"AiSuggestion", 'String'>
   readonly collectionSessionId: Prisma.FieldRef<"AiSuggestion", 'String'>
+  readonly claimToken: Prisma.FieldRef<"AiSuggestion", 'String'>
   readonly status: Prisma.FieldRef<"AiSuggestion", 'AiSuggestionStatus'>
   readonly suggestedPriority: Prisma.FieldRef<"AiSuggestion", 'AiSuggestedPriority'>
   readonly attentionLevel: Prisma.FieldRef<"AiSuggestion", 'AiAttentionLevel'>
@@ -1502,6 +1591,7 @@ export interface AiSuggestionFieldRefs {
   readonly model: Prisma.FieldRef<"AiSuggestion", 'String'>
   readonly promptVersion: Prisma.FieldRef<"AiSuggestion", 'String'>
   readonly createdAt: Prisma.FieldRef<"AiSuggestion", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"AiSuggestion", 'DateTime'>
   readonly completedAt: Prisma.FieldRef<"AiSuggestion", 'DateTime'>
 }
     

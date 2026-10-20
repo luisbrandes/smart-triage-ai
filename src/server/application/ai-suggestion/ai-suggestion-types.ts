@@ -24,7 +24,7 @@ export type AiSuggestionView = {
   id: string;
   analysisRunId: string;
   collectionAttemptNumber: number;
-  status: "COMPLETED" | "UNAVAILABLE";
+  status: "PENDING" | "COMPLETED" | "UNAVAILABLE";
   suggestedPriority: AiSuggestionResult["priority"] | null;
   attentionLevel: AiSuggestionResult["attention"] | null;
   conclusion: string | null;

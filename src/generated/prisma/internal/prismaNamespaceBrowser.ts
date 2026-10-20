@@ -74,7 +74,8 @@ export const ModelName = {
   HardwareError: 'HardwareError',
   NurseReview: 'NurseReview',
   CareReferral: 'CareReferral',
-  AuditEvent: 'AuditEvent'
+  AuditEvent: 'AuditEvent',
+  RateLimitBucket: 'RateLimitBucket'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -280,6 +281,7 @@ export const AiSuggestionScalarFieldEnum = {
   triageId: 'triageId',
   analysisRunId: 'analysisRunId',
   collectionSessionId: 'collectionSessionId',
+  claimToken: 'claimToken',
   status: 'status',
   suggestedPriority: 'suggestedPriority',
   attentionLevel: 'attentionLevel',
@@ -288,6 +290,7 @@ export const AiSuggestionScalarFieldEnum = {
   model: 'model',
   promptVersion: 'promptVersion',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   completedAt: 'completedAt'
 } as const
 
@@ -485,6 +488,16 @@ export const AuditEventScalarFieldEnum = {
 } as const
 
 export type AuditEventScalarFieldEnum = (typeof AuditEventScalarFieldEnum)[keyof typeof AuditEventScalarFieldEnum]
+
+
+export const RateLimitBucketScalarFieldEnum = {
+  key: 'key',
+  windowStartedAt: 'windowStartedAt',
+  count: 'count',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RateLimitBucketScalarFieldEnum = (typeof RateLimitBucketScalarFieldEnum)[keyof typeof RateLimitBucketScalarFieldEnum]
 
 
 export const SortOrder = {

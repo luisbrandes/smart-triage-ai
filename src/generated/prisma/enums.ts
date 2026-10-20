@@ -193,6 +193,7 @@ export type RuleSetStatus = (typeof RuleSetStatus)[keyof typeof RuleSetStatus]
 
 
 export const AiSuggestionStatus = {
+  PENDING: 'PENDING',
   COMPLETED: 'COMPLETED',
   UNAVAILABLE: 'UNAVAILABLE'
 } as const

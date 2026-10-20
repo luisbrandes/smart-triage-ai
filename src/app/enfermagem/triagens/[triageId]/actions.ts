@@ -9,6 +9,7 @@ import { aiSuggestion } from "@/server/ai-suggestion";
 import { getNursingSession } from "@/server/security/nursing-session";
 import { logServerOperation } from "@/server/observability/server-logger";
 import { randomUUID } from "node:crypto";
+import { consumeRequestRateLimit } from "@/server/security/request-rate-limit";
 
 export type NursingActionState = NursingMutationResult | { success: false; message: string };
 const validId = (id: string) => /^[0-9a-f-]{36}$/i.test(id);
@@ -17,6 +18,8 @@ async function execute(triageId: string, operation: (actor: string) => Promise<N
   if (!validId(triageId)) return { success: false, message: "Triagem inválida." };
   const session = await getNursingSession();
   if (!session) return { success: false, message: "Sessão profissional ausente ou expirada." };
+  const limit = await consumeRequestRateLimit("nurse-mutation", { limit: 60, windowMs: 60_000 }, session.actorReference);
+  if (!limit.allowed) return { success: false, message: limit.reason === "limited" ? "Muitas operações em sequência. Aguarde um minuto e tente novamente." : "A proteção está temporariamente indisponível. Tente novamente em instantes." };
   const correlationId = randomUUID();
   const startedAt = Date.now();
   try {
@@ -58,18 +61,24 @@ export async function generateAiSuggestionAction(triageId: string, _state: AiSug
   if (!validId(triageId)) return { success: false, message: "Triagem inválida." };
   const session = await getNursingSession();
   if (!session) return { success: false, message: "Sessão profissional ausente ou expirada." };
+  const limit = await consumeRequestRateLimit("nurse-groq", { limit: 5, windowMs: 60 * 60_000 }, session.actorReference);
+  if (!limit.allowed) return { success: false, message: limit.reason === "limited" ? "Limite de solicitações de IA atingido. A revisão profissional continua disponível." : "A proteção está temporariamente indisponível. A revisão profissional continua disponível." };
   try {
     const result = await aiSuggestion.generate(triageId, session.actorReference);
     if (result === "SAVED") {
       revalidatePath(`/enfermagem/triagens/${triageId}`);
       return { success: true, message: "Sugestão gerada e salva. Revise o conteúdo antes de decidir." };
     }
-    if (result === "ALREADY_EXISTS") return { success: true, message: "A sugestão desta análise já foi gerada. Atualize a página para consultá-la." };
-    if (result === "NOT_CONFIGURED") return { success: false, message: "A sugestão da IA não está configurada neste ambiente." };
+    if (result === "UNAVAILABLE") {
+      revalidatePath(`/enfermagem/triagens/${triageId}`);
+      return { success: false, message: "Avaliação por IA indisponível. A triagem continua disponível para revisão profissional." };
+    }
+    if (result === "IN_PROGRESS") return { success: true, message: "A solicitacao desta analise ja esta em andamento. Atualize a pagina em instantes." };
+    if (result === "ALREADY_EXISTS") { revalidatePath(`/enfermagem/triagens/${triageId}`); return { success: true, message: "A sugestão desta análise já foi gerada. Atualize a página para consultá-la." }; }
     if (result === "INSUFFICIENT_DATA") return { success: false, message: "Ainda não há análise final e sinais vitais aceitos suficientes para solicitar a sugestão." };
-    if (result === "PERSISTENCE_ERROR") return { success: false, message: "A sugestão foi processada, mas não pôde ser salva. Tente novamente." };
-    return { success: false, message: "A IA não respondeu corretamente. Tente novamente mais tarde." };
+    if (result === "PERSISTENCE_ERROR") return { success: false, message: "Avaliação por IA indisponível. A triagem continua disponível para revisão profissional." };
+    return { success: false, message: "Avaliação por IA indisponível. A triagem continua disponível para revisão profissional." };
   } catch {
-    return { success: false, message: "Não foi possível gerar a sugestão agora. A decisão profissional continua disponível." };
+    return { success: false, message: "Avaliação por IA indisponível. A triagem continua disponível para revisão profissional." };
   }
 }

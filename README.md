@@ -79,3 +79,7 @@ Sinais vitais vinculados à triagem são obtidos por um `HardwareGateway` comum.
 Os próximos marcos tratam auditoria/segurança/robustez, dados demonstrativos e validação integral. A ordem e os gates estão em `docs/IMPLEMENTATION_PLAN.md`.
 
 > Produto experimental, sem validação clínica, conformidade certificada ou autorização para uso clínico real. Use exclusivamente dados fictícios em desenvolvimento e demonstrações.
+
+### Prisma Postgres usado como banco de testes
+
+Prisma Postgres usa o nome `/postgres` para bancos distintos. A validacao considera a identidade gerada do banco: pooled e direct do mesmo projeto compartilham usuario, enquanto um projeto de teste separado precisa ter usuario diferente de `DATABASE_URL` e `DIRECT_DATABASE_URL`. O script oficial converte somente o host `pooled.db.prisma.io` para `db.prisma.io` ao aplicar migrations; a suite usa a URL pooled de teste.

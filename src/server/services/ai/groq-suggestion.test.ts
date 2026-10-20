@@ -33,6 +33,10 @@ describe("sugestão experimental via Groq", () => {
     const fetcher = vi.fn();
     expect(await requestGroqSuggestion(fictitiousInput, fetcher)).toBeNull();
     expect(fetcher).not.toHaveBeenCalled();
+    vi.stubEnv("APP_MODE", "demo");
+    vi.stubEnv("GROQ_API_KEY", "");
+    expect(await requestGroqSuggestion(fictitiousInput, fetcher)).toBeNull();
+    expect(fetcher).not.toHaveBeenCalled();
   });
 
   it("não bloqueia o fluxo diante de erro ou saída inválida", async () => {
@@ -40,5 +44,7 @@ describe("sugestão experimental via Groq", () => {
     vi.stubEnv("GROQ_API_KEY", "fake-test-key");
     expect(await requestGroqSuggestion(fictitiousInput, vi.fn(async () => new Response("", { status: 429 })))).toBeNull();
     expect(await requestGroqSuggestion(fictitiousInput, vi.fn(async () => new Response(JSON.stringify({ choices: [{ message: { content: '{"priority":"BLUE"}' } }] }), { status: 200 })))).toBeNull();
+    const timeout = Object.assign(new Error("internal timeout detail"), { name: "TimeoutError" });
+    expect(await requestGroqSuggestion(fictitiousInput, vi.fn(async () => { throw timeout; }))).toBeNull();
   });
 });

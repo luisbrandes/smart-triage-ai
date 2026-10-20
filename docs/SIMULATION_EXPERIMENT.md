@@ -37,6 +37,7 @@ Após capturar a fila inicial com 50 triagens, seis recomendações são confirm
 Pré-condições:
 
 - `APP_MODE=demo`;
+- PostgreSQL local no loopback (`localhost`, `127.0.0.1` ou `::1`); scripts recusam destinos remotos;
 - `DATABASE_URL` configurada;
 - `DIRECT_DATABASE_URL` configurada quando a URL principal usa Prisma Accelerate;
 - migrations aplicadas no banco de demonstração/desenvolvimento;

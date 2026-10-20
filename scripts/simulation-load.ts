@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -65,6 +65,7 @@ async function main(): Promise<void> {
   } = await import("../src/server/application/nursing/nursing-queries");
   const {
     confirmTriageClassification,
+    referTriageToCare,
     callNextPatient,
     startPatientCare,
     completePatientCare,
@@ -189,6 +190,7 @@ async function main(): Promise<void> {
       const validatedReading = deviceReadingSchema.parse({
         deviceId: SIMULATION_DEVICE_EXTERNAL_ID,
         sessionId: technicalSession.sessionId,
+        readingId: randomUUID(),
         ...item.vitals,
       });
       const recorded = await recordDeviceReading(readingRepository, validatedReading);
@@ -230,6 +232,11 @@ async function main(): Promise<void> {
     const careCases = [3, 6, 2, 5, 1, 4].map((sequence) => simulationCases[sequence - 1]);
     for (const item of careCases) {
       await confirmTriageClassification(nursingRepository, item.triageId, SIMULATION_ACTOR);
+      const referral = await referTriageToCare(nursingRepository, item.triageId, {
+        destination: "Atendimento demonstrativo",
+        notes: "Encaminhamento sintético do experimento controlado.",
+      }, SIMULATION_ACTOR);
+      if (!referral.success) throw new Error("Não foi possível encaminhar um caso sintético à fila de atendimento.");
     }
     const careQueueBeforeCall = await listCareQueue(nursingRepository, observationAt);
     const firstCalled = await callNextPatient(nursingRepository, SIMULATION_ACTOR);

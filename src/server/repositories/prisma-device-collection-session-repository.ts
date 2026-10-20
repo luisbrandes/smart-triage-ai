@@ -10,7 +10,24 @@ function toView(session: { id: string; deviceId: string; status: string; expires
 
 export class PrismaDeviceCollectionSessionRepository implements DeviceCollectionSessionRepository {
   async findById(sessionId: string, triageId: string): Promise<DeviceCollectionSessionDetailView | null> {
-    await prisma.deviceCollectionSession.updateMany({ where: { id: sessionId, status: "ACTIVE", expiresAt: { lte: new Date() } }, data: { status: "CANCELLED", cancelledAt: new Date() } });
+    await prisma.$transaction(async (transaction) => {
+      const expiredAt = new Date();
+      const expired = await transaction.deviceCollectionSession.updateMany({
+        where: { id: sessionId, requestedByTriageId: triageId, status: "ACTIVE", expiresAt: { lte: expiredAt } },
+        data: { status: "CANCELLED", cancelledAt: expiredAt },
+      });
+      if (expired.count > 0) {
+        await transaction.auditEvent.create({
+          data: {
+            entityType: "DeviceCollectionSession",
+            entityId: sessionId,
+            action: "DEVICE_COLLECTION_EXPIRED",
+            actorType: "SYSTEM",
+            sanitizedMetadata: { source: "SESSION_READ" },
+          },
+        });
+      }
+    });
     const session = await prisma.deviceCollectionSession.findUnique({
       where: { id: sessionId, requestedByTriageId: triageId },
       include: {

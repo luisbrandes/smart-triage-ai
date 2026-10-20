@@ -87,6 +87,7 @@ export async function saveIdentificationAction(_previous: IntakeActionState, for
       category: failure.category,
       errorName: failure.name,
       ...(failure.code ? { errorCode: failure.code } : {}),
+      ...(failure.schemaField ? { schemaField: failure.schemaField } : {}),
     });
 
     return { message: "Não foi possível salvar a identificação. Tente novamente." };

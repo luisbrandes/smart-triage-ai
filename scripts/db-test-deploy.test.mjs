@@ -1,43 +1,71 @@
 import { describe, expect, it } from "vitest";
 
-import { getTestDatabaseUrl } from "./db-test-deploy.mjs";
+import { getDirectTestDatabaseUrl, getTestDatabaseUrl } from "./db-test-deploy.mjs";
 
-describe("validação segura do destino de migrations de teste", () => {
-  const testUrl = "postgresql://test-user:test-password@localhost:5433/smart_triage_test";
+const localTestUrl = "postgresql://test-user:test-password@localhost:5433/smart_triage_test";
+const localRuntimeUrl = "postgresql://app-user:app-password@localhost:5432/smart_triage";
+const localDirectUrl = "postgresql://app-user:other-password@localhost:5432/smart_triage";
+const prismaRuntimeUrl = "postgres://runtime-project-user:runtime-pass@pooled.db.prisma.io:5432/postgres?sslmode=require";
+const prismaDirectUrl = "postgres://runtime-project-user:direct-pass@db.prisma.io:5432/postgres?sslmode=require";
+const prismaTestUrl = "postgres://test-project-user:test-pass@pooled.db.prisma.io:5432/postgres?sslmode=require";
 
-  it("aceita um banco PostgreSQL identificado como teste e distinto do runtime", () => {
+describe("safe test migration destination", () => {
+  it("accepts a named local PostgreSQL test database distinct from runtime and direct URLs", () => {
     expect(getTestDatabaseUrl({
-      testDatabaseUrl: testUrl,
-      databaseUrl: "postgresql://app-user:app-password@localhost:5433/smart_triage",
-    })).toBe(testUrl);
+      testDatabaseUrl: localTestUrl,
+      databaseUrl: localRuntimeUrl,
+      directDatabaseUrl: localDirectUrl,
+    })).toBe(localTestUrl);
   });
 
-  it("rejeita variável ausente, URL inválida e provedor não PostgreSQL", () => {
-    expect(() => getTestDatabaseUrl({ testDatabaseUrl: undefined })).toThrow("obrigatória");
-    expect(() => getTestDatabaseUrl({ testDatabaseUrl: "não é URL" })).toThrow("URL PostgreSQL");
-    expect(() => getTestDatabaseUrl({ testDatabaseUrl: "prisma+postgres://host/test" })).toThrow("diretamente para PostgreSQL");
+  it("accepts a separate Prisma Postgres project even though all projects use the postgres database name", () => {
+    expect(getTestDatabaseUrl({
+      testDatabaseUrl: prismaTestUrl,
+      databaseUrl: prismaRuntimeUrl,
+      directDatabaseUrl: prismaDirectUrl,
+    })).toBe(prismaTestUrl);
   });
 
-  it("rejeita destino sem identificador de teste", () => {
-    expect(() => getTestDatabaseUrl({ testDatabaseUrl: "postgresql://localhost/smart_triage" })).toThrow("banco de teste");
+  it("converts the pooled Prisma test URL to its direct migration endpoint", () => {
+    expect(new URL(getDirectTestDatabaseUrl(prismaTestUrl)).hostname).toBe("db.prisma.io");
+    expect(getDirectTestDatabaseUrl(localTestUrl)).toBe(localTestUrl);
   });
 
-  it("rejeita o mesmo host, porta e banco da aplicação mesmo com credenciais diferentes", () => {
+  it("rejects missing, malformed and non-PostgreSQL test URLs", () => {
+    expect(() => getTestDatabaseUrl({ testDatabaseUrl: undefined })).toThrow("required");
+    expect(() => getTestDatabaseUrl({ testDatabaseUrl: "not a URL" })).toThrow("invalid");
+    expect(() => getTestDatabaseUrl({ testDatabaseUrl: "prisma+postgres://host/test" })).toThrow("PostgreSQL");
+  });
+
+  it("rejects a destination without a test database name or a distinct Prisma project identity", () => {
+    expect(() => getTestDatabaseUrl({
+      testDatabaseUrl: "postgresql://test-user:pass@localhost:5433/smart_triage_other",
+      databaseUrl: localRuntimeUrl,
+      directDatabaseUrl: localDirectUrl,
+    })).toThrow("dedicated test database");
+  });
+
+  it("rejects the runtime database despite different credentials", () => {
     expect(() => getTestDatabaseUrl({
       testDatabaseUrl: "postgresql://other-user:other-password@localhost:5432/smart_triage_test",
       databaseUrl: "postgresql://app-user:app-password@localhost:5432/smart_triage_test",
-    })).toThrow("mesmo banco usado pela aplicação");
+      directDatabaseUrl: "postgresql://app-user:other-password@localhost:5432/smart_triage",
+    })).toThrow("runtime database");
   });
 
-  it("falha fechado quando o destino do banco da aplicação está ausente ou não pode ser comparado", () => {
-    expect(() => getTestDatabaseUrl({ testDatabaseUrl: testUrl })).toThrow("DATABASE_URL é obrigatória");
+  it("recognizes the same Prisma database across pooled and direct hosts", () => {
     expect(() => getTestDatabaseUrl({
-      testDatabaseUrl: testUrl,
-      databaseUrl: "URL inválida",
-    })).toThrow("não foi possível confirmar");
+      testDatabaseUrl: "postgres://runtime-project-user:test-pass@pooled.db.prisma.io:5432/postgres?sslmode=require",
+      databaseUrl: prismaRuntimeUrl,
+      directDatabaseUrl: prismaDirectUrl,
+    })).toThrow("runtime database");
+  });
+
+  it("requires both runtime URLs to verify isolation", () => {
+    expect(() => getTestDatabaseUrl({ testDatabaseUrl: localTestUrl })).toThrow("DATABASE_URL");
     expect(() => getTestDatabaseUrl({
-      testDatabaseUrl: testUrl,
-      databaseUrl: "prisma+postgres://host/db",
-    })).toThrow("diretamente para PostgreSQL");
+      testDatabaseUrl: localTestUrl,
+      databaseUrl: localRuntimeUrl,
+    })).toThrow("DIRECT_DATABASE_URL");
   });
 });

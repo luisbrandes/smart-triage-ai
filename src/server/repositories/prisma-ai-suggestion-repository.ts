@@ -1,5 +1,6 @@
 import "server-only";
 
+import { randomUUID } from "node:crypto";
 import { Prisma } from "@/generated/prisma/client";
 import { demoAnamnesis } from "@/demo/anamnesis";
 import { prisma } from "@/server/db/prisma";
@@ -52,23 +53,60 @@ export class PrismaAiSuggestionRepository {
     } };
   }
 
-  async save(triageId: string, analysisRunId: string, collectionSessionId: string, result: AiSuggestionResult | null, actorReference: string): Promise<void> {
+  async claim(triageId: string, analysisRunId: string, collectionSessionId: string, actorReference: string): Promise<{ kind: "CLAIMED"; claimToken: string } | { kind: "IN_PROGRESS" | "ALREADY_EXISTS" }> {
+    const now = new Date();
+    const claimToken = randomUUID();
+    const staleBefore = new Date(now.getTime() - 60_000);
     try {
-      await prisma.$transaction(async (transaction) => {
-        const existing = await transaction.aiSuggestion.findUnique({ where: { analysisRunId }, select: { id: true } });
-        if (existing) return;
-        const suggestion = await transaction.aiSuggestion.create({ data: {
-          triageId, analysisRunId, collectionSessionId, status: result ? "COMPLETED" : "UNAVAILABLE",
-          suggestedPriority: result?.priority, attentionLevel: result?.attention, conclusion: result?.conclusion,
-          factors: result?.factors ?? Prisma.JsonNull, model: GROQ_MODEL, promptVersion: AI_PROMPT_VERSION,
-          completedAt: new Date(),
-        }, select: { id: true } });
-        await transaction.auditEvent.create({ data: { triageId, entityType: "AiSuggestion", entityId: suggestion.id, action: result ? "AI_SUGGESTION_COMPLETED" : "AI_SUGGESTION_UNAVAILABLE", actorType: "NURSE", actorReference, sanitizedMetadata: { promptVersion: AI_PROMPT_VERSION, status: result ? "COMPLETED" : "UNAVAILABLE" } } });
+      return await prisma.$transaction(async (transaction) => {
+        const existing = await transaction.aiSuggestion.findUnique({ where: { analysisRunId }, select: { id: true, status: true, updatedAt: true } });
+        if (!existing) {
+          const suggestion = await transaction.aiSuggestion.create({ data: {
+            triageId, analysisRunId, collectionSessionId, claimToken, status: "PENDING",
+            model: GROQ_MODEL, promptVersion: AI_PROMPT_VERSION,
+          }, select: { id: true } });
+          await transaction.auditEvent.create({ data: { triageId, entityType: "AiSuggestion", entityId: suggestion.id, action: "AI_SUGGESTION_REQUESTED", actorType: "NURSE", actorReference, sanitizedMetadata: { promptVersion: AI_PROMPT_VERSION, status: "PENDING" } } });
+          return { kind: "CLAIMED", claimToken } as const;
+        }
+        if (existing.status !== "PENDING") return { kind: "ALREADY_EXISTS" } as const;
+        if (existing.updatedAt > staleBefore) return { kind: "IN_PROGRESS" } as const;
+
+        const reclaimed = await transaction.aiSuggestion.updateMany({
+          where: { id: existing.id, status: "PENDING", updatedAt: { lte: staleBefore } },
+          data: { claimToken, updatedAt: now },
+        });
+        if (reclaimed.count !== 1) return { kind: "IN_PROGRESS" } as const;
+        await transaction.auditEvent.create({ data: { triageId, entityType: "AiSuggestion", entityId: existing.id, action: "AI_SUGGESTION_RETRY_CLAIMED", actorType: "NURSE", actorReference, sanitizedMetadata: { promptVersion: AI_PROMPT_VERSION, status: "PENDING" } } });
+        return { kind: "CLAIMED", claimToken } as const;
       });
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") return;
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        const existing = await prisma.aiSuggestion.findUnique({ where: { analysisRunId }, select: { status: true } });
+        return existing?.status === "PENDING" ? { kind: "IN_PROGRESS" } : { kind: "ALREADY_EXISTS" };
+      }
       throw error;
     }
+  }
+
+  async save(triageId: string, analysisRunId: string, claimToken: string, result: AiSuggestionResult | null, actorReference: string): Promise<boolean> {
+    return prisma.$transaction(async (transaction) => {
+      const saved = await transaction.aiSuggestion.updateMany({
+        where: { analysisRunId, status: "PENDING", claimToken },
+        data: {
+          status: result ? "COMPLETED" : "UNAVAILABLE",
+          suggestedPriority: result?.priority,
+          attentionLevel: result?.attention,
+          conclusion: result?.conclusion,
+          factors: result?.factors ?? Prisma.JsonNull,
+          claimToken: null,
+          completedAt: new Date(),
+        },
+      });
+      if (saved.count !== 1) return false;
+      const suggestion = await transaction.aiSuggestion.findUniqueOrThrow({ where: { analysisRunId }, select: { id: true } });
+      await transaction.auditEvent.create({ data: { triageId, entityType: "AiSuggestion", entityId: suggestion.id, action: result ? "AI_SUGGESTION_COMPLETED" : "AI_SUGGESTION_UNAVAILABLE", actorType: "NURSE", actorReference, sanitizedMetadata: { promptVersion: AI_PROMPT_VERSION, status: result ? "COMPLETED" : "UNAVAILABLE" } } });
+      return true;
+    });
   }
 
   async list(triageId: string): Promise<AiSuggestionView[]> {

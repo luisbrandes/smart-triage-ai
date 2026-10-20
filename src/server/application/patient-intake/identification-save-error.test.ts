@@ -38,6 +38,29 @@ describe("safe identification save failure classification", () => {
     expect(classifyIdentificationSaveError({ name: "PatientIntakeStateError" }).category).toBe("invalid_state");
   });
 
+  it("exposes only allowlisted Patient columns for P2022 diagnostics", () => {
+    expect(classifyIdentificationSaveError({
+      name: "PrismaClientKnownRequestError",
+      code: "P2022",
+      meta: { column: '"Patient"."cpf"', value: "sensitive patient value" },
+      message: "private database message",
+    })).toEqual({
+      category: "schema_migration",
+      code: "P2022",
+      name: "PrismaClientKnownRequestError",
+      schemaField: "Patient.cpf",
+    });
+    expect(classifyIdentificationSaveError({
+      name: "PrismaClientKnownRequestError",
+      code: "P2022",
+      meta: { column: "SecretTable.secretColumn" },
+    })).toEqual({
+      category: "schema_migration",
+      code: "P2022",
+      name: "PrismaClientKnownRequestError",
+    });
+  });
+
   it("replaces unexpected error names and codes with safe values", () => {
     expect(classifyIdentificationSaveError({ name: "untrusted/CPF input", code: "untrusted value" }))
       .toEqual({ category: "unexpected", name: "UnknownError" });

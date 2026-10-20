@@ -4,6 +4,7 @@ import { DeviceCollectionSessionError } from "@/server/application/device-collec
 import { getDeviceCollectionSession } from "@/server/application/device-collection-sessions/device-collection-session-use-cases";
 import { PrismaDeviceCollectionSessionRepository } from "@/server/repositories/prisma-device-collection-session-repository";
 import { authorizedPatientTriageId } from "@/server/patient-device-session-authorization";
+import { rateLimitResponse } from "@/server/http/rate-limit-response";
 
 export const runtime = "nodejs";
 
@@ -12,6 +13,8 @@ const repository = new PrismaDeviceCollectionSessionRepository();
 export async function GET(_request: Request, { params }: { params: Promise<{ sessionId: string }> }) {
   const triageId = await authorizedPatientTriageId();
   if (!triageId) return NextResponse.json({ error: "Sessão do paciente inválida." }, { status: 401 });
+  const limited = await rateLimitResponse("api:triage-session-read", { limit: 120, windowMs: 60_000 }, triageId);
+  if (limited) return limited;
   const { sessionId } = await params;
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(sessionId)) {
     return NextResponse.json({ error: "sessionId inválido." }, { status: 400 });

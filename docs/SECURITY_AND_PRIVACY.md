@@ -7,6 +7,7 @@
 - Layout e Server Actions profissionais exigem sessão; ator de auditoria deriva da sessão.
 - Cookie do paciente contém somente referência opaca assinada à triagem atual.
 - Auditoria rejeita update/delete no PostgreSQL; logs estruturados proíbem conteúdo clínico e identificável.
+- Rate limits com janela fixa são contados atomicamente no PostgreSQL compartilhado, usando somente hash de escopo/identificador e falha fechada quando o banco não responde.
 
 Esses controles são provisórios para demonstração e não representam conformidade, identidade corporativa ou autorização clínica.
 
@@ -43,7 +44,7 @@ Na homologação remota, cada dispositivo ativo possui token opaco individual e 
 
 Proteger contra dispositivo não autorizado, replay e dados adulterados; validar esquema, tipo, unidade, tamanho, frequência, ordem e duplicidade de payload. Nenhum valor é confiável apenas por vir de dispositivo.
 
-Transmitir o mínimo, sem nome, documento ou anamnese desnecessários no dispositivo. Segredos fixos ou documentados no repositório são proibidos. Falhas de autenticação, conexão e validação devem ser registradas sem payload sensível. Retenção do bruto, pareamento de múltiplos dispositivos, rate limiting distribuído e operação offline permanecem pendentes. A autenticação atual é adequada somente à homologação controlada e não representa certificação ou autorização clínica.
+Transmitir o mínimo, sem nome, documento ou anamnese desnecessários no dispositivo. Segredos fixos ou documentados no repositório são proibidos. Falhas de autenticação, conexão e validação devem ser registradas sem payload sensível. Há rate limits distribuídos para autenticação, APIs do dispositivo e sessões; os contadores dependem da disponibilidade do PostgreSQL compartilhado e expiram por limpeza oportunista. Retenção do bruto, pareamento de múltiplos dispositivos e operação offline permanecem pendentes. A autenticação atual é adequada somente à demonstração controlada e não representa identidade corporativa, certificação ou autorização clínica.
 
 ## Persistência local e seed
 

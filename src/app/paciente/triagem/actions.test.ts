@@ -138,9 +138,11 @@ describe("saveIdentificationAction", () => {
       category: "schema_migration",
       errorName: "PrismaClientKnownRequestError",
       errorCode: "P2022",
+      schemaField: "Patient.cpf",
     });
-    expect(JSON.stringify(vi.mocked(console.error).mock.calls)).not.toContain("Patient.cpf");
+    expect(JSON.stringify(vi.mocked(console.error).mock.calls)).toContain("Patient.cpf");
     expect(JSON.stringify(vi.mocked(console.error).mock.calls)).not.toContain("column details");
+    expect(JSON.stringify(vi.mocked(console.error).mock.calls)).not.toContain("to be returned to the patient");
     expect(mocks.redirect).not.toHaveBeenCalled();
     expect(console.info).not.toHaveBeenCalled();
   });

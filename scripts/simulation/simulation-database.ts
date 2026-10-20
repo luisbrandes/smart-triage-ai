@@ -1,4 +1,5 @@
 import { PrismaPg } from "@prisma/adapter-pg";
+import { assertSafeDemoDatabaseTarget } from "../local-database-safety.mjs";
 
 import { Prisma, PrismaClient } from "../../src/generated/prisma/client";
 import {
@@ -7,15 +8,13 @@ import {
 } from "./simulation-data";
 
 export function assertSimulationEnvironment(): void {
-  if (process.env.APP_MODE !== "demo") {
-    throw new Error("A simulação só pode ser executada com APP_MODE=demo.");
-  }
-  if (process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production") {
-    throw new Error("A simulação é bloqueada em ambiente de produção.");
-  }
-  if (!process.env.DATABASE_URL) {
-    throw new Error("DATABASE_URL não está definida.");
-  }
+  assertSafeDemoDatabaseTarget({
+    databaseUrl: process.env.DATABASE_URL,
+    directDatabaseUrl: process.env.DIRECT_DATABASE_URL,
+    appMode: process.env.APP_MODE,
+    nodeEnv: process.env.NODE_ENV,
+    vercelEnv: process.env.VERCEL_ENV,
+  });
 }
 
 function normalizeAdministrativeUrl(connectionString: string): string {

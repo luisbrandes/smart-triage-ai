@@ -6,23 +6,28 @@ import { deviceReadingSchema } from "@/server/application/device-readings/readin
 import { logServerOperation } from "@/server/observability/server-logger";
 import { PrismaDeviceReadingRepository } from "@/server/repositories/prisma-device-reading-repository";
 import { authenticateDeviceRequest } from "@/server/device-authentication";
+import { readJsonBody } from "@/server/http/read-json-body";
+import { rateLimitResponse } from "@/server/http/rate-limit-response";
 
 export const runtime = "nodejs";
 
 const repository = new PrismaDeviceReadingRepository();
 
 export async function POST(request: Request) {
+  const ipLimit = await rateLimitResponse("api:readings:ip", { limit: 120, windowMs: 60_000 });
+  if (ipLimit) return ipLimit;
   const device = await authenticateDeviceRequest(request);
   if (!device) return NextResponse.json({ error: "Dispositivo não autorizado." }, { status: 401 });
-  let body: unknown;
-
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "JSON inválido." }, { status: 400 });
+  const deviceLimit = await rateLimitResponse("api:readings:device", { limit: 60, windowMs: 60_000 }, device.internalId);
+  if (deviceLimit) return deviceLimit;
+  const body = await readJsonBody(request);
+  if (!body.ok) {
+    return NextResponse.json(
+      { error: body.reason === "TOO_LARGE" ? "Payload muito grande." : "JSON invalido." },
+      { status: body.reason === "TOO_LARGE" ? 413 : 400 },
+    );
   }
-
-  const parsed = deviceReadingSchema.safeParse(body);
+  const parsed = deviceReadingSchema.safeParse(body.value);
   if (!parsed.success) {
     return NextResponse.json({ error: "Payload inválido." }, { status: 400 });
   }

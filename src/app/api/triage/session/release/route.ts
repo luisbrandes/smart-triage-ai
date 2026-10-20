@@ -1,20 +1,31 @@
 import { NextResponse } from "next/server";
+import { readJsonBody } from "@/server/http/read-json-body";
 
 import { DeviceCollectionSessionError } from "@/server/application/device-collection-sessions/device-collection-session-errors";
 import { releaseDeviceCollectionSession } from "@/server/application/device-collection-sessions/device-collection-session-use-cases";
 import { releaseDeviceCollectionSessionSchema } from "@/server/application/device-collection-sessions/device-collection-session-validation";
 import { PrismaDeviceCollectionSessionRepository } from "@/server/repositories/prisma-device-collection-session-repository";
 import { authenticateDeviceRequest } from "@/server/device-authentication";
+import { rateLimitResponse } from "@/server/http/rate-limit-response";
 
 export const runtime = "nodejs";
 const repository = new PrismaDeviceCollectionSessionRepository();
 
 export async function POST(request: Request) {
+  const ipLimit = await rateLimitResponse("api:triage-session-release:ip", { limit: 120, windowMs: 60_000 });
+  if (ipLimit) return ipLimit;
   const device = await authenticateDeviceRequest(request);
   if (!device) return NextResponse.json({ error: "Dispositivo não autorizado." }, { status: 401 });
-  let body: unknown;
-  try { body = await request.json(); } catch { return NextResponse.json({ error: "JSON inválido." }, { status: 400 }); }
-  const parsed = releaseDeviceCollectionSessionSchema.safeParse(body);
+  const deviceLimit = await rateLimitResponse("api:triage-session-release:device", { limit: 30, windowMs: 60_000 }, device.internalId);
+  if (deviceLimit) return deviceLimit;
+  const body = await readJsonBody(request);
+  if (!body.ok) {
+    return NextResponse.json(
+      { error: body.reason === "TOO_LARGE" ? "Payload muito grande." : "JSON invalido." },
+      { status: body.reason === "TOO_LARGE" ? 413 : 400 },
+    );
+  }
+  const parsed = releaseDeviceCollectionSessionSchema.safeParse(body.value);
   if (parsed.success && parsed.data.deviceId !== device.deviceId) return NextResponse.json({ error: "Dispositivo não autorizado para este identificador." }, { status: 403 });
   if (!parsed.success) return NextResponse.json({ error: "Payload inválido." }, { status: 400 });
   try {
