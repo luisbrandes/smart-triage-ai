@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { Prisma } from "@/generated/prisma/client";
 import { demoAnamnesis } from "@/demo/anamnesis";
 import { prisma } from "@/server/db/prisma";
-import type { AiSuggestionInput, AiSuggestionResult, AiSuggestionView } from "@/server/application/ai-suggestion/ai-suggestion-types";
+import type { AiEvidenceItem, AiSuggestionInput, AiSuggestionResult, AiSuggestionView } from "@/server/application/ai-suggestion/ai-suggestion-types";
 import { AI_PROMPT_VERSION, GROQ_MODEL } from "@/server/services/ai/groq-suggestion";
 
 function ageAt(birthDate: Date | null): number | null {
@@ -13,6 +13,14 @@ function ageAt(birthDate: Date | null): number | null {
   let age = now.getUTCFullYear() - birthDate.getUTCFullYear();
   if (now.getUTCMonth() < birthDate.getUTCMonth() || (now.getUTCMonth() === birthDate.getUTCMonth() && now.getUTCDate() < birthDate.getUTCDate())) age -= 1;
   return Math.max(0, age);
+}
+
+function readEvidenceItems(value: unknown): AiEvidenceItem[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is AiEvidenceItem => typeof item === "object" && item !== null
+    && "key" in item && typeof item.key === "string"
+    && "label" in item && typeof item.label === "string"
+    && "value" in item && typeof item.value === "string");
 }
 
 export class PrismaAiSuggestionRepository {
@@ -94,10 +102,15 @@ export class PrismaAiSuggestionRepository {
         where: { analysisRunId, status: "PENDING", claimToken },
         data: {
           status: result ? "COMPLETED" : "UNAVAILABLE",
-          suggestedPriority: result?.priority,
+          suggestedPriority: result?.suggestion,
           attentionLevel: result?.attention,
-          conclusion: result?.conclusion,
-          factors: result?.factors ?? Prisma.JsonNull,
+          conclusion: result?.summary,
+          factors: result ? {
+            indicators: result.indicators,
+            explanation: result.explanation,
+            dataConsidered: result.dataConsidered,
+            limitations: result.limitations,
+          } as Prisma.InputJsonValue : Prisma.JsonNull,
           claimToken: null,
           completedAt: new Date(),
         },
@@ -111,6 +124,26 @@ export class PrismaAiSuggestionRepository {
 
   async list(triageId: string): Promise<AiSuggestionView[]> {
     const records = await prisma.aiSuggestion.findMany({ where: { triageId }, orderBy: { createdAt: "desc" }, select: { id: true, analysisRunId: true, status: true, suggestedPriority: true, attentionLevel: true, conclusion: true, factors: true, model: true, createdAt: true, collectionSession: { select: { attemptNumber: true } } } });
-    return records.map((record) => ({ id: record.id, analysisRunId: record.analysisRunId, collectionAttemptNumber: record.collectionSession.attemptNumber, status: record.status, suggestedPriority: record.suggestedPriority, attentionLevel: record.attentionLevel, conclusion: record.conclusion, factors: Array.isArray(record.factors) ? record.factors.filter((item): item is string => typeof item === "string") : [], model: record.model, createdAt: record.createdAt }));
+    return records.map((record) => {
+      const structured = typeof record.factors === "object" && record.factors !== null && !Array.isArray(record.factors)
+        ? record.factors as Record<string, unknown>
+        : null;
+      const legacyFactors = Array.isArray(record.factors) ? record.factors.filter((item): item is string => typeof item === "string") : [];
+      return {
+        id: record.id,
+        analysisRunId: record.analysisRunId,
+        collectionAttemptNumber: record.collectionSession.attemptNumber,
+        status: record.status,
+        suggestedPriority: record.suggestedPriority,
+        attentionLevel: record.attentionLevel,
+        summary: record.conclusion,
+        indicators: structured ? readEvidenceItems(structured.indicators) : legacyFactors.map((value, index) => ({ key: `legacy-${index}`, label: "Indicativo retornado pelo modelo", value })),
+        explanation: structured && typeof structured.explanation === "string" ? structured.explanation : null,
+        dataConsidered: structured ? readEvidenceItems(structured.dataConsidered) : [],
+        limitations: structured && Array.isArray(structured.limitations) ? structured.limitations.filter((item): item is string => typeof item === "string") : [],
+        model: record.model,
+        createdAt: record.createdAt,
+      };
+    });
   }
 }

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "simulationVersion": "SMARTTRIAGE-EXPERIMENT-2026-01",
-    "generatedAt": "2026-10-20T02:00:55.558Z",
+    "generatedAt": "2026-10-21T04:25:32.301Z",
     "dataPolicy": "Dados integralmente sintéticos; sem validade clínica.",
     "ruleSetVersion": "V0-DEMO-RULESET-002",
     "totalPatients": 10,
@@ -135,11 +135,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 36,
       "technicalReading": {
-        "id": "f79f60cb-7e64-4c21-9b04-e0dcc3347538",
+        "id": "7529abd9-f8d6-4e1d-9a7e-86c6ea6f240d",
         "heartRate": 76,
         "spo2": 99,
         "temperature": 36.4,
-        "receivedAt": "2026-10-20T02:00:50.278Z"
+        "receivedAt": "2026-10-21T04:25:26.765Z"
       },
       "persistedStatus": "CARE_WAITING",
       "finalHumanPriority": "GREEN",
@@ -151,11 +151,11 @@
       },
       "collectionSessions": [
         {
-          "id": "87d310ba-3aae-4eff-ada6-a7e9611cda7f",
+          "id": "04418b3d-64d9-4f0a-aa88-30e4a098f1bc",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "562dc0d3-a38b-4e1c-981f-70e392bf1ba0",
+          "sourceDeviceCollectionSessionId": "c044d597-59b4-424a-ba3c-d7c3319f0ffb",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -192,7 +192,7 @@
       ],
       "careAttendance": {
         "status": "WAITING",
-        "queuedAt": "2026-10-20T02:00:55.453Z",
+        "queuedAt": "2026-10-21T04:25:32.197Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -225,11 +225,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 16,
       "technicalReading": {
-        "id": "52560659-2dd2-47ae-a146-7c247ec3e821",
+        "id": "326856c6-072f-4683-86eb-49c7b93d282d",
         "heartRate": 88,
         "spo2": 98,
         "temperature": 37.1,
-        "receivedAt": "2026-10-20T02:00:50.444Z"
+        "receivedAt": "2026-10-21T04:25:26.939Z"
       },
       "persistedStatus": "CARE_WAITING",
       "finalHumanPriority": "YELLOW",
@@ -241,11 +241,11 @@
       },
       "collectionSessions": [
         {
-          "id": "a9c48ee9-6536-4867-a6a5-3410c392ac38",
+          "id": "ccc92998-15d8-4ee2-b58b-cf3d8aaff189",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "3ffa6188-048f-48f9-bd63-59359e41bf17",
+          "sourceDeviceCollectionSessionId": "0ff4c283-95ab-4bda-a6a4-734f83567a98",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -282,7 +282,7 @@
       ],
       "careAttendance": {
         "status": "WAITING",
-        "queuedAt": "2026-10-20T02:00:55.402Z",
+        "queuedAt": "2026-10-21T04:25:32.153Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -315,11 +315,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 1,
       "technicalReading": {
-        "id": "8dcfd7b5-ac67-4607-869f-f44350fb4a6d",
+        "id": "13e76c2a-aab9-403f-91ae-d2ee8baa45b7",
         "heartRate": 96,
         "spo2": 97,
         "temperature": 36.6,
-        "receivedAt": "2026-10-20T02:00:50.553Z"
+        "receivedAt": "2026-10-21T04:25:27.127Z"
       },
       "persistedStatus": "COMPLETED",
       "finalHumanPriority": "RED",
@@ -331,11 +331,11 @@
       },
       "collectionSessions": [
         {
-          "id": "cd3ff4fa-9291-46cb-8aad-6e75bfd2ce10",
+          "id": "bdab1472-40e2-4d9a-8577-2c39b3129b21",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "51919e4d-5de6-4dad-be14-5168f1d8dee3",
+          "sourceDeviceCollectionSessionId": "03e737e1-0975-4dcb-8571-5dad5669c2fd",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -377,10 +377,10 @@
       ],
       "careAttendance": {
         "status": "COMPLETED",
-        "queuedAt": "2026-10-20T02:00:55.345Z",
-        "calledAt": "2026-10-20T02:00:55.500Z",
-        "serviceStartedAt": "2026-10-20T02:00:55.515Z",
-        "completedAt": "2026-10-20T02:00:55.523Z"
+        "queuedAt": "2026-10-21T04:25:32.097Z",
+        "calledAt": "2026-10-21T04:25:32.239Z",
+        "serviceStartedAt": "2026-10-21T04:25:32.254Z",
+        "completedAt": "2026-10-21T04:25:32.264Z"
       }
     },
     {
@@ -410,11 +410,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 37,
       "technicalReading": {
-        "id": "cf90e398-fafe-4936-9095-8e8c3b84aeab",
+        "id": "dcf31546-8ecd-4e10-8ce1-e2c8585552ab",
         "heartRate": 72,
         "spo2": 99,
         "temperature": 36.7,
-        "receivedAt": "2026-10-20T02:00:50.658Z"
+        "receivedAt": "2026-10-21T04:25:27.233Z"
       },
       "persistedStatus": "CARE_WAITING",
       "finalHumanPriority": "GREEN",
@@ -426,11 +426,11 @@
       },
       "collectionSessions": [
         {
-          "id": "1fe836de-f48c-497e-82f5-1f0538f992ef",
+          "id": "b2a8dc18-bd3d-4843-950d-d63571cea6de",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "5193295d-94e9-4045-a4af-5cd771db88d3",
+          "sourceDeviceCollectionSessionId": "ed648a19-3b00-4ab0-b741-b3d8cdb0f9c2",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -467,7 +467,7 @@
       ],
       "careAttendance": {
         "status": "WAITING",
-        "queuedAt": "2026-10-20T02:00:55.478Z",
+        "queuedAt": "2026-10-21T04:25:32.220Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -500,11 +500,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 17,
       "technicalReading": {
-        "id": "59e84e39-decd-4909-a2b6-26b0e58abf8a",
+        "id": "5ee50c5c-219a-4def-8692-79ee1357ac8d",
         "heartRate": 105,
         "spo2": 98,
         "temperature": 36.8,
-        "receivedAt": "2026-10-20T02:00:50.753Z"
+        "receivedAt": "2026-10-21T04:25:27.333Z"
       },
       "persistedStatus": "CARE_WAITING",
       "finalHumanPriority": "YELLOW",
@@ -516,11 +516,11 @@
       },
       "collectionSessions": [
         {
-          "id": "373cda07-e449-4e78-ad97-b303b7e66f29",
+          "id": "59093dd7-4497-4e66-8963-bd23393870b6",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "23a41ab3-7990-452e-ae29-67a04dd66760",
+          "sourceDeviceCollectionSessionId": "b1c45ca4-f318-42c6-a990-3ff2f1d1b2bc",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -562,7 +562,7 @@
       ],
       "careAttendance": {
         "status": "WAITING",
-        "queuedAt": "2026-10-20T02:00:55.426Z",
+        "queuedAt": "2026-10-21T04:25:32.176Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -595,11 +595,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 2,
       "technicalReading": {
-        "id": "53a8c137-100b-46b1-9aee-edc8d031c173",
+        "id": "a2e7a09e-872c-4dfd-b5ba-a17e35cea49e",
         "heartRate": 112,
         "spo2": 93,
         "temperature": 37.3,
-        "receivedAt": "2026-10-20T02:00:50.853Z"
+        "receivedAt": "2026-10-21T04:25:27.427Z"
       },
       "persistedStatus": "CALLED",
       "finalHumanPriority": "RED",
@@ -611,11 +611,11 @@
       },
       "collectionSessions": [
         {
-          "id": "51ead798-752c-4029-8439-831b73c42b5b",
+          "id": "357aa2b0-86db-4ef9-ae0b-9c7a6f3c8786",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "5787e999-3dfe-47cd-9173-fdbc1b28793c",
+          "sourceDeviceCollectionSessionId": "4607bb4c-e41b-4fbd-841c-1f5cdb447559",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -667,8 +667,8 @@
       ],
       "careAttendance": {
         "status": "CALLED",
-        "queuedAt": "2026-10-20T02:00:55.374Z",
-        "calledAt": "2026-10-20T02:00:55.538Z",
+        "queuedAt": "2026-10-21T04:25:32.125Z",
+        "calledAt": "2026-10-21T04:25:32.277Z",
         "serviceStartedAt": null,
         "completedAt": null
       }
@@ -700,11 +700,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 38,
       "technicalReading": {
-        "id": "0383ed12-738f-4c58-b18d-e8e2e0d03680",
+        "id": "846c7f81-20a2-4a88-a67c-b290cd9755a0",
         "heartRate": 80,
         "spo2": 98,
         "temperature": 36.5,
-        "receivedAt": "2026-10-20T02:00:50.961Z"
+        "receivedAt": "2026-10-21T04:25:27.528Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -716,11 +716,11 @@
       },
       "collectionSessions": [
         {
-          "id": "4ed7ea74-0e16-4ff1-872c-574b1f295c48",
+          "id": "7cfee4e1-0d53-4f03-a804-a46cbf4fd8df",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "16b667da-d126-4674-9da6-c4de9dddc968",
+          "sourceDeviceCollectionSessionId": "4505d20a-436e-458d-b077-dedb65bcaa63",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -784,11 +784,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 18,
       "technicalReading": {
-        "id": "df8255b3-402b-4676-9fc1-145503a63911",
+        "id": "bf520243-bd66-4967-a2cc-d6cb4f781546",
         "heartRate": 94,
         "spo2": 97,
         "temperature": 38.2,
-        "receivedAt": "2026-10-20T02:00:51.064Z"
+        "receivedAt": "2026-10-21T04:25:27.617Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -800,11 +800,11 @@
       },
       "collectionSessions": [
         {
-          "id": "c7a2403a-e2ae-421e-ac09-080694d1d2c9",
+          "id": "32577100-72ee-461e-acd3-2ac80358c931",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "1b9f9c17-747e-4501-a978-4e2fb8af66c8",
+          "sourceDeviceCollectionSessionId": "8a4579cc-a904-4168-beb4-67c42e376d98",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -868,11 +868,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 3,
       "technicalReading": {
-        "id": "1ebf49ed-368b-4ffd-8868-6916b5c97990",
+        "id": "4663dd11-38eb-4282-9dfb-3bf524d1e8f9",
         "heartRate": 84,
         "spo2": 98,
         "temperature": 36.3,
-        "receivedAt": "2026-10-20T02:00:51.167Z"
+        "receivedAt": "2026-10-21T04:25:27.709Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -884,11 +884,11 @@
       },
       "collectionSessions": [
         {
-          "id": "8e48994a-aa7a-448b-ae9c-e70fb3d41ed4",
+          "id": "bcc84ff8-bc83-47d2-af07-a2021b18cfac",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "f6fcc7b8-5a72-4e85-b952-e771706f1805",
+          "sourceDeviceCollectionSessionId": "4b429968-d390-48d1-b17f-f367a5ae19f2",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -957,11 +957,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 39,
       "technicalReading": {
-        "id": "b2df0a86-7cd7-4d8c-9714-2c50b57a4cc4",
+        "id": "346ff996-e739-4b89-bbf2-14be09bf2558",
         "heartRate": 74,
         "spo2": 99,
         "temperature": 36.6,
-        "receivedAt": "2026-10-20T02:00:51.295Z"
+        "receivedAt": "2026-10-21T04:25:27.801Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -973,11 +973,11 @@
       },
       "collectionSessions": [
         {
-          "id": "61dacc18-701b-4b7b-93a2-e5ac21d813e3",
+          "id": "325e0000-3ee8-47dc-a61e-0a4916fc9575",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "612af88f-a87b-42a8-b1be-8b39ad8eb16d",
+          "sourceDeviceCollectionSessionId": "436221ee-4a8b-44e1-9783-857e480140f8",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1041,11 +1041,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 19,
       "technicalReading": {
-        "id": "6bc83697-8d29-402b-bb1a-f3d99a92cbd0",
+        "id": "c3df153b-bc2c-4144-b332-97d09b7d155b",
         "heartRate": 110,
         "spo2": 98,
         "temperature": 36.5,
-        "receivedAt": "2026-10-20T02:00:51.390Z"
+        "receivedAt": "2026-10-21T04:25:27.895Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1057,11 +1057,11 @@
       },
       "collectionSessions": [
         {
-          "id": "6cecfdce-06c1-4198-8497-1d935da15911",
+          "id": "e62042da-fa55-4ea2-bfe6-5b10eaaded65",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "6f71a469-5185-42a1-8073-a1a945e35ad5",
+          "sourceDeviceCollectionSessionId": "cd7fabbd-58b0-4708-9c22-c2a2418d0ffc",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1130,11 +1130,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 40,
       "technicalReading": {
-        "id": "086ce490-5307-442e-a0fa-a3ba90f5b1ac",
+        "id": "710c5768-0370-4215-9ce1-ffe0804d0271",
         "heartRate": 78,
         "spo2": 99,
         "temperature": 36.4,
-        "receivedAt": "2026-10-20T02:00:51.476Z"
+        "receivedAt": "2026-10-21T04:25:27.983Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1146,11 +1146,11 @@
       },
       "collectionSessions": [
         {
-          "id": "1e9a64c8-f71e-4166-8695-602b7613df9d",
+          "id": "6192dd94-07bd-47a1-98c4-5ae8e56bddf3",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "6339df76-9285-447c-b16a-c1639ce56c54",
+          "sourceDeviceCollectionSessionId": "d72d30b5-d62c-4656-ac62-306769c72f4f",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1214,11 +1214,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 4,
       "technicalReading": {
-        "id": "d90e5228-bccb-4aa7-807a-2a4977107351",
+        "id": "0cc6f131-dee6-4d94-a3e5-244f896c51b8",
         "heartRate": 92,
         "spo2": 98,
         "temperature": 37,
-        "receivedAt": "2026-10-20T02:00:51.560Z"
+        "receivedAt": "2026-10-21T04:25:28.073Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1230,11 +1230,11 @@
       },
       "collectionSessions": [
         {
-          "id": "9ecac3c9-2593-4674-822f-926c729c7d56",
+          "id": "9b1e8280-ab52-4e19-8f0a-fe84c9283d7c",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "a121916b-9498-44d7-924f-47054b3029d2",
+          "sourceDeviceCollectionSessionId": "491a1151-01df-47ba-b90f-03dabd6ff332",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1303,11 +1303,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 20,
       "technicalReading": {
-        "id": "93a68855-7fd5-46b5-a185-042ad7fd0eac",
+        "id": "4a4c6619-51f8-401f-9102-eef3b9499816",
         "heartRate": 90,
         "spo2": 97,
         "temperature": 37.8,
-        "receivedAt": "2026-10-20T02:00:51.644Z"
+        "receivedAt": "2026-10-21T04:25:28.167Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1319,11 +1319,11 @@
       },
       "collectionSessions": [
         {
-          "id": "bd084071-d6e7-41eb-8ffd-e75cb5ecc06f",
+          "id": "bc4b78e6-6c84-4ea0-b9a4-72026902d0f7",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "878fe1c4-6d55-4583-b6fe-ba073508ecb0",
+          "sourceDeviceCollectionSessionId": "693958dc-dade-47aa-a587-997d7e83d418",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1392,11 +1392,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 41,
       "technicalReading": {
-        "id": "b702c8ef-d6f9-4319-b62c-26afe01a9fca",
+        "id": "72ce5f4f-056b-4c95-a4b0-bada4b31f83c",
         "heartRate": 70,
         "spo2": 99,
         "temperature": 36.8,
-        "receivedAt": "2026-10-20T02:00:51.734Z"
+        "receivedAt": "2026-10-21T04:25:28.271Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1408,11 +1408,11 @@
       },
       "collectionSessions": [
         {
-          "id": "437b1803-4cce-4c00-8555-ae97a8eaae89",
+          "id": "b3f9be92-5326-4fb6-b936-1c764ae46963",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "6c878460-18b0-483c-aa5a-8fd0d1ebc3e9",
+          "sourceDeviceCollectionSessionId": "f92efdc0-1d55-4b95-9397-cc6c52c1f4de",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1476,11 +1476,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 5,
       "technicalReading": {
-        "id": "dc127c49-7246-479a-a19f-0f6f86e127fc",
+        "id": "597cba6c-1463-4c3f-9845-5f205da78256",
         "heartRate": 118,
         "spo2": 91,
         "temperature": 37.2,
-        "receivedAt": "2026-10-20T02:00:51.816Z"
+        "receivedAt": "2026-10-21T04:25:28.378Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1492,11 +1492,11 @@
       },
       "collectionSessions": [
         {
-          "id": "4e3b03ad-2a03-410e-a251-48266b7302a9",
+          "id": "b8a7acff-524e-471b-86a3-4008f1118b52",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "19c493c8-ec72-4346-b1c6-e9dd60063887",
+          "sourceDeviceCollectionSessionId": "b0ce1870-931a-4e4c-9586-92e53996442d",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1575,11 +1575,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 21,
       "technicalReading": {
-        "id": "78081083-70eb-449f-b56d-ad076817d579",
+        "id": "997d830e-87f9-44f7-886d-ef6e5b586c3d",
         "heartRate": 86,
         "spo2": 94,
         "temperature": 36.7,
-        "receivedAt": "2026-10-20T02:00:51.903Z"
+        "receivedAt": "2026-10-21T04:25:28.484Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1591,11 +1591,11 @@
       },
       "collectionSessions": [
         {
-          "id": "8074bac9-fb46-4638-8ead-fa58581452f8",
+          "id": "12aa825f-f20b-4c1e-9f24-58a8617a8a6d",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "bc42a81b-8220-486c-ac8d-f54521f4ab75",
+          "sourceDeviceCollectionSessionId": "8828db9e-7d81-409b-83ff-9124a6e8647b",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1664,11 +1664,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 42,
       "technicalReading": {
-        "id": "b49358b9-9455-4ece-a0d3-e51562e38b08",
+        "id": "5982c2f3-6464-4881-a30c-768cc9b0edea",
         "heartRate": 76,
         "spo2": 98,
         "temperature": 36.5,
-        "receivedAt": "2026-10-20T02:00:51.998Z"
+        "receivedAt": "2026-10-21T04:25:28.601Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1680,11 +1680,11 @@
       },
       "collectionSessions": [
         {
-          "id": "c384fb4e-c6b8-4b82-9e14-cbccbb5772d2",
+          "id": "109b6158-1080-41e5-8304-65d00445ad1c",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "b0644c85-1362-45a4-88b9-4ca35e01d201",
+          "sourceDeviceCollectionSessionId": "0ec892b9-7d28-4a50-b3d9-041126daac11",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1748,11 +1748,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 6,
       "technicalReading": {
-        "id": "00576107-abbc-48a3-91ff-a9cd1c117021",
+        "id": "9ff02f04-a514-4583-95eb-04f9b1276e86",
         "heartRate": 88,
         "spo2": 97,
         "temperature": 36.9,
-        "receivedAt": "2026-10-20T02:00:52.084Z"
+        "receivedAt": "2026-10-21T04:25:28.699Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1764,11 +1764,11 @@
       },
       "collectionSessions": [
         {
-          "id": "242e351f-0ce2-4671-aae8-879997333953",
+          "id": "e99d8375-773a-4f65-b612-13c4188bfc57",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "94899ace-203e-4462-a5af-7e557ebb3286",
+          "sourceDeviceCollectionSessionId": "4d4f7637-95cd-4da6-81ce-046a94ee9bcd",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1837,11 +1837,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 22,
       "technicalReading": {
-        "id": "7ccc69c6-6f69-4e5e-a14d-4874fdf53095",
+        "id": "f81589f3-f880-4006-8239-509ea20c73b3",
         "heartRate": 102,
         "spo2": 95,
         "temperature": 38,
-        "receivedAt": "2026-10-20T02:00:52.170Z"
+        "receivedAt": "2026-10-21T04:25:28.793Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1853,11 +1853,11 @@
       },
       "collectionSessions": [
         {
-          "id": "1147185c-05bb-4180-830e-8afda294735f",
+          "id": "f873d515-6748-4d47-af61-068d88736734",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "de0a4d61-5580-4007-94c0-b9b67bca9542",
+          "sourceDeviceCollectionSessionId": "d4d958d3-9fdd-4cfe-8068-b5cebc8e4152",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -1931,11 +1931,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 7,
       "technicalReading": {
-        "id": "7ee5c831-8cfc-47af-afcd-52592317020d",
+        "id": "25c81711-0904-4fd4-84f9-68cdf68d141a",
         "heartRate": 82,
         "spo2": 99,
         "temperature": 36.6,
-        "receivedAt": "2026-10-20T02:00:52.256Z"
+        "receivedAt": "2026-10-21T04:25:28.892Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -1947,11 +1947,11 @@
       },
       "collectionSessions": [
         {
-          "id": "b8fd6873-ef86-496a-9b35-eb4a17439624",
+          "id": "a34c4ef0-61de-42bd-bdfd-9395b3fef064",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "b655ac4f-eef2-446f-9006-00ed4f32f0da",
+          "sourceDeviceCollectionSessionId": "d75df70a-3ba8-46a2-9bb3-3741f97be7cf",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2020,11 +2020,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 23,
       "technicalReading": {
-        "id": "d247606f-e1be-4e61-b3cd-504a6c79275f",
+        "id": "c280f9e7-d027-43c5-afd4-612066353069",
         "heartRate": 96,
         "spo2": 98,
         "temperature": 37,
-        "receivedAt": "2026-10-20T02:00:52.353Z"
+        "receivedAt": "2026-10-21T04:25:28.986Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2036,11 +2036,11 @@
       },
       "collectionSessions": [
         {
-          "id": "2ff46cd2-fd40-47b5-b872-5f2e3c8943c7",
+          "id": "4cf42c0e-a88b-409e-9f8f-a03436b68668",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "9bb9d9e5-3ea7-4c94-8f79-a8531bd8a6f0",
+          "sourceDeviceCollectionSessionId": "c79ba6c6-e2da-405a-8162-a3fe2702a892",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2109,11 +2109,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 43,
       "technicalReading": {
-        "id": "587a22b6-b20f-4c18-9751-ff2f1af4b66c",
+        "id": "f07f95f1-10ba-4200-90a0-1a30c118a5d8",
         "heartRate": 74,
         "spo2": 99,
         "temperature": 36.7,
-        "receivedAt": "2026-10-20T02:00:52.459Z"
+        "receivedAt": "2026-10-21T04:25:29.074Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2125,11 +2125,11 @@
       },
       "collectionSessions": [
         {
-          "id": "77cf7afd-a372-4e42-bb38-87b862a072fd",
+          "id": "2ee7988f-c487-4797-9b8b-06f489025f99",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "b2667912-a878-43d2-8b46-81e0f950779f",
+          "sourceDeviceCollectionSessionId": "96f96399-9e21-49fb-888c-e8a0fec1e443",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2193,11 +2193,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 8,
       "technicalReading": {
-        "id": "6638af57-e3d6-4e28-a298-9391344bba30",
+        "id": "665e6e5c-ba75-4fe9-9bb5-df8ee5260f49",
         "heartRate": 108,
         "spo2": 92,
         "temperature": 37.1,
-        "receivedAt": "2026-10-20T02:00:52.545Z"
+        "receivedAt": "2026-10-21T04:25:29.158Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2209,11 +2209,11 @@
       },
       "collectionSessions": [
         {
-          "id": "ef434291-2839-4199-9bd0-a6c9d1785926",
+          "id": "41b1cf9e-028d-483b-ae0a-bba89744a640",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "a06e63fa-6502-495e-bf74-b6fac9259803",
+          "sourceDeviceCollectionSessionId": "4938d6aa-7abe-409d-ba34-46e793ea0f22",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2292,11 +2292,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 24,
       "technicalReading": {
-        "id": "d6811626-24a6-4f0b-a78e-e0e2b8f61ef1",
+        "id": "b4aa9114-ddd9-4e31-a490-7edc620ed86d",
         "heartRate": 82,
         "spo2": 93,
         "temperature": 36.8,
-        "receivedAt": "2026-10-20T02:00:52.636Z"
+        "receivedAt": "2026-10-21T04:25:29.272Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2308,11 +2308,11 @@
       },
       "collectionSessions": [
         {
-          "id": "7bfc5200-8063-40ba-97a1-d065cf5e3442",
+          "id": "44aa0183-c823-4a77-89a3-64631f21fdac",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "baaa3551-0150-4718-b67e-4ecb35a69860",
+          "sourceDeviceCollectionSessionId": "9b9fbdb5-34ef-4cd5-a4d5-7a20157ea942",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2381,11 +2381,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 44,
       "technicalReading": {
-        "id": "8c0a3464-ae1d-4f5c-8145-f00652307637",
+        "id": "5cb58901-d7ad-4b88-8dad-7237e4e24adc",
         "heartRate": 72,
         "spo2": 98,
         "temperature": 36.4,
-        "receivedAt": "2026-10-20T02:00:52.742Z"
+        "receivedAt": "2026-10-21T04:25:29.352Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2397,11 +2397,11 @@
       },
       "collectionSessions": [
         {
-          "id": "36a69749-f5c0-4eb6-ab87-5184b1d3005f",
+          "id": "d9dfc0c3-817a-41b1-8bbb-6458c89465e9",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "5d220bbc-46bb-4ccd-941f-e38c5ed06d3c",
+          "sourceDeviceCollectionSessionId": "d1029166-b390-4c46-9433-04ba1c4274d2",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2465,11 +2465,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 9,
       "technicalReading": {
-        "id": "70bf775a-b9a3-40dd-8acd-df4a9116631c",
+        "id": "57163648-18a0-44e7-b11f-8a5d6a26837e",
         "heartRate": 80,
         "spo2": 98,
         "temperature": 36.5,
-        "receivedAt": "2026-10-20T02:00:52.832Z"
+        "receivedAt": "2026-10-21T04:25:29.440Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2481,11 +2481,11 @@
       },
       "collectionSessions": [
         {
-          "id": "c0ccf2e3-c7d7-4b13-8070-6c77e7622cec",
+          "id": "27150c43-563c-47b9-b38e-bcf3dd6e3ad4",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "66ac9988-e019-4d81-bf07-f0e0fd3b8893",
+          "sourceDeviceCollectionSessionId": "c01eb635-c8b3-40b9-a909-ccf063e97bb2",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2554,11 +2554,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 25,
       "technicalReading": {
-        "id": "11aceeda-3884-4e0e-9ad4-4a7bb69cf326",
+        "id": "9a56f627-82e8-4394-a2e2-d86722a8e839",
         "heartRate": 120,
         "spo2": 97,
         "temperature": 36.9,
-        "receivedAt": "2026-10-20T02:00:52.927Z"
+        "receivedAt": "2026-10-21T04:25:29.534Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2570,11 +2570,11 @@
       },
       "collectionSessions": [
         {
-          "id": "9546e6e5-167b-4f17-b70a-aac6cf7b8228",
+          "id": "a0da6723-5f36-4199-8ba6-91893715c011",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "1a7e0a9a-88ce-44c8-a1d4-dfc77eb94ae8",
+          "sourceDeviceCollectionSessionId": "4b1b46e7-3b8c-4ef5-a1b4-f9e2a2cc885d",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2643,11 +2643,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 45,
       "technicalReading": {
-        "id": "de61e2a3-f6d5-4daa-b87a-bc140e14082d",
+        "id": "a6e9bb6b-4245-4568-a06d-dfb868600d87",
         "heartRate": 76,
         "spo2": 99,
         "temperature": 36.6,
-        "receivedAt": "2026-10-20T02:00:53.020Z"
+        "receivedAt": "2026-10-21T04:25:29.622Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2659,11 +2659,11 @@
       },
       "collectionSessions": [
         {
-          "id": "91e6da5e-e6f5-4cc0-ad69-8addc0402a7c",
+          "id": "a7d26b31-4392-4d74-9ec0-6658645508be",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "04b998eb-8ca8-47a9-9118-8786a78f0ff4",
+          "sourceDeviceCollectionSessionId": "1d186d34-d304-428e-ab75-5a09e80ecfe9",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2727,11 +2727,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 10,
       "technicalReading": {
-        "id": "f2a3cb7b-819b-4c78-b210-d98de5caa9e6",
+        "id": "cf01918c-6bc5-4e46-bcbb-f3522e14418e",
         "heartRate": 98,
         "spo2": 97,
         "temperature": 36.5,
-        "receivedAt": "2026-10-20T02:00:53.106Z"
+        "receivedAt": "2026-10-21T04:25:29.710Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2743,11 +2743,11 @@
       },
       "collectionSessions": [
         {
-          "id": "70897452-4fb8-449c-b82f-0bb0abd761ff",
+          "id": "40042f8b-bd4e-4567-89dd-2c808efc0c36",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "c588b196-c3cf-4506-97cf-1e51ffae0204",
+          "sourceDeviceCollectionSessionId": "87596b6f-0c1a-4d15-9a46-111405ea5a3c",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2816,11 +2816,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 46,
       "technicalReading": {
-        "id": "597d0a0a-3b14-42fc-920e-6b3e7c069e1c",
+        "id": "e670bbc8-020f-4c7c-a8a6-5cea5e89762a",
         "heartRate": 78,
         "spo2": 98,
         "temperature": 36.3,
-        "receivedAt": "2026-10-20T02:00:53.200Z"
+        "receivedAt": "2026-10-21T04:25:29.803Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2832,11 +2832,11 @@
       },
       "collectionSessions": [
         {
-          "id": "5a510f72-7162-48df-aba6-2babd8e59aed",
+          "id": "06a5dd22-f9e3-49cd-9791-734213df94a3",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "61bbf1ea-5a06-4f14-a576-a80c26d5131c",
+          "sourceDeviceCollectionSessionId": "60c45170-3ed7-40ac-b141-b3b6ad85a8c5",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2900,11 +2900,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 11,
       "technicalReading": {
-        "id": "93b2ad8c-227e-4da5-aa86-a03ac60b1369",
+        "id": "97e48474-9e37-40f2-813d-478923add479",
         "heartRate": 104,
         "spo2": 94,
         "temperature": 36.7,
-        "receivedAt": "2026-10-20T02:00:53.307Z"
+        "receivedAt": "2026-10-21T04:25:29.887Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -2916,11 +2916,11 @@
       },
       "collectionSessions": [
         {
-          "id": "5384368c-8159-4cd6-a41f-94dc3c43e928",
+          "id": "4e614188-3edf-44e2-8697-f673ffd770a2",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "301fcd0c-c972-4c0d-970b-868f5da0b2bd",
+          "sourceDeviceCollectionSessionId": "d6cdf351-22f7-4b95-8881-c594395885a9",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -2999,11 +2999,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 26,
       "technicalReading": {
-        "id": "3293de8b-d7e1-4c54-ad0c-97c355faa7a5",
+        "id": "59282af6-8a57-4e8e-a23d-3a853081d61a",
         "heartRate": 84,
         "spo2": 98,
         "temperature": 37.2,
-        "receivedAt": "2026-10-20T02:00:53.412Z"
+        "receivedAt": "2026-10-21T04:25:29.966Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3015,11 +3015,11 @@
       },
       "collectionSessions": [
         {
-          "id": "9ba2e884-7e6d-4fc7-9c6d-2986ceb58d27",
+          "id": "b020902c-a67b-42d1-878c-3a2ef4ddd959",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "9f2c3358-2750-4f97-9933-c36c4f76e337",
+          "sourceDeviceCollectionSessionId": "c8fa0ddc-fb93-49ae-9d77-6888ae1a67b3",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3083,11 +3083,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 47,
       "technicalReading": {
-        "id": "304ff76f-a5f5-4834-899b-95580fba1689",
+        "id": "44888455-173e-4db9-87f2-16c36af384cb",
         "heartRate": 72,
         "spo2": 99,
         "temperature": 36.5,
-        "receivedAt": "2026-10-20T02:00:53.535Z"
+        "receivedAt": "2026-10-21T04:25:30.052Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3099,11 +3099,11 @@
       },
       "collectionSessions": [
         {
-          "id": "13bdc62b-0abb-4a67-9b6a-cbc13a6fb83a",
+          "id": "9a577b38-90fc-4049-982a-4defdea0c82b",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "f26cdfbd-71e9-49a8-a95f-3f6614fd1577",
+          "sourceDeviceCollectionSessionId": "4dc2f853-7a03-449a-8c2f-0e3b4873936a",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3167,11 +3167,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 12,
       "technicalReading": {
-        "id": "78cd405a-0f77-4d63-ae76-ed170218f63c",
+        "id": "d9f9ff77-0379-4dd0-87a2-e1f8cacd73ed",
         "heartRate": 90,
         "spo2": 98,
         "temperature": 36.6,
-        "receivedAt": "2026-10-20T02:00:53.654Z"
+        "receivedAt": "2026-10-21T04:25:30.132Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3183,11 +3183,11 @@
       },
       "collectionSessions": [
         {
-          "id": "49cdfe09-999d-4164-bc0f-4443cfa1eb24",
+          "id": "0eb71303-aac6-4310-b04c-498aca896351",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "c6c142fa-811b-42b1-9a5f-bd8d97ef3563",
+          "sourceDeviceCollectionSessionId": "33a993fb-1b37-4f40-a180-155624e23428",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3256,11 +3256,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 27,
       "technicalReading": {
-        "id": "d5172363-91a8-4fa3-9631-ebb0eccc3860",
+        "id": "c279ab24-07c1-483e-8b28-58743e8e1f7c",
         "heartRate": 100,
         "spo2": 98,
         "temperature": 36.7,
-        "receivedAt": "2026-10-20T02:00:53.746Z"
+        "receivedAt": "2026-10-21T04:25:30.215Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3272,11 +3272,11 @@
       },
       "collectionSessions": [
         {
-          "id": "0581e0ad-a64e-4a2a-8349-b0138afd2fd4",
+          "id": "f762b145-6b0d-4a33-946b-653f012155e8",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "09da20bb-5fb0-438f-b564-ef98db40ef20",
+          "sourceDeviceCollectionSessionId": "d7d44091-1fff-4342-86d8-dedae193ae94",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3345,11 +3345,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 48,
       "technicalReading": {
-        "id": "8fc3e11c-638a-44bb-92b7-b7c4e9a6bdf1",
+        "id": "7502f2f7-7665-4a75-9cae-8dbafefd68a2",
         "heartRate": 74,
         "spo2": 98,
         "temperature": 36.4,
-        "receivedAt": "2026-10-20T02:00:53.832Z"
+        "receivedAt": "2026-10-21T04:25:30.299Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3361,11 +3361,11 @@
       },
       "collectionSessions": [
         {
-          "id": "c8c49a2f-c350-4892-918c-cdc55bb638fa",
+          "id": "4fb8bd7d-a3bc-44ce-afc1-b4f957411e3b",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "c4fc07a5-7c87-4f86-a034-b21a4718befe",
+          "sourceDeviceCollectionSessionId": "e9045b1d-63d4-4d59-b1fa-aebc155e9c77",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3429,11 +3429,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 13,
       "technicalReading": {
-        "id": "84507ea9-65dc-4b9f-a21d-2cd10f02e516",
+        "id": "96500edb-77c6-4a88-b6f8-c4985c53cda1",
         "heartRate": 92,
         "spo2": 96,
         "temperature": 36.5,
-        "receivedAt": "2026-10-20T02:00:53.911Z"
+        "receivedAt": "2026-10-21T04:25:30.384Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3445,11 +3445,11 @@
       },
       "collectionSessions": [
         {
-          "id": "1fd6acb0-6f15-45e9-a32c-f2001bf038c6",
+          "id": "9d3a0856-3a47-41ca-b926-b66d9270ab46",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "7dc771f9-73cc-4063-b622-a206d7235733",
+          "sourceDeviceCollectionSessionId": "8c2668ce-0600-4933-894b-f01e392729f5",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3518,11 +3518,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 28,
       "technicalReading": {
-        "id": "1d16cec7-ca50-47e7-b672-19be65c037e0",
+        "id": "f1a24eb1-6b4d-44de-bdd1-2b4947b37403",
         "heartRate": 88,
         "spo2": 95,
         "temperature": 36.8,
-        "receivedAt": "2026-10-20T02:00:54.000Z"
+        "receivedAt": "2026-10-21T04:25:30.474Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3534,11 +3534,11 @@
       },
       "collectionSessions": [
         {
-          "id": "7e01596a-da9d-4ee5-9c0d-4c271403fb94",
+          "id": "00b35fe5-5aa4-4061-9167-84ca99f07a19",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "d1b8a4c3-a07b-4534-894b-bc21b17fa891",
+          "sourceDeviceCollectionSessionId": "95fefb66-50d9-4622-adb1-585388ac5991",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3607,11 +3607,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 49,
       "technicalReading": {
-        "id": "3e111127-c2d4-4a32-b6f9-0d1215d7b7d7",
+        "id": "9d01a684-c075-46de-8f62-4cae7c432635",
         "heartRate": 76,
         "spo2": 99,
         "temperature": 36.6,
-        "receivedAt": "2026-10-20T02:00:54.091Z"
+        "receivedAt": "2026-10-21T04:25:30.562Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3623,11 +3623,11 @@
       },
       "collectionSessions": [
         {
-          "id": "8f3beb8a-cf40-4adf-bede-f6b556b8f554",
+          "id": "7d2ccc3c-e01d-4623-91a7-6572faec767b",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "daa8011e-600e-463d-ba7b-2b1d37eb6d31",
+          "sourceDeviceCollectionSessionId": "6dd133cc-851f-4be2-8b00-67569ddeed71",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3691,11 +3691,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 50,
       "technicalReading": {
-        "id": "56047503-1ef6-4b87-9ca2-08a8436373b6",
+        "id": "68f3c8c1-fa84-4b3a-8173-5a746a27c251",
         "heartRate": 88,
         "spo2": 98,
         "temperature": 40,
-        "receivedAt": "2026-10-20T02:00:54.183Z"
+        "receivedAt": "2026-10-21T04:25:30.660Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3707,11 +3707,11 @@
       },
       "collectionSessions": [
         {
-          "id": "b317e551-6675-428d-85fe-0c6caef8de3e",
+          "id": "d677011e-c5b9-498e-8523-971168a59cae",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "5af4fe94-6cb7-40fd-a1fd-21043e018a66",
+          "sourceDeviceCollectionSessionId": "1c547067-6c6d-4b10-87f2-e757109ddd99",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3775,11 +3775,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 29,
       "technicalReading": {
-        "id": "09f1c67c-65cc-4908-a0bb-c587397ed685",
+        "id": "30d78f4c-f2bb-47da-b9d4-d8bdaadcc891",
         "heartRate": 220,
         "spo2": 98,
         "temperature": 36.6,
-        "receivedAt": "2026-10-20T02:00:54.271Z"
+        "receivedAt": "2026-10-21T04:25:30.752Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3791,11 +3791,11 @@
       },
       "collectionSessions": [
         {
-          "id": "165f5e7c-bbdf-47af-bf9a-ac2317963317",
+          "id": "ac0aa028-c1b5-41eb-ace7-2b52cad4a6f7",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "091855ff-ee66-4928-9017-c751e45d17ac",
+          "sourceDeviceCollectionSessionId": "c1a71003-96f2-463e-8854-5659cecf5717",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3864,11 +3864,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 30,
       "technicalReading": {
-        "id": "1684bfa8-c476-4e38-9ec9-6e71951fe9c0",
+        "id": "6dcff022-2a2d-4d1c-88b2-a9f2c241e710",
         "heartRate": 90,
         "spo2": 98,
         "temperature": 36.9,
-        "receivedAt": "2026-10-20T02:00:54.357Z"
+        "receivedAt": "2026-10-21T04:25:30.834Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3880,11 +3880,11 @@
       },
       "collectionSessions": [
         {
-          "id": "a22dafa8-207c-41f5-9793-e644c6cc005b",
+          "id": "a068c9dc-39ff-4f56-aa37-a97f2732ddba",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "41f085af-be1b-485c-908c-40ce7e6ad06c",
+          "sourceDeviceCollectionSessionId": "f51ea670-7973-4135-9409-f41a635f737e",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -3953,11 +3953,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 31,
       "technicalReading": {
-        "id": "f2375019-d6b3-4fd2-8a83-b0abf41a8dbc",
+        "id": "0215b1ad-177e-4f74-81bd-079c510e3b40",
         "heartRate": 110,
         "spo2": 94,
         "temperature": 38.4,
-        "receivedAt": "2026-10-20T02:00:54.435Z"
+        "receivedAt": "2026-10-21T04:25:30.924Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -3969,11 +3969,11 @@
       },
       "collectionSessions": [
         {
-          "id": "df715dd2-6b92-45ed-a2b4-77405df06e77",
+          "id": "6d00d92a-620d-42cd-ae55-ba5f9cf12e45",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "b534a190-bab4-4584-ab77-a127abd02197",
+          "sourceDeviceCollectionSessionId": "f53eb47d-2fd9-4da8-8328-15e2456e47db",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -4047,11 +4047,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 14,
       "technicalReading": {
-        "id": "b5feb0de-f528-4c68-affd-e8ec05410362",
+        "id": "81527b5b-b06d-44e8-ad31-0ff316b700f1",
         "heartRate": 130,
         "spo2": 88,
         "temperature": 37,
-        "receivedAt": "2026-10-20T02:00:54.516Z"
+        "receivedAt": "2026-10-21T04:25:31.014Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -4063,11 +4063,11 @@
       },
       "collectionSessions": [
         {
-          "id": "da2a2d89-8023-414e-89ae-50f2e3ffcd84",
+          "id": "a43e3080-adc1-4286-8cc8-73d391c0bca3",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "4445afb9-cf87-493a-8c4a-2992c6b2f46a",
+          "sourceDeviceCollectionSessionId": "c6b040c0-5049-4154-9ab6-9b2e790afcb7",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -4151,11 +4151,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 32,
       "technicalReading": {
-        "id": "13bafc04-122f-4f00-ac0b-c5a1fbce3c5d",
+        "id": "82cbc369-bc01-4da5-ae9f-882c2bcceb83",
         "heartRate": 78,
         "spo2": 50,
         "temperature": 36.5,
-        "receivedAt": "2026-10-20T02:00:54.615Z"
+        "receivedAt": "2026-10-21T04:25:31.097Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -4167,11 +4167,11 @@
       },
       "collectionSessions": [
         {
-          "id": "ac58c0f4-e8d9-4eb5-b90c-01c3f633d2eb",
+          "id": "0ebf0101-9448-4397-ac88-cb673d4ad9b6",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "674a9e95-0e7a-4afe-92c5-f5e1ba88b77c",
+          "sourceDeviceCollectionSessionId": "ecf781e3-6276-4761-a6f9-2094dae58a5c",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -4240,11 +4240,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 33,
       "technicalReading": {
-        "id": "34d0fcc8-1c98-4ebe-9f6d-1bea52fcf757",
+        "id": "1daa9675-9851-4c22-9866-6e7902e9b18f",
         "heartRate": 240,
         "spo2": 99,
         "temperature": 36.7,
-        "receivedAt": "2026-10-20T02:00:54.709Z"
+        "receivedAt": "2026-10-21T04:25:31.176Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -4256,11 +4256,11 @@
       },
       "collectionSessions": [
         {
-          "id": "318d94bb-dad4-471a-aec7-f00e8a3dc7ff",
+          "id": "e88fc79e-faa7-439a-a839-551685eba296",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "a3f0ab81-d7d5-4b9a-8251-980be1c909b3",
+          "sourceDeviceCollectionSessionId": "1ca39ebe-6376-48df-8beb-2a478e74cea4",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -4329,11 +4329,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 34,
       "technicalReading": {
-        "id": "7b49cad0-d712-4c1d-8a9b-976e82737426",
+        "id": "cab24ce8-0a06-43ea-9292-5a9b8301239d",
         "heartRate": 98,
         "spo2": 96,
         "temperature": 37.5,
-        "receivedAt": "2026-10-20T02:00:54.789Z"
+        "receivedAt": "2026-10-21T04:25:31.272Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -4345,11 +4345,11 @@
       },
       "collectionSessions": [
         {
-          "id": "2ce94b62-388d-4352-bbd3-240cd2544098",
+          "id": "01245596-f8a5-404e-b470-b5ed420cea15",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "ecab89d2-043c-4177-bb4a-23b2800b438f",
+          "sourceDeviceCollectionSessionId": "72f6cd72-6a54-405f-bfda-1a7c7e4a222c",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -4413,11 +4413,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 15,
       "technicalReading": {
-        "id": "fe520630-a7ba-4060-b967-41c027ce171c",
+        "id": "65d50435-ce21-43d1-bf2a-433006c7d381",
         "heartRate": 86,
         "spo2": 98,
         "temperature": 36.4,
-        "receivedAt": "2026-10-20T02:00:54.872Z"
+        "receivedAt": "2026-10-21T04:25:31.444Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -4429,11 +4429,11 @@
       },
       "collectionSessions": [
         {
-          "id": "be30a633-b19b-4deb-ab27-1363fb0b6a39",
+          "id": "51e265f7-d711-4565-b8e7-33cad187d56a",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "a5aeeed1-2416-4e5b-88f7-7887dad6ec21",
+          "sourceDeviceCollectionSessionId": "d3353ee6-d10e-488c-a8c4-b29e7a957aae",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -4507,11 +4507,11 @@
       "agreement": true,
       "initialReviewQueuePosition": 35,
       "technicalReading": {
-        "id": "ee8fa7a7-d259-4984-b590-fd5d130bf04e",
+        "id": "3bf8aaae-f32e-425b-8130-216a5ced1bbd",
         "heartRate": 110,
         "spo2": 92,
         "temperature": 37.1,
-        "receivedAt": "2026-10-20T02:00:54.949Z"
+        "receivedAt": "2026-10-21T04:25:31.568Z"
       },
       "persistedStatus": "AWAITING_NURSE_REVIEW",
       "finalHumanPriority": null,
@@ -4523,11 +4523,11 @@
       },
       "collectionSessions": [
         {
-          "id": "a2295e0e-650a-4ef7-bbae-ff5aeed680fc",
+          "id": "27c1b3a4-93f1-4d01-b58b-349b0aeac39f",
           "origin": "PHYSICAL_DEVICE",
           "status": "COMPLETED",
           "attemptNumber": 1,
-          "sourceDeviceCollectionSessionId": "8ab07034-f534-4c49-ab1f-a2e176f5e824",
+          "sourceDeviceCollectionSessionId": "0be0e24f-1765-4e48-adbd-a0baa00f19ca",
           "measurements": [
             {
               "vitalSignType": "HEART_RATE",
@@ -5238,14 +5238,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:50.317Z",
-              "completedAt": "2026-10-20T02:00:50.316Z",
+              "startedAt": "2026-10-21T04:25:26.809Z",
+              "completedAt": "2026-10-21T04:25:26.807Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.4,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:50.278Z"
+                "receivedAt": "2026-10-21T04:25:26.765Z"
               },
               "readings": [
                 {
@@ -5282,19 +5282,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:50.326Z"
+              "occurredAt": "2026-10-21T04:25:26.819Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:50.396Z"
+              "occurredAt": "2026-10-21T04:25:26.895Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:50.396Z"
+              "occurredAt": "2026-10-21T04:25:26.895Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:50.399Z"
+              "occurredAt": "2026-10-21T04:25:26.898Z"
             }
           ]
         }
@@ -5350,14 +5350,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:50.471Z",
-              "completedAt": "2026-10-20T02:00:50.470Z",
+              "startedAt": "2026-10-21T04:25:26.977Z",
+              "completedAt": "2026-10-21T04:25:26.976Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37.1,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:50.444Z"
+                "receivedAt": "2026-10-21T04:25:26.939Z"
               },
               "readings": [
                 {
@@ -5394,19 +5394,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:50.478Z"
+              "occurredAt": "2026-10-21T04:25:26.987Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:50.515Z"
+              "occurredAt": "2026-10-21T04:25:27.074Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:50.515Z"
+              "occurredAt": "2026-10-21T04:25:27.074Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:50.517Z"
+              "occurredAt": "2026-10-21T04:25:27.082Z"
             }
           ]
         }
@@ -5463,14 +5463,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:50.579Z",
-              "completedAt": "2026-10-20T02:00:50.579Z",
+              "startedAt": "2026-10-21T04:25:27.152Z",
+              "completedAt": "2026-10-21T04:25:27.152Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.6,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:50.553Z"
+                "receivedAt": "2026-10-21T04:25:27.127Z"
               },
               "readings": [
                 {
@@ -5507,19 +5507,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:50.586Z"
+              "occurredAt": "2026-10-21T04:25:27.158Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:50.623Z"
+              "occurredAt": "2026-10-21T04:25:27.194Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:50.623Z"
+              "occurredAt": "2026-10-21T04:25:27.194Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:50.625Z"
+              "occurredAt": "2026-10-21T04:25:27.196Z"
             }
           ]
         }
@@ -5575,14 +5575,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:50.684Z",
-              "completedAt": "2026-10-20T02:00:50.683Z",
+              "startedAt": "2026-10-21T04:25:27.261Z",
+              "completedAt": "2026-10-21T04:25:27.260Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.7,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:50.658Z"
+                "receivedAt": "2026-10-21T04:25:27.233Z"
               },
               "readings": [
                 {
@@ -5619,19 +5619,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:50.689Z"
-            },
-            {
-              "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:50.721Z"
+              "occurredAt": "2026-10-21T04:25:27.267Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:50.721Z"
+              "occurredAt": "2026-10-21T04:25:27.300Z"
+            },
+            {
+              "label": "Senha operacional emitida",
+              "occurredAt": "2026-10-21T04:25:27.300Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:50.722Z"
+              "occurredAt": "2026-10-21T04:25:27.301Z"
             }
           ]
         }
@@ -5688,14 +5688,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:50.778Z",
-              "completedAt": "2026-10-20T02:00:50.777Z",
+              "startedAt": "2026-10-21T04:25:27.354Z",
+              "completedAt": "2026-10-21T04:25:27.354Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.8,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:50.753Z"
+                "receivedAt": "2026-10-21T04:25:27.333Z"
               },
               "readings": [
                 {
@@ -5732,19 +5732,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:50.784Z"
+              "occurredAt": "2026-10-21T04:25:27.360Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:50.820Z"
+              "occurredAt": "2026-10-21T04:25:27.392Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:50.820Z"
+              "occurredAt": "2026-10-21T04:25:27.392Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:50.822Z"
+              "occurredAt": "2026-10-21T04:25:27.394Z"
             }
           ]
         }
@@ -5803,14 +5803,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:50.875Z",
-              "completedAt": "2026-10-20T02:00:50.874Z",
+              "startedAt": "2026-10-21T04:25:27.452Z",
+              "completedAt": "2026-10-21T04:25:27.452Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37.3,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:50.853Z"
+                "receivedAt": "2026-10-21T04:25:27.427Z"
               },
               "readings": [
                 {
@@ -5847,19 +5847,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:50.881Z"
+              "occurredAt": "2026-10-21T04:25:27.458Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:50.922Z"
+              "occurredAt": "2026-10-21T04:25:27.494Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:50.922Z"
+              "occurredAt": "2026-10-21T04:25:27.494Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:50.925Z"
+              "occurredAt": "2026-10-21T04:25:27.495Z"
             }
           ]
         }
@@ -5915,14 +5915,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:50.989Z",
-              "completedAt": "2026-10-20T02:00:50.989Z",
+              "startedAt": "2026-10-21T04:25:27.554Z",
+              "completedAt": "2026-10-21T04:25:27.553Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:50.961Z"
+                "receivedAt": "2026-10-21T04:25:27.528Z"
               },
               "readings": [
                 {
@@ -5959,19 +5959,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:50.996Z"
+              "occurredAt": "2026-10-21T04:25:27.559Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.030Z"
+              "occurredAt": "2026-10-21T04:25:27.587Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.030Z"
+              "occurredAt": "2026-10-21T04:25:27.587Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.032Z"
+              "occurredAt": "2026-10-21T04:25:27.588Z"
             }
           ]
         }
@@ -6027,14 +6027,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.088Z",
-              "completedAt": "2026-10-20T02:00:51.087Z",
+              "startedAt": "2026-10-21T04:25:27.640Z",
+              "completedAt": "2026-10-21T04:25:27.639Z",
               "current": true,
               "physicalReading": {
                 "temperature": 38.2,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.064Z"
+                "receivedAt": "2026-10-21T04:25:27.617Z"
               },
               "readings": [
                 {
@@ -6071,19 +6071,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.094Z"
+              "occurredAt": "2026-10-21T04:25:27.645Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.125Z"
+              "occurredAt": "2026-10-21T04:25:27.672Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.125Z"
+              "occurredAt": "2026-10-21T04:25:27.672Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.127Z"
+              "occurredAt": "2026-10-21T04:25:27.674Z"
             }
           ]
         }
@@ -6140,14 +6140,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.199Z",
-              "completedAt": "2026-10-20T02:00:51.199Z",
+              "startedAt": "2026-10-21T04:25:27.735Z",
+              "completedAt": "2026-10-21T04:25:27.734Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.3,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.167Z"
+                "receivedAt": "2026-10-21T04:25:27.709Z"
               },
               "readings": [
                 {
@@ -6184,19 +6184,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.206Z"
+              "occurredAt": "2026-10-21T04:25:27.741Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.252Z"
+              "occurredAt": "2026-10-21T04:25:27.771Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.252Z"
+              "occurredAt": "2026-10-21T04:25:27.771Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.254Z"
+              "occurredAt": "2026-10-21T04:25:27.772Z"
             }
           ]
         }
@@ -6252,14 +6252,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.322Z",
-              "completedAt": "2026-10-20T02:00:51.321Z",
+              "startedAt": "2026-10-21T04:25:27.825Z",
+              "completedAt": "2026-10-21T04:25:27.824Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.6,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.295Z"
+                "receivedAt": "2026-10-21T04:25:27.801Z"
               },
               "readings": [
                 {
@@ -6296,19 +6296,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.329Z"
+              "occurredAt": "2026-10-21T04:25:27.831Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.363Z"
+              "occurredAt": "2026-10-21T04:25:27.861Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.363Z"
+              "occurredAt": "2026-10-21T04:25:27.861Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.364Z"
+              "occurredAt": "2026-10-21T04:25:27.863Z"
             }
           ]
         }
@@ -6365,14 +6365,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.413Z",
-              "completedAt": "2026-10-20T02:00:51.412Z",
+              "startedAt": "2026-10-21T04:25:27.918Z",
+              "completedAt": "2026-10-21T04:25:27.917Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.390Z"
+                "receivedAt": "2026-10-21T04:25:27.895Z"
               },
               "readings": [
                 {
@@ -6409,19 +6409,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.418Z"
+              "occurredAt": "2026-10-21T04:25:27.922Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.446Z"
+              "occurredAt": "2026-10-21T04:25:27.952Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.446Z"
+              "occurredAt": "2026-10-21T04:25:27.952Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.448Z"
+              "occurredAt": "2026-10-21T04:25:27.954Z"
             }
           ]
         }
@@ -6477,14 +6477,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.497Z",
-              "completedAt": "2026-10-20T02:00:51.497Z",
+              "startedAt": "2026-10-21T04:25:28.008Z",
+              "completedAt": "2026-10-21T04:25:28.007Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.4,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.476Z"
+                "receivedAt": "2026-10-21T04:25:27.983Z"
               },
               "readings": [
                 {
@@ -6521,19 +6521,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.502Z"
+              "occurredAt": "2026-10-21T04:25:28.016Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.530Z"
+              "occurredAt": "2026-10-21T04:25:28.044Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.530Z"
+              "occurredAt": "2026-10-21T04:25:28.044Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.531Z"
+              "occurredAt": "2026-10-21T04:25:28.045Z"
             }
           ]
         }
@@ -6590,14 +6590,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.584Z",
-              "completedAt": "2026-10-20T02:00:51.583Z",
+              "startedAt": "2026-10-21T04:25:28.097Z",
+              "completedAt": "2026-10-21T04:25:28.096Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.560Z"
+                "receivedAt": "2026-10-21T04:25:28.073Z"
               },
               "readings": [
                 {
@@ -6634,19 +6634,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.588Z"
+              "occurredAt": "2026-10-21T04:25:28.101Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.617Z"
+              "occurredAt": "2026-10-21T04:25:28.133Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.617Z"
+              "occurredAt": "2026-10-21T04:25:28.133Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.618Z"
+              "occurredAt": "2026-10-21T04:25:28.134Z"
             }
           ]
         }
@@ -6703,14 +6703,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.667Z",
-              "completedAt": "2026-10-20T02:00:51.666Z",
+              "startedAt": "2026-10-21T04:25:28.194Z",
+              "completedAt": "2026-10-21T04:25:28.193Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37.8,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.644Z"
+                "receivedAt": "2026-10-21T04:25:28.167Z"
               },
               "readings": [
                 {
@@ -6747,19 +6747,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.672Z"
+              "occurredAt": "2026-10-21T04:25:28.201Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.703Z"
+              "occurredAt": "2026-10-21T04:25:28.237Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.703Z"
+              "occurredAt": "2026-10-21T04:25:28.237Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.705Z"
+              "occurredAt": "2026-10-21T04:25:28.238Z"
             }
           ]
         }
@@ -6815,14 +6815,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.754Z",
-              "completedAt": "2026-10-20T02:00:51.754Z",
+              "startedAt": "2026-10-21T04:25:28.296Z",
+              "completedAt": "2026-10-21T04:25:28.296Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.8,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.734Z"
+                "receivedAt": "2026-10-21T04:25:28.271Z"
               },
               "readings": [
                 {
@@ -6859,19 +6859,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.759Z"
+              "occurredAt": "2026-10-21T04:25:28.302Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.786Z"
+              "occurredAt": "2026-10-21T04:25:28.337Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.786Z"
+              "occurredAt": "2026-10-21T04:25:28.337Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.787Z"
+              "occurredAt": "2026-10-21T04:25:28.339Z"
             }
           ]
         }
@@ -6930,14 +6930,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.840Z",
-              "completedAt": "2026-10-20T02:00:51.840Z",
+              "startedAt": "2026-10-21T04:25:28.404Z",
+              "completedAt": "2026-10-21T04:25:28.404Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37.2,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.816Z"
+                "receivedAt": "2026-10-21T04:25:28.378Z"
               },
               "readings": [
                 {
@@ -6974,19 +6974,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.845Z"
+              "occurredAt": "2026-10-21T04:25:28.410Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.875Z"
+              "occurredAt": "2026-10-21T04:25:28.447Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.875Z"
+              "occurredAt": "2026-10-21T04:25:28.447Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.877Z"
+              "occurredAt": "2026-10-21T04:25:28.449Z"
             }
           ]
         }
@@ -7043,14 +7043,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:51.928Z",
-              "completedAt": "2026-10-20T02:00:51.927Z",
+              "startedAt": "2026-10-21T04:25:28.512Z",
+              "completedAt": "2026-10-21T04:25:28.511Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.7,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.903Z"
+                "receivedAt": "2026-10-21T04:25:28.484Z"
               },
               "readings": [
                 {
@@ -7087,19 +7087,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:51.934Z"
+              "occurredAt": "2026-10-21T04:25:28.523Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:51.966Z"
+              "occurredAt": "2026-10-21T04:25:28.566Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:51.966Z"
+              "occurredAt": "2026-10-21T04:25:28.566Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:51.967Z"
+              "occurredAt": "2026-10-21T04:25:28.567Z"
             }
           ]
         }
@@ -7155,14 +7155,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.020Z",
-              "completedAt": "2026-10-20T02:00:52.020Z",
+              "startedAt": "2026-10-21T04:25:28.627Z",
+              "completedAt": "2026-10-21T04:25:28.627Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:51.998Z"
+                "receivedAt": "2026-10-21T04:25:28.601Z"
               },
               "readings": [
                 {
@@ -7199,19 +7199,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.026Z"
+              "occurredAt": "2026-10-21T04:25:28.632Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.054Z"
+              "occurredAt": "2026-10-21T04:25:28.664Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.054Z"
+              "occurredAt": "2026-10-21T04:25:28.664Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.055Z"
+              "occurredAt": "2026-10-21T04:25:28.666Z"
             }
           ]
         }
@@ -7268,14 +7268,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.106Z",
-              "completedAt": "2026-10-20T02:00:52.105Z",
+              "startedAt": "2026-10-21T04:25:28.723Z",
+              "completedAt": "2026-10-21T04:25:28.723Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.9,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.084Z"
+                "receivedAt": "2026-10-21T04:25:28.699Z"
               },
               "readings": [
                 {
@@ -7312,19 +7312,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.111Z"
+              "occurredAt": "2026-10-21T04:25:28.730Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.139Z"
+              "occurredAt": "2026-10-21T04:25:28.759Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.139Z"
+              "occurredAt": "2026-10-21T04:25:28.759Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.140Z"
+              "occurredAt": "2026-10-21T04:25:28.761Z"
             }
           ]
         }
@@ -7382,14 +7382,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.191Z",
-              "completedAt": "2026-10-20T02:00:52.190Z",
+              "startedAt": "2026-10-21T04:25:28.817Z",
+              "completedAt": "2026-10-21T04:25:28.817Z",
               "current": true,
               "physicalReading": {
                 "temperature": 38,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.170Z"
+                "receivedAt": "2026-10-21T04:25:28.793Z"
               },
               "readings": [
                 {
@@ -7426,19 +7426,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.196Z"
+              "occurredAt": "2026-10-21T04:25:28.823Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.229Z"
+              "occurredAt": "2026-10-21T04:25:28.856Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.229Z"
+              "occurredAt": "2026-10-21T04:25:28.856Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.230Z"
+              "occurredAt": "2026-10-21T04:25:28.858Z"
             }
           ]
         }
@@ -7495,14 +7495,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.282Z",
-              "completedAt": "2026-10-20T02:00:52.281Z",
+              "startedAt": "2026-10-21T04:25:28.918Z",
+              "completedAt": "2026-10-21T04:25:28.918Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.6,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.256Z"
+                "receivedAt": "2026-10-21T04:25:28.892Z"
               },
               "readings": [
                 {
@@ -7539,19 +7539,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.287Z"
+              "occurredAt": "2026-10-21T04:25:28.924Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.320Z"
+              "occurredAt": "2026-10-21T04:25:28.955Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.320Z"
+              "occurredAt": "2026-10-21T04:25:28.955Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.322Z"
+              "occurredAt": "2026-10-21T04:25:28.958Z"
             }
           ]
         }
@@ -7608,14 +7608,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.380Z",
-              "completedAt": "2026-10-20T02:00:52.380Z",
+              "startedAt": "2026-10-21T04:25:29.010Z",
+              "completedAt": "2026-10-21T04:25:29.010Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.353Z"
+                "receivedAt": "2026-10-21T04:25:28.986Z"
               },
               "readings": [
                 {
@@ -7652,19 +7652,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.386Z"
+              "occurredAt": "2026-10-21T04:25:29.015Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.423Z"
+              "occurredAt": "2026-10-21T04:25:29.042Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.423Z"
+              "occurredAt": "2026-10-21T04:25:29.042Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.425Z"
+              "occurredAt": "2026-10-21T04:25:29.044Z"
             }
           ]
         }
@@ -7720,14 +7720,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.483Z",
-              "completedAt": "2026-10-20T02:00:52.483Z",
+              "startedAt": "2026-10-21T04:25:29.096Z",
+              "completedAt": "2026-10-21T04:25:29.096Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.7,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.459Z"
+                "receivedAt": "2026-10-21T04:25:29.074Z"
               },
               "readings": [
                 {
@@ -7764,19 +7764,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.488Z"
+              "occurredAt": "2026-10-21T04:25:29.100Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.517Z"
+              "occurredAt": "2026-10-21T04:25:29.128Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.517Z"
+              "occurredAt": "2026-10-21T04:25:29.128Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.519Z"
+              "occurredAt": "2026-10-21T04:25:29.129Z"
             }
           ]
         }
@@ -7835,14 +7835,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.566Z",
-              "completedAt": "2026-10-20T02:00:52.566Z",
+              "startedAt": "2026-10-21T04:25:29.192Z",
+              "completedAt": "2026-10-21T04:25:29.191Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37.1,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.545Z"
+                "receivedAt": "2026-10-21T04:25:29.158Z"
               },
               "readings": [
                 {
@@ -7879,19 +7879,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.571Z"
+              "occurredAt": "2026-10-21T04:25:29.202Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.600Z"
+              "occurredAt": "2026-10-21T04:25:29.244Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.600Z"
+              "occurredAt": "2026-10-21T04:25:29.244Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.601Z"
+              "occurredAt": "2026-10-21T04:25:29.245Z"
             }
           ]
         }
@@ -7948,14 +7948,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.662Z",
-              "completedAt": "2026-10-20T02:00:52.661Z",
+              "startedAt": "2026-10-21T04:25:29.293Z",
+              "completedAt": "2026-10-21T04:25:29.293Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.8,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.636Z"
+                "receivedAt": "2026-10-21T04:25:29.272Z"
               },
               "readings": [
                 {
@@ -7992,19 +7992,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.671Z"
+              "occurredAt": "2026-10-21T04:25:29.297Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.708Z"
+              "occurredAt": "2026-10-21T04:25:29.323Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.708Z"
+              "occurredAt": "2026-10-21T04:25:29.323Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.710Z"
+              "occurredAt": "2026-10-21T04:25:29.325Z"
             }
           ]
         }
@@ -8060,14 +8060,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.765Z",
-              "completedAt": "2026-10-20T02:00:52.765Z",
+              "startedAt": "2026-10-21T04:25:29.375Z",
+              "completedAt": "2026-10-21T04:25:29.375Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.4,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.742Z"
+                "receivedAt": "2026-10-21T04:25:29.352Z"
               },
               "readings": [
                 {
@@ -8104,19 +8104,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.770Z"
+              "occurredAt": "2026-10-21T04:25:29.380Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.801Z"
+              "occurredAt": "2026-10-21T04:25:29.405Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.801Z"
+              "occurredAt": "2026-10-21T04:25:29.405Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.802Z"
+              "occurredAt": "2026-10-21T04:25:29.407Z"
             }
           ]
         }
@@ -8173,14 +8173,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.855Z",
-              "completedAt": "2026-10-20T02:00:52.855Z",
+              "startedAt": "2026-10-21T04:25:29.465Z",
+              "completedAt": "2026-10-21T04:25:29.465Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.832Z"
+                "receivedAt": "2026-10-21T04:25:29.440Z"
               },
               "readings": [
                 {
@@ -8217,19 +8217,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.863Z"
+              "occurredAt": "2026-10-21T04:25:29.470Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.897Z"
+              "occurredAt": "2026-10-21T04:25:29.500Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.897Z"
+              "occurredAt": "2026-10-21T04:25:29.500Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.898Z"
+              "occurredAt": "2026-10-21T04:25:29.502Z"
             }
           ]
         }
@@ -8286,14 +8286,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:52.950Z",
-              "completedAt": "2026-10-20T02:00:52.950Z",
+              "startedAt": "2026-10-21T04:25:29.558Z",
+              "completedAt": "2026-10-21T04:25:29.558Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.9,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:52.927Z"
+                "receivedAt": "2026-10-21T04:25:29.534Z"
               },
               "readings": [
                 {
@@ -8330,19 +8330,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:52.956Z"
+              "occurredAt": "2026-10-21T04:25:29.563Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:52.991Z"
+              "occurredAt": "2026-10-21T04:25:29.592Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:52.991Z"
+              "occurredAt": "2026-10-21T04:25:29.592Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:52.993Z"
+              "occurredAt": "2026-10-21T04:25:29.593Z"
             }
           ]
         }
@@ -8398,14 +8398,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.039Z",
-              "completedAt": "2026-10-20T02:00:53.039Z",
+              "startedAt": "2026-10-21T04:25:29.642Z",
+              "completedAt": "2026-10-21T04:25:29.642Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.6,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.020Z"
+                "receivedAt": "2026-10-21T04:25:29.622Z"
               },
               "readings": [
                 {
@@ -8442,19 +8442,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.045Z"
+              "occurredAt": "2026-10-21T04:25:29.646Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.074Z"
+              "occurredAt": "2026-10-21T04:25:29.680Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.074Z"
+              "occurredAt": "2026-10-21T04:25:29.680Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.076Z"
+              "occurredAt": "2026-10-21T04:25:29.682Z"
             }
           ]
         }
@@ -8511,14 +8511,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.129Z",
-              "completedAt": "2026-10-20T02:00:53.129Z",
+              "startedAt": "2026-10-21T04:25:29.732Z",
+              "completedAt": "2026-10-21T04:25:29.732Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.106Z"
+                "receivedAt": "2026-10-21T04:25:29.710Z"
               },
               "readings": [
                 {
@@ -8555,19 +8555,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.134Z"
+              "occurredAt": "2026-10-21T04:25:29.737Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.168Z"
+              "occurredAt": "2026-10-21T04:25:29.769Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.168Z"
+              "occurredAt": "2026-10-21T04:25:29.769Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.170Z"
+              "occurredAt": "2026-10-21T04:25:29.771Z"
             }
           ]
         }
@@ -8623,14 +8623,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.231Z",
-              "completedAt": "2026-10-20T02:00:53.230Z",
+              "startedAt": "2026-10-21T04:25:29.827Z",
+              "completedAt": "2026-10-21T04:25:29.827Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.3,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.200Z"
+                "receivedAt": "2026-10-21T04:25:29.803Z"
               },
               "readings": [
                 {
@@ -8667,19 +8667,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.236Z"
+              "occurredAt": "2026-10-21T04:25:29.832Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.276Z"
+              "occurredAt": "2026-10-21T04:25:29.860Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.276Z"
+              "occurredAt": "2026-10-21T04:25:29.860Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.278Z"
+              "occurredAt": "2026-10-21T04:25:29.861Z"
             }
           ]
         }
@@ -8738,14 +8738,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.334Z",
-              "completedAt": "2026-10-20T02:00:53.334Z",
+              "startedAt": "2026-10-21T04:25:29.908Z",
+              "completedAt": "2026-10-21T04:25:29.908Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.7,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.307Z"
+                "receivedAt": "2026-10-21T04:25:29.887Z"
               },
               "readings": [
                 {
@@ -8782,19 +8782,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.339Z"
+              "occurredAt": "2026-10-21T04:25:29.913Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.372Z"
+              "occurredAt": "2026-10-21T04:25:29.938Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.372Z"
+              "occurredAt": "2026-10-21T04:25:29.938Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.373Z"
+              "occurredAt": "2026-10-21T04:25:29.940Z"
             }
           ]
         }
@@ -8850,14 +8850,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.439Z",
-              "completedAt": "2026-10-20T02:00:53.439Z",
+              "startedAt": "2026-10-21T04:25:29.989Z",
+              "completedAt": "2026-10-21T04:25:29.988Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37.2,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.412Z"
+                "receivedAt": "2026-10-21T04:25:29.966Z"
               },
               "readings": [
                 {
@@ -8894,19 +8894,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.447Z"
+              "occurredAt": "2026-10-21T04:25:29.994Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.487Z"
+              "occurredAt": "2026-10-21T04:25:30.023Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.487Z"
+              "occurredAt": "2026-10-21T04:25:30.023Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.489Z"
+              "occurredAt": "2026-10-21T04:25:30.024Z"
             }
           ]
         }
@@ -8962,14 +8962,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.569Z",
-              "completedAt": "2026-10-20T02:00:53.569Z",
+              "startedAt": "2026-10-21T04:25:30.072Z",
+              "completedAt": "2026-10-21T04:25:30.072Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.535Z"
+                "receivedAt": "2026-10-21T04:25:30.052Z"
               },
               "readings": [
                 {
@@ -9006,19 +9006,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.574Z"
+              "occurredAt": "2026-10-21T04:25:30.078Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.616Z"
+              "occurredAt": "2026-10-21T04:25:30.102Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.616Z"
+              "occurredAt": "2026-10-21T04:25:30.102Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.618Z"
+              "occurredAt": "2026-10-21T04:25:30.103Z"
             }
           ]
         }
@@ -9075,14 +9075,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.677Z",
-              "completedAt": "2026-10-20T02:00:53.676Z",
+              "startedAt": "2026-10-21T04:25:30.154Z",
+              "completedAt": "2026-10-21T04:25:30.154Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.6,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.654Z"
+                "receivedAt": "2026-10-21T04:25:30.132Z"
               },
               "readings": [
                 {
@@ -9119,19 +9119,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.684Z"
+              "occurredAt": "2026-10-21T04:25:30.159Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.716Z"
+              "occurredAt": "2026-10-21T04:25:30.185Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.716Z"
+              "occurredAt": "2026-10-21T04:25:30.185Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.718Z"
+              "occurredAt": "2026-10-21T04:25:30.187Z"
             }
           ]
         }
@@ -9188,14 +9188,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.768Z",
-              "completedAt": "2026-10-20T02:00:53.768Z",
+              "startedAt": "2026-10-21T04:25:30.240Z",
+              "completedAt": "2026-10-21T04:25:30.239Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.7,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.746Z"
+                "receivedAt": "2026-10-21T04:25:30.215Z"
               },
               "readings": [
                 {
@@ -9232,19 +9232,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.772Z"
+              "occurredAt": "2026-10-21T04:25:30.244Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.801Z"
+              "occurredAt": "2026-10-21T04:25:30.270Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.801Z"
+              "occurredAt": "2026-10-21T04:25:30.270Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.802Z"
+              "occurredAt": "2026-10-21T04:25:30.272Z"
             }
           ]
         }
@@ -9300,14 +9300,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.854Z",
-              "completedAt": "2026-10-20T02:00:53.854Z",
+              "startedAt": "2026-10-21T04:25:30.321Z",
+              "completedAt": "2026-10-21T04:25:30.320Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.4,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.832Z"
+                "receivedAt": "2026-10-21T04:25:30.299Z"
               },
               "readings": [
                 {
@@ -9344,19 +9344,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.858Z"
+              "occurredAt": "2026-10-21T04:25:30.326Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.885Z"
+              "occurredAt": "2026-10-21T04:25:30.353Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.885Z"
+              "occurredAt": "2026-10-21T04:25:30.353Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.886Z"
+              "occurredAt": "2026-10-21T04:25:30.355Z"
             }
           ]
         }
@@ -9413,14 +9413,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:53.936Z",
-              "completedAt": "2026-10-20T02:00:53.935Z",
+              "startedAt": "2026-10-21T04:25:30.404Z",
+              "completedAt": "2026-10-21T04:25:30.404Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:53.911Z"
+                "receivedAt": "2026-10-21T04:25:30.384Z"
               },
               "readings": [
                 {
@@ -9457,19 +9457,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:53.940Z"
+              "occurredAt": "2026-10-21T04:25:30.409Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:53.968Z"
+              "occurredAt": "2026-10-21T04:25:30.440Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:53.968Z"
+              "occurredAt": "2026-10-21T04:25:30.440Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:53.970Z"
+              "occurredAt": "2026-10-21T04:25:30.441Z"
             }
           ]
         }
@@ -9526,14 +9526,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.028Z",
-              "completedAt": "2026-10-20T02:00:54.027Z",
+              "startedAt": "2026-10-21T04:25:30.497Z",
+              "completedAt": "2026-10-21T04:25:30.497Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.8,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.000Z"
+                "receivedAt": "2026-10-21T04:25:30.474Z"
               },
               "readings": [
                 {
@@ -9570,19 +9570,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.034Z"
+              "occurredAt": "2026-10-21T04:25:30.504Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.064Z"
+              "occurredAt": "2026-10-21T04:25:30.534Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.064Z"
+              "occurredAt": "2026-10-21T04:25:30.534Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.065Z"
+              "occurredAt": "2026-10-21T04:25:30.535Z"
             }
           ]
         }
@@ -9638,14 +9638,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.114Z",
-              "completedAt": "2026-10-20T02:00:54.114Z",
+              "startedAt": "2026-10-21T04:25:30.586Z",
+              "completedAt": "2026-10-21T04:25:30.585Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.6,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.091Z"
+                "receivedAt": "2026-10-21T04:25:30.562Z"
               },
               "readings": [
                 {
@@ -9682,19 +9682,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.120Z"
+              "occurredAt": "2026-10-21T04:25:30.591Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.153Z"
+              "occurredAt": "2026-10-21T04:25:30.624Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.153Z"
+              "occurredAt": "2026-10-21T04:25:30.624Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.154Z"
+              "occurredAt": "2026-10-21T04:25:30.626Z"
             }
           ]
         }
@@ -9750,14 +9750,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.205Z",
-              "completedAt": "2026-10-20T02:00:54.204Z",
+              "startedAt": "2026-10-21T04:25:30.683Z",
+              "completedAt": "2026-10-21T04:25:30.682Z",
               "current": true,
               "physicalReading": {
                 "temperature": 40,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.183Z"
+                "receivedAt": "2026-10-21T04:25:30.660Z"
               },
               "readings": [
                 {
@@ -9794,19 +9794,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.209Z"
+              "occurredAt": "2026-10-21T04:25:30.688Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.240Z"
+              "occurredAt": "2026-10-21T04:25:30.720Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.240Z"
+              "occurredAt": "2026-10-21T04:25:30.720Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.241Z"
+              "occurredAt": "2026-10-21T04:25:30.721Z"
             }
           ]
         }
@@ -9863,14 +9863,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.296Z",
-              "completedAt": "2026-10-20T02:00:54.295Z",
+              "startedAt": "2026-10-21T04:25:30.776Z",
+              "completedAt": "2026-10-21T04:25:30.776Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.6,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.271Z"
+                "receivedAt": "2026-10-21T04:25:30.752Z"
               },
               "readings": [
                 {
@@ -9907,19 +9907,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.302Z"
+              "occurredAt": "2026-10-21T04:25:30.780Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.331Z"
+              "occurredAt": "2026-10-21T04:25:30.807Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.331Z"
+              "occurredAt": "2026-10-21T04:25:30.807Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.332Z"
+              "occurredAt": "2026-10-21T04:25:30.808Z"
             }
           ]
         }
@@ -9976,14 +9976,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.378Z",
-              "completedAt": "2026-10-20T02:00:54.378Z",
+              "startedAt": "2026-10-21T04:25:30.855Z",
+              "completedAt": "2026-10-21T04:25:30.855Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.9,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.357Z"
+                "receivedAt": "2026-10-21T04:25:30.834Z"
               },
               "readings": [
                 {
@@ -10020,19 +10020,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.382Z"
+              "occurredAt": "2026-10-21T04:25:30.860Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.409Z"
+              "occurredAt": "2026-10-21T04:25:30.889Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.409Z"
+              "occurredAt": "2026-10-21T04:25:30.889Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.410Z"
+              "occurredAt": "2026-10-21T04:25:30.891Z"
             }
           ]
         }
@@ -10090,14 +10090,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.454Z",
-              "completedAt": "2026-10-20T02:00:54.454Z",
+              "startedAt": "2026-10-21T04:25:30.948Z",
+              "completedAt": "2026-10-21T04:25:30.948Z",
               "current": true,
               "physicalReading": {
                 "temperature": 38.4,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.435Z"
+                "receivedAt": "2026-10-21T04:25:30.924Z"
               },
               "readings": [
                 {
@@ -10134,19 +10134,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.459Z"
+              "occurredAt": "2026-10-21T04:25:30.953Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.486Z"
+              "occurredAt": "2026-10-21T04:25:30.984Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.486Z"
+              "occurredAt": "2026-10-21T04:25:30.984Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.487Z"
+              "occurredAt": "2026-10-21T04:25:30.986Z"
             }
           ]
         }
@@ -10206,14 +10206,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.538Z",
-              "completedAt": "2026-10-20T02:00:54.537Z",
+              "startedAt": "2026-10-21T04:25:31.034Z",
+              "completedAt": "2026-10-21T04:25:31.034Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.516Z"
+                "receivedAt": "2026-10-21T04:25:31.014Z"
               },
               "readings": [
                 {
@@ -10250,19 +10250,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.544Z"
+              "occurredAt": "2026-10-21T04:25:31.039Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.578Z"
+              "occurredAt": "2026-10-21T04:25:31.068Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.578Z"
+              "occurredAt": "2026-10-21T04:25:31.068Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.580Z"
+              "occurredAt": "2026-10-21T04:25:31.069Z"
             }
           ]
         }
@@ -10319,14 +10319,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.639Z",
-              "completedAt": "2026-10-20T02:00:54.639Z",
+              "startedAt": "2026-10-21T04:25:31.118Z",
+              "completedAt": "2026-10-21T04:25:31.118Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.615Z"
+                "receivedAt": "2026-10-21T04:25:31.097Z"
               },
               "readings": [
                 {
@@ -10363,19 +10363,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.645Z"
+              "occurredAt": "2026-10-21T04:25:31.123Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.679Z"
+              "occurredAt": "2026-10-21T04:25:31.149Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.679Z"
+              "occurredAt": "2026-10-21T04:25:31.149Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.680Z"
+              "occurredAt": "2026-10-21T04:25:31.150Z"
             }
           ]
         }
@@ -10432,14 +10432,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.730Z",
-              "completedAt": "2026-10-20T02:00:54.730Z",
+              "startedAt": "2026-10-21T04:25:31.202Z",
+              "completedAt": "2026-10-21T04:25:31.201Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.7,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.709Z"
+                "receivedAt": "2026-10-21T04:25:31.176Z"
               },
               "readings": [
                 {
@@ -10476,19 +10476,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.736Z"
+              "occurredAt": "2026-10-21T04:25:31.207Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.763Z"
+              "occurredAt": "2026-10-21T04:25:31.240Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.763Z"
+              "occurredAt": "2026-10-21T04:25:31.240Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.765Z"
+              "occurredAt": "2026-10-21T04:25:31.241Z"
             }
           ]
         }
@@ -10544,14 +10544,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.809Z",
-              "completedAt": "2026-10-20T02:00:54.809Z",
+              "startedAt": "2026-10-21T04:25:31.315Z",
+              "completedAt": "2026-10-21T04:25:31.315Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37.5,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.789Z"
+                "receivedAt": "2026-10-21T04:25:31.272Z"
               },
               "readings": [
                 {
@@ -10588,19 +10588,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.815Z"
+              "occurredAt": "2026-10-21T04:25:31.324Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.843Z"
+              "occurredAt": "2026-10-21T04:25:31.379Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.843Z"
+              "occurredAt": "2026-10-21T04:25:31.379Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.844Z"
+              "occurredAt": "2026-10-21T04:25:31.381Z"
             }
           ]
         }
@@ -10658,14 +10658,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.892Z",
-              "completedAt": "2026-10-20T02:00:54.891Z",
+              "startedAt": "2026-10-21T04:25:31.480Z",
+              "completedAt": "2026-10-21T04:25:31.480Z",
               "current": true,
               "physicalReading": {
                 "temperature": 36.4,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.872Z"
+                "receivedAt": "2026-10-21T04:25:31.444Z"
               },
               "readings": [
                 {
@@ -10702,19 +10702,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.897Z"
+              "occurredAt": "2026-10-21T04:25:31.487Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:54.924Z"
+              "occurredAt": "2026-10-21T04:25:31.532Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:54.924Z"
+              "occurredAt": "2026-10-21T04:25:31.532Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:54.925Z"
+              "occurredAt": "2026-10-21T04:25:31.534Z"
             }
           ]
         }
@@ -10772,14 +10772,14 @@
               "attemptNumber": 1,
               "origin": "PHYSICAL_DEVICE",
               "status": "COMPLETED",
-              "startedAt": "2026-10-20T02:00:54.971Z",
-              "completedAt": "2026-10-20T02:00:54.970Z",
+              "startedAt": "2026-10-21T04:25:31.590Z",
+              "completedAt": "2026-10-21T04:25:31.590Z",
               "current": true,
               "physicalReading": {
                 "temperature": 37.1,
                 "weight": null,
                 "height": null,
-                "receivedAt": "2026-10-20T02:00:54.949Z"
+                "receivedAt": "2026-10-21T04:25:31.568Z"
               },
               "readings": [
                 {
@@ -10816,19 +10816,19 @@
             },
             {
               "label": "Sinais vitais registrados",
-              "occurredAt": "2026-10-20T02:00:54.975Z"
+              "occurredAt": "2026-10-21T04:25:31.595Z"
             },
             {
               "label": "Senha operacional emitida",
-              "occurredAt": "2026-10-20T02:00:55.001Z"
+              "occurredAt": "2026-10-21T04:25:31.621Z"
             },
             {
               "label": "Aguardando revisão da enfermagem",
-              "occurredAt": "2026-10-20T02:00:55.001Z"
+              "occurredAt": "2026-10-21T04:25:31.621Z"
             },
             {
               "label": "Análise após sinais vitais concluída",
-              "occurredAt": "2026-10-20T02:00:55.002Z"
+              "occurredAt": "2026-10-21T04:25:31.623Z"
             }
           ]
         }
@@ -10843,7 +10843,7 @@
         "priority": "RED",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.345Z",
+        "queuedAt": "2026-10-21T04:25:32.097Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -10856,7 +10856,7 @@
         "priority": "RED",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.374Z",
+        "queuedAt": "2026-10-21T04:25:32.125Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -10869,7 +10869,7 @@
         "priority": "YELLOW",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.402Z",
+        "queuedAt": "2026-10-21T04:25:32.153Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -10882,7 +10882,7 @@
         "priority": "YELLOW",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.426Z",
+        "queuedAt": "2026-10-21T04:25:32.176Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -10895,7 +10895,7 @@
         "priority": "GREEN",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.453Z",
+        "queuedAt": "2026-10-21T04:25:32.197Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -10908,7 +10908,7 @@
         "priority": "GREEN",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.478Z",
+        "queuedAt": "2026-10-21T04:25:32.220Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -11471,8 +11471,8 @@
         "priority": "RED",
         "status": "CALLED",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.374Z",
-        "calledAt": "2026-10-20T02:00:55.538Z",
+        "queuedAt": "2026-10-21T04:25:32.125Z",
+        "calledAt": "2026-10-21T04:25:32.277Z",
         "serviceStartedAt": null,
         "completedAt": null
       },
@@ -11484,7 +11484,7 @@
         "priority": "YELLOW",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.402Z",
+        "queuedAt": "2026-10-21T04:25:32.153Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -11497,7 +11497,7 @@
         "priority": "YELLOW",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.426Z",
+        "queuedAt": "2026-10-21T04:25:32.176Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -11510,7 +11510,7 @@
         "priority": "GREEN",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.453Z",
+        "queuedAt": "2026-10-21T04:25:32.197Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -11523,7 +11523,7 @@
         "priority": "GREEN",
         "status": "WAITING",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.478Z",
+        "queuedAt": "2026-10-21T04:25:32.220Z",
         "calledAt": null,
         "serviceStartedAt": null,
         "completedAt": null
@@ -11536,10 +11536,10 @@
         "priority": "RED",
         "status": "COMPLETED",
         "destination": null,
-        "queuedAt": "2026-10-20T02:00:55.345Z",
-        "calledAt": "2026-10-20T02:00:55.500Z",
-        "serviceStartedAt": "2026-10-20T02:00:55.515Z",
-        "completedAt": "2026-10-20T02:00:55.523Z"
+        "queuedAt": "2026-10-21T04:25:32.097Z",
+        "calledAt": "2026-10-21T04:25:32.239Z",
+        "serviceStartedAt": "2026-10-21T04:25:32.254Z",
+        "completedAt": "2026-10-21T04:25:32.264Z"
       }
     ]
   }

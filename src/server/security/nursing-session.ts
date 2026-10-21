@@ -25,4 +25,12 @@ export async function getNursingSession(): Promise<NursingSession | null> {
   return payload ? { actorReference: payload.subject } : null;
 }
 
-export async function clearNursingSession(): Promise<void> { (await cookies()).delete(COOKIE_NAME); }
+export async function clearNursingSession(): Promise<void> {
+  (await cookies()).set(COOKIE_NAME, "", {
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+    path: "/enfermagem",
+    maxAge: 0,
+  });
+}

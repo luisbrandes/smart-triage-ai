@@ -2,30 +2,82 @@ import "server-only";
 
 import { z } from "zod";
 
-import type { AiSuggestionInput, AiSuggestionResult } from "@/server/application/ai-suggestion/ai-suggestion-types";
+import type { AiEvidenceItem, AiSuggestionInput, AiSuggestionResult } from "@/server/application/ai-suggestion/ai-suggestion-types";
 import { logServerOperation } from "@/server/observability/server-logger";
 
 export const GROQ_MODEL = process.env.GROQ_MODEL ?? "openai/gpt-oss-120b";
-export const AI_PROMPT_VERSION = "DEMO-AI-SUGGESTION-001";
+export const AI_PROMPT_VERSION = "DEMO-AI-SUGGESTION-002";
 
-const suggestionSchema = z.object({
-  priority: z.enum(["RED", "YELLOW", "GREEN", "BLUE"]),
+const modelSelectionSchema = z.object({
+  suggestion: z.enum(["RED", "YELLOW", "GREEN", "BLUE"]),
   attention: z.enum(["HIGH", "MODERATE", "LOW"]),
-  conclusion: z.string().trim().min(10).max(500),
-  factors: z.array(z.string().trim().min(1).max(100)).min(1).max(6),
+  evidenceKeys: z.array(z.string().min(1).max(40)).min(1).max(6),
 }).strict();
 
-const responseSchema = {
-  type: "object",
-  properties: {
-    priority: { type: "string", enum: ["RED", "YELLOW", "GREEN", "BLUE"] },
-    attention: { type: "string", enum: ["HIGH", "MODERATE", "LOW"] },
-    conclusion: { type: "string" },
-    factors: { type: "array", items: { type: "string" } },
-  },
-  required: ["priority", "attention", "conclusion", "factors"],
-  additionalProperties: false,
-} as const;
+const limitations = [
+  "Sugestão experimental; não é diagnóstico nem protocolo clínico validado.",
+  "A classificação oficial, a prioridade da fila e a decisão final permanecem sob responsabilidade da enfermagem.",
+];
+
+function displayValue(value: string | number | null): string {
+  return value === null || value === "" ? "Não informado" : String(value);
+}
+
+export function dataConsideredForSuggestion(input: AiSuggestionInput): AiEvidenceItem[] {
+  return [
+    { key: "ageYears", label: "Idade", value: input.ageYears === null ? "Não informada" : `${input.ageYears} anos` },
+    { key: "sex", label: "Sexo", value: displayValue(input.sex) },
+    { key: "mainComplaint", label: "Queixa principal", value: input.mainComplaint },
+    { key: "subjectiveIntensity", label: "Intensidade relatada", value: displayValue(input.subjectiveIntensity) },
+    { key: "approximateDuration", label: "Duração relatada", value: displayValue(input.approximateDuration) },
+    { key: "reportedAlerts", label: "Alertas da anamnese", value: input.reportedAlerts.length ? input.reportedAlerts.join("; ") : "Nenhum indicativo positivo marcado" },
+    { key: "bpm", label: "Frequência cardíaca", value: `${input.bpm} bpm` },
+    { key: "spo2", label: "SpO₂", value: `${input.spo2}%` },
+    { key: "temperature", label: "Temperatura", value: input.temperature === null ? "Não informada" : `${input.temperature} °C` },
+    { key: "weight", label: "Peso", value: input.weight === null ? "Não informado" : `${input.weight} kg` },
+    { key: "height", label: "Altura", value: input.height === null ? "Não informada" : `${input.height} m` },
+    { key: "systemPriority", label: "Recomendação atual do sistema", value: input.systemPriority },
+  ];
+}
+
+function responseSchema(evidenceKeys: string[]) {
+  return {
+    type: "object",
+    properties: {
+      suggestion: { type: "string", enum: ["RED", "YELLOW", "GREEN", "BLUE"] },
+      attention: { type: "string", enum: ["HIGH", "MODERATE", "LOW"] },
+      evidenceKeys: { type: "array", items: { type: "string", enum: evidenceKeys } },
+    },
+    required: ["suggestion", "attention", "evidenceKeys"],
+    additionalProperties: false,
+  } as const;
+}
+
+function priorityLabel(priority: AiSuggestionResult["suggestion"]): string {
+  return { RED: "vermelha", YELLOW: "amarela", GREEN: "verde", BLUE: "azul" }[priority];
+}
+
+function attentionLabel(attention: AiSuggestionResult["attention"]): string {
+  return { HIGH: "alta", MODERATE: "moderada", LOW: "baixa" }[attention];
+}
+
+function buildResult(input: AiSuggestionInput, selection: z.infer<typeof modelSelectionSchema>): AiSuggestionResult | null {
+  const dataConsidered = dataConsideredForSuggestion(input);
+  const allowedKeys = new Set(dataConsidered.map((item) => item.key));
+  if (new Set(selection.evidenceKeys).size !== selection.evidenceKeys.length || selection.evidenceKeys.some((key) => !allowedKeys.has(key))) return null;
+  const indicators = selection.evidenceKeys.map((key) => dataConsidered.find((item) => item.key === key)!);
+  const labels = indicators.map((item) => item.label);
+  const factors = labels.length > 1 ? `${labels.slice(0, -1).join(", ")} e ${labels.at(-1)}` : labels[0];
+  return {
+    suggestion: selection.suggestion,
+    attention: selection.attention,
+    summary: `Sugestão ${priorityLabel(selection.suggestion)} com nível de atenção ${attentionLabel(selection.attention)}.`,
+    indicators,
+    explanation: `O modelo selecionou ${factors} entre os dados enviados como fatores associados à sugestão. Essa associação resume a resposta do modelo e não representa uma regra clínica validada.`,
+    dataConsidered,
+    limitations,
+  };
+}
 
 function logFailure(triageId: string | undefined, stage: string, errorCode: string, state?: string): void {
   logServerOperation({ operation: "ai-suggestion", correlationId: crypto.randomUUID(), actorType: "SYSTEM", entity: `AiSuggestion:${triageId ?? "unknown"}`, result: "FAILURE", errorCode, state: `${stage}${state ? `:${state}` : ""}` });
@@ -46,6 +98,7 @@ export async function requestGroqSuggestion(input: AiSuggestionInput, fetcher: t
   const apiKey = process.env.GROQ_API_KEY;
   if (process.env.APP_MODE !== "demo") { logFailure(triageId, "configuration", "APP_MODE_NOT_DEMO"); return null; }
   if (!apiKey) { logFailure(triageId, "configuration", "GROQ_API_KEY_MISSING"); return null; }
+  const dataConsidered = dataConsideredForSuggestion(input);
   try {
     const response = await fetcher("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -55,10 +108,10 @@ export async function requestGroqSuggestion(input: AiSuggestionInput, fetcher: t
         model: GROQ_MODEL,
         temperature: 0,
         max_completion_tokens: 450,
-        response_format: { type: "json_schema", json_schema: { name: "triage_suggestion", strict: true, schema: responseSchema } },
+        response_format: { type: "json_schema", json_schema: { name: "triage_suggestion", strict: true, schema: responseSchema(dataConsidered.map((item) => item.key)) } },
         messages: [
-          { role: "system", content: "Você é um apoio experimental de triagem, não um sistema de diagnóstico. Use apenas os dados fornecidos. Se os dados forem insuficientes, deixe isso explícito em conclusion e factors. Devolva JSON com priority (RED/YELLOW/GREEN/BLUE), attention (HIGH/MODERATE/LOW), conclusion (frase breve sem diagnóstico ou doença afirmada) e factors (até 6 fatores observados). Não invente limiares clínicos, protocolos, dados ausentes ou confiança numérica. A avaliação e decisão final pertencem à enfermagem." },
-          { role: "user", content: JSON.stringify(input) },
+          { role: "system", content: "You support experimental triage. Return JSON only with suggestion, attention, and evidenceKeys. Choose keys only from the supplied dataConsidered list. Do not produce free text, diagnoses, thresholds, symptoms, values, or missing data. The nurse owns the final classification and decision." },
+          { role: "user", content: JSON.stringify({ dataConsidered }) },
         ],
       }),
     });
@@ -77,9 +130,11 @@ export async function requestGroqSuggestion(input: AiSuggestionInput, fetcher: t
     if (!content.success) { logFailure(triageId, "response", "ENVELOPE_INVALID"); return null; }
     let raw: unknown;
     try { raw = JSON.parse(content.data.choices[0].message.content); } catch { logFailure(triageId, "response", "JSON_INVALID"); return null; }
-    const parsed = suggestionSchema.safeParse(raw);
+    const parsed = modelSelectionSchema.safeParse(raw);
     if (!parsed.success) { logFailure(triageId, "response", "SCHEMA_INVALID"); return null; }
-    return parsed.data;
+    const result = buildResult(input, parsed.data);
+    if (!result) { logFailure(triageId, "response", "EVIDENCE_INVALID"); return null; }
+    return result;
   } catch (error) {
     logFailure(triageId, "provider", error instanceof Error && error.name === "TimeoutError" ? "TIMEOUT" : safeNetworkErrorCode(error));
     return null;

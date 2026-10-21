@@ -23,3 +23,13 @@ export async function authenticatePatientAccess(credential: string): Promise<boo
 export async function hasPatientAccess(): Promise<boolean> {
   return Boolean(verifySignedSession((await cookies()).get(COOKIE_NAME)?.value, "PATIENT"));
 }
+
+export async function clearPatientAccess(): Promise<void> {
+  (await cookies()).set(COOKIE_NAME, "", {
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production",
+    path: "/paciente",
+    maxAge: 0,
+  });
+}

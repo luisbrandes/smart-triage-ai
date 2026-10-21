@@ -4,6 +4,7 @@ import { demoAnamnesis } from "@/demo/anamnesis";
 import { formatDateTime, originLabels, priorityPresentation } from "@/features/nursing/nursing-presentation";
 import { NursingDecisionPanel } from "@/features/nursing/nursing-decision-panel";
 import { AiSuggestionForm } from "@/features/nursing/ai-suggestion-form";
+import { AiSuggestionResultCard } from "@/features/nursing/ai-suggestion-result-card";
 import { nursing } from "@/server/nursing";
 import { aiSuggestion } from "@/server/ai-suggestion";
 import { PageContainer } from "@/shared/layout/page-container";
@@ -51,14 +52,17 @@ export default async function NursingTriageDetailPage({ params }: { params: Prom
         {detail.referral && <div className="mt-5 border-t border-border pt-5"><h3 className="font-semibold">Encaminhamento registrado</h3><p className="mt-2 text-sm text-text-secondary">Destino: {detail.referral.destination ?? "Não informado"}</p>{detail.referral.notes && <p className="mt-1 text-sm text-text-secondary">Observação: {detail.referral.notes}</p>}</div>}
       </Card>
 
-      <Card className="mt-6" title="Sugestão da IA — requer validação da enfermagem" description="Apoio experimental externo; não é diagnóstico nem classificação oficial.">
-        <p className="text-sm text-text-secondary">Classificação do sistema: {current.label}. A decisão final pertence à enfermagem.</p>
+      <section className="mt-6" aria-label="Apoio da IA">
+        {currentSuggestion?.status !== "COMPLETED" && <div className="rounded-lg border border-border bg-surface p-5">
+        <h2 className="flex items-center gap-2 text-lg font-semibold"><Icon name="sparkle" className="text-primary" />Sugestão da IA</h2>
+        <p className="mt-2 text-sm text-text-secondary">Apoio experimental. A decisão final pertence à enfermagem.</p>
         {detail.status === "AWAITING_NURSE_REVIEW" && !currentSuggestion && <AiSuggestionForm triageId={triageId} />}
-        {currentSuggestion?.status === "PENDING" && <p className="mt-4 text-sm text-text-secondary" role="status">Solicitacao em andamento. Atualize a pagina em instantes.</p>}
+        {currentSuggestion?.status === "PENDING" && <p className="mt-4 text-sm text-text-secondary" role="status">Análise em andamento. Atualize a página em instantes.</p>}
         {currentSuggestion?.status === "UNAVAILABLE" && <p className="mt-4 text-sm text-text-secondary">Sugestão da IA indisponível no momento. A avaliação pode continuar normalmente.</p>}
-        {currentSuggestion?.status === "COMPLETED" && <div className="mt-4 space-y-3"><p><strong>Sugestão:</strong> {currentSuggestion.suggestedPriority === "RED" ? "Vermelho" : currentSuggestion.suggestedPriority === "YELLOW" ? "Amarelo" : currentSuggestion.suggestedPriority === "GREEN" ? "Verde" : "Azul"} · <strong>Atenção:</strong> {currentSuggestion.attentionLevel === "HIGH" ? "Alta" : currentSuggestion.attentionLevel === "MODERATE" ? "Moderada" : "Baixa"}</p><p className="text-sm text-text-secondary">{currentSuggestion.suggestedPriority === detail.currentRecommendedPriority ? "A sugestão coincide com a recomendação do sistema." : "A sugestão difere da recomendação do sistema. Revise os dados antes de decidir."}</p><p className="text-sm leading-6">{currentSuggestion.conclusion}</p><ul className="list-inside list-disc text-sm text-text-secondary">{currentSuggestion.factors.map((factor, index) => <li key={`${factor}-${index}`}>{factor}</li>)}</ul><p className="text-xs text-text-muted">Coleta {currentSuggestion.collectionAttemptNumber} · {formatDateTime(currentSuggestion.createdAt)} UTC · Modelo {currentSuggestion.model}</p></div>}
+        </div>}
+        {currentSuggestion?.status === "COMPLETED" && <AiSuggestionResultCard suggestion={currentSuggestion} systemPriority={detail.currentRecommendedPriority} />}
         {suggestions.length > 1 && <details className="mt-4 text-sm"><summary>Histórico de sugestões ({suggestions.length})</summary><ol className="mt-2 space-y-1">{suggestions.map((item) => <li key={item.id}>Coleta {item.collectionAttemptNumber} · {formatDateTime(item.createdAt)} UTC · {item.status === "COMPLETED" ? item.suggestedPriority : item.status === "PENDING" ? "Em andamento" : "Indisponivel"}</li>)}</ol></details>}
-      </Card>
+      </section>
 
       <Card className="mt-6" title="Registrar decisão" description="Escolha uma única conduta para avançar o atendimento com segurança."><NursingDecisionPanel triageId={triageId} status={detail.status} recommendedPriority={current.label} /></Card>
 

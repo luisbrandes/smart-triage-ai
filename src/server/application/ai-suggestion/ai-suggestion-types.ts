@@ -14,10 +14,19 @@ export type AiSuggestionInput = {
 };
 
 export type AiSuggestionResult = {
-  priority: "RED" | "YELLOW" | "GREEN" | "BLUE";
+  suggestion: "RED" | "YELLOW" | "GREEN" | "BLUE";
   attention: "HIGH" | "MODERATE" | "LOW";
-  conclusion: string;
-  factors: string[];
+  summary: string;
+  indicators: AiEvidenceItem[];
+  explanation: string;
+  dataConsidered: AiEvidenceItem[];
+  limitations: string[];
+};
+
+export type AiEvidenceItem = {
+  key: string;
+  label: string;
+  value: string;
 };
 
 export type AiSuggestionView = {
@@ -25,10 +34,13 @@ export type AiSuggestionView = {
   analysisRunId: string;
   collectionAttemptNumber: number;
   status: "PENDING" | "COMPLETED" | "UNAVAILABLE";
-  suggestedPriority: AiSuggestionResult["priority"] | null;
+  suggestedPriority: AiSuggestionResult["suggestion"] | null;
   attentionLevel: AiSuggestionResult["attention"] | null;
-  conclusion: string | null;
-  factors: string[];
+  summary: string | null;
+  indicators: AiEvidenceItem[];
+  explanation: string | null;
+  dataConsidered: AiEvidenceItem[];
+  limitations: string[];
   model: string;
   createdAt: Date;
 };

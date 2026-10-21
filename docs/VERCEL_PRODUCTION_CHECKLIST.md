@@ -9,7 +9,7 @@
 - [ ] `TRIAGE_DEVICE_ID=ESP32-001`.
 - [ ] `.env` não está versionado.
 
-O build de produção executa `prisma generate`, `prisma migrate deploy` e `next build`. Não use `migrate reset`.
+O script `vercel-build` gera o Prisma Client, aplica migrations e executa `next build`. Para Next.js, a Vercel usa por padrão o script `build`; neste projeto, ele executa somente `next build`. Confirme o Build Command nas configurações do projeto: migrations só rodam se ele invocar `pnpm vercel-build` (ou comando equivalente), que altera o banco em `DIRECT_DATABASE_URL`.
 
 ## Verificação segura após o deploy
 

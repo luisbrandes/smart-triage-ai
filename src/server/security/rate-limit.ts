@@ -7,15 +7,7 @@ import { prisma } from "@/server/db/prisma";
 export type RateLimitPolicy = { limit: number; windowMs: number };
 export type RateLimitResult =
   | { allowed: true; retryAfterSeconds: 0 }
-  | { allowed: false; reason: "limited" | "unavailable" | "storage-missing"; retryAfterSeconds: number };
-
-function isMissingRateLimitTable(error: unknown): boolean {
-  if (!error || typeof error !== "object") return false;
-  const candidate = error as { code?: unknown; meta?: { code?: unknown; message?: unknown } };
-  return candidate.code === "P2010"
-    && (candidate.meta?.code === "42P01"
-      || (typeof candidate.meta?.message === "string" && candidate.meta.message.includes('relation "RateLimitBucket" does not exist')));
-}
+  | { allowed: false; reason: "limited" | "unavailable"; retryAfterSeconds: number };
 
 export function rateLimitKey(scope: string, subject: string): string {
   return createHash("sha256").update(`${scope}\0${subject}`).digest("hex");
@@ -46,12 +38,7 @@ export async function consumeRateLimit(scope: string, subject: string, policy: R
     return count <= policy.limit
       ? { allowed: true, retryAfterSeconds: 0 }
       : { allowed: false, reason: "limited", retryAfterSeconds };
-  } catch (error) {
-    if (isMissingRateLimitTable(error)) {
-      // An unapplied additive migration must not block panel authentication.
-      // Other protected operations still fail closed on this result.
-      return { allowed: false, reason: "storage-missing", retryAfterSeconds };
-    }
+  } catch {
     // Fail closed: do not process protected work when distributed throttling is unavailable.
     return { allowed: false, reason: "unavailable", retryAfterSeconds };
   }

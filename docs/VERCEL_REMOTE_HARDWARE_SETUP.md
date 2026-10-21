@@ -23,7 +23,7 @@ Nenhuma dessas variáveis deve usar prefixo `NEXT_PUBLIC_`. Depois de alterar va
 
 ## Banco e deploy
 
-O script `vercel-build` gera o Prisma Client, aplica `prisma migrate deploy` e executa o build. A conta do banco usada em `DIRECT_DATABASE_URL` precisa ter permissão para migrations. Não use o PostgreSQL local nem o banco de testes.
+O script `vercel-build` gera o Prisma Client, aplica migrations e executa o build. Para Next.js, a Vercel usa por padrão o script `build` do package.json; neste projeto, `build` executa somente `next build`. Portanto, migrations não são aplicadas automaticamente, a menos que o Build Command do projeto seja configurado explicitamente como `pnpm vercel-build`. Esse comando altera o banco configurado em `DIRECT_DATABASE_URL`; use-o somente quando a aplicação de migrations estiver autorizada.
 
 O provisionamento abaixo cria o `MedicalDevice` caso ele ainda não exista ou rotaciona sua credencial caso já exista. O seed é somente demonstrativo; não execute reset em ambiente publicado com dados que precisem ser preservados.
 
