@@ -44,8 +44,8 @@ describe("PostgreSQL: sugestão de IA", () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(await aiSuggestion.list(triage.id)).toMatchObject([{ analysisRunId: run.id, collectionAttemptNumber: 1, status: "COMPLETED", suggestedPriority: "GREEN", attentionLevel: "LOW", summary: "Sugestão verde com nível de atenção baixa.", indicators: [{ key: "mainComplaint", value: "Queixa fictícia" }, { key: "bpm", value: "78 bpm" }, { key: "spo2", value: "98%" }], dataConsidered: expect.arrayContaining([expect.objectContaining({ key: "systemPriority", value: "GREEN" })]), explanation: expect.stringContaining("Queixa principal") }]);
     expect(await prisma.auditEvent.findMany({ where: { triageId: triage.id, entityType: "AiSuggestion" }, orderBy: { createdAt: "asc" }, select: { action: true, sanitizedMetadata: true } })).toEqual([
-      { action: "AI_SUGGESTION_REQUESTED", sanitizedMetadata: { promptVersion: "DEMO-AI-SUGGESTION-002", status: "PENDING" } },
-      { action: "AI_SUGGESTION_COMPLETED", sanitizedMetadata: { promptVersion: "DEMO-AI-SUGGESTION-002", status: "COMPLETED" } },
+      { action: "AI_SUGGESTION_REQUESTED", sanitizedMetadata: { promptVersion: "DEMO-AI-SUGGESTION-003", status: "PENDING" } },
+      { action: "AI_SUGGESTION_COMPLETED", sanitizedMetadata: { promptVersion: "DEMO-AI-SUGGESTION-003", status: "COMPLETED" } },
     ]);
     expect(await prisma.triage.findUniqueOrThrow({ where: { id: triage.id }, select: { currentRecommendedPriority: true, finalHumanPriority: true, status: true } })).toEqual({ currentRecommendedPriority: "GREEN", finalHumanPriority: null, status: "AWAITING_NURSE_REVIEW" });
     expect(await prisma.anamnesis.findUniqueOrThrow({ where: { id: anamnesis.id }, select: { mainComplaint: true } })).toEqual({ mainComplaint: "Queixa fictícia" });
@@ -98,8 +98,8 @@ describe("PostgreSQL: sugestão de IA", () => {
     await expect(aiSuggestion.generate(triage.id, "INTEGRATION_NURSE")).resolves.toBe("UNAVAILABLE");
     expect(await aiSuggestion.list(triage.id)).toMatchObject([{ analysisRunId: run.id, status: "UNAVAILABLE", suggestedPriority: null, summary: null, indicators: [], dataConsidered: [], limitations: [] }]);
     expect(await prisma.auditEvent.findMany({ where: { triageId: triage.id, entityType: "AiSuggestion" }, orderBy: { createdAt: "asc" }, select: { action: true, sanitizedMetadata: true } })).toEqual([
-      { action: "AI_SUGGESTION_REQUESTED", sanitizedMetadata: { promptVersion: "DEMO-AI-SUGGESTION-002", status: "PENDING" } },
-      { action: "AI_SUGGESTION_UNAVAILABLE", sanitizedMetadata: { promptVersion: "DEMO-AI-SUGGESTION-002", status: "UNAVAILABLE" } },
+      { action: "AI_SUGGESTION_REQUESTED", sanitizedMetadata: { promptVersion: "DEMO-AI-SUGGESTION-003", status: "PENDING" } },
+      { action: "AI_SUGGESTION_UNAVAILABLE", sanitizedMetadata: { promptVersion: "DEMO-AI-SUGGESTION-003", status: "UNAVAILABLE" } },
     ]);
     expect(await prisma.triage.findUniqueOrThrow({ where: { id: triage.id }, select: { currentRecommendedPriority: true, finalHumanPriority: true, status: true } })).toEqual({ currentRecommendedPriority: "YELLOW", finalHumanPriority: null, status: "AWAITING_NURSE_REVIEW" });
   });

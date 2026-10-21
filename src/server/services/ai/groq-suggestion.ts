@@ -6,12 +6,14 @@ import type { AiEvidenceItem, AiSuggestionInput, AiSuggestionResult } from "@/se
 import { logServerOperation } from "@/server/observability/server-logger";
 
 export const GROQ_MODEL = process.env.GROQ_MODEL ?? "openai/gpt-oss-120b";
-export const AI_PROMPT_VERSION = "DEMO-AI-SUGGESTION-002";
+export const AI_PROMPT_VERSION = "DEMO-AI-SUGGESTION-003";
+const MIN_EVIDENCE_ITEMS = 1;
+const MAX_EVIDENCE_ITEMS = 6;
 
 const modelSelectionSchema = z.object({
   suggestion: z.enum(["RED", "YELLOW", "GREEN", "BLUE"]),
   attention: z.enum(["HIGH", "MODERATE", "LOW"]),
-  evidenceKeys: z.array(z.string().min(1).max(40)).min(1).max(6),
+  evidenceKeys: z.array(z.string().min(1).max(40)).min(MIN_EVIDENCE_ITEMS).max(MAX_EVIDENCE_ITEMS),
 }).strict();
 
 const limitations = [
@@ -46,7 +48,7 @@ function responseSchema(evidenceKeys: string[]) {
     properties: {
       suggestion: { type: "string", enum: ["RED", "YELLOW", "GREEN", "BLUE"] },
       attention: { type: "string", enum: ["HIGH", "MODERATE", "LOW"] },
-      evidenceKeys: { type: "array", items: { type: "string", enum: evidenceKeys } },
+      evidenceKeys: { type: "array", minItems: MIN_EVIDENCE_ITEMS, maxItems: MAX_EVIDENCE_ITEMS, items: { type: "string", enum: evidenceKeys } },
     },
     required: ["suggestion", "attention", "evidenceKeys"],
     additionalProperties: false,
@@ -110,7 +112,7 @@ export async function requestGroqSuggestion(input: AiSuggestionInput, fetcher: t
         max_completion_tokens: 450,
         response_format: { type: "json_schema", json_schema: { name: "triage_suggestion", strict: true, schema: responseSchema(dataConsidered.map((item) => item.key)) } },
         messages: [
-          { role: "system", content: "You support experimental triage. Return JSON only with suggestion, attention, and evidenceKeys. Choose keys only from the supplied dataConsidered list. Do not produce free text, diagnoses, thresholds, symptoms, values, or missing data. The nurse owns the final classification and decision." },
+          { role: "system", content: `You support experimental triage. Return JSON only with suggestion, attention, and evidenceKeys. Select ${MIN_EVIDENCE_ITEMS} to ${MAX_EVIDENCE_ITEMS} distinct evidenceKeys, only from the supplied dataConsidered list. Do not produce free text, diagnoses, thresholds, symptoms, values, or missing data. The nurse owns the final classification and decision.` },
           { role: "user", content: JSON.stringify({ dataConsidered }) },
         ],
       }),
@@ -131,7 +133,15 @@ export async function requestGroqSuggestion(input: AiSuggestionInput, fetcher: t
     let raw: unknown;
     try { raw = JSON.parse(content.data.choices[0].message.content); } catch { logFailure(triageId, "response", "JSON_INVALID"); return null; }
     const parsed = modelSelectionSchema.safeParse(raw);
-    if (!parsed.success) { logFailure(triageId, "response", "SCHEMA_INVALID"); return null; }
+    if (!parsed.success) {
+      // Log categories only; never include the provider response or input values.
+      const candidate = raw as { evidenceKeys?: unknown } | null;
+      const evidence = candidate && typeof candidate === "object" ? candidate.evidenceKeys : undefined;
+      const detail = Array.isArray(evidence) && evidence.length > MAX_EVIDENCE_ITEMS ? "EVIDENCE_TOO_MANY"
+        : Array.isArray(evidence) && evidence.length < MIN_EVIDENCE_ITEMS ? "EVIDENCE_EMPTY" : "STRUCTURE_MISMATCH";
+      logFailure(triageId, "response", "SCHEMA_INVALID", detail);
+      return null;
+    }
     const result = buildResult(input, parsed.data);
     if (!result) { logFailure(triageId, "response", "EVIDENCE_INVALID"); return null; }
     return result;

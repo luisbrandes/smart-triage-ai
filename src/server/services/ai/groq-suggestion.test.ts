@@ -2,6 +2,9 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import type { AiSuggestionInput } from "@/server/application/ai-suggestion/ai-suggestion-types";
 import { dataConsideredForSuggestion, requestGroqSuggestion } from "@/server/services/ai/groq-suggestion";
+import { logServerOperation } from "@/server/observability/server-logger";
+
+vi.mock("@/server/observability/server-logger", () => ({ logServerOperation: vi.fn() }));
 
 const fictitiousInput: AiSuggestionInput = {
   ageYears: 42, sex: null, mainComplaint: "Queixa fictícia para teste", subjectiveIntensity: 5,
@@ -9,7 +12,7 @@ const fictitiousInput: AiSuggestionInput = {
   weight: null, height: null, systemPriority: "GREEN",
 };
 
-afterEach(() => vi.unstubAllEnvs());
+afterEach(() => { vi.unstubAllEnvs(); vi.clearAllMocks(); });
 
 describe("sugestão experimental via Groq", () => {
   it("envia dados estruturados e valida a resposta sem fatos livres", async () => {
@@ -21,6 +24,8 @@ describe("sugestão experimental via Groq", () => {
       expect(promptData.dataConsidered).toContainEqual({ key: "mainComplaint", label: "Queixa principal", value: "Queixa fictícia para teste" });
       expect(JSON.stringify(promptData)).not.toContain("patientId");
       expect(body.response_format.json_schema.schema.properties.evidenceKeys.items.enum).toContain("spo2");
+      expect(body.response_format.json_schema.strict).toBe(true);
+      expect(body.response_format.json_schema.schema.properties.evidenceKeys).toMatchObject({ minItems: 1, maxItems: 6 });
       expect(options.headers).toMatchObject({ Authorization: "Bearer fake-test-key" });
       return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify({ suggestion: "YELLOW", attention: "MODERATE", evidenceKeys: ["spo2", "mainComplaint"] }) } }] }), { status: 200 });
     });
@@ -40,6 +45,31 @@ describe("sugestão experimental via Groq", () => {
     vi.stubEnv("APP_MODE", "demo");
     vi.stubEnv("GROQ_API_KEY", "fake-test-key");
     const fetcher = vi.fn(async () => new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify({ suggestion: "YELLOW", attention: "MODERATE", evidenceKeys: ["diagnosis"] }) } }] }), { status: 200 }));
+    await expect(requestGroqSuggestion(fictitiousInput, fetcher as typeof fetch)).resolves.toBeNull();
+  });
+
+  it.each([1, 6])("accepts %i selected fields at the contract boundaries", async (count) => {
+    vi.stubEnv("APP_MODE", "demo");
+    vi.stubEnv("GROQ_API_KEY", "fake-test-key");
+    const evidenceKeys = dataConsideredForSuggestion(fictitiousInput).slice(0, count).map((item) => item.key);
+    const fetcher = vi.fn(async () => new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify({ suggestion: "GREEN", attention: "LOW", evidenceKeys }) } }] })));
+    expect((await requestGroqSuggestion(fictitiousInput, fetcher as typeof fetch))?.indicators).toHaveLength(count);
+  });
+
+  it.each([0, 7])("rejects %i selected fields outside the same contract boundaries", async (count) => {
+    vi.stubEnv("APP_MODE", "demo");
+    vi.stubEnv("GROQ_API_KEY", "fake-test-key");
+    const evidenceKeys = dataConsideredForSuggestion(fictitiousInput).slice(0, count).map((item) => item.key);
+    const fetcher = vi.fn(async () => new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify({ suggestion: "GREEN", attention: "LOW", evidenceKeys }) } }] })));
+    await expect(requestGroqSuggestion(fictitiousInput, fetcher as typeof fetch)).resolves.toBeNull();
+    expect(logServerOperation).toHaveBeenCalledWith(expect.objectContaining({ errorCode: "SCHEMA_INVALID", state: `response:${count === 0 ? "EVIDENCE_EMPTY" : "EVIDENCE_TOO_MANY"}` }));
+    expect(JSON.stringify(vi.mocked(logServerOperation).mock.calls)).not.toContain(fictitiousInput.mainComplaint);
+  });
+
+  it("rejects duplicate selected keys", async () => {
+    vi.stubEnv("APP_MODE", "demo");
+    vi.stubEnv("GROQ_API_KEY", "fake-test-key");
+    const fetcher = vi.fn(async () => new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify({ suggestion: "GREEN", attention: "LOW", evidenceKeys: ["bpm", "bpm"] }) } }] })));
     await expect(requestGroqSuggestion(fictitiousInput, fetcher as typeof fetch)).resolves.toBeNull();
   });
 
