@@ -24,6 +24,8 @@
     "device:provision": "tsx scripts/provision-device-token.ts",
     "simulation:clean": "node --conditions=react-server --import tsx scripts/simulation-clean.ts",
     "simulation:load": "node --conditions=react-server --import tsx scripts/simulation-load.ts",
+    "rate-limit:explain": "node --conditions=react-server --import tsx scripts/rate-limit-explain.ts",
+    "rate-limit:cleanup": "node --conditions=react-server --import tsx scripts/rate-limit-cleanup.ts",
     "db:validate": "prisma validate",
     "vercel-build": "prisma generate && prisma migrate deploy && next build",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm db:validate && pnpm build"
